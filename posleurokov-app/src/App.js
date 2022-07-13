@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { axiosAPI } from "./plugins/axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: null,
+            email: null
+        };
+    }
+    render() {
+        return (
+            <div>
+                <p>{this.state.name}</p>
+                <p>{this.state.email}</p>
+            </div>
+        );
+    }
+    async componentDidMount() {
+        let userData = await axiosAPI.getUser();
+        userData = userData.results[0];
+        const name = `${userData.name.first} ${userData.name.last}`;
+        const email = userData.email;
+        this.setState({
+                ...this.state, ...{
+                    name,
+                    email
+                }
+        });
+    }
 }
 
 export default App;
