@@ -6,13 +6,12 @@ const instance = axios.create({
 
 export const axiosAPI = {
     async getUser() {
-        return await instance.get('', {
-                params: {
-                    results: 1,
-                    inc: 'name,email'
-                }
-            }).then(response => {
-                return response.data;
-            });
+        const response = await instance.get('', {
+            params: {
+                results: 1,
+                inc: 'name,email'
+            }
+        });
+        return response.data;
     }
 }
