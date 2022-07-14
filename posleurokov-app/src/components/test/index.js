@@ -1,0 +1,1 @@
+export { default as TestAxios } from '../test/TestAxios';
