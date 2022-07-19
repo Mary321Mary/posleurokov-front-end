@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;0,700;1,500&display=swap');
+
 button {
     /* Auto layout */
 
@@ -7,12 +9,10 @@ button {
     align-items: center;
     padding: 12px 16px 12px 24px;
     gap: 10px;
-}
 
-button p {
-    /* Добавить занятие */
     /* btn_text */
 
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
