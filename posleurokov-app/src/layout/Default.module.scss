@@ -22,13 +22,7 @@
 }
 .footer {
   flex: 0 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
   width: 100%;
-  min-height: 254px;
   color: #ffffff;
   background-color: $primary-color;
 }

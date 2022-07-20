@@ -31,12 +31,12 @@ const Footer = () => {
     </li>
   ));
   return (
-    <>
+    <section className={styles.container}>
       <nav>
         <ul>{nav}</ul>
       </nav>
       <Button width="210px">ОСТАВИТЬ МЕСТО</Button>
-    </>
+    </section>
   );
 };
 

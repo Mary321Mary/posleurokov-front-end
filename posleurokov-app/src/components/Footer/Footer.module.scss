@@ -1,5 +1,15 @@
 @import 'src/assets/styles/_variables.scss';
 
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1510px;
+  min-height: 254px;
+  margin: 0 auto;
+}
 .nav {
   &__item {
     display: inline-block;
