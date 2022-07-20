@@ -1,0 +1,60 @@
+@import 'src/assets/styles/_variables.scss';
+
+input[type='checkbox'] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.square {
+  position: absolute;
+  top: 1.5px;
+  left: 1.5px;
+
+  display: none;
+
+  width: 7px;
+  height: 7px;
+  border-color: $primary-color;
+  background-color: $primary-color;
+  border-radius: 1.53846px;
+}
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border: 0.5px $primary-color solid;
+  margin-right: 11px;
+  border-radius: 1.53846px;
+}
+
+.checkbox--active {
+  .square {
+    display: inline-block;
+  }
+}
+.checkbox-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: $checkbox-text-color;
+}
+.checkbox-text--active {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: $primary-color;
+}

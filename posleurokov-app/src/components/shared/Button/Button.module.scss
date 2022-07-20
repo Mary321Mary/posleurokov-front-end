@@ -1,0 +1,20 @@
+@import 'src/assets/styles/_variables.scss';
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 16px;
+
+  background-color: $primary-btn-color;
+  border-radius: 10px;
+  border: none;
+
+  font-family: $btn-font-family;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}

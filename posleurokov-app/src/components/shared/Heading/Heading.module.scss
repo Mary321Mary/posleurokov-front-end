@@ -1,0 +1,11 @@
+@import 'src/assets/styles/_variables.scss';
+
+.h1,
+.h2,
+.h3 {
+  font-family: $heading-font-family;
+  color: $primary-heading-color;
+}
+.center {
+  text-align: center;
+}

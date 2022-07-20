@@ -1,0 +1,13 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.section {
+  &-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
