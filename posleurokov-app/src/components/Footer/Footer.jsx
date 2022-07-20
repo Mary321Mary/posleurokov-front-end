@@ -19,14 +19,14 @@ const Footer = () => {
       text: 'КОНТАКТЫ',
     },
     {
-      path: '#',
+      path: '/qwe/qasd',
       text: 'ВОПРОСЫ И ОТВЕТЫ',
     },
   ];
 
   const nav = navItems.map((item, i) => (
     <li key={item.text} className={styles['nav__item']}>
-      <Link>{item.text}</Link>
+      <Link path={item.path}>{item.text}</Link>
       {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
     </li>
   ));
