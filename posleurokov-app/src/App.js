@@ -1,10 +1,12 @@
 import './App.scss';
 import { ComponentsDemo } from './components/test';
-
+import { DefaultLayout } from './layout';
 function App() {
   return (
     <>
-      <ComponentsDemo />
+      <DefaultLayout>
+        <ComponentsDemo />
+      </DefaultLayout>
     </>
   );
 }

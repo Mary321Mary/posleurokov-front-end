@@ -1,0 +1,18 @@
+@import 'src/assets/styles/_variables.scss';
+
+.nav {
+  &__item {
+    display: inline-block;
+  }
+}
+.vertical-line {
+  display: inline-block;
+
+  width: 1px;
+  height: 15px;
+
+  border-left: 1px rgba(255, 255, 255, 0.43) solid;
+  border-radius: 1px;
+
+  margin: 0 60px;
+}

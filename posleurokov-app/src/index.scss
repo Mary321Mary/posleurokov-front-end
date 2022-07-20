@@ -12,11 +12,23 @@
   font-family: 'Roboto-Medium';
   src: url(./assets/fonts/Roboto/Roboto-Medium.ttf);
 }
-
+@font-face {
+  font-family: 'Ubuntu-Medium';
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Medium.ttf);
+}
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   margin: 0;
   font-family: $primary-font-family;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

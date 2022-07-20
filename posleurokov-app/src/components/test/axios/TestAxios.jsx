@@ -24,4 +24,4 @@ const TestAxios = () => {
   );
 };
 
-export default TestAxios;
+export { TestAxios };

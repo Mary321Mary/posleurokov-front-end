@@ -13,4 +13,4 @@ const Heading = ({ tag, center = false, children, ...rest }) => {
   );
 };
 
-export default Heading;
+export { Heading };

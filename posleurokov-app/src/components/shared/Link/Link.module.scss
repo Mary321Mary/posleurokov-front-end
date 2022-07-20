@@ -1,0 +1,17 @@
+@import 'src/assets/styles/_variables.scss';
+
+.link {
+  font-family: $link-font-family;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+
+  text-decoration: none;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

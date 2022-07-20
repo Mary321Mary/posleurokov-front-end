@@ -1,0 +1,11 @@
+@import 'src/assets/styles/_variables.scss';
+
+.vertical-line {
+  width: 1px;
+  height: 67px;
+
+  border-left: 1px #eeefef solid;
+  border-radius: 1px;
+
+  margin: 0 34px;
+}

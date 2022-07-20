@@ -29,4 +29,4 @@ const Checkbox = ({ text, value = false, onChange }) => {
   );
 };
 
-export default Checkbox;
+export { Checkbox };

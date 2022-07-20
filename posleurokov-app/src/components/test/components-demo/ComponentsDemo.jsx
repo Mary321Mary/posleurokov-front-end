@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Heading, Button, Input, Checkbox, Select } from 'components/shared';
+import {
+  Heading,
+  Button,
+  Link,
+  Input,
+  Checkbox,
+  Select,
+} from 'components/shared';
 
 import styles from './ComponentsDemo.module.scss';
 
@@ -28,6 +35,9 @@ const ComponentsDemo = () => {
           >
             ОСТАВИТЬ МЕСТО
           </Button>
+          <Link path="/" color="black">
+            ГЛАВНАЯ
+          </Link>
         </div>
       </section>
       <section className={styles.section}>
@@ -46,4 +56,4 @@ const ComponentsDemo = () => {
   );
 };
 
-export default ComponentsDemo;
+export { ComponentsDemo };
