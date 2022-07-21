@@ -15,7 +15,6 @@ const Main = () => {
 
   const getCategories = async () => {
     let categories = await axiosAPI.getCategories();
-    console.log(categories);
     setResult(categories);
   };
 
@@ -71,7 +70,7 @@ const Main = () => {
                                 lineHeight='16px'
                                 color='#5F6060'
                                 display='block'
-                                margin='5px'
+                                margin='15px'
                               >{item.name}</Link>
                             )
                           }

@@ -1,6 +1,5 @@
 @import 'src/assets/styles/_variables.scss';
 
-
 .category img {
   width: 36px;
   height: 36px;
@@ -11,13 +10,16 @@
 }
 
 .category {
-  display: block;
+  margin: 30px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .label {
-  display: inline;
-  margin-right: 5px;
-
   font-family: $category-font-family;
   font-style: normal;
   font-weight: 700;
@@ -31,7 +33,7 @@
 }
 
 .number {
-  display:inline;
+  margin-left: 5px;
 
   font-family: 'Roboto-Medium';
   font-style: normal;
@@ -42,18 +44,4 @@
   /* gray */
 
   color: #9E9E9E;
-}
-
-.list {
-  margin-bottom: 5px;
-
-  font-family: 'Roboto-Regular';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-
-  /* dark_gray */
-
-  color: #5F6060;
 }

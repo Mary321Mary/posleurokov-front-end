@@ -1,6 +1,10 @@
 @import 'src/assets/styles/_variables.scss';
 
-.categories {
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20;
+  margin-top: 20px;
 }
 
 .label {

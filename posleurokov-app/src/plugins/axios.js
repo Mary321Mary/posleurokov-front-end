@@ -15,7 +15,7 @@ export const axiosAPI = {
         return response.data;
     },
     async getCategories() {
-        const response = await instance.get('categories');
+        const response = await instance.get('/api/main-page/categories');
         return response.data;
     }
 }

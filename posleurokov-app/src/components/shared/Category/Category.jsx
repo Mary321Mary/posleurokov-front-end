@@ -8,12 +8,12 @@ const Category = ({ label, number, children, ...rest }) => {
       className={styles.category}
       style={{ ...rest }}
     >
-      <div>
+      <div className={styles.header}>
         <img src={logo} alt='Все кружки'/>
         <div className={styles.label}>{label}</div>
         <div className={styles.number}>{number}</div>
       </div>
-      <div className={styles.list}>
+      <div>
         {children}
       </div>
     </div>
