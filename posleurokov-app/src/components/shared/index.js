@@ -4,3 +4,6 @@ export { Link } from './Link/Link';
 export { Input } from './Input/Input';
 export { Checkbox } from './Checkbox/Checkbox';
 export { Select } from './Select/Select';
+export { TabBarItem } from './TabBarItem/TabBarItem';
+export { TabBarNav } from './TabBarNav/TabBarNav';
+export { TabsBar } from './TabsBar/TabsBar';

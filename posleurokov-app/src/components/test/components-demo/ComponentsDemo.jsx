@@ -6,6 +6,8 @@ import {
   Input,
   Checkbox,
   Select,
+  TabsBar,
+  TabBarItem
 } from 'components/shared';
 
 import styles from './ComponentsDemo.module.scss';
@@ -50,6 +52,16 @@ const ComponentsDemo = () => {
             onChange={(val) => setCheck(val)}
           />
           <Select />
+        </div>
+      </section>
+      <section className={styles.section}>
+        <Heading tag="h2">TabsBar</Heading>
+        <div className={styles['section-list']}>
+        <TabsBar>
+          <TabBarItem label="Simple text">
+            <p>Simple text</p>
+          </TabBarItem>
+        </TabsBar>
         </div>
       </section>
     </section>
