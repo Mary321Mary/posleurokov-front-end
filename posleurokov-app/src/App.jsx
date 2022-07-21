@@ -1,7 +1,6 @@
 import './App.scss';
 import { DefaultLayout } from './layout';
-import { NotFoundPage } from './pages';
-import { ComponentsDemo } from './components/test';
+import { NotFoundPage, Main } from './pages';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 const App = () => {
@@ -9,7 +8,7 @@ const App = () => {
     <Router>
       <DefaultLayout>
         <Routes>
-          <Route exact path="/" element={<ComponentsDemo />} />
+          <Route exact path="/" element={<Main />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </DefaultLayout>

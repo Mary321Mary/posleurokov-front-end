@@ -1,0 +1,59 @@
+@import 'src/assets/styles/_variables.scss';
+
+
+.category img {
+  width: 36px;
+  height: 36px;
+  background: $primary-color;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.category {
+  display: block;
+}
+
+.label {
+  display: inline;
+  margin-right: 5px;
+
+  font-family: $category-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  text-transform: uppercase;
+
+  /* dark_gray */
+
+  color: #5F6060;
+}
+
+.number {
+  display:inline;
+
+  font-family: 'Roboto-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  /* gray */
+
+  color: #9E9E9E;
+}
+
+.list {
+  margin-bottom: 5px;
+
+  font-family: 'Roboto-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* dark_gray */
+
+  color: #5F6060;
+}

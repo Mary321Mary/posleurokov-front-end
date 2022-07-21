@@ -13,5 +13,9 @@ export const axiosAPI = {
             }
         });
         return response.data;
+    },
+    async getCategories() {
+        const response = await instance.get('categories');
+        return response.data;
     }
 }

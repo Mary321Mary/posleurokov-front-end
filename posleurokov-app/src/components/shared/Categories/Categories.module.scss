@@ -1,0 +1,35 @@
+@import 'src/assets/styles/_variables.scss';
+
+.categories {
+}
+
+.label {
+  display:inline;
+  margin-right: 5px;
+
+  /* (main) */
+  font-family: 'Roboto-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration-line: underline;
+
+  /* dark_gray */
+
+  color: #5F6060;
+}
+
+.number {
+  display:inline;
+
+  font-family: 'Roboto-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+
+  /* gray */
+
+  color: #9E9E9E;
+}
