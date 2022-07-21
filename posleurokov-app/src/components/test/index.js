@@ -1,1 +1,2 @@
-export { default as TestAxios } from '../test/TestAxios';
+export { TestAxios } from './axios/TestAxios';
+export { ComponentsDemo } from './components-demo/ComponentsDemo';
