@@ -17,5 +17,9 @@ export const axiosAPI = {
     async getCategories() {
         const response = await instance.get('/api/main-page/categories');
         return response.data;
+    },
+    async getRandomLessons() {
+        const response = await instance.get('/api/main-page/random-lessons');
+        return response.data;
     }
 }

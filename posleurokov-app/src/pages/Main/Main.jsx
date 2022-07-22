@@ -5,6 +5,7 @@ import {
   Category
 } from 'components/shared';
 import { Link } from '../../components';
+import randomLesson from '../../assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
@@ -12,15 +13,22 @@ import { axiosAPI } from 'plugins/axios';
 
 const Main = () => {
   const [result, setResult] = useState(null);
+  const [randomLessons, setRandomLessons] = useState(null);
 
   const getCategories = async () => {
     let categories = await axiosAPI.getCategories();
     setResult(categories);
   };
 
+  const getRandomLessons = async () => {
+    let lessons = await axiosAPI.getRandomLessons();
+    setRandomLessons(lessons);
+  };
+
   useEffect(() => {
     getCategories();
-  }, [setResult]);
+    getRandomLessons();
+  }, [setResult, setRandomLessons]);
 
 
   return (
@@ -49,46 +57,79 @@ const Main = () => {
       >
         Для взрослых и детей
       </Heading>
-      <Sheet>
-        {result !== null ? (
-          <Categories number={result.length}>
-            {
-              result.map(
-                function(category) {
+      <div className={styles['section-list']}>
+        <Sheet marginRight='40px'>
+          {result !== null ? (
+            <Categories number={result.length}>
+              {
+                result.map(
+                  function(category) {
+                    return (
+                      <Category
+                        key={category.baseCategoryName}
+                        label={category.baseCategoryName}
+                        number={category.concreteCategories.length}
+                      >
+                        {
+                          category.concreteCategories.map(
+                            function(item) {
+                              return (
+                                <Link
+                                  key={item.id}
+                                  path='/'
+                                  fontFamily='Roboto-Regular'
+                                  fontStyle='normal'
+                                  fontWeight='400'
+                                  fontSize='14px'
+                                  lineHeight='32px'
+                                  color='#5F6060'
+                                >{item.name}<br/></Link>
+                              )
+                            }
+                          )
+                        }
+                      </Category>
+                    )
+                  }
+                )
+              }
+            </Categories>
+          ) : (
+            <div>Loading post...</div>
+          )}
+        </Sheet>
+        <div>
+          {result !== null ? (
+            <Sheet padding='16px 17px 1px'>
+              {randomLessons.map(
+                function(lesson) {
                   return (
-                    <Category
-                      key={category.baseCategoryName}
-                      label={category.baseCategoryName}
-                      number={category.concreteCategories.length}
-                    >
-                      {
-                        category.concreteCategories.map(
-                          function(item) {
-                            return (
-                              <Link
-                                key={item.id}
-                                path='/'
-                                fontFamily='Roboto-Regular'
-                                fontStyle='normal'
-                                fontWeight='400'
-                                fontSize='14px'
-                                lineHeight='32px'
-                                color='#5F6060'
-                              >{item.name}<br/></Link>
-                            )
-                          }
-                        )
-                      }
-                    </Category>
+                    <div key={lesson.name} style={{
+                      marginBottom: '20px',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }}>
+                      <img src={randomLesson} alt='Занятие' width='70px'/>
+                      <Link
+                        fontFamily='Roboto-Regular'
+                        fontStyle='normal'
+                        fontWeight='400'
+                        fontSize='14px'
+                        lineHeight='16px'
+                        color='#5F6060'
+                        marginLeft='12px'
+                      >{lesson.name}</Link>
+                    </div>
                   )
                 }
-              )
-            }
-          </Categories>
-        ) : (
-          <div>Loading post...</div>
-        )}
-      </Sheet>
+              )}
+            </Sheet>
+          ) : (
+            <div>Loading post...</div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };
