@@ -4,12 +4,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20;
-  margin-top: 20px;
+}
+
+.categories {
+  margin-left: 51px;
+  margin-top: 60px;
+  padding-top: 60px;
 }
 
 .label {
   display:inline;
-  margin-right: 5px;
 
   /* (main) */
   font-family: 'Roboto-Bold';
@@ -26,6 +30,7 @@
 
 .number {
   display:inline;
+  margin-left: 19px;
 
   font-family: 'Roboto-Medium';
   font-style: normal;

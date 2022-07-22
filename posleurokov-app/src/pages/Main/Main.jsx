@@ -56,7 +56,10 @@ const Main = () => {
               result.map(
                 function(category) {
                   return (
-                    <Category label={category.baseCategoryName} number={category.concreteCategories.length}>
+                    <Category
+                      label={category.baseCategoryName}
+                      number={category.concreteCategories.length}
+                    >
                       {
                         category.concreteCategories.map(
                           function(item) {
@@ -70,7 +73,7 @@ const Main = () => {
                                 lineHeight='16px'
                                 color='#5F6060'
                                 display='block'
-                                margin='15px'
+                                marginBottom='16px'
                               >{item.name}</Link>
                             )
                           }

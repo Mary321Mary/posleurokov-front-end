@@ -10,8 +10,10 @@ const Category = ({ label, number, children, ...rest }) => {
     >
       <div className={styles.header}>
         <img src={logo} alt='Все кружки'/>
-        <div className={styles.label}>{label}</div>
-        <div className={styles.number}>{number}</div>
+        <div className={styles.label}>
+          {label}
+          <div className={styles.number}>{number}</div>
+        </div>
       </div>
       <div>
         {children}
