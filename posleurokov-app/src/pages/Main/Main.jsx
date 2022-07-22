@@ -57,6 +57,7 @@ const Main = () => {
                 function(category) {
                   return (
                     <Category
+                      key={category.baseCategoryName}
                       label={category.baseCategoryName}
                       number={category.concreteCategories.length}
                     >
@@ -65,16 +66,15 @@ const Main = () => {
                           function(item) {
                             return (
                               <Link
+                                key={item.id}
                                 path='/'
                                 fontFamily='Roboto-Regular'
                                 fontStyle='normal'
                                 fontWeight='400'
                                 fontSize='14px'
-                                lineHeight='16px'
+                                lineHeight='32px'
                                 color='#5F6060'
-                                display='block'
-                                marginBottom='16px'
-                              >{item.name}</Link>
+                              >{item.name}<br/></Link>
                             )
                           }
                         )
