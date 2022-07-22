@@ -100,12 +100,13 @@ const Main = () => {
         </Sheet>
         <div>
           {result !== null ? (
-            <Sheet padding='16px 17px 1px'>
+            <Sheet padding='6px 17px 6px'>
               {randomLessons.map(
                 function(lesson) {
                   return (
                     <div key={lesson.name} style={{
-                      marginBottom: '20px',
+                      marginBottom: '10px',
+                      marginTop: '10px',
                       display: 'flex',
                       flexDirection: 'row',
                       alignItems: 'center'
