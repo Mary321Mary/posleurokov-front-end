@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './Sheet.module.scss';
 
-const Sheet = ({ children }) => {
+const Sheet = ({ children, ...rest }) => {
   return (
-    <div className={styles.sheet}>
+    <div
+      className={styles.sheet}
+      style={{ ...rest }}
+    >
       { children }
     </div>
   );
