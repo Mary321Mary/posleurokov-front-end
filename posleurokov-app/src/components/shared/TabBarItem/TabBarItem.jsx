@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './TabBarItem.module.scss';
 
-const TabBarItem = ({ children, ...rest }) => {
+const TabBarItem = ({ content, ...rest }) => {
   return (
     <div
       className={styles.tabBarItem}
       style={{ ...rest }}
     >
-      {children}
+      {content}
     </div>
   );
 };

@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './TabBarNav.module.scss';
 
-const TabBarNav = ({ label, ...rest }) => {
+const TabBarNav = ({ children, dataIndex, activeTab, onClick, ...rest }) => {
   return (
     <button
       type='button'
-      className={styles.tabBarNav}
+      className={`${styles.tabbutton} ${
+        dataIndex == activeTab ? styles['tabbutton--active'] : ''
+      }`}
+      onClick={onClick}
+      data-index={dataIndex}
       style={{ ...rest }}
-      onClick={() => { alert(1); }}
     >
-      {label}
+      {children}
     </button>
   );
 };

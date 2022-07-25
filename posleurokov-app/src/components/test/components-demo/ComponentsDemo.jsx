@@ -6,8 +6,7 @@ import {
   Input,
   Checkbox,
   Select,
-  TabsBar,
-  TabBarItem
+  TabsBar
 } from 'components/shared';
 
 import styles from './ComponentsDemo.module.scss';
@@ -57,11 +56,13 @@ const ComponentsDemo = () => {
       <section className={styles.section}>
         <Heading tag="h2">TabsBar</Heading>
         <div className={styles['section-list']}>
-        <TabsBar>
-          <TabBarItem label="Simple text">
-            <p>Simple text</p>
-          </TabBarItem>
-        </TabsBar>
+          <TabsBar>
+            {[
+              { title: 'London', content: 'London is the capital city of England.' },
+              { title: 'Paris', content: 'Paris is the capital of France.' },
+              { title: 'Tokyo', content: 'Tokyo is the capital of Japan.' }
+            ]}
+          </TabsBar>
         </div>
       </section>
     </section>
