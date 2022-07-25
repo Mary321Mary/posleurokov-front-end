@@ -1,9 +1,22 @@
 @import 'src/assets/styles/_variables.scss';
 
+.number {
+  display: inline;
+  margin-left: 6px;
+  
+  font-family: 'Roboto-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #FFFFFF;
+}
+
 .tabbutton {
   border-radius: 16px 16px 0px 0px;
   border: none;
-  padding: 14px 16px;
+  padding: 12px 11px 16px 30px;
 
   font-family: 'Roboto-Regular';
   font-style: normal;
@@ -11,6 +24,14 @@
   font-size: 18px;
   line-height: 21px;
   color: #5F6060;
+
+  .number {
+    padding: 2px 6px;
+    
+    /* gray */
+    background: #9E9E9E;
+    border-radius: 7.125px;
+  }
 }
 
 .tabbutton--active {
@@ -20,4 +41,13 @@
   font-size: 20px;
   line-height: 23px;
   background-color: rgb(255, 255, 255);
+
+  .number {
+    padding: 2px 8px;
+    
+    /* fuchsia */
+    background: #EA2182;
+    border-radius: 7.125px;
+  }
 }
+

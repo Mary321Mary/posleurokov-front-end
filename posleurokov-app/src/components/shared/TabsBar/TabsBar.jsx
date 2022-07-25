@@ -4,11 +4,11 @@ import styles from './TabsBar.module.scss';
 
 import { TabBarNav, TabBarItem } from '../';
 
-const TabsBar = ({ children, ...rest }) => {
+const TabsBar = ({ items, ...rest }) => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const openTab = e => {
-    setActiveTab(+e.target.dataset.index);
+  const openTab = (index) => {
+    setActiveTab(index);
   };
 
   return (
@@ -16,17 +16,18 @@ const TabsBar = ({ children, ...rest }) => {
       style={{ ...rest }}
     >
       <div className={styles.tabnav}>
-        {children.map((page, i) => (
+        {items.map((page, i) => (
           <TabBarNav
             key={page.title}
-            onClick={openTab}
             dataIndex={i}
-            activeTab={activeTab}
+            number={page.count}
+            isActive={i === activeTab}
+            onClick={() => openTab(i)}
           >{page.title}</TabBarNav>
         ))}
       </div>
       <div>
-        {children[activeTab] && <TabBarItem { ...children[activeTab] } />}
+        {items[activeTab] && <TabBarItem { ...items[activeTab] } padding='28px'/>}
       </div>
     </div>
   );

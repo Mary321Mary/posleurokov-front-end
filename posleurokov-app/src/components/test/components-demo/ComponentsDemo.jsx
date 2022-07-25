@@ -13,6 +13,11 @@ import styles from './ComponentsDemo.module.scss';
 
 const ComponentsDemo = () => {
   const [isChecked, setCheck] = useState(false);
+  const items = [
+    { title: 'London', count: '100', content: 'London is the capital city of England.' },
+    { title: 'Paris', count: '10', content: 'Paris is the capital of France.' },
+    { title: 'Tokyo', count: '10', content: 'Tokyo is the capital of Japan.' },
+  ];
   return (
     <section className={styles.container}>
       <Heading tag="h1" center>
@@ -55,14 +60,8 @@ const ComponentsDemo = () => {
       </section>
       <section className={styles.section}>
         <Heading tag="h2">TabsBar</Heading>
-        <div className={styles['section-list']}>
-          <TabsBar>
-            {[
-              { title: 'London', content: 'London is the capital city of England.' },
-              { title: 'Paris', content: 'Paris is the capital of France.' },
-              { title: 'Tokyo', content: 'Tokyo is the capital of Japan.' }
-            ]}
-          </TabsBar>
+        <div>
+          <TabsBar items={items} />
         </div>
       </section>
     </section>
