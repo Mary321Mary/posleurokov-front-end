@@ -63,7 +63,7 @@ const Main = () => {
             <Categories number={result.length}>
               {
                 result.map(
-                  function(category) {
+                  category => {
                     return (
                       <Category
                         key={category.baseCategoryName}
@@ -72,7 +72,7 @@ const Main = () => {
                       >
                         {
                           category.concreteCategories.map(
-                            function(item) {
+                            item => {
                               return (
                                 <Link
                                   key={item.id}
@@ -100,13 +100,13 @@ const Main = () => {
         </Sheet>
         <div>
           {result !== null ? (
-            <Sheet padding='6px 17px 6px'>
+            <Sheet padding='5.23px 17px 7px'>
               {randomLessons.map(
-                function(lesson) {
+                lesson => {
                   return (
                     <div key={lesson.name} style={{
-                      marginBottom: '10px',
-                      marginTop: '10px',
+                      paddingTop: '10.77px',
+                      paddingBottom: '10px',
                       display: 'flex',
                       flexDirection: 'row',
                       alignItems: 'center'
