@@ -1,12 +1,16 @@
 @import 'src/assets/styles/_variables.scss';
 
-.category img {
-  width: 36px;
-  height: 36px;
-  background: $primary-color;
-  border-radius: 4px;
-  padding: 10px;
-  margin-right: 20px;
+.category {
+  width: 33%;
+
+  img {
+    width: 36px;
+    height: 36px;
+    background: $primary-color;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 20px;
+  }
 }
 
 .header {
@@ -45,4 +49,16 @@
   /* gray */
 
   color: #9E9E9E;
+}
+
+@media only screen and (min-width: 321px) and (max-width: 1024px) {
+  .category {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .category {
+    width: 100%;
+  }
 }

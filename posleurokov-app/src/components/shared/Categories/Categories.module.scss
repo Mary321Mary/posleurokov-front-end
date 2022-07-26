@@ -1,9 +1,8 @@
 @import 'src/assets/styles/_variables.scss';
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .categories {

@@ -10,4 +10,19 @@
     justify-content: space-around;
     align-items: center;
   }
+  &-categories {
+    margin-right: 40px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .section {
+    &-list {
+      flex-direction: column;
+    }
+    &-categories {
+      margin-right: 0px;
+      margin-bottom: 40px;
+    }
+  }
 }

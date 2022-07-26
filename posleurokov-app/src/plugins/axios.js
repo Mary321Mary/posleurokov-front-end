@@ -1,4 +1,8 @@
 import axios from 'axios';
+import {
+    CATEGORIES,
+    RANDOM_LESSONS
+} from './endpoints';
 
 const instance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL
@@ -15,11 +19,21 @@ export const axiosAPI = {
         return response.data;
     },
     async getCategories() {
-        const response = await instance.get('/api/main-page/categories');
-        return response.data;
+        try {
+            const response = await instance.get(CATEGORIES);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+        return 'Ошибка сервера';
     },
     async getRandomLessons() {
-        const response = await instance.get('/api/main-page/random-lessons');
-        return response.data;
+        try {
+            const response = await instance.get(RANDOM_LESSONS);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+        return 'Ошибка сервера';
     }
 }

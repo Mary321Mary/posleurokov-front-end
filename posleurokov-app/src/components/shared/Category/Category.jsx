@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Category.module.scss';
-import logo from '../../../assets/img/art.png';
+import logo from 'assets/img/art.png';
 
 const Category = ({ label, number, image, children, ...rest }) => {
   return (
