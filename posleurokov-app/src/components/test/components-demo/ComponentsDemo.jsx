@@ -3,7 +3,6 @@ import {
   Heading,
   Button,
   Link,
-  Input,
   Checkbox,
 } from 'components/shared';
 
@@ -42,7 +41,7 @@ const ComponentsDemo = () => {
       <section className={styles.section}>
         <Heading tag="h2">Inputs</Heading>
         <div className={styles['section-list']}>
-          <Input />
+          {/* <Input /> */}
           <Checkbox
             text="Test check box"
             value={isChecked}

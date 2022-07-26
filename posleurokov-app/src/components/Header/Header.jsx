@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import { Logo, Button, Link } from 'components';
 import Select from 'components/shared/Select/Select';
-
+import Input from 'components/shared/Input/Input';
 
 const Header = () => {
   return (
@@ -14,10 +14,11 @@ const Header = () => {
             { text: 'Минск', value: 2 },
             { text: 'Гродно', value: 3 },
             { text: 'Витебск', value: 4 },
-            { text: 'Брест', value: 4 },
-            { text: 'Могилёв', value: 4 },
+            { text: 'Брест', value: 5 },
+            { text: 'Могилёв', value: 6 },
           ]}
         />
+        <Input />
       </div>
       <div>
         <div>
