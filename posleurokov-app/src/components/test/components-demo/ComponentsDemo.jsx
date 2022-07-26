@@ -5,7 +5,6 @@ import {
   Link,
   Input,
   Checkbox,
-  Select,
 } from 'components/shared';
 
 import styles from './ComponentsDemo.module.scss';
@@ -49,7 +48,7 @@ const ComponentsDemo = () => {
             value={isChecked}
             onChange={(val) => setCheck(val)}
           />
-          <Select />
+
         </div>
       </section>
     </section>
