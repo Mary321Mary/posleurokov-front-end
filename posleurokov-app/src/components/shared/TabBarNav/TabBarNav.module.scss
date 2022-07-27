@@ -4,7 +4,7 @@
   display: inline;
   margin-left: 6px;
   
-  font-family: 'Roboto-Bold';
+  font-family: 'Roboto-Bold', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -18,7 +18,7 @@
   border: none;
   padding: 12px 11px 16px 30px;
 
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto-Regular', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -39,7 +39,7 @@
 }
 
 .tabbutton--active {
-  font-family: 'Roboto-Medium';
+  font-family: 'Roboto-Medium', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

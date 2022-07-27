@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './TabBarNav.module.scss';
-import logo from 'assets/img/map.png';
 
-const TabBarNav = ({ children, dataIndex, number, isActive, onClick, ...rest }) => {
+const TabBarNav = ({ children, number, logo, isActive, onClick, ...rest }) => {
   return (
     <button
       type='button'
@@ -10,7 +9,6 @@ const TabBarNav = ({ children, dataIndex, number, isActive, onClick, ...rest }) 
         isActive ? styles['tabbutton--active'] : ''
       }`}
       onClick={onClick}
-      data-index={dataIndex}
       style={{ ...rest }}
     >
       {children}
