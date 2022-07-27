@@ -3,7 +3,7 @@
 .category {
   width: 33%;
 
-  img {
+  .logo {
     width: 36px;
     height: 36px;
     background: $primary-color;
@@ -40,7 +40,7 @@
   display: inline;
   margin-left: 10px;
 
-  font-family: 'Roboto-Medium';
+  font-family: 'Roboto-Medium', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -49,6 +49,14 @@
   /* gray */
 
   color: #9E9E9E;
+}
+
+.categories {
+  display: block;
+}
+
+.galochka, galochkaRaskruta {
+  display: none;
 }
 
 @media only screen and (min-width: 321px) and (max-width: 1024px) {
@@ -60,5 +68,43 @@
 @media only screen and (max-width: 320px) {
   .category {
     width: 100%;
+  }
+
+  .header {
+    margin-bottom: 14px;
+    margin-top: 23px;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+
+    /* blue */
+    color: #6D80D8;
+  }
+
+  .number {
+    display: block;
+    margin-left: 0px;
+  
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .categories {
+    display: none;
+  }
+
+  .galochka {
+    display: block;
+    width: 13px;
+    height: 5.6px;
+  }
+
+  .galochkaRaskruta {
+    display: block;
+    width: 5.6px;
+    height: 13px;
   }
 }
