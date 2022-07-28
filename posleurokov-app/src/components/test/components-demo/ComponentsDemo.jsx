@@ -16,6 +16,7 @@ const ComponentsDemo = () => {
   const items = [
     { title: 'London', count: '100', content: 'London is the capital city of England.' },
     { title: 'Paris', count: '10', content: 'Paris is the capital of France.' },
+    { title: 'Berlin', count: '10', content: 'Berlin is the capital of Germany.' },
     { title: 'На карте', count: '-1', content: 'Tokyo is the capital of Japan.' },
   ];
   return (

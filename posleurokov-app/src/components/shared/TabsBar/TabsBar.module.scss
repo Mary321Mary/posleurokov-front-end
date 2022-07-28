@@ -4,3 +4,18 @@
   background: #EEEFEF;
   border-radius: 16px 16px 0px 0px;
 }
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 320px) {
+  .hide {
+    display: inline;
+    border: none;
+
+    img {
+      margin-bottom: -5px;
+    }
+  }
+}

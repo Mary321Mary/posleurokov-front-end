@@ -55,3 +55,34 @@
   }
 }
 
+@media only screen and (max-width: 320px) {
+  .number {
+    font-size: 9px;
+    line-height: 11px;
+  }
+
+  .tabbutton {
+    padding: 6px 6px 11px 8px;
+
+    font-size: 12px;
+    line-height: 14px;
+
+    .number {
+      font-size: 8px;
+      line-height: 9px;
+    }
+
+    img {
+      width: 14px;
+    }
+  }
+
+  .tabbutton--active {
+    font-size: 16px;
+    line-height: 19px;
+  
+    .number {
+      padding: 2px 8px;
+    }
+  }
+}
