@@ -80,7 +80,7 @@ const Main = () => {
                                       fontFamily='Roboto-Regular'
                                       fontWeight='400'
                                       fontSize='14px'
-                                      lineHeight='32px'
+                                      lineHeight='36px'
                                       color='#5F6060'
                                     >{item.name}<br/></Link>
                                   )
