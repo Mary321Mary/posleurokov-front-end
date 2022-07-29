@@ -1,11 +1,10 @@
 import styles from './VkBlock.module.scss';
 import { Sheet } from 'components';
 
-const VkBlock = ({ heigth, width, top, ...rest }) => {
+const VkBlock = ({ heigth, width, ...rest }) => {
     return (
         <Sheet
-            right='20px'
-            top={top}
+            top='20px'
             position='relative'
             width={width}
             height={heigth}

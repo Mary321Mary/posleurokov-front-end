@@ -136,8 +136,8 @@ const Main = () => {
           ) : (
             <div>Loading post...</div>
           )}
+          <VkBlock heigth={'auto'} width={'220px'} />
         </div>
-        <VkBlock heigth={'auto'} width={'220px'} top={'30px'} />
       </div>
     </section>
   );
