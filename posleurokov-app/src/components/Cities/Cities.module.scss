@@ -1,0 +1,40 @@
+@import 'src/assets/styles/_variables.scss';
+
+.cities {
+  margin-top: 19px;
+  display: flex;
+  text-decoration: none;
+  color: #5F6060;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #EEEFEF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+
+  img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+  }
+
+  &:last-child {
+    font-weight: 700;
+    padding-bottom: 0%;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 3px;
+    border-bottom: none;
+  }
+}
+
+.h3 {
+  width: 147px;
+  height: 28px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.025em;
+  margin-top: 0%;
+  margin-bottom: 29px;
+  color: #5F6060;
+}
