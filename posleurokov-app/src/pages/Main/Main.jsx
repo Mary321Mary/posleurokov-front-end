@@ -4,7 +4,8 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link, Cities } from 'components';
+import { Link,  } from 'components';
+import { VkBlock, Link, Cities } from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
@@ -80,7 +81,7 @@ const Main = () => {
                                       fontFamily='Roboto-Regular'
                                       fontWeight='400'
                                       fontSize='14px'
-                                      lineHeight='32px'
+                                      lineHeight='36px'
                                       color='#5F6060'
                                     >{item.name}<br /></Link>
                                   )
@@ -136,6 +137,7 @@ const Main = () => {
             <div>Loading post...</div>
           )}
           <Cities />
+          <VkBlock heigth={'auto'} width={'220px'} />
         </div>
       </div>
     </section>
