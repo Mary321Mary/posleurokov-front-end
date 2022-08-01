@@ -7,3 +7,4 @@ export { Select } from './Select/Select';
 export { Sheet } from './Sheet/Sheet';
 export { Categories } from './Categories/Categories';
 export { Category } from './Category/Category';
+export { List } from './List/List';
