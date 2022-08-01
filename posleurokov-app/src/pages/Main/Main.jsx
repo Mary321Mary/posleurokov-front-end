@@ -4,9 +4,8 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link } from '../../components';
+import { Link, VkBlock } from '../../components';
 import randomLesson from '../../assets/img/randomLesson.png';
-import { VkBlock } from '../../components';
 
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
