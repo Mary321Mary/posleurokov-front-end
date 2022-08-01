@@ -1,5 +1,5 @@
 import styles from './List.module.scss';
-import arrow from "../../../assets/img/arrow-right.png";
+import arrow from "assets/img/arrow-right.png";
 
 const List = ({ list }) => {
   const displayList = list.map((elem, index) => {

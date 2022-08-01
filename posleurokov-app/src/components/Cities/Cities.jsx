@@ -1,8 +1,8 @@
 import styles from './Cities.module.scss';
 import { useState, useEffect } from 'react';
 import { Sheet, List } from 'components/shared';
-import arrow from "../../assets/img/arrow-right.png";
-import { axiosAPI } from '../../plugins/axios';
+import arrow from "assets/img/arrow-right.png";
+import { axiosAPI } from 'plugins/axios';
 
 const Cities = () => {
   const [cities, setCities] = useState([])

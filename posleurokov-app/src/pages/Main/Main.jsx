@@ -4,8 +4,8 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link, Cities } from '../../components';
-import randomLesson from '../../assets/img/randomLesson.png';
+import { Link, Cities } from 'components';
+import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
