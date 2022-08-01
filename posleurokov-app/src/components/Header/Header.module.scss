@@ -9,20 +9,22 @@
 
   margin: 0 34px;
 }
-  
-.show {
-  flex: 0;
-  overflow: hidden;
+
+.button {
+  margin-left: 34px;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .button {
+    margin-left: 22px;
+    margin-right: 32px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
   .hide {
     flex: 0;
     overflow: hidden;
-  }
-  
-  .show {
-    flex: none;
   }
 
   .menu {
@@ -34,6 +36,7 @@
     background-color: rgb(216, 216, 216);
     overflow-x: hidden;
     padding-top: 60px;
+    transition: 0.5s;
   }
 
   .menu a {
