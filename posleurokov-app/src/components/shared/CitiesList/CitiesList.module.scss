@@ -1,0 +1,19 @@
+@import 'src/assets/styles/_variables.scss';
+
+.cities {
+  margin-top: 19px;
+  display: flex;
+  text-decoration: none;
+  color: #5F6060;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #EEEFEF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+
+  img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+  }
+}
