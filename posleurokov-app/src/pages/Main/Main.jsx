@@ -9,6 +9,7 @@ import { Link } from '../../components';
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import { axiosAPI } from 'plugins/axios';
+import Filter from 'components/Filter/Filter';
 
 const Main = () => {
   const [result, setResult] = useState(null);
@@ -55,12 +56,12 @@ const Main = () => {
           <Categories number={result.length}>
             {
               result.map(
-                function(category) {
+                function (category) {
                   return (
                     <Category label={category.baseCategoryName} number={category.concreteCategories.length}>
                       {
                         category.concreteCategories.map(
-                          function(item) {
+                          function (item) {
                             return (
                               <Link
                                 path='/'
@@ -87,6 +88,7 @@ const Main = () => {
           <div>Loading post...</div>
         )}
       </Sheet>
+      <Filter />
     </section>
   );
 };
