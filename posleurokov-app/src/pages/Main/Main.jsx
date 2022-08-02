@@ -4,8 +4,9 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link } from '../../components';
-import randomLesson from '../../assets/img/randomLesson.png';
+import { Link,  } from 'components';
+import { VkBlock, Link, Cities } from 'components';
+import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
@@ -82,7 +83,7 @@ const Main = () => {
                                       fontSize='14px'
                                       lineHeight='36px'
                                       color='#5F6060'
-                                    >{item.name}<br/></Link>
+                                    >{item.name}<br /></Link>
                                   )
                                 }
                               )
@@ -115,7 +116,7 @@ const Main = () => {
                         flexDirection: 'row',
                         alignItems: 'center'
                       }}>
-                        <img src={randomLesson} alt='Занятие' width='70px'/>
+                        <img src={randomLesson} alt='Занятие' width='70px' />
                         <Link
                           fontFamily='Roboto-Regular'
                           fontWeight='400'
@@ -135,6 +136,8 @@ const Main = () => {
           ) : (
             <div>Loading post...</div>
           )}
+          <Cities />
+          <VkBlock heigth={'auto'} width={'220px'} />
         </div>
       </div>
     </section>
