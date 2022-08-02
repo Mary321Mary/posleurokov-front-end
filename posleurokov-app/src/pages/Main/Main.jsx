@@ -4,7 +4,6 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link,  } from 'components';
 import { VkBlock, Link, Cities } from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
@@ -67,23 +66,24 @@ const Main = () => {
                       category => {
                         return (
                           <Category
-                            key={category.baseCategoryName}
-                            label={category.baseCategoryName}
+                            key={category.baseCategory.name}
+                            label={category.baseCategory.name}
                             number={category.concreteCategories.length}
+                            image={category.baseCategory.icon}
                           >
                             {
                               category.concreteCategories.map(
                                 item => {
                                   return (
                                     <Link
-                                      key={item.id}
+                                      key={item}
                                       path='/'
                                       fontFamily='Roboto-Regular'
                                       fontWeight='400'
                                       fontSize='14px'
                                       lineHeight='36px'
                                       color='#5F6060'
-                                    >{item.name}<br /></Link>
+                                    >{item}<br /></Link>
                                   )
                                 }
                               )

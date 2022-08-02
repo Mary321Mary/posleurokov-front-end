@@ -17,7 +17,7 @@ const Cities = () => {
   }
 
   return (
-    <Sheet padding='36px 24px 36px 24px' max-width={'230px'} margin-top={'35px'}>
+    <Sheet padding='36px 24px 36px 24px' maxWidth={'230px'} marginTop={'35px'}>
       <h3 className={styles.h3}>Города</h3>
       <List list={cities} />
       <a href='/' className={styles.all_cities}>

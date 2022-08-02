@@ -9,9 +9,18 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 133px;
   }
   &-categories {
     margin-right: 40px;
+  }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .section {
+    &-list {
+      margin-bottom: 79px;
+    }
   }
 }
 
@@ -19,10 +28,13 @@
   .section {
     &-list {
       flex-direction: column;
+      margin-bottom: 68px;
+      align-content: center;
     }
     &-categories {
       margin-right: 0px;
       margin-bottom: 40px;
+      align-content: center;
     }
   }
 }
