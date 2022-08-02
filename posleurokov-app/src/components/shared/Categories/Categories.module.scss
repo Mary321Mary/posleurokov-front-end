@@ -8,7 +8,7 @@
 .categories {
   margin-left: 51px;
   margin-right: 51px;
-  margin-top: 60px;
+  padding-top: 60px;
   padding-bottom: 60px;
 }
 
@@ -41,4 +41,17 @@
   /* gray */
 
   color: #9E9E9E;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .categories {
+    padding-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .categories {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }

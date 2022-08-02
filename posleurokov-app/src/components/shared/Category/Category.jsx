@@ -10,7 +10,7 @@ const Category = ({ label, number, image, children, ...rest }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (window.screen.width < 321) {
+    if (window.screen.width < 760) {
       const handleClick = () => {
         const categories = document.getElementById(label);
         if (categories.style.display === 'block') {
