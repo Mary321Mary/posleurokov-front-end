@@ -36,20 +36,12 @@ const Main = () => {
       <Heading
         tag="h1"
         center
-        fontFamily='Roboto-Bold'
-        fontWeight='800'
-        fontSize='46px'
-        lineHeight='54px'
       >
         Найти занятия
       </Heading>
       <Heading
-        tag="h1"
+        tag="h2"
         center
-        fontFamily='Roboto-Regular'
-        fontWeight='400'
-        fontSize='16px'
-        lineHeight='19px'
         textAlign='center'
         textTransform='uppercase'
       >
