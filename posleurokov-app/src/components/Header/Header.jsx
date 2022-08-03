@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Logo, Button, Link } from 'components';
 import { Sheet } from 'components/shared'
 import tel from 'assets/img/teleph.svg'
@@ -7,7 +7,7 @@ import menu from 'assets/img/Menu.svg'
 
 const Header = () => {
   useEffect(() => {
-    if (window.screen.width < 321) {
+    if (window.screen.width < 760) {
       const handleClick = () => {
         document.getElementById('menu').style.width = '0';
       };
