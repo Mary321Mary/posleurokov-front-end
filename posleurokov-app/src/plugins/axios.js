@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     CATEGORIES,
     RANDOM_LESSONS,
-    CITIES
+    CITIES,
+    POPULARS
 } from './endpoints';
 
 const instance = axios.create({
@@ -41,6 +42,16 @@ export const axiosAPI = {
         try {
             const response = await instance.get(CITIES);
             return response.data;
+        }
+        catch (error) {
+            console.error(error)
+        }
+        return "Ошибка сервера";
+    },
+    async getPopulars() {
+        try {
+            const response = await instance.get(POPULARS);
+            return response.data.popular;
         }
         catch (error) {
             console.error(error)

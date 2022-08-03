@@ -4,7 +4,7 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { VkBlock, Link, Cities } from 'components';
+import { VkBlock, Link, Cities, Populars } from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
@@ -136,6 +136,7 @@ const Main = () => {
           ) : (
             <div>Loading post...</div>
           )}
+          <Populars />
           <Cities />
           <VkBlock heigth={'auto'} width={'220px'} />
         </div>
