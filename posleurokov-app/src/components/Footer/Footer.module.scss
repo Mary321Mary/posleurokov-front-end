@@ -26,3 +26,43 @@
 
   margin: 0 60px;
 }
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .vertical-line {
+    margin: 0 16px;
+  }
+
+  .container {
+    button {
+      margin-right: 32px;
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      margin-top: 11px;
+    }
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 40px;
+    
+    &__item {
+      a {
+        font-size: 16px;
+        line-height: 19px;
+      }
+
+      margin: 0 auto;
+      padding-top: 18px;
+    }
+  }
+}
