@@ -1,12 +1,21 @@
 import styles from './Header.module.scss';
 import { Logo, Button, Link } from 'components';
-
+import Select from 'components/shared/Select/Select';
 const Header = () => {
   return (
     <>
       <div>
         <Logo />
-
+        <Select
+          options={[
+            { text: 'Гомель', value: 1 },
+            { text: 'Минск', value: 2 },
+            { text: 'Гродно', value: 3 },
+            { text: 'Витебск', value: 4 },
+            { text: 'Брест', value: 5 },
+            { text: 'Могилёв', value: 6 },
+          ]}
+        />
       </div >
       <div>
         <div>

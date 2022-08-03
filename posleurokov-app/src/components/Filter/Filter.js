@@ -1,9 +1,13 @@
 import React from "react";
 import Table from "react-bootstrap/Table"
 import "bootstrap/dist/css/bootstrap.min.css"
+import styles from './Filter.css';
+
 
 function Filter() {
     const [userData, setUserData] = React.useState([]);
+    const [userSearchData, setUserSearchData] = React.useState([]);
+
     const [age, setAge] = React.useState('');
     const [gender, setGender] = React.useState('');
     const [cost, setCost] = React.useState('');
@@ -11,19 +15,18 @@ function Filter() {
     const [categories, setCategories] = React.useState('');
     const [other, setOther] = React.useState('');
 
-
-
     React.useEffect(() => {
         const data = [
-            { age: "10", gender: "ж", cost: "200", address: "qwertyu", categories: "1", other: "asdfg" },
-            { age: "12", gender: "м", cost: "20", address: "fvbn", categories: "2", other: "dv" },
-            { age: "9", gender: "м", cost: "55", address: "vcx", categories: "3", other: "ae" },
-            { age: "11", gender: "ж", cost: "125", address: "fdsa", categories: "1", other: "asdfg" },
-            { age: "14", gender: "ж", cost: "120", address: "lbnm", categories: "3", other: "sewd" },
-            { age: "12", gender: "м", cost: "100", address: "oiuy", categories: "2", other: "asdfg" },
+            { gender: "ж", age: "10", cost: "200", address: "qwertyu", categories: "Единоборства", other: "Работает сент-май" },
+            { gender: "м", age: "12", cost: "20", address: "fvbn", categories: "Единоборства", other: "Работает сент-май" },
+            { gender: "м", age: "9", cost: "55", address: "vcx", categories: "Музыка и звук", other: "Работает сент-май" },
+            { gender: "ж", age: "11", cost: "125", address: "fdsa", categories: "Единоборства", other: "Работает летом" },
+            { gender: "ж", age: "14", cost: "120", address: "lbnm", categories: "Единоборства", other: "Работает сент-май" },
+            { gender: "м", age: "12", cost: "100", address: "oiuy", categories: "Единоборства", other: "Работает сент-май" },
         ];
 
         setUserData(data);
+        setUserSearchData(data);
 
     }, [])
 
@@ -31,72 +34,144 @@ function Filter() {
         debugger
         const newDate =
             userData
-                .filter(x => x.age == (age == '' ? x.age : age))
-                .filter(y => y.gender == (gender == '' ? y.gender : gender))
-                .filter(y => y.cost == (cost == '' ? y.cost : cost))
-                .filter(y => y.address == (address == '' ? y.address : address))
-                .filter(y => y.categories == (categories == '' ? y.categories : categories))
-                .filter(y => y.other == (other == '' ? y.other : other))
-
-        setUserData(newDate);
+                .filter(a => a.age == (age == '' ? a.age : age))
+                .filter(g => g.gender == (gender == '' ? g.gender : gender))
+                .filter(c => c.cost == (cost == '' ? c.cost : cost))
+                .filter(w => w.address == (address == '' ? w.address : address))
+                .filter(e => e.categories == (categories == '' ? e.categories : categories))
+                .filter(o => o.other == (other == '' ? o.other : other))
+        setUserSearchData(newDate);
     }
 
     return <div>
-        <Table>
-            <tr>
-                <td>
-                    <input class="form-control" type="text" placeholder="Возраст" onChange={(e) => setAge(e.target.value)} />
-                </td>
-                <td>
-                    <select class="form-control" onChange={(e) => setGender(e.target.value)}>
+        <tbody>
+            <div class="wrap">
+                <div class="preview-box">
+                    <select onChange={(e) => setGender(e.target.value)}>
                         <option value=''>Пол</option>
                         <option value='м'>м</option>
                         <option value='ж'>ж</option>
-
                     </select>
-                </td>
-                <td>
-                    <input class="form-control" type="text" placeholder="Стоимость" onChange={(e) => setCost(e.target.value)} />
-                </td>
-                <td>
-                    <input class="form-control" type="text" placeholder="Адрес" onChange={(e) => setAddress(e.target.value)} />
-                </td>
-                <td>
-                    <select class="form-control" onChange={(e) => setCategories(e.target.value)}>
-                        <option value=''>Категории</option>
+                    <img src="\images\3.png" height="25 px" alt="Стоимость"></img>
+                </div>
+
+
+                <div class="preview-box">
+                    <select onChange={(e) => setAge(e.target.value)}>
+                        <option value=''>Возраст</option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                        <option value='11'>11</option>
+                        <option value='12'>12</option>
+                        <option value='13'>13</option>
+                        <option value='14'>14</option>
+                        <option value='15'>15</option>
+                        <option value='16'>16</option>
+                        <option value='17'>17</option>
+                        <option value='18'>18</option>
+                        <option value='19'>Старше 18</option>
                     </select>
-                </td>
-                <td>
-                    <input class="form-control" type="text" placeholder="Другое" onChange={(e) => setOther(e.target.value)} />
-                </td>
-            </tr>
+                    <img src="\images\4.png" height="25 px" alt="Стоимость"></img>
+                </div>
 
-        </Table>
-        <p align="center">
-            <button type="button" class="btn btn-warning" onClick={() => handleSearch()}>Подобрать</button>
-        </p>
-        <Table responsive stripped size='sm'>
-            <thead>
-                <tr>
-                    <th>age</th>
-                    <th>gender</th>
-                    <th>cost</th>
-                    <th>address</th>
-                    <th>categories</th>
-                    <th>other</th>
 
-                </tr>
-            </thead>
-            <tbody>
+
+                <div class="preview-box">
+                    <select onChange={(e) => setCost(e.target.value)}>
+                        <option value=''>Стоимость</option>
+                        <option value='0'>0</option>
+                        <option value='30'>30</option>
+                        <option value='50'>50</option>
+                        <option value='80'>80</option>
+                        <option value='100'>100</option>
+                        <option value='200'>200</option>
+                    </select>
+                    <img src="\images\5.png" height="25 px" alt="Стоимость"></img>
+                </div>
+
+
+
+                <div class="preview-box">
+                    <input type="text" placeholder="Адрес" onChange={(e) => setAddress(e.target.value)} />
+                    <img src="\images\6.png" height="25 px" alt="Стоимость"></img>
+                </div>
+
+
+                <div class="preview-box">
+                    <select class="p" onChange={(e) => setCategories(e.target.value)}>
+                        <option value=''>Категории</option>
+                        <option value='Искуство и дизайн'>Искуство и дизайн</option>
+                        <option value='Педагогика'>Педагогика</option>
+                        <option value='ДПИ и ремёсла'>ДПИ и ремёсла</option>
+                        <option value='Музыка и звук'>Музыка и звук</option>
+                        <option value='Технические виды спорта'>Технические виды спорта</option>
+                        <option value='Техническое конструирование'>Техническое конструирование</option>
+                        <option value='Пение'>Пение</option>
+                        <option value='Единоборства'>Единоборства</option>
+                        <option value='Словесность'>Словесность</option>
+                        <option value='Хореография'>Хореография(танцы)</option>
+                        <option value='Командно-игровой спорт'>Командно-игровой спорт</option>
+                        <option value='Иностранные языки'>Иностранные языки</option>
+                        <option value='Зрелищное искусство'>Зрелищное искусство</option>
+                        <option value='Индивидуально-игровой спорт'>Индивидуально-игровой спорт</option>
+                        <option value='Развитие интеллекта'>Развитие интеллекта</option>
+                        <option value='Мода и стиль'>Мода и стиль</option>
+                        <option value='Водные виды спорта'>Водные виды спорта</option>
+                        <option value='ИТ'>ИТ</option>
+                        <option value='Познавательные развлечения'>Познавательные развлечения</option>
+                        <option value='Лёгкая атлетика и гимнастика'>Лёгкая атлетика и гимнастика</option>
+                        <option value='Туризм'>Туризм</option>
+                        <option value='Силовой спорт'>Силовой спорт</option>
+                        <option value='Естественные науки'>Естественные науки</option>
+                        <option value='Физкультура'>Физкультура</option>
+                        <option value='Праздники и дни рождения'>Праздники и дни рождения</option>
+                        <option value='Репетиторы'>Репетиторы</option>
+                    </select>
+                    <img src="\images\7.png" height="25 px" alt="Стоимость"></img>
+                </div>
+
+
+                <div class="preview-box">
+                    <select onChange={(e) => setOther(e.target.value)}>
+                        <option value=''>Другое</option>
+                        <option value='Работает сент-май'>Работает сент-май</option>
+                        <option value='Работает летом'>Работает летом</option>
+                        <option value='Есть свободные места'>Есть свободные места</option>
+                    </select>
+                    <img src="\images\8.png" height="25 px" alt="Стоимость"></img>
+                </div>
+
+            </div >
+            <p align="center">
+                <button type="button" class="btn btn-warning" onClick={() => handleSearch()}><img src="\images\1.png" height="20 px" alt="Подобрать"></img>  Подобрать</button>
+            </p>
+            <Table responsive stripped size='sm'>
+                <thead>
+                    <tr>
+                        <th>gender</th>
+                        <th>age</th>
+                        <th>cost</th>
+                        <th>address</th>
+                        <th>categories</th>
+                        <th>other</th>
+
+                    </tr>
+                </thead>
+
                 {
-                    userData && userData.length > 0 ?
-                        userData.map(item =>
+                    userSearchData && userSearchData.length > 0 ?
+                        userSearchData.map(item =>
                             <tr>
-                                <td>{item.age}</td>
                                 <td>{item.gender}</td>
+                                <td>{item.age}</td>
                                 <td>{item.cost}</td>
                                 <td>{item.address}</td>
                                 <td>{item.categories}</td>
@@ -106,8 +181,9 @@ function Filter() {
                         )
                         : 'Таких данных нет'
                 }
-            </tbody>
-        </Table>
-    </div>
+
+            </Table >
+        </tbody>
+    </div >
 }
 export default Filter;
