@@ -4,7 +4,7 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { VkBlock, Link, Cities } from 'components';
+import { VkBlock, Link, Cities, Additional } from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
@@ -103,6 +103,7 @@ const Main = () => {
           </Sheet>
         </div>
         <div className={styles['section-categories']}>
+          <Additional />
           {randomLessons !== null ? (
             typeof randomLessons !== 'string' ? (
               <Sheet padding='5.23px 17px 7px'>
