@@ -9,12 +9,15 @@ const Header = () => {
   useEffect(() => {
     if (window.screen.width < 760) {
       const handleClick = () => {
-        document.getElementById('menu').style.width = '0';
+        if(document.getElementById('menu').style.width != '0') {
+          document.getElementById('menu').style.width = '0';
+        }
       };
-      const element = document.getElementById('container');
-      element.addEventListener('click', handleClick);
+      const element = document.getElementsByTagName('main');
+      console.log(element);
+      element[0].addEventListener('click', handleClick);
       return () => {
-        element.removeEventListener('click', handleClick);
+        element[0].removeEventListener('click', handleClick);
       };
     }
   }, []);
@@ -35,9 +38,7 @@ const Header = () => {
           <option value="gomel">Гомель</option>
         </select>
       </div>
-      {
-        window.screen.width > 760 ? (
-          <div>
+          <div className={styles.tablet}>
             <Sheet
               display='flex'
               alignItems='center'
@@ -91,10 +92,9 @@ const Header = () => {
               <Button>Добавить занятие</Button>
             </div>
           </div>
-        ) : (
-          <div>
+          <div className={styles.mobile}>
             <img src={menu} alt='menu' onClick={() => openNav()} className={styles.navImage}/>
-            <div id='menu' className={styles.menu}>
+            <div className={styles.menu}>
               <a className={styles.closebtn} onClick={() => closeNav()}>&times;</a>
               <div>
                 <Link
@@ -121,8 +121,6 @@ const Header = () => {
               <Button marginLeft='34px'>Добавить занятие</Button>
             </div>
           </div>
-        )
-      }
     </>
   );
 };

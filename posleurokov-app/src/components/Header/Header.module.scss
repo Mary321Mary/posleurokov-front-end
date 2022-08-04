@@ -18,6 +18,14 @@
   margin-right: 16px;
 }
 
+.tablet {
+  display: flex !important;
+}
+
+.mobile {
+  display: none !important;
+}
+
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
   .button {
     margin-left: 22px;
@@ -26,6 +34,14 @@
 }
 
 @media only screen and (max-width: 760px) {
+  .tablet {
+    display: none !important;
+  }
+
+  .mobile {
+    display: flex !important;
+  }
+
   .menu {
     height: 100%;
     width: 0;
