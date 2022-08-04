@@ -1,7 +1,9 @@
 import React from "react";
 import Table from "react-bootstrap/Table"
 import "bootstrap/dist/css/bootstrap.min.css"
-import styles from './Filter.css';
+import styles from '../Filter/Filter.css';
+import Select from "components/shared/Select/Select";
+
 
 
 function Filter() {
@@ -46,112 +48,119 @@ function Filter() {
     return <div>
         <tbody>
             <div class="wrap">
-                <div class="preview-box">
-                    <select onChange={(e) => setGender(e.target.value)}>
-                        <option value=''>Пол</option>
-                        <option value='м'>м</option>
-                        <option value='ж'>ж</option>
-                    </select>
-                    <img src="\images\3.png" height="25 px" alt="Стоимость"></img>
-                </div>
-
 
                 <div class="preview-box">
-                    <select onChange={(e) => setAge(e.target.value)}>
-                        <option value=''>Возраст</option>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                        <option value='9'>9</option>
-                        <option value='10'>10</option>
-                        <option value='11'>11</option>
-                        <option value='12'>12</option>
-                        <option value='13'>13</option>
-                        <option value='14'>14</option>
-                        <option value='15'>15</option>
-                        <option value='16'>16</option>
-                        <option value='17'>17</option>
-                        <option value='18'>18</option>
-                        <option value='19'>Старше 18</option>
-                    </select>
-                    <img src="\images\4.png" height="25 px" alt="Стоимость"></img>
+                    <Select
+                        onChange={(e) => setGender(e.target.value)}
+                        options={[
+                            { text: 'Пол', value: '' },
+                            { text: 'м', value: 'м' },
+                            { text: 'ж', value: 'ж' },
+                        ]}
+                    />
+                    <img src="\images\Gender.png" height="25 px" alt="Пол"></img>
                 </div>
-
-
 
                 <div class="preview-box">
-                    <select onChange={(e) => setCost(e.target.value)}>
-                        <option value=''>Стоимость</option>
-                        <option value='0'>0</option>
-                        <option value='30'>30</option>
-                        <option value='50'>50</option>
-                        <option value='80'>80</option>
-                        <option value='100'>100</option>
-                        <option value='200'>200</option>
-                    </select>
-                    <img src="\images\5.png" height="25 px" alt="Стоимость"></img>
+                    <Select
+                        onChange={(e) => setAge(e.target.value)}
+                        options={[
+                            { text: 'Возраст', value: '' },
+                            { text: '1', value: '1' },
+                            { text: '2', value: '2' },
+                            { text: '3', value: '3' },
+                            { text: '4', value: '4' },
+                            { text: '5', value: '5' },
+                            { text: '6', value: '6' },
+                            { text: '7', value: '7' },
+                            { text: '8', value: '8' },
+                            { text: '9', value: '9' },
+                            { text: '10', value: '10' },
+                            { text: '11', value: '11' },
+                            { text: '12', value: '12' },
+                            { text: '13', value: '13' },
+                            { text: '14', value: '14' },
+                            { text: '15', value: '15' },
+                            { text: '16', value: '16' },
+                            { text: '17', value: '17' },
+                            { text: '18', value: '18' },
+                            { text: '19', value: 'Старше 18' }
+                        ]}
+                    />
+                    <img src="\images\Age.png" height="25 px" alt="Возраст"></img>
                 </div>
 
-
+                <div class="preview-box">
+                    <Select onChange={(e) => setCost(e.target.value)}
+                        options={[
+                            { text: 'Стоимость', value: '' },
+                            { text: '0', value: '0' },
+                            { text: '30', value: '30' },
+                            { text: '50', value: '50' },
+                            { text: '80', value: '80' },
+                            { text: '100', value: '100' },
+                            { text: '200', value: '200' },
+                        ]}
+                    />
+                    <img src="\images\Cost.png" height="25 px" alt="Стоимость"></img>
+                </div>
 
                 <div class="preview-box">
                     <input type="text" placeholder="Адрес" onChange={(e) => setAddress(e.target.value)} />
-                    <img src="\images\6.png" height="25 px" alt="Стоимость"></img>
+                    <img src="\images\Address.png" height="25 px" alt="Адрес"></img>
                 </div>
 
-
                 <div class="preview-box">
-                    <select class="p" onChange={(e) => setCategories(e.target.value)}>
-                        <option value=''>Категории</option>
-                        <option value='Искуство и дизайн'>Искуство и дизайн</option>
-                        <option value='Педагогика'>Педагогика</option>
-                        <option value='ДПИ и ремёсла'>ДПИ и ремёсла</option>
-                        <option value='Музыка и звук'>Музыка и звук</option>
-                        <option value='Технические виды спорта'>Технические виды спорта</option>
-                        <option value='Техническое конструирование'>Техническое конструирование</option>
-                        <option value='Пение'>Пение</option>
-                        <option value='Единоборства'>Единоборства</option>
-                        <option value='Словесность'>Словесность</option>
-                        <option value='Хореография'>Хореография(танцы)</option>
-                        <option value='Командно-игровой спорт'>Командно-игровой спорт</option>
-                        <option value='Иностранные языки'>Иностранные языки</option>
-                        <option value='Зрелищное искусство'>Зрелищное искусство</option>
-                        <option value='Индивидуально-игровой спорт'>Индивидуально-игровой спорт</option>
-                        <option value='Развитие интеллекта'>Развитие интеллекта</option>
-                        <option value='Мода и стиль'>Мода и стиль</option>
-                        <option value='Водные виды спорта'>Водные виды спорта</option>
-                        <option value='ИТ'>ИТ</option>
-                        <option value='Познавательные развлечения'>Познавательные развлечения</option>
-                        <option value='Лёгкая атлетика и гимнастика'>Лёгкая атлетика и гимнастика</option>
-                        <option value='Туризм'>Туризм</option>
-                        <option value='Силовой спорт'>Силовой спорт</option>
-                        <option value='Естественные науки'>Естественные науки</option>
-                        <option value='Физкультура'>Физкультура</option>
-                        <option value='Праздники и дни рождения'>Праздники и дни рождения</option>
-                        <option value='Репетиторы'>Репетиторы</option>
-                    </select>
-                    <img src="\images\7.png" height="25 px" alt="Стоимость"></img>
+                    <Select
+                        onChange={(e) => setCategories(e.target.value)}
+                        options={[
+                            { text: 'Категории', value: '' },
+                            { text: 'Искуство и дизайн', value: 'Искуство и дизайн' },
+                            { text: 'Педагогика', value: 'Педагогика' },
+                            { text: 'ДПИ и ремёсла', value: 'ДПИ и ремёсла' },
+                            { text: 'Музыка и звук', value: 'Музыка и звук' },
+                            { text: 'Технические виды спорта', value: 'Технические виды спорта' },
+                            { text: 'Техническое конструирование', value: 'Техническое конструирование' },
+                            { text: 'Пение', value: 'Пение' },
+                            { text: 'Единоборства', value: 'Единоборства' },
+                            { text: 'Словесность', value: 'Словесность' },
+                            { text: 'Хореография', value: 'Хореография(танцы)' },
+                            { text: 'Командно-игровой спорт', value: 'Командно-игровой спорт' },
+                            { text: 'Иностранные языки', value: 'Иностранные языки' },
+                            { text: 'Зрелищное искусство', value: 'Зрелищное искусство' },
+                            { text: 'Индивидуально-игровой спорт', value: 'Индивидуально-игровой спорт' },
+                            { text: 'Развитие интеллекта', value: 'Развитие интеллекта' },
+                            { text: 'Мода и стиль', value: 'Мода и стиль' },
+                            { text: 'Водные виды спорта', value: 'Водные виды спорта' },
+                            { text: 'ИТ', value: 'ИТ' },
+                            { text: 'Познавательные развлечения', value: 'Познавательные развлечения' },
+                            { text: 'Лёгкая атлетика и гимнастика', value: 'Лёгкая атлетика и гимнастика' },
+                            { text: 'Туризм', value: 'Туризм' },
+                            { text: 'Силовой спорт', value: 'Силовой спорт' },
+                            { text: 'Естественные науки', value: 'Естественные науки' },
+                            { text: 'Физкультура', value: 'Физкультура' },
+                            { text: 'Праздники и дни рождения', value: 'Праздники и дни рождения' },
+                            { text: 'Репетиторы', value: 'Репетиторы' }
+                        ]}
+                    />
+                    <img src="\images\Categories.png" height="25 px" alt="Категории"></img>
                 </div>
 
-
                 <div class="preview-box">
-                    <select onChange={(e) => setOther(e.target.value)}>
-                        <option value=''>Другое</option>
-                        <option value='Работает сент-май'>Работает сент-май</option>
-                        <option value='Работает летом'>Работает летом</option>
-                        <option value='Есть свободные места'>Есть свободные места</option>
-                    </select>
-                    <img src="\images\8.png" height="25 px" alt="Стоимость"></img>
+                    <Select onChange={(e) => setOther(e.target.value)}
+                        options={[
+                            { text: 'Другое', value: '' },
+                            { text: 'Работает сент-май', value: 'Работает сент-май' },
+                            { text: 'Работает летом', value: 'Работает летом' },
+                            { text: 'Есть свободные места', value: 'Есть свободные места' },
+                        ]}
+                    />
+                    <img src="\images\Other.png" height="25 px" alt="Стоимость"></img>
                 </div>
 
             </div >
             <p align="center">
-                <button type="button" class="btn btn-warning" onClick={() => handleSearch()}><img src="\images\1.png" height="20 px" alt="Подобрать"></img>  Подобрать</button>
+                <button type="button" class="btn btn-warning" onClick={() => handleSearch()}><img src="\images\Select.png" height="20 px" alt="Подобрать"></img>  Подобрать</button>
             </p>
             <Table responsive stripped size='sm'>
                 <thead>
@@ -177,13 +186,12 @@ function Filter() {
                                 <td>{item.categories}</td>
                                 <td>{item.other}</td>
                             </tr>
-
                         )
                         : 'Таких данных нет'
                 }
 
             </Table >
-        </tbody>
+        </tbody >
     </div >
 }
 export default Filter;

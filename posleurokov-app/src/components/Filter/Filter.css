@@ -8,7 +8,7 @@ input[type="text"] {
 
 }
 
-select {
+Select {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
@@ -20,7 +20,7 @@ select {
   color: gray;
 }
 
-select:after {
+Select:after {
   content: "";
   display: block;
   width: 25px;

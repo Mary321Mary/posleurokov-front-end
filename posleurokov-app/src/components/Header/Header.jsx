@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 import { Logo, Button, Link } from 'components';
-import Select from 'components/shared/Select/Select';
+import Select from '../shared/Select/Select'
 const Header = () => {
   return (
     <>
