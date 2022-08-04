@@ -13,6 +13,10 @@
 .nav {
   &__item {
     display: inline-block;
+
+    a {
+      text-transform: uppercase;
+    }
   }
 }
 .vertical-line {
@@ -49,6 +53,10 @@
       margin-top: 11px;
     }
   }
+  
+  .vertical-line {
+    display: none;
+  }
 
   .nav {
     display: flex;
@@ -58,6 +66,7 @@
     
     &__item {
       a {
+        text-transform: none;
         font-size: 16px;
         line-height: 19px;
       }

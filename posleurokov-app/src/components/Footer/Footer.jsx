@@ -4,29 +4,6 @@ const Footer = () => {
   const navItems = [
     {
       path: '#',
-      text: 'ГЛАВНАЯ',
-    },
-    {
-      path: '#',
-      text: 'О ПРОЕКТЕ',
-    },
-    {
-      path: '#',
-      text: 'УСЛОВИЯ',
-    },
-    {
-      path: '#',
-      text: 'КОНТАКТЫ',
-    },
-    {
-      path: '/qwe/qasd',
-      text: 'ВОПРОСЫ И ОТВЕТЫ',
-    },
-  ];
-
-  const navLittleItems = [
-    {
-      path: '#',
       text: 'Главная',
     },
     {
@@ -47,19 +24,11 @@ const Footer = () => {
     },
   ];
 
-  const nav = window.screen.width > 760 ? (
-      navItems.map((item, i) => (
-        <li key={item.text} className={styles['nav__item']}>
-          <Link path={item.path}>{item.text}</Link>
-          {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
-        </li>
-      )
-    )) : (
-      navLittleItems.map((item) => (
-        <li key={item.text} className={styles['nav__item']}>
-          <Link path={item.path}>{item.text}</Link>
-        </li>
-      )
+  const nav = navItems.map((item, i) => (
+      <li key={item.text} className={styles['nav__item']}>
+        <Link path={item.path}>{item.text}</Link>
+        {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
+      </li>
     ));
 
   return (
