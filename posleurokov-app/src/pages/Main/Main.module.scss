@@ -4,7 +4,8 @@
   margin: 0 auto;
   padding-top: 82px;
 
-  background-image: url('../../assets/img/main_pic.svg');
+  background-image: url('../../assets/img/main_pic.png');
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   
@@ -42,7 +43,7 @@
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
   .container {
     padding-top: 74px;
-    background-image: url('../../assets/img/main_pic_tablet.svg');
+    background-image: url('../../assets/img/main_pic_tablet.png');
   }
   .section {
     &-list {
@@ -56,7 +57,7 @@
 @media only screen and (max-width: 760px) {
   .container {
     padding-top: 38px;
-    background-image: url('../../assets/img/main_pic_mobile.svg');
+    background-image: url('../../assets/img/main_pic_mobile.png');
     
     h1 {
       font-size: 28px;
