@@ -47,29 +47,26 @@ const Footer = () => {
     },
   ];
 
-  const nav = navItems.map((item, i) => (
-    <li key={item.text} className={styles['nav__item']}>
-      <Link path={item.path}>{item.text}</Link>
-      {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
-    </li>
-  ));
+  const nav = window.screen.width > 760 ? (
+      navItems.map((item, i) => (
+        <li key={item.text} className={styles['nav__item']}>
+          <Link path={item.path}>{item.text}</Link>
+          {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
+        </li>
+      )
+    )) : (
+      navLittleItems.map((item) => (
+        <li key={item.text} className={styles['nav__item']}>
+          <Link path={item.path}>{item.text}</Link>
+        </li>
+      )
+    ));
 
-  const navLittle = navLittleItems.map((item) => (
-    <li key={item.text} className={styles['nav__item']}>
-      <Link path={item.path}>{item.text}</Link>
-    </li>
-  ));
   return (
     <section className={styles.container}>
       <nav>
         <ul className={styles.nav}>
-          {
-            window.screen.width > 760 ? (
-              nav
-            ) : (
-              navLittle
-            )
-          }
+          {nav}
         </ul>
       </nav>
       <Button width="210px">ОСТАВИТЬ МЕСТО</Button>
