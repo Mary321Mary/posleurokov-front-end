@@ -1,8 +1,7 @@
 import styles from './Populars.module.scss';
 import { useState, useEffect } from 'react';
-import { Sheet, Link } from 'components/shared';
+import { Sheet, List } from 'components/shared';
 import { axiosAPI } from 'plugins/axios';
-import arrow from 'assets/img/arrow-right.png';
 
 const Populars = () => {
   const [populars, setPopulars] = useState([])
@@ -21,29 +20,7 @@ const Populars = () => {
       <h3 className={styles.h3}>Популярное</h3>
       {populars !== null ? (
         typeof populars !== 'string' ? (
-          populars.map(
-            item => {
-              return (
-                <Link
-                  key={item}
-                  path='/'
-                  fontFamily='Roboto-Regular'
-                  fontWeight='400'
-                  fontSize='14px'
-                  lineHeight='16px'
-                  color='#5F6060'          
-                  marginTop='19px'
-                  display='flex'
-                  textDecoration='none'
-                  paddingBottom='12px'
-                  borderBottom='1px solid #EEEFEF'
-                >
-                  <img src={arrow} alt='>' className={styles.img}></img>
-                  <div>{item}</div>
-                </Link>
-              )
-            }
-          )
+          <List list={populars} />
         ) : (
           <div>{populars}</div>
         )
