@@ -6,7 +6,6 @@
     position: relative;
 
     p {
-      position: 'relative';
       font-family: $additional-font-family;
       font-style: normal;
       font-weight: 700;
@@ -15,7 +14,7 @@
     }
 
     img {
-      position: relative;
+      padding-top: 130px;
       padding-left: 42px;
       width: 238px;
     }
@@ -47,25 +46,14 @@
 }
 
 .exist {
-  p {
-    padding-left: 215px;
-    margin-top: -45px;
-    font-size: 20px;
-  }
-
-  img {
-    padding-top: 130px;
-  }
+  padding-left: 215px;
+  margin-top: -45px;
+  font-size: 20px;
 }
 
 .absent {
-  p {
-    padding-left: 205px;
-    margin-top: -40px;
-    font-size: 14px;
-  }
-
-  img {
-    padding-top: 135px;
-  }
+  padding-left: 205px;
+  padding-bottom: 5px;
+  margin-top: -40px;
+  font-size: 14px;
 }

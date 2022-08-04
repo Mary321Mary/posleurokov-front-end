@@ -21,17 +21,14 @@ const Additional = () => {
     <div className={styles.additional}>
       <img src={add} alt='Занятие' className={styles.add} />
       <img src={union} alt='флажок' className={styles.union} />
-      {additional.price !== null ? (
-        <div className={styles.exist}>
-          <p>{additional.price} Р.</p>
-          <img src={bgr} alt='темный фон' />
-        </div>
-      ) : (
-        <div className={styles.absent}>
-          <p>не указана</p>
-          <img src={bgr} alt='темный фон' />
-        </div>
-      )}
+      <div>
+        {additional.price !== null ? (
+          <p className={styles.exist}>{additional.price} Р.</p>
+        ) : (
+          <p className={styles.absent}>не указана</p>
+        )}
+        <img src={bgr} alt='темный фон' />
+      </div>
       <p className={styles.name}>{additional.name}</p>
     </div>
   );
