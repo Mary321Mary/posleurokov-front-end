@@ -1,22 +1,28 @@
 @import 'src/assets/styles/_variables.scss';
 
+.category {
+  width: 33%;
 
-.category img {
-  width: 36px;
-  height: 36px;
-  background: $primary-color;
-  border-radius: 4px;
-  padding: 10px;
-  margin-right: 5px;
+  .logo {
+    width: 36px;
+    height: 36px;
+    background: $primary-color;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 20px;
+  }
 }
 
-.category {
-  display: block;
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 31px;
+  margin-top: 52px;
 }
 
 .label {
   display: inline;
-  margin-right: 5px;
 
   font-family: $category-font-family;
   font-style: normal;
@@ -31,9 +37,10 @@
 }
 
 .number {
-  display:inline;
+  display: inline;
+  margin-left: 10px;
 
-  font-family: 'Roboto-Medium';
+  font-family: 'Roboto-Medium', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -44,16 +51,76 @@
   color: #9E9E9E;
 }
 
-.list {
-  margin-bottom: 5px;
+.categories {
+  display: block;
+}
 
-  font-family: 'Roboto-Regular';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
+.galochka, galochkaRaskruta {
+  display: none;
+}
 
-  /* dark_gray */
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .category {
+    width: 50%;
+  }
 
-  color: #5F6060;
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .category {
+    width: 100%;
+
+    .logo {
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      margin-right: 6px;
+    }
+  }
+
+  .header {
+    margin-bottom: 14px;
+    margin-top: 23px;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+
+    /* blue */
+    color: #6D80D8;
+  }
+
+  .number {
+    display: block;
+    margin-left: 0px;
+  
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .categories {
+    display: none;
+  }
+
+  .galochka {
+    display: block;
+    position: absolute;
+    right: 60px;
+    width: 13px;
+    height: 5.6px;
+  }
+
+  .galochkaRaskruta {
+    display: block;
+    position: absolute;
+    right: 60px;
+    width: 5.6px;
+    height: 13px;
+  }
 }

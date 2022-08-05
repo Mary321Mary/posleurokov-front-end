@@ -35,6 +35,7 @@ const Header = () => {
             fontSize='16px'
             lineHeight='19px'
             color='#5F6060'
+            marginRight='10px'
           >
             Вход
           </Link>
@@ -47,6 +48,7 @@ const Header = () => {
             fontSize='16px'
             lineHeight='19px'
             color='#5F6060'
+            marginLeft='10px'
           >
             Регистрация
           </Link>

@@ -1,0 +1,32 @@
+@import 'src/assets/styles/_variables.scss';
+
+.all_cities {
+  margin-top: 19px;
+  display: flex;
+  color: #5F6060;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  padding-bottom: 0%;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+
+  img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+  }
+}
+
+.h3 {
+  width: 147px;
+  height: 28px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.025em;
+  margin-top: 0%;
+  margin-bottom: 29px;
+  color: #5F6060;
+}

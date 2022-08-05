@@ -4,7 +4,8 @@ import {
   Categories,
   Category
 } from 'components/shared';
-import { Link } from '../../components';
+import { VkBlock, Link, Cities } from 'components';
+import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
@@ -12,16 +13,22 @@ import { axiosAPI } from 'plugins/axios';
 
 const Main = () => {
   const [result, setResult] = useState(null);
+  const [randomLessons, setRandomLessons] = useState(null);
 
   const getCategories = async () => {
-    let categories = await axiosAPI.getCategories();
-    console.log(categories);
+    const categories = await axiosAPI.getCategories();
     setResult(categories);
+  };
+
+  const getRandomLessons = async () => {
+    const lessons = await axiosAPI.getRandomLessons();
+    setRandomLessons(lessons);
   };
 
   useEffect(() => {
     getCategories();
-  }, [setResult]);
+    getRandomLessons();
+  }, [setResult, setRandomLessons]);
 
 
   return (
@@ -30,7 +37,6 @@ const Main = () => {
         tag="h1"
         center
         fontFamily='Roboto-Bold'
-        fontStyle='normal'
         fontWeight='800'
         fontSize='46px'
         lineHeight='54px'
@@ -41,7 +47,6 @@ const Main = () => {
         tag="h1"
         center
         fontFamily='Roboto-Regular'
-        fontStyle='normal'
         fontWeight='400'
         fontSize='16px'
         lineHeight='19px'
@@ -50,43 +55,91 @@ const Main = () => {
       >
         Для взрослых и детей
       </Heading>
-      <Sheet>
-        {result !== null ? (
-          <Categories number={result.length}>
-            {
-              result.map(
-                function(category) {
-                  return (
-                    <Category label={category.baseCategoryName} number={category.concreteCategories.length}>
-                      {
-                        category.concreteCategories.map(
-                          function(item) {
-                            return (
-                              <Link
-                                path='/'
-                                fontFamily='Roboto-Regular'
-                                fontStyle='normal'
-                                fontWeight='400'
-                                fontSize='14px'
-                                lineHeight='16px'
-                                color='#5F6060'
-                                display='block'
-                                margin='5px'
-                              >{item.name}</Link>
-                            )
-                          }
+      <div className={styles['section-list']}>
+        <div className={styles['section-categories']}>
+          <Sheet>
+            {result !== null ? (
+              typeof result !== 'string' ? (
+                <Categories number={result.length}>
+                  {
+                    result.map(
+                      category => {
+                        return (
+                          <Category
+                            key={category.baseCategory.name}
+                            label={category.baseCategory.name}
+                            number={category.count}
+                            image={category.baseCategory.icon}
+                          >
+                            {
+                              category.concreteCategories.map(
+                                item => {
+                                  return (
+                                    <Link
+                                      key={item}
+                                      path='/'
+                                      fontFamily='Roboto-Regular'
+                                      fontWeight='400'
+                                      fontSize='14px'
+                                      lineHeight='36px'
+                                      color='#5F6060'
+                                    >{item}<br /></Link>
+                                  )
+                                }
+                              )
+                            }
+                          </Category>
                         )
                       }
-                    </Category>
-                  )
-                }
+                    )
+                  }
+                </Categories>
+              ) : (
+                <div>{result}</div>
               )
-            }
-          </Categories>
-        ) : (
-          <div>Loading post...</div>
-        )}
-      </Sheet>
+            ) : (
+              <div>Loading post...</div>
+            )}
+          </Sheet>
+        </div>
+        <div className={styles['section-categories']}>
+          {randomLessons !== null ? (
+            typeof randomLessons !== 'string' ? (
+              <Sheet padding='5.23px 17px 7px'>
+                {randomLessons.map(
+                  lesson => {
+                    return (
+                      <div key={lesson.name} style={{
+                        paddingTop: '10.77px',
+                        paddingBottom: '10px',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                      }}>
+                        <img src={randomLesson} alt='Занятие' width='70px' />
+                        <Link
+                          fontFamily='Roboto-Regular'
+                          fontWeight='400'
+                          fontSize='14px'
+                          lineHeight='16px'
+                          color='#5F6060'
+                          marginLeft='12px'
+                        >{lesson.name}</Link>
+                      </div>
+                    )
+                  }
+                )}
+              </Sheet>
+            ) : (
+              <div>{randomLessons}</div>
+            )
+          ) : (
+            <div>Loading post...</div>
+          )}
+          <Cities />
+          <VkBlock heigth={'auto'} width={'220px'} />
+        </div>
+      </div>
     </section>
   );
 };

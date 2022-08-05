@@ -1,11 +1,19 @@
 @import 'src/assets/styles/_variables.scss';
 
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .categories {
+  margin-left: 51px;
+  margin-right: 51px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .label {
   display:inline;
-  margin-right: 5px;
 
   /* (main) */
   font-family: 'Roboto-Bold';
@@ -22,6 +30,7 @@
 
 .number {
   display:inline;
+  margin-left: 19px;
 
   font-family: 'Roboto-Medium';
   font-style: normal;
@@ -32,4 +41,17 @@
   /* gray */
 
   color: #9E9E9E;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .categories {
+    padding-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .categories {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }
