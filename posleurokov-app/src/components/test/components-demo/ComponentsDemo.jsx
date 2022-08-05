@@ -3,9 +3,7 @@ import {
   Heading,
   Button,
   Link,
-  Input,
   Checkbox,
-  Select,
 } from 'components/shared';
 
 import styles from './ComponentsDemo.module.scss';
@@ -43,13 +41,13 @@ const ComponentsDemo = () => {
       <section className={styles.section}>
         <Heading tag="h2">Inputs</Heading>
         <div className={styles['section-list']}>
-          <Input />
+          {/* <Input /> */}
           <Checkbox
             text="Test check box"
             value={isChecked}
             onChange={(val) => setCheck(val)}
           />
-          <Select />
+
         </div>
       </section>
     </section>
