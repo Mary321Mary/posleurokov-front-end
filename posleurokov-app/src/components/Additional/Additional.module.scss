@@ -1,59 +1,55 @@
 @import 'src/assets/styles/_variables.scss';
 
 .additional {
-  margin-bottom: 60px;
-  div {
-    position: relative;
-
-    p {
-      font-family: $additional-font-family;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 133.9%;
-      color: #FFFFFF;
-    }
-
-    img {
-      padding-top: 130px;
-      padding-left: 42px;
-      width: 238px;
-    }
-  }
-}
-
-.add {
-  position: absolute;
-  width: 330px;
-}
-
-.union {
+  margin-bottom: 36px;
   position: relative;
-  padding-top: 85px;
-  padding-left: 196px;
+
+  p {
+    position: relative;
+    z-index: 2;
+  }
+  z-index: 1;
+
+  background:
+    url('../../assets/img/Union.svg') 92% 28%,
+    url('../../assets/img/bgr.svg') 58% 95%,
+    url('../../assets/img/additional.svg');
+  background-repeat: no-repeat;
+  border-radius: 14.3292px;
+  width: 300px;
+  height: 330px;
 }
 
 .name {
-  position: relative;
-  padding-left: 55px;
-  width: 220px;
-  margin-top: -60px;
+  display: block;
+  width: 200px;
+  top: 215px;
+  left: 50px;
+
   font-family: $primary-font-family;
-  font-size: normal;
+  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #FFFFFF;
 }
 
-.exist {
-  padding-left: 215px;
-  margin-top: -45px;
+.exist, .absent {
+  font-family: $additional-font-family;
+  font-style: normal;
+  font-weight: 700;
   font-size: 20px;
+  line-height: 133.9%;
+  color: #FFFFFF;
+  
+  top: 84px;
+}
+
+.exist {
+  left: 210px;
 }
 
 .absent {
-  padding-left: 205px;
-  padding-bottom: 5px;
-  margin-top: -40px;
-  font-size: 14px;
+  font-size: 16px;
+  left: 195px;
 }
