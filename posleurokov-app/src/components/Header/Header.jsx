@@ -6,21 +6,6 @@ import tel from 'assets/img/teleph.svg'
 import menu from 'assets/img/Menu.svg'
 
 const Header = () => {
-  useEffect(() => {
-    if (window.screen.width < 760) {
-      const handleClick = () => {
-        if(document.getElementById('menu').style.width != '0') {
-          document.getElementById('menu').style.width = '0';
-        }
-      };
-      const element = document.getElementsByTagName('main');
-      console.log(element);
-      element[0].addEventListener('click', handleClick);
-      return () => {
-        element[0].removeEventListener('click', handleClick);
-      };
-    }
-  }, []);
 
   const openNav = () => {
     document.getElementById('menu').style.width = '250px';
@@ -29,6 +14,16 @@ const Header = () => {
   const closeNav = () => {
     document.getElementById('menu').style.width = '0';
   }
+
+  useEffect(() => {
+    if (window.screen.width < 760) {
+      const element = document.getElementsByTagName('main');
+      element[0].addEventListener('click', closeNav);
+      return () => {
+        element[0].removeEventListener('click', closeNav);
+      };
+    }
+  }, []);
 
   return (
     <>
@@ -94,7 +89,7 @@ const Header = () => {
           </div>
           <div className={styles.mobile}>
             <img src={menu} alt='menu' onClick={() => openNav()} className={styles.navImage}/>
-            <div className={styles.menu}>
+            <div className={styles.menu} id='menu'>
               <a className={styles.closebtn} onClick={() => closeNav()}>&times;</a>
               <div>
                 <Link
