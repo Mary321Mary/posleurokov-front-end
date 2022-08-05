@@ -73,6 +73,13 @@
 @media only screen and (max-width: 760px) {
   .category {
     width: 100%;
+
+    .logo {
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      margin-right: 6px;
+    }
   }
 
   .header {
@@ -103,12 +110,16 @@
 
   .galochka {
     display: block;
+    position: absolute;
+    right: 60px;
     width: 13px;
     height: 5.6px;
   }
 
   .galochkaRaskruta {
     display: block;
+    position: absolute;
+    right: 60px;
     width: 5.6px;
     height: 13px;
   }

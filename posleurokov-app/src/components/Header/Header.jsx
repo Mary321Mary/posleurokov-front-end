@@ -1,14 +1,24 @@
 import styles from './Header.module.scss';
 import { Logo, Button, Link } from 'components';
+import Select from 'components/shared/Select/Select';
+import Input from 'components/shared/Input/Input';
 
 const Header = () => {
   return (
     <>
       <div>
         <Logo />
-        <select>
-          <option value="gomel">Гомель</option>
-        </select>
+        <Select
+          options={[
+            { text: 'Гомель', value: 1 },
+            { text: 'Минск', value: 2 },
+            { text: 'Гродно', value: 3 },
+            { text: 'Витебск', value: 4 },
+            { text: 'Брест', value: 5 },
+            { text: 'Могилёв', value: 6 },
+          ]}
+        />
+        <Input />
       </div>
       <div>
         <div>

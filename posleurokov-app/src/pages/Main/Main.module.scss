@@ -8,14 +8,14 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  
+
   h1 {
     font-family: 'Roboto-Bold', sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 46px;
     line-height: 54px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   h2 {
@@ -24,15 +24,13 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 .section {
   &-list {
     display: flex;
     justify-content: space-around;
-    margin-left: 233px;
-    margin-right: 243px;
     margin-bottom: 133px;
   }
   &-categories {
@@ -58,12 +56,12 @@
   .container {
     padding-top: 38px;
     background-image: url('../../assets/img/main_pic_mobile.png');
-    
+
     h1 {
       font-size: 28px;
       line-height: 33px;
     }
-    
+
     h2 {
       font-size: 12px;
       line-height: 14px;

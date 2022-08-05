@@ -60,7 +60,7 @@ const Main = () => {
                           <Category
                             key={category.baseCategory.name}
                             label={category.baseCategory.name}
-                            number={category.concreteCategories.length}
+                            number={category.count}
                             image={category.baseCategory.icon}
                           >
                             {
