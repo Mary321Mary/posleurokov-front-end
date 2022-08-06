@@ -1,0 +1,156 @@
+@import 'src/assets/styles/_variables.scss';
+
+.course {
+  padding: 30px 28px 39px 29px;
+  border-bottom: 1px solid #EEEFEF;
+}
+
+.label {
+  font-family: $heading-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  /* blue */
+  color: #6D80D8;
+
+  padding-top: 48px;
+  padding-bottom: 16px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 130px;
+    height: 130px;
+    margin-right: 23px;
+  }
+}
+
+.info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* dark_gray */
+  color: #5F6060;
+
+  height: 95px;
+  width: 300px;
+  margin-right: 67px;
+}
+
+.addition, .mobile {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* gray */
+  color: #9E9E9E;
+
+  img {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+  }
+}
+
+.block {
+  margin-bottom: 21px;
+  display: flex;
+  align-items: center;
+}
+
+.price, .tablet {
+  font-family: 'Roboto-Medium', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+
+  /* dark_gray */
+  color: #5F6060;
+  width: 110px;
+}
+
+.mobile {
+  display: none;
+}
+
+.tablet {
+  display: none;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .course {
+    padding: 30px 25px 30px 29px;
+  }
+  
+  .content {
+    margin-bottom: 26px;
+  }
+  
+  .price {
+    display: none;
+  }
+
+  .tablet {
+    display: flex;
+    width: 100%;
+    justify-content:flex-end;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .course {
+    padding: 23px 13px 23px 8px;
+  }
+  
+  .label {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .content {
+    margin-bottom: 15px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-right: 14px;
+    }
+  }
+
+  .addition {
+    display: none;
+  }
+  
+  .price {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .tablet {
+    display: flex;
+    width: 100%;
+    justify-content:flex-end;
+  }
+
+}

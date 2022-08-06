@@ -8,3 +8,5 @@ export { Sheet } from './Sheet/Sheet';
 export { Categories } from './Categories/Categories';
 export { Category } from './Category/Category';
 export { List } from './List/List';
+export { Course } from './Course/Course';
+export { Courses } from './Courses/Courses';
