@@ -28,7 +28,7 @@ const Main = () => {
   useEffect(() => {
     getCategories();
     getRandomLessons();
-  }, [setResult, setRandomLessons]);
+  }, []);
 
 
   return (
