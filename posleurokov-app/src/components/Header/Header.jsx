@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
-import { Logo, Button, Link } from 'components';
-import Select from '../shared/Select/Select'
+import { Logo, Button, Link, Select } from 'components';
+
 const Header = () => {
   return (
     <>
@@ -16,7 +16,7 @@ const Header = () => {
             { text: 'Могилёв', value: 6 },
           ]}
         />
-      </div >
+      </div>
       <div>
         <div>
           <p>Поможем выбрать</p>
@@ -25,27 +25,27 @@ const Header = () => {
         <div className={styles['vertical-line']}></div>
         <div>
           <Link
-            path='/'
-            fontFamily='Roboto-Bold'
-            fontStyle='normal'
-            fontWeight='700'
-            fontSize='16px'
-            lineHeight='19px'
-            color='#5F6060'
-            marginRight='10px'
+            path="/"
+            fontFamily="Roboto-Bold"
+            fontStyle="normal"
+            fontWeight="700"
+            fontSize="16px"
+            lineHeight="19px"
+            color="#5F6060"
+            marginRight="10px"
           >
             Вход
           </Link>
           /
           <Link
-            path='/'
-            fontFamily='Roboto-Bold'
-            fontStyle='normal'
-            fontWeight='700'
-            fontSize='16px'
-            lineHeight='19px'
-            color='#5F6060'
-            marginLeft='10px'
+            path="/"
+            fontFamily="Roboto-Bold"
+            fontStyle="normal"
+            fontWeight="700"
+            fontSize="16px"
+            lineHeight="19px"
+            color="#5F6060"
+            marginLeft="10px"
           >
             Регистрация
           </Link>
