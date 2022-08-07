@@ -5,9 +5,6 @@ import { Select, Button } from 'components';
 import search from 'assets/icons/search.svg';
 
 function Filter() {
-  const [userData, setUserData] = useState([]);
-  const [userSearchData, setUserSearchData] = useState([]);
-
   const [age, setAge] = useState([]);
   const [gender, setGender] = useState([]);
   const [cost, setCost] = useState([]);
@@ -16,59 +13,58 @@ function Filter() {
   const [other, setOther] = useState([]);
 
   useEffect(() => {
-    const data = [
-      {
-        gender: 'ж',
-        age: '10',
-        cost: '200',
-        address: 'qwertyu',
-        categories: 'Единоборства',
-        other: 'Работает сент-май',
-      },
-      {
-        gender: 'м',
-        age: '12',
-        cost: '20',
-        address: 'fvbn',
-        categories: 'Единоборства',
-        other: 'Работает сент-май',
-      },
-      {
-        gender: 'м',
-        age: '9',
-        cost: '55',
-        address: 'vcx',
-        categories: 'Музыка и звук',
-        other: 'Работает сент-май',
-      },
-      {
-        gender: 'ж',
-        age: '11',
-        cost: '125',
-        address: 'fdsa',
-        categories: 'Единоборства',
-        other: 'Работает летом',
-      },
-      {
-        gender: 'ж',
-        age: '14',
-        cost: '120',
-        address: 'lbnm',
-        categories: 'Единоборства',
-        other: 'Работает сент-май',
-      },
-      {
-        gender: 'м',
-        age: '12',
-        cost: '100',
-        address: 'oiuy',
-        categories: 'Единоборства',
-        other: 'Работает сент-май',
-      },
-    ];
-
-    setUserData(data);
-    setUserSearchData(data);
+    // const data = [
+    //   {
+    //     gender: 'ж',
+    //     age: '10',
+    //     cost: '200',
+    //     address: 'qwertyu',
+    //     categories: 'Единоборства',
+    //     other: 'Работает сент-май',
+    //   },
+    //   {
+    //     gender: 'м',
+    //     age: '12',
+    //     cost: '20',
+    //     address: 'fvbn',
+    //     categories: 'Единоборства',
+    //     other: 'Работает сент-май',
+    //   },
+    //   {
+    //     gender: 'м',
+    //     age: '9',
+    //     cost: '55',
+    //     address: 'vcx',
+    //     categories: 'Музыка и звук',
+    //     other: 'Работает сент-май',
+    //   },
+    //   {
+    //     gender: 'ж',
+    //     age: '11',
+    //     cost: '125',
+    //     address: 'fdsa',
+    //     categories: 'Единоборства',
+    //     other: 'Работает летом',
+    //   },
+    //   {
+    //     gender: 'ж',
+    //     age: '14',
+    //     cost: '120',
+    //     address: 'lbnm',
+    //     categories: 'Единоборства',
+    //     other: 'Работает сент-май',
+    //   },
+    //   {
+    //     gender: 'м',
+    //     age: '12',
+    //     cost: '100',
+    //     address: 'oiuy',
+    //     categories: 'Единоборства',
+    //     other: 'Работает сент-май',
+    //   },
+    // ];
+    // setUserData(data);
+    // setUserSearchData(data);
   }, []);
 
   const handleSearch = () => {

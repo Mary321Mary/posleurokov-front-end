@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './Select.module.scss';
-import { useOutsideClick } from 'hooks';
 import { Checkbox } from 'components';
 
 const Select = ({
