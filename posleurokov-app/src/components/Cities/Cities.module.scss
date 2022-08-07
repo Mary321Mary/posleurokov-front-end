@@ -3,7 +3,7 @@
 .all_cities {
   margin-top: 19px;
   display: flex;
-  color: #5F6060;
+  color: $checkbox-text-color;
   font-size: 14px;
   line-height: 16px;
   font-weight: 700;
@@ -28,5 +28,5 @@
   letter-spacing: 0.025em;
   margin-top: 0%;
   margin-bottom: 29px;
-  color: #5F6060;
+  color: $checkbox-text-color;
 }
