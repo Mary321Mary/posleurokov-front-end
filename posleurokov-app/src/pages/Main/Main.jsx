@@ -1,9 +1,4 @@
-import {
-  Heading,
-  Sheet,
-  Categories,
-  Category
-} from 'components/shared';
+import { Heading, Sheet, Categories, Category } from 'components/shared';
 import { VkBlock, Link, Cities } from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
@@ -30,61 +25,52 @@ const Main = () => {
     getRandomLessons();
   }, []);
 
-
   return (
     <section className={styles.container}>
-      <Heading
-        tag="h1"
-        center
-      >
-        Найти занятия
-      </Heading>
-      <Heading
-        tag="h2"
-        center
-        textAlign='center'
-        textTransform='uppercase'
-      >
-        Для взрослых и детей
-      </Heading>
+      <section className={styles['section-filter']}>
+        <div className={styles['section-filter__heading']}>
+          <Heading tag="h1" center>
+            Найти занятия
+          </Heading>
+          <Heading tag="h2" center textAlign="center" textTransform="uppercase">
+            Для взрослых и детей
+          </Heading>
+        </div>
+        <div className={styles['section-filter__filter']}>filter</div>
+      </section>
       <div className={styles['section-list']}>
         <div className={styles['section-categories']}>
           <Sheet>
             {result !== null ? (
               typeof result !== 'string' ? (
                 <Categories number={result.length}>
-                  {
-                    result.map(
-                      category => {
-                        return (
-                          <Category
-                            key={category.baseCategory.name}
-                            label={category.baseCategory.name}
-                            number={category.count}
-                            image={category.baseCategory.icon}
-                          >
-                            {
-                              category.concreteCategories.map(
-                                item => {
-                                  return (
-                                    <Link
-                                      key={item}
-                                      path='/'
-                                      fontFamily='Roboto-Regular'
-                                      fontWeight='400'
-                                      fontSize='14px'
-                                      lineHeight='36px'
-                                      color='#5F6060'
-                                    >{item}<br /></Link>
-                                  )
-                                }
-                              )
-                            }
-                          </Category>
-                        )
-                      }
-                    )
-                  }
+                  {result.map((category) => {
+                    return (
+                      <Category
+                        key={category.baseCategory.name}
+                        label={category.baseCategory.name}
+                        number={category.count}
+                        image={category.baseCategory.icon}
+                      >
+                        {category.concreteCategories.map((item) => {
+                          return (
+                            <Link
+                              key={item}
+                              path="/"
+                              fontFamily="Roboto-Regular"
+                              fontWeight="400"
+                              fontSize="14px"
+                              lineHeight="36px"
+                              color="#5F6060"
+                            >
+                              {item}
+                              <br />
+                            </Link>
+                          );
+                        })}
+                      </Category>
+                    );
+                  })}
                 </Categories>
               ) : (
                 <div>{result}</div>
@@ -97,30 +83,33 @@ const Main = () => {
         <div className={styles['section-categories']}>
           {randomLessons !== null ? (
             typeof randomLessons !== 'string' ? (
-              <Sheet padding='5.23px 17px 7px'>
-                {randomLessons.map(
-                  lesson => {
-                    return (
-                      <div key={lesson.name} style={{
+              <Sheet padding="5.23px 17px 7px">
+                {randomLessons.map((lesson) => {
+                  return (
+                    <div
+                      key={lesson.name}
+                      style={{
                         paddingTop: '10.77px',
                         paddingBottom: '10px',
                         display: 'flex',
                         flexDirection: 'row',
-                        alignItems: 'center'
-                      }}>
-                        <img src={randomLesson} alt='Занятие' width='70px' />
-                        <Link
-                          fontFamily='Roboto-Regular'
-                          fontWeight='400'
-                          fontSize='14px'
-                          lineHeight='16px'
-                          color='#5F6060'
-                          marginLeft='12px'
-                        >{lesson.name}</Link>
-                      </div>
-                    )
-                  }
-                )}
+                        alignItems: 'center',
+                      }}
+                    >
+                      <img src={randomLesson} alt="Занятие" width="70px" />
+                      <Link
+                        fontFamily="Roboto-Regular"
+                        fontWeight="400"
+                        fontSize="14px"
+                        lineHeight="16px"
+                        color="#5F6060"
+                        marginLeft="12px"
+                      >
+                        {lesson.name}
+                      </Link>
+                    </div>
+                  );
+                })}
               </Sheet>
             ) : (
               <div>{randomLessons}</div>
