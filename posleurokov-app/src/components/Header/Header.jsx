@@ -1,8 +1,6 @@
 import styles from './Header.module.scss';
 import { Logo, Button, Link } from 'components';
-import Select from 'components/shared/Select/Select';
-import Input from 'components/shared/Input/Input';
-
+import Select from '../shared/Select/Select'
 const Header = () => {
   return (
     <>
@@ -18,8 +16,7 @@ const Header = () => {
             { text: 'Могилёв', value: 6 },
           ]}
         />
-        <Input />
-      </div>
+      </div >
       <div>
         <div>
           <p>Поможем выбрать</p>

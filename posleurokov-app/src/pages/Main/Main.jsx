@@ -1,5 +1,13 @@
-import { Heading, Sheet, Categories, Category } from 'components/shared';
-import { VkBlock, Link, Cities } from 'components';
+import {
+  Heading,
+  Sheet,
+  Categories,
+  Category,
+  VkBlock,
+  Link,
+  Cities,
+  Filter,
+} from 'components';
 import randomLesson from 'assets/img/randomLesson.png';
 
 import styles from './Main.module.scss';
@@ -36,7 +44,9 @@ const Main = () => {
             Для взрослых и детей
           </Heading>
         </div>
-        <div className={styles['section-filter__filter']}>filter</div>
+        <div className={styles['section-filter__filter']}>
+          <Filter />
+        </div>
       </section>
       <div className={styles['section-list']}>
         <div className={styles['section-categories']}>

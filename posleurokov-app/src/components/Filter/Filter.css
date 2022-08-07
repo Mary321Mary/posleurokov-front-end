@@ -1,0 +1,54 @@
+input[type="text"] {
+  background: transparent;
+  border: gray;
+  outline: none;
+  outline-offset: none;
+  width: 112px;
+  padding: 10px;
+
+}
+
+Select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  position: relative;
+  outline: none;
+  padding: 10px;
+  padding-right: 10px;
+  width: 112px;
+  color: gray;
+}
+
+Select:after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+div.preview-box {
+  border: 1px solid rgb(188, 187, 187);
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0 20px;
+  float: left;
+  line-height: 20px;
+  font-size: 15px;
+  background: white;
+  margin: 10px;
+  width: 185px;
+}
+
+div.wrap {
+  width: 1310px;
+  margin: 0 auto;
+  height: 10px;
+  margin: 90px;
+  margin-top: 20px;
+
+}
