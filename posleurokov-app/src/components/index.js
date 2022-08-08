@@ -6,3 +6,4 @@ export * from './Footer/Footer';
 export * from './Cities/Cities';
 export * from './VkBlock/VkBlock';
 export * from './Populars/Populars';
+export * from './Filter/Filter';
