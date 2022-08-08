@@ -7,7 +7,7 @@ const TabBarItem = ({ content, ...rest }) => {
       className={styles.tabBarItem}
       style={{ ...rest }}
     >
-      {content}
+      {content[0].lesson.name}
     </div>
   );
 };

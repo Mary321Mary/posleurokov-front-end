@@ -1,7 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './TabsBar.module.scss';
-import logo from 'assets/img/map.png';
 import other from 'assets/img/other.png';
 
 import { TabBarNav, TabBarItem } from '../';
@@ -25,46 +23,41 @@ const TabsBar = ({ items, ...rest }) => {
   };
 
   return (
-    <div
-      style={{ ...rest }}
-    >
+    <div style={{ ...rest }}>
       <div className={styles.tabnav}>
-        {window.screen.width > 321 ? (
-          items.map((page, i) => (
-            <TabBarNav
-              key={page.title}
-              number={page.count}
-              logo={logo}
-              isActive={i === activeTab}
-              onClick={() => openTab(i)}
-            >{page.title}</TabBarNav>
-          ))
-        ) : (
-          items.map((page, i) => (
-            i < 3 ? (
-              <TabBarNav
-                key={page.title}
-                number={page.count}
-                logo={logo}
-                isActive={i === activeTab}
-                onClick={() => openTab(i)}
-              >{page.title}</TabBarNav>
-            ) : (
-              <div key={page.title} name='showAll' style={{ display: 'none'}}>
-                <TabBarNav
-                  number={page.count}
-                  logo={logo}
-                  isActive={i === activeTab}
-                  onClick={() => openTab(i)}
-                >{page.title}</TabBarNav>
-              </div>
-            )
-          ))
-        )}
-        <button onClick={() => showAll()} className={styles.hide}><img src={other} alt='other'/></button>
+        <TabBarNav
+          number={items.counts.free + items.counts.pay + items.counts.adult}
+          isActive={0 === activeTab}
+          onClick={() => openTab(0)}
+        >Все</TabBarNav>
+        <TabBarNav
+          number={items.counts.pay}
+          isActive={1 === activeTab}
+          onClick={() => openTab(1)}
+        >Платные</TabBarNav>
+        <TabBarNav
+          number={items.counts.free}
+          isActive={2 === activeTab}
+          onClick={() => openTab(2)}
+        >Бесплатные</TabBarNav>
+        <div name="showAll" className={styles.tab}>
+          <TabBarNav
+            number={items.counts.adult}
+            isActive={3 === activeTab}
+            onClick={() => openTab(3)}
+          >Для взрослых</TabBarNav>
+        </div>
+        <div name="showAll" className={styles.tab}>
+          <TabBarNav
+            number={-1}
+            isActive={4 === activeTab}
+            onClick={() => openTab(4)}
+          >На карте</TabBarNav>
+        </div>
+        <button onClick={() => showAll()} className={styles.hide}><img src={other} alt="other"/></button>
       </div>
       <div>
-        {items[activeTab] && <TabBarItem { ...items[activeTab] } padding='28px'/>}
+        <TabBarItem content={items.result} padding="28px"/>
       </div>
     </div>
   );

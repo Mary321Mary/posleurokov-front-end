@@ -6,7 +6,7 @@ const Heading = ({ tag, center = false, children, ...rest }) => {
   return (
     <Tag
       className={`${styles[Tag]} ${center ? styles.center : ''}`}
-      styles={{ ...rest }}
+      style={{ ...rest }}
     >
       {children}
     </Tag>

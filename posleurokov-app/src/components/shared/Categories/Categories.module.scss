@@ -1,0 +1,57 @@
+@import 'src/assets/styles/_variables.scss';
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories {
+  margin-left: 51px;
+  margin-right: 51px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.label {
+  display:inline;
+
+  /* (main) */
+  font-family: 'Roboto-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration-line: underline;
+
+  /* dark_gray */
+
+  color: #5F6060;
+}
+
+.number {
+  display:inline;
+  margin-left: 19px;
+
+  font-family: 'Roboto-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+
+  /* gray */
+
+  color: #9E9E9E;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .categories {
+    padding-top: 32px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .categories {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
