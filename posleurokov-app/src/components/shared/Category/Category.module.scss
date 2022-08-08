@@ -59,15 +59,27 @@
   display: none;
 }
 
-@media only screen and (min-width: 321px) and (max-width: 1024px) {
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
   .category {
     width: 50%;
   }
+
+  .label {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 760px) {
   .category {
     width: 100%;
+
+    .logo {
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      margin-right: 6px;
+    }
   }
 
   .header {
@@ -98,12 +110,16 @@
 
   .galochka {
     display: block;
+    position: absolute;
+    right: 60px;
     width: 13px;
     height: 5.6px;
   }
 
   .galochkaRaskruta {
     display: block;
+    position: absolute;
+    right: 60px;
     width: 5.6px;
     height: 13px;
   }

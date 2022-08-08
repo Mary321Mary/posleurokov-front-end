@@ -1,45 +1,58 @@
 import styles from './Header.module.scss';
-import { useEffect } from 'react';
-import { Logo, Button, Link } from 'components';
-import { Sheet } from 'components/shared'
+import { useState } from 'react';
+import { Logo, Button, Link, Sheet, Select } from 'components';
+import { useOutsideClick } from 'hooks';
+import galochka from 'assets/img/galochka.png'
 import tel from 'assets/img/teleph.svg'
 import menu from 'assets/img/Menu.svg'
 
 const Header = () => {
 
+  const [city, setCity] = useState('Гомель');
+  const PHONE = '+375 29 113-67-97';
+
   const openNav = () => {
-    document.getElementById('menu').style.width = '250px';
+    if (window.screen.width < 760) {
+      document.getElementById('menu').style.width = '250px';
+    }
   }
 
   const closeNav = () => {
-    document.getElementById('menu').style.width = '0';
+    if (window.screen.width < 760) {
+      document.getElementById('menu').style.width = '0';
+    }
   }
 
-  useEffect(() => {
-    if (window.screen.width < 760) {
-      const element = document.getElementsByTagName('main');
-      element[0].addEventListener('click', closeNav);
-      return () => {
-        element[0].removeEventListener('click', closeNav);
-      };
-    }
-  }, []);
+  const ref = useOutsideClick(closeNav);
 
   return (
     <>
-      <div>
+      <div ref={ref}>
         <Logo />
-        <select>
-          <option value="gomel">Гомель</option>
-        </select>
+        <Select
+          value={city}
+          options={[
+            { text: 'Гомель', value: 'Гомель' },
+            { text: 'Минск', value: 'Минск' },
+            { text: 'Гродно', value: 'Гродно' },
+            { text: 'Витебск', value: 'Витебск' },
+            { text: 'Брест', value: 'Брест' },
+            { text: 'Могилёв', value: 'Могилёв' },
+          ]}
+          prepend={<img src={galochka} height="8px" alt="галочка" />}
+          textDecoration="underline"
+          textDecorationStyle="dashed"
+          textUnderlineOffset="5px"
+          onChange={(value) => setCity(value)}
+        />
       </div>
           <div className={styles.tablet}>
             <Sheet
-              display='flex'
-              alignItems='center'
-              padding='10px'
+              display="flex"
+              alignItems="center"
+              padding="10px"
             >
-              <img src={tel} alt='Телефон' style={{marginRight:'15.08px'}}/>
+              <img src={tel} alt="Телефон" style={{marginRight:'15.08px'}}/>
               <div>
                 <div style={{
                   fontFamily: 'Roboto-Medium',
@@ -54,31 +67,31 @@ const Header = () => {
                   fontSize: '16px',
                   lineHeight: '19px',
                   color: '#5F6060'
-                }}>+375 29 113-67-97</div>
+                }}>{PHONE}</div>
               </div>
             </Sheet>
             <div className={styles['vertical-line']}></div>
             <div>
               <Link
-                path='/'
-                fontFamily='Roboto-Bold'
-                fontWeight='700'
-                fontSize='16px'
-                lineHeight='19px'
-                color='#5F6060'
-                marginRight='10px'
+                path="/"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+                marginRight="10px"
               >
                 Вход
               </Link>
               /
               <Link
-                path='/'
-                fontFamily='Roboto-Bold'
-                fontWeight='700'
-                fontSize='16px'
-                lineHeight='19px'
-                color='#5F6060'
-                marginLeft='10px'
+                path="/"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+                marginLeft="10px"
               >
                 Регистрация
               </Link>
@@ -88,32 +101,32 @@ const Header = () => {
             </div>
           </div>
           <div className={styles.mobile}>
-            <img src={menu} alt='menu' onClick={() => openNav()} className={styles.navImage}/>
-            <div className={styles.menu} id='menu'>
+            <img src={menu} alt="menu" onClick={() => openNav()} className={styles.navImage}/>
+            <div className={styles.menu} id="menu">
               <a className={styles.closebtn} onClick={() => closeNav()}>&times;</a>
               <div>
                 <Link
-                  path='/'
-                  fontFamily='Roboto-Bold'
-                  fontWeight='700'
-                  fontSize='16px'
-                  lineHeight='19px'
-                  color='#5F6060'
+                  path="/"
+                  fontFamily="Roboto-Bold"
+                  fontWeight="700"
+                  fontSize="16px"
+                  lineHeight="19px"
+                  color="#5F6060"
                 >
                   Вход
                 </Link>
                 <Link
-                  path='/'
-                  fontFamily='Roboto-Bold'
-                  fontWeight='700'
-                  fontSize='16px'
-                  lineHeight='19px'
-                  color='#5F6060'
+                  path="/"
+                  fontFamily="Roboto-Bold"
+                  fontWeight="700"
+                  fontSize="16px"
+                  lineHeight="19px"
+                  color="#5F6060"
                 >
                   Регистрация
                 </Link>
               </div>
-              <Button marginLeft='34px'>Добавить занятие</Button>
+              <Button marginLeft="34px">Добавить занятие</Button>
             </div>
           </div>
     </>
