@@ -1,5 +1,3 @@
-import Select from './Select/Select';
-import Input from './Input/Input';
 export { Heading } from './Heading/Heading';
 export { Button } from './Button/Button';
 export { Link } from './Link/Link';
@@ -10,3 +8,5 @@ export { Category } from './Category/Category';
 export { List } from './List/List';
 export { Course } from './Course/Course';
 export { Courses } from './Courses/Courses';
+export { Select } from './Select/Select';
+export { Input } from './Input/Input';

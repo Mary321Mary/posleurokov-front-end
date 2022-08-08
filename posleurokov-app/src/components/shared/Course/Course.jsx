@@ -23,7 +23,11 @@ const Course = ({ list, ...rest }) => {
             </div>
             <div className={styles.block}>
               <img src={time} alt='время'/>
-              <div>Время?</div>
+              <div>{elem.lesson.timetable !== null ? (
+                elem.lesson.timetable
+              ) : (
+                "Не назначено"
+              )}</div>
             </div>
           </div>
           <div className={styles.price}>
@@ -31,6 +35,11 @@ const Course = ({ list, ...rest }) => {
               <div>{elem.lesson.price} руб.</div>
               <div>{elem.lesson.additionalPriceInfo}</div>
             </div>
+            {elem.lesson.hasReseption ? (
+              <div className={styles.open}>Прием: идет</div>
+            ) : (
+              <div className={styles.close}>Прием: закрыт</div>
+            )}
           </div>
         </div>
         <div className={styles.mobile}>
@@ -44,10 +53,19 @@ const Course = ({ list, ...rest }) => {
           </div>
           <div className={styles.block}>
             <img src={time} alt='время'/>
-            <div>Время?</div>
+            <div>{elem.lesson.timetable !== null ? (
+                elem.lesson.timetable
+              ) : (
+                "Не назначено"
+              )}</div>
           </div>
         </div>
         <div className={styles.tablet}>
+          <div>{elem.lesson.hasReseption ? (
+            <div className={styles.open}>Прием: идет</div>
+          ) : (
+            <div className={styles.close}>Прием: закрыт</div>
+          )}</div>
           <div>
             <div>{elem.lesson.price} руб.</div>
             <div>{elem.lesson.additionalPriceInfo}</div>

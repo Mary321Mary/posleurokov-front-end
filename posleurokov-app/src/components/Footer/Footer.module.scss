@@ -53,7 +53,7 @@
       margin-top: 11px;
     }
   }
-  
+
   .vertical-line {
     display: none;
   }
@@ -62,8 +62,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-right: 40px;
-    
+
     &__item {
       a {
         text-transform: none;

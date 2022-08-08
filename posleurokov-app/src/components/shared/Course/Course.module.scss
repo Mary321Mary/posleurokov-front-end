@@ -13,7 +13,7 @@
   line-height: 23px;
 
   /* blue */
-  color: #6D80D8;
+  color: $primary-color;
 
   padding-top: 48px;
   padding-bottom: 16px;
@@ -84,7 +84,26 @@
 
   /* dark_gray */
   color: #5F6060;
-  width: 110px;
+  width: 150px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.open, .close {
+  color: rgb(255, 255, 255);
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.open {
+  background-color: $primary-color;
+}
+
+.close {
+  background-color: #ff0000;
 }
 
 .mobile {
@@ -109,9 +128,11 @@
   }
 
   .tablet {
-    display: flex;
     width: 100%;
-    justify-content:flex-end;
+    height: 30px;
+
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -148,9 +169,11 @@
   }
 
   .tablet {
-    display: flex;
     width: 100%;
-    justify-content:flex-end;
+    height: 30px;
+
+    display: flex;
+    flex-direction: row;
   }
 
 }
