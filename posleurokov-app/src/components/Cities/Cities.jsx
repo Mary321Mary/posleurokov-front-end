@@ -1,27 +1,27 @@
 import styles from './Cities.module.scss';
 import { useState, useEffect } from 'react';
 import { Sheet, List } from 'components/shared';
-import arrow from "assets/img/arrow-right.png";
+import arrow from 'assets/img/arrow-right.png';
 import { axiosAPI } from 'plugins/axios';
 
 const Cities = () => {
-  const [cities, setCities] = useState([])
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    getCities()
-  }, [])
+    getCities();
+  }, []);
 
   const getCities = async () => {
-    const result = await axiosAPI.getCities()
-    setCities(result.cities)
-  }
+    const result = await axiosAPI.getCities();
+    setCities(result.cities || []);
+  };
 
   return (
-    <Sheet padding='36px 24px 36px 24px' maxWidth={'230px'} marginTop={'35px'}>
+    <Sheet padding="36px 24px 36px 24px" maxWidth={'230px'} marginTop={'35px'}>
       <h3 className={styles.h3}>Города</h3>
       <List list={cities} />
-      <a href='/' className={styles.all_cities}>
-        <img src={arrow}></img>
+      <a href="/" className={styles.all_cities}>
+        <img src={arrow} alt="arrow" />
         <div>Все города</div>
       </a>
     </Sheet>
