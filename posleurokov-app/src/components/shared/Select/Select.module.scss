@@ -4,6 +4,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 .select {
   position: relative;
   display: inline-block;
@@ -27,6 +28,7 @@ ul {
 
     height: 48px;
   }
+
   &__options {
     position: absolute;
     width: 100%;
@@ -37,6 +39,7 @@ ul {
     z-index: 1;
   }
 }
+
 .box {
   &__text {
     font-family: 'Roboto-Regular', sans-serif;
@@ -48,6 +51,7 @@ ul {
     cursor: pointer;
   }
 }
+
 .option {
   list-style-type: none;
   padding: 8px 22px;
@@ -59,20 +63,25 @@ ul {
     background-color: #eeefef;
     color: #ffffff;
   }
+
   &:last-child {
     border-radius: 0 0 8px 8px;
     border-bottom: none;
   }
 }
+
 .option-checkbox {
   padding: 0;
+
   label {
     padding: 8px 22px;
   }
 }
+
 .append {
   margin-right: 16px;
 }
+
 .prepend {
   margin-left: 16px;
 }

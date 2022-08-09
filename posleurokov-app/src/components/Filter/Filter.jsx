@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { stringify } from 'qs';
 import styles from './Filter.module.scss';
 import { Select, Button } from 'components';
+import { Input } from 'components/shared';
 import search from 'assets/icons/search.svg';
 
 function Filter() {
@@ -140,15 +141,13 @@ function Filter() {
           prepend={<img src="\images\Cost.png" height="25px" alt="Стоимость" />}
           onChange={(value) => setCost(value)}
         />
+        <Input
+          type="text"
+          placeholder="Адрес"
+          prepend={<img src="\images\Address.png" height="25px" alt="Стоимость" />}
+          onChange={(e) => setAddress(e.target.value)}
+        />
 
-        {/* <div className="">
-          <input
-            type="text"
-            placeholder="Адрес"
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <img src="\images\Address.png" height="25px" alt="Адрес"></img>
-        </div> */}
 
         <Select
           placeholder="Категории"
@@ -240,7 +239,7 @@ function Filter() {
           Подобрать
         </Button>
       </section>
-    </section>
+    </section >
   );
 }
 export { Filter };

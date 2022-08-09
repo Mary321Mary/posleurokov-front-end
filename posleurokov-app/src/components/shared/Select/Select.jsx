@@ -33,9 +33,8 @@ const Select = ({
 
   return (
     <div
-      className={`${styles['select']} ${
-        showOptionList ? styles['select--active'] : ''
-      }`}
+      className={`${styles['select']} ${showOptionList ? styles['select--active'] : ''
+        }`}
     >
       <div
         className={styles['select__box']}
