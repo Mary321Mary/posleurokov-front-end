@@ -1,6 +1,7 @@
 import {
   Heading,
   Sheet,
+  Online,
   VkBlock
 } from 'components';
 import Helmet from 'react-helmet';
@@ -17,6 +18,7 @@ const Catalogue = () => {
       <div className={styles['section-list']}>
         <div className={styles['section-categories']}>
           <Sheet>
+            <Online number="300" />
           </Sheet>
         </div>
         <div className={styles['section-categories']}>
