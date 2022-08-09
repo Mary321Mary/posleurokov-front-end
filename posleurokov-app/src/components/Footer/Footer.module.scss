@@ -5,10 +5,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   max-width: 1510px;
   min-height: 254px;
-  margin: 0 auto;
+  margin: 0 50px;
 }
 .nav {
   &__item {
@@ -37,9 +36,7 @@
   }
 
   .container {
-    button {
-      margin-right: 32px;
-    }
+    margin: 0 32px;
   }
 }
 
