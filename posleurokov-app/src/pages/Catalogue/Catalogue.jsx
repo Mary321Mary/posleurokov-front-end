@@ -9,13 +9,34 @@ import {
 import styles from './Catalogue.module.scss';
 import { useEffect, useState } from 'react';
 import { axiosAPI } from 'plugins/axios';
+import { stringify } from 'qs';
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  
+  const [city, setCity] = useState('Гомель');
+  const [category, setCategory] = useState('МУЗЫКА И ЗВУК');
+  const [tab, setTab] = useState('all');
+  const [sex, setSex] = useState('any');
+  const [age, setAge] = useState('any');
+  const [cost, setCost] = useState([]);
+  const [addr, setAddress] = useState('');
+  const [another, setOther] = useState('any');
 
   const getCourses = async () => {
-    const result = await axiosAPI.getCourses();
+    const queryString = stringify({
+      city,
+      category,
+      currentPage,
+      tab,
+      sex,
+      age,
+      cost,
+      addr,
+      another
+    });
+    const result = await axiosAPI.getCourses(`/result?${queryString}`);
     setCourses(result);
   }
 
