@@ -1,0 +1,18 @@
+@import 'src/assets/styles/_variables.scss';
+
+.section {
+  margin: 0 auto;
+  size: 30px;
+
+  @media only screen and (min-width: 1025px) {
+    padding-left: 15vw;
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 321px) {
+    padding-left: 32px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    padding-left: 16px;
+  }
+}

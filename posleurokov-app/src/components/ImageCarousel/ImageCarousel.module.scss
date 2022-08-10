@@ -1,0 +1,62 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.thumbnail {
+  border-radius: 10px;
+
+  img {
+    border-radius: 10px;
+  }
+
+  @media only screen and (min-width: 1025px) {
+    width: 166px !important;
+    height: 96px !important;
+
+    img {
+      width: 158px !important;
+      height: 88px !important;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 321px) {
+    width: 133px !important;
+    height: 77px !important;
+
+    img {
+      width: 125px !important;
+      height: 69px !important;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    width: 56px !important;
+    height: 33px !important;
+
+    img {
+      width: 48px !important;
+      height: 25px !important;
+    }
+  }
+}
+
+.original {
+  @media only screen and (min-width: 1025px) {
+    img {
+      width: 787px !important;
+      height: 428px !important;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 321px) {
+    img {
+      width: 660px !important;
+      height: 360px !important;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    img {
+      width: 263px !important;
+      height: 143px !important;
+    }
+  }
+}
