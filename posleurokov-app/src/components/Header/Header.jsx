@@ -12,15 +12,11 @@ const Header = () => {
   const PHONE = '+375 29 113-67-97';
 
   const openNav = () => {
-    if (window.screen.width < 760) {
-      document.getElementById('menu').style.width = '250px';
-    }
+    document.getElementById('menu').style.width = '250px';
   }
 
   const closeNav = () => {
-    if (window.screen.width < 760) {
-      document.getElementById('menu').style.width = '0';
-    }
+    document.getElementById('menu').style.width = '0';
   }
 
   const ref = useOutsideClick(closeNav);
