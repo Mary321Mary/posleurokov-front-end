@@ -48,9 +48,9 @@ export const axiosAPI = {
         }
         return "Ошибка сервера";
     },
-    async getCourses() {
+    async getCourses(params) {
         try {
-            const response = await instance.get(COURSES);
+            const response = await instance.get(COURSES + params);
             return response.data;
         }
         catch (error) {
