@@ -1,7 +1,7 @@
 import styles from './Online.module.scss';
 import {
   Button
-} from '../shared';
+} from 'components';
 
 const Online = ({ number, ...rest }) => {
   return (
