@@ -1,9 +1,10 @@
 import {
   Heading,
   Sheet,
-  Courses
-} from 'components/shared';
-import { VkBlock } from 'components';
+  Courses,
+  Pagination,
+  VkBlock
+} from 'components';
 
 import styles from './Catalogue.module.scss';
 import { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ import { axiosAPI } from 'plugins/axios';
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const getCourses = async () => {
     const result = await axiosAPI.getCourses();
@@ -28,17 +30,22 @@ const Catalogue = () => {
       </Heading>
       <div className={styles['section-list']}>
         <div className={styles['section-categories']}>
-          <Sheet>
-            {courses !== null ? (
-              typeof courses !== 'string' ? (
+          {courses !== null ? (
+            typeof courses !== 'string' ? (
+              <Sheet>
                 <Courses list={courses.result} />
-              ) : (
-                <div>{courses}</div>
-              )
+                <Pagination
+                  currentPage={currentPage}
+                  totalPageCount={courses.counts.countOfPages}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              </Sheet>
             ) : (
-              <div>Loading post...</div>
-            )}
-          </Sheet>
+              <div>{courses}</div>
+            )
+          ) : (
+            <div>Loading post...</div>
+          )}
         </div>
         <div className={styles['section-categories']}>
           <VkBlock heigth='auto' width='220px' />
