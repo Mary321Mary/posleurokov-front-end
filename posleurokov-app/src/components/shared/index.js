@@ -8,6 +8,5 @@ export { Category } from './Category/Category';
 export { List } from './List/List';
 export { Pagination } from './Pagination/Pagination';
 export { Course } from './Course/Course';
-export { Courses } from './Courses/Courses';
 export { Select } from './Select/Select';
 export { Input } from './Input/Input';

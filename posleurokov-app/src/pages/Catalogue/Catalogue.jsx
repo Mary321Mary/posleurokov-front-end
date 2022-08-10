@@ -1,7 +1,7 @@
 import {
   Heading,
   Sheet,
-  Courses,
+  Course,
   Pagination,
   VkBlock
 } from 'components';
@@ -15,7 +15,7 @@ const Catalogue = () => {
   const [courses, setCourses] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   
-  const [city, setCity] = useState('Гомель');
+  const [city, setCity] = useState('online');
   const [category, setCategory] = useState('МУЗЫКА И ЗВУК');
   const [tab, setTab] = useState('all');
   const [sex, setSex] = useState('any');
@@ -55,7 +55,7 @@ const Catalogue = () => {
             typeof courses !== 'string' ? (
               <div>
                 <Sheet marginBottom="55px">
-                  <Courses list={courses.result} />
+                  <Course list={courses.result} />
                 </Sheet>
                 <Pagination
                   currentPage={currentPage}

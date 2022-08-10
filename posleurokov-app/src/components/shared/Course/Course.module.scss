@@ -106,11 +106,7 @@
   background-color: #ff0000;
 }
 
-.mobile {
-  display: none;
-}
-
-.tablet {
+.mobile, .tablet {
   display: none;
 }
 
@@ -156,11 +152,7 @@
     }
   }
 
-  .addition {
-    display: none;
-  }
-  
-  .price {
+  .addition, .price {
     display: none;
   }
 
