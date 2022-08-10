@@ -32,14 +32,16 @@ const Catalogue = () => {
         <div className={styles['section-categories']}>
           {courses !== null ? (
             typeof courses !== 'string' ? (
-              <Sheet>
-                <Courses list={courses.result} />
+              <div>
+                <Sheet marginBottom="55px">
+                  <Courses list={courses.result} />
+                </Sheet>
                 <Pagination
                   currentPage={currentPage}
                   totalPageCount={courses.counts.countOfPages}
                   onPageChange={(page) => setCurrentPage(page)}
                 />
-              </Sheet>
+              </div>
             ) : (
               <div>{courses}</div>
             )
