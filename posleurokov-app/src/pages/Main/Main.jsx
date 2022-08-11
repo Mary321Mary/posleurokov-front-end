@@ -7,13 +7,13 @@ import {
   Link,
   Cities,
   Filter,
-  Additional
-} from 'components';
-import randomLesson from 'assets/img/randomLesson.png';
+  Additional,
+} from "components";
+import randomLesson from "assets/img/randomLesson.png";
 
-import styles from './Main.module.scss';
-import { useEffect, useState } from 'react';
-import { axiosAPI } from 'plugins/axios';
+import styles from "./Main.module.scss";
+import { useEffect, useState } from "react";
+import { axiosAPI } from "plugins/axios";
 
 const Main = () => {
   const [result, setResult] = useState(null);
@@ -36,8 +36,8 @@ const Main = () => {
 
   return (
     <section className={styles.container}>
-      <section className={styles['section-filter']}>
-        <div className={styles['section-filter__heading']}>
+      <section className={styles["section-filter"]}>
+        <div className={styles["section-filter__heading"]}>
           <Heading tag="h1" center>
             Найти занятия
           </Heading>
@@ -45,15 +45,15 @@ const Main = () => {
             Для взрослых и детей
           </Heading>
         </div>
-        <div className={styles['section-filter__filter']}>
+        <div className={styles["section-filter__filter"]}>
           <Filter />
         </div>
       </section>
-      <div className={styles['section-list']}>
-        <div className={styles['section-categories']}>
+      <div className={styles["section-list"]}>
+        <div className={styles["section-categories"]}>
           <Sheet>
             {result !== null ? (
-              typeof result !== 'string' ? (
+              typeof result !== "string" ? (
                 <Categories number={result.length}>
                   {result.map((category) => {
                     return (
@@ -91,21 +91,21 @@ const Main = () => {
             )}
           </Sheet>
         </div>
-        <div className={styles['section-categories']}>
-          <Additional />
+        <div className={styles["section-categories"]}>
+          <Additional price />
           {randomLessons !== null ? (
-            typeof randomLessons !== 'string' ? (
+            typeof randomLessons !== "string" ? (
               <Sheet padding="5.23px 17px 7px">
                 {randomLessons.map((lesson) => {
                   return (
                     <div
                       key={lesson.name}
                       style={{
-                        paddingTop: '10.77px',
-                        paddingBottom: '10px',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
+                        paddingTop: "10.77px",
+                        paddingBottom: "10px",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
                       }}
                     >
                       <img src={randomLesson} alt="Занятие" width="70px" />
@@ -130,7 +130,7 @@ const Main = () => {
             <div>Loading post...</div>
           )}
           <Cities />
-          <VkBlock heigth={'auto'} width={'220px'} />
+          <VkBlock heigth={"auto"} width={"220px"} />
         </div>
       </div>
     </section>
