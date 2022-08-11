@@ -6,4 +6,5 @@ export * from './Footer/Footer';
 export * from './Cities/Cities';
 export * from './VkBlock/VkBlock';
 export * from './Filter/Filter';
-export * from './ImageCarousel/ImageCarousel';
+export * from './LessonPage/ImageCarousel/ImageCarousel';
+export * from './LessonPage';

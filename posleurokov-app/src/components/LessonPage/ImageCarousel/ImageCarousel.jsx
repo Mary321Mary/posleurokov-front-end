@@ -28,9 +28,7 @@ const ImageCarousel = ({ images, ...rest }) => {
   }
 
   return (
-    <div style={{
-      ...rest
-    }}>
+    <div className={styles.main}>
       <RenderImages />
     </div >
   );

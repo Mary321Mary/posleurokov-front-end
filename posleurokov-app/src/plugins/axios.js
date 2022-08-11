@@ -57,5 +57,15 @@ export const axiosAPI = {
             console.error(error)
             return "Ошибка сервера";
         }
+    },
+    async getLessonOrganization(id) {
+        try {
+            const response = await instance.get(LESSON + id + '/organization')
+            return response.data;
+        }
+        catch (error) {
+            console.error(error)
+            return "Ошибка сервера";
+        }
     }
 }
