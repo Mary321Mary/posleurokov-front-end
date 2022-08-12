@@ -1,3 +1,4 @@
+import { Link } from "components";
 import styles from "./Additional.module.scss";
 import { useState, useEffect } from "react";
 import { axiosAPI } from "plugins/axios";
@@ -15,21 +16,23 @@ const Additional = ({ price, ...rest }) => {
   };
 
   return (
-    <div
-      className={`${styles.additional} ${
-        price ? styles["price"] : styles["no-price"]
-      }`}
-      style={{ ...rest }}
-    >
-      {price ? (
-        additional.price !== null ? (
-          <p className={styles.exist}>{additional.price} Р.</p>
-        ) : (
-          <p className={styles.absent}>не указана</p>
-        )
-      ) : null}
-      <p className={styles.name}>{additional.name}</p>
-    </div>
+    <Link path="/">
+      <div
+        className={`${styles.additional} ${
+          price ? styles["price"] : styles["no-price"]
+        }`}
+        style={{ ...rest }}
+      >
+        {price ? (
+          additional.price !== null ? (
+            <p className={styles.exist}>{additional.price} Р.</p>
+          ) : (
+            <p className={styles.absent}>не указана</p>
+          )
+        ) : null}
+        <p className={styles.name}>{additional.name}</p>
+      </div>
+    </Link>
   );
 };
 
