@@ -50,7 +50,7 @@ export const axiosAPI = {
     },
     async getLessonInfo(id) {
         try {
-            const response = await instance.get(LESSON + id)
+            const response = await instance.get(LESSON(id))
             return response.data;
         }
         catch (error) {
@@ -60,7 +60,7 @@ export const axiosAPI = {
     },
     async getLessonOrganization(id) {
         try {
-            const response = await instance.get(LESSON + id + '/organization')
+            const response = await instance.get(LESSON(id) + '/organization')
             return response.data;
         }
         catch (error) {
