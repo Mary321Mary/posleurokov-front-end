@@ -7,7 +7,7 @@ import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
-const Similar = ({ ...rest }) => {
+const Similar = ({ id, ...rest }) => {
   const [similar, setSimilar] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Similar = ({ ...rest }) => {
   }, []);
 
   const getSimilar = async () => {
-    const result = await axiosAPI.getSimilar("/3/similar");
+    const result = await axiosAPI.getSimilar(`/${id}/similar`);
     setSimilar(result);
   };
 
@@ -23,7 +23,7 @@ const Similar = ({ ...rest }) => {
     <Sheet maxWidth="900px" marginTop="38px" {...rest}>
       <div className={styles.label}>Похожие</div>
       <div className={styles.info}>
-        {/* {similar !== null ? (
+        {similar !== null ? (
           typeof similar !== "string" ? (
             similar.map((elem) => {
               return (
@@ -62,43 +62,7 @@ const Similar = ({ ...rest }) => {
           )
         ) : (
           <div>Loading post...</div>
-        )} */}
-        <div className={styles.content}>
-          <img src={randomLesson} alt="курс" />
-          <div className={styles.addition}>
-            <div className={`${styles.name} ${styles.block}`}>oo</div>
-            <div className={styles.block}>
-              <img src={age} alt="возраст" />
-              <div>oo лет</div>
-            </div>
-            <div className={styles.block}>
-              <img src={map} alt="адрес" />
-              <div>г. Гомель, пр-т Ленина, 3</div>
-            </div>
-            <div className={styles.block}>
-              <img src={time} alt="время" />
-              <div>"Не назначено"</div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.content}>
-          <img src={randomLesson} alt="курс" />
-          <div className={styles.addition}>
-            <div className={`${styles.name} ${styles.block}`}>oo</div>
-            <div className={styles.block}>
-              <img src={age} alt="возраст" />
-              <div>oo лет</div>
-            </div>
-            <div className={styles.block}>
-              <img src={map} alt="адрес" />
-              <div>г. Гомель, пр-т Ленина, 3</div>
-            </div>
-            <div className={styles.block}>
-              <img src={time} alt="время" />
-              <div>"Не назначено"</div>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </Sheet>
   );

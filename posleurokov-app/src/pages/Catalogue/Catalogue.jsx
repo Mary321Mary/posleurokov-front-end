@@ -11,7 +11,7 @@ const Catalogue = () => {
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
           <Sheet></Sheet>
-          <Similar />
+          <Similar id="3" />
         </div>
         <div className={styles["section-categories"]}>
           <VkBlock heigth="auto" width="220px" />
