@@ -21,6 +21,7 @@
   @media only screen and (max-width: 1024px) and (min-width: 700px) {
     width: 133px !important;
     height: 77px !important;
+    margin-bottom: 6.7px;
 
     img {
       width: 125px !important;
@@ -31,6 +32,7 @@
   @media only screen and (max-width: 699px) {
     width: 56px !important;
     height: 33px !important;
+    margin-bottom: 1.4px;
 
     img {
       width: 48px !important;
@@ -52,7 +54,7 @@
   }
 
   @media only screen and (max-width: 1024px) and (min-width: 700px) {
-    margin-left: 32px;
+    margin-left: 25px;
     margin-right: 31.6px;
 
     img {
@@ -62,12 +64,19 @@
   }
 
   @media only screen and (max-width: 699px) {
-    margin-left: 16px;
+    margin-left: 14px;
     margin-right: 10px;
 
     img {
       width: 263px !important;
       height: 143px !important;
     }
+  }
+}
+
+.main {
+  @media only screen and (max-width: 699px) {
+    width: 292px;
+    margin-left: 0px;
   }
 }

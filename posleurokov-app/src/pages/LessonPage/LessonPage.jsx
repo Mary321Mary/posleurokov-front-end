@@ -17,6 +17,7 @@ const LessonPage = () => {
   const { id } = useParams();
   const [windowWidth, setWindowWidth] = useState('');
   const [sheetMargin, setSheetMargin] = useState('');
+  const [headingParams, setHeadingParams] = useState({});
 
   useEffect(() => {
     getLesson()
@@ -46,19 +47,49 @@ const LessonPage = () => {
   }
 
   const getWindowSize = () => {
-    let { innerWidth, _ } = window;
+    let innerWidth = window.outerWidth;
 
     if (innerWidth > 1024) {
       setWindowWidth('895px')
       setSheetMargin('49px 33px 10px 52px')
+      setHeadingParams({
+        'width': '500px',
+        'height': 'auto',
+        'margin': '38px 0 29px 110px',
+        'color': '#6D80D8',
+        'font-size': '30px',
+        'line-height': '35px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
     }
     else if (innerWidth > 700 && innerWidth <= 1024) {
       setWindowWidth('723px')
       setSheetMargin('31px 24px 10px 32px')
+      setHeadingParams({
+        'width': '500px',
+        'height': 'auto',
+        'margin': '38px 0 12.5px 55px',
+        'color': '#6D80D8',
+        'font-size': '30px',
+        'line-height': '35px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
     }
     else {
-      setWindowWidth('288px')
+      setWindowWidth('312px')
       setSheetMargin('20px 16px 10px 16px')
+      setHeadingParams({
+        'width': '130px',
+        'height': 'auto',
+        'margin': '16px 0 14px 30px',
+        'color': '#6D80D8',
+        'font-size': '22px',
+        'line-height': '26px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
     }
   }
 
@@ -66,7 +97,16 @@ const LessonPage = () => {
     <section className={styles.section}>
       <Sheet
         margin={sheetMargin} width={windowWidth}>
-        <Heading tag='h1' margin='2vh 3vw 10px 5.5vw' padding='0' color='#6D80D8' font-size='1.6rem' font-style='normal' font-weight='500'>
+        <Heading tag='h1'
+          margin={headingParams['margin']}
+          width={headingParams['width']}
+          height={headingParams['height']}
+          color={headingParams['color']}
+          font-size={headingParams['font-size']}
+          line-height={headingParams['line-height']}
+          font-style={headingParams['font-style']}
+          font-weight={headingParams['font-weight']}
+          font-family={headingParams['font-family']}>
           {lesson.name}
         </Heading>
         <ImageCarousel images={images ?? []} />
