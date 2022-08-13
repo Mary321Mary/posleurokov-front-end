@@ -1,5 +1,10 @@
-import axios from "axios";
-import { CATEGORIES, RANDOM_LESSONS, CITIES } from "./endpoints";
+import axios from 'axios';
+import {
+  CATEGORIES,
+  RANDOM_LESSONS,
+  CITIES,
+  LESSON
+} from './endpoints';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -41,5 +46,25 @@ export const axiosAPI = {
       console.error(error);
     }
     return "Ошибка сервера";
+  },
+  async getLessonInfo(id) {
+    try {
+      const response = await instance.get(LESSON(id))
+      return response.data;
+    }
+    catch (error) {
+      console.error(error)
+      return "Ошибка сервера";
+    }
+  },
+  async getLessonOrganization(id) {
+    try {
+      const response = await instance.get(LESSON(id) + '/organization')
+      return response.data;
+    }
+    catch (error) {
+      console.error(error)
+      return "Ошибка сервера";
+    }
   },
 };
