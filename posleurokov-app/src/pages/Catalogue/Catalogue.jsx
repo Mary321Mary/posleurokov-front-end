@@ -1,28 +1,23 @@
-import {
-  Heading,
-  Sheet,
-  Course,
-  Pagination,
-  VkBlock
-} from 'components';
+import { Heading, Sheet, Course, Pagination, VkBlock } from "components";
+import Helmet from "react-helmet";
 
-import styles from './Catalogue.module.scss';
-import { useEffect, useState } from 'react';
-import { axiosAPI } from 'plugins/axios';
-import { stringify } from 'qs';
+import styles from "./Catalogue.module.scss";
+import { useEffect, useState } from "react";
+import { axiosAPI } from "plugins/axios";
+import { stringify } from "qs";
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const [city, setCity] = useState('online');
-  const [category, setCategory] = useState('МУЗЫКА И ЗВУК');
-  const [tab, setTab] = useState('all');
-  const [sex, setSex] = useState('any');
-  const [age, setAge] = useState('any');
+
+  const [city, setCity] = useState("online");
+  const [category, setCategory] = useState("ИСКУССТВО И ДИЗАЙН");
+  const [tab, setTab] = useState("all");
+  const [sex, setSex] = useState("any");
+  const [age, setAge] = useState("any");
   const [cost, setCost] = useState([]);
-  const [addr, setAddress] = useState('');
-  const [another, setOther] = useState('any');
+  const [addr, setAddress] = useState("");
+  const [another, setOther] = useState("any");
 
   const getCourses = async () => {
     const queryString = stringify({
@@ -34,11 +29,11 @@ const Catalogue = () => {
       age,
       cost,
       addr,
-      another
+      another,
     });
     const result = await axiosAPI.getCourses(`/result?${queryString}`);
     setCourses(result);
-  }
+  };
 
   useEffect(() => {
     getCourses();
@@ -46,16 +41,18 @@ const Catalogue = () => {
 
   return (
     <section className={styles.container}>
-      <Heading tag='h1'>
-        Каталог кружков, секций и курсов в Гомеле
-      </Heading>
-      <div className={styles['section-list']}>
-        <div className={styles['section-categories']}>
+      <Helmet title="Каталог" />
+      <Heading tag="h1">Каталог кружков, секций и курсов в Гомеле</Heading>
+      <div className={styles["section-list"]}>
+        <div className={styles["section-categories"]}>
           {courses !== null ? (
-            typeof courses !== 'string' ? (
+            typeof courses !== "string" ? (
               <div>
                 <Sheet marginBottom="55px">
-                  <Course list={courses.result} />
+                  <Course
+                    list={courses.result}
+                    online={courses.counts.online}
+                  />
                 </Sheet>
                 <Pagination
                   currentPage={currentPage}
@@ -70,8 +67,8 @@ const Catalogue = () => {
             <div>Loading post...</div>
           )}
         </div>
-        <div className={styles['section-categories']}>
-          <VkBlock heigth='auto' width='220px' />
+        <div className={styles["section-categories"]}>
+          <VkBlock heigth="auto" width="220px" />
         </div>
       </div>
     </section>
