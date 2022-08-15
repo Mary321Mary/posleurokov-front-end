@@ -10,6 +10,7 @@ const Select = ({
   prepend = null,
   checkbox = false,
   onChange,
+  ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
 
@@ -33,6 +34,7 @@ const Select = ({
 
   return (
     <div
+      style={{ ...rest }}
       className={`${styles['select']} ${
         showOptionList ? styles['select--active'] : ''
       }`}

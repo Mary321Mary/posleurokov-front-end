@@ -1,0 +1,18 @@
+@import "src/assets/styles/_variables.scss";
+
+.label {
+  font-family: $heading-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133.9%;
+
+  /* dark_gray */
+  color: #5f6060;
+
+  margin-top: 19px;
+}
+
+.absent {
+  display: none;
+}

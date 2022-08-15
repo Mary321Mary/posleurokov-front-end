@@ -93,6 +93,7 @@ function Filter() {
           ]}
           checkbox
           prepend={<img src="\images\Gender.png" height="25px" alt="Пол" />}
+          zIndex="7"
           onChange={(value) => setGender(value)}
         />
 
@@ -122,6 +123,7 @@ function Filter() {
           ]}
           checkbox
           prepend={<img src="\images\Age.png" height="25px" alt="Возраст" />}
+          zIndex="6"
           onChange={(value) => setAge(value)}
         />
 
@@ -138,6 +140,7 @@ function Filter() {
           ]}
           checkbox
           prepend={<img src="\images\Cost.png" height="25px" alt="Стоимость" />}
+          zIndex="5"
           onChange={(value) => setCost(value)}
         />
 
@@ -206,6 +209,7 @@ function Filter() {
           prepend={
             <img src="\images\Categories.png" height="25px" alt="Категории" />
           }
+          zIndex="3"
           onChange={(value) => setCategories(value)}
         />
 
@@ -221,6 +225,7 @@ function Filter() {
           prepend={
             <img src="\images\Other.png" height="25px" alt="Стоимость" />
           }
+          zIndex="2"
           onChange={(value) => setOther(value)}
         />
       </section>

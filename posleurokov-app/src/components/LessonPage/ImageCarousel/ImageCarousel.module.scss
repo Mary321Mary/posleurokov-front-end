@@ -1,0 +1,82 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.thumbnail {
+  border-radius: 10px;
+
+  img {
+    border-radius: 10px;
+  }
+
+  @media only screen and (min-width: 1025px) {
+    width: 166px;
+    height: 96px;
+    margin-bottom: 13px;
+
+    img {
+      width: 158px;
+      height: 88px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 700px) {
+    width: 133px;
+    height: 77px;
+    margin-bottom: 6.7px;
+
+    img {
+      width: 125px;
+      height: 69px;
+    }
+  }
+
+  @media only screen and (max-width: 699px) {
+    width: 56px;
+    height: 33px;
+    margin-bottom: 1.4px;
+
+    img {
+      width: 48px;
+      height: 25px;
+    }
+  }
+}
+
+.original {
+
+  @media only screen and (min-width: 1025px) {
+    margin-left: 52px;
+    margin-right: 55px;
+
+    img {
+      width: 787px;
+      height: 428px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 700px) {
+    margin-left: 25px;
+    margin-right: 31.6px;
+
+    img {
+      width: 660px;
+      height: 360px;
+    }
+  }
+
+  @media only screen and (max-width: 699px) {
+    margin-left: 14px;
+    margin-right: 10px;
+
+    img {
+      width: 263px;
+      height: 143px;
+    }
+  }
+}
+
+.main {
+  @media only screen and (max-width: 699px) {
+    width: 292px;
+    margin-left: 0px;
+  }
+}
