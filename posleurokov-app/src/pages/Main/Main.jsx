@@ -8,8 +8,9 @@ import {
   Cities,
   Filter,
   Additional,
+  Populars,
+  RandomLessons,
 } from "components";
-import randomLesson from "assets/img/randomLesson.png";
 
 import styles from "./Main.module.scss";
 import { useEffect, useState } from "react";
@@ -17,21 +18,14 @@ import { axiosAPI } from "plugins/axios";
 
 const Main = () => {
   const [result, setResult] = useState(null);
-  const [randomLessons, setRandomLessons] = useState(null);
 
   const getCategories = async () => {
     const categories = await axiosAPI.getCategories();
     setResult(categories);
   };
 
-  const getRandomLessons = async () => {
-    const lessons = await axiosAPI.getRandomLessons();
-    setRandomLessons(lessons);
-  };
-
   useEffect(() => {
     getCategories();
-    getRandomLessons();
   }, []);
 
   return (
@@ -53,7 +47,7 @@ const Main = () => {
         <div className={styles["section-categories"]}>
           <Sheet>
             {result !== null ? (
-              typeof result !== "string" ? (
+              Array.isArray(result) ? (
                 <Categories number={result.length}>
                   {result.map((category) => {
                     return (
@@ -93,42 +87,8 @@ const Main = () => {
         </div>
         <div className={styles["section-categories"]}>
           <Additional price />
-          {randomLessons !== null ? (
-            typeof randomLessons !== "string" ? (
-              <Sheet padding="5.23px 17px 7px">
-                {randomLessons.map((lesson) => {
-                  return (
-                    <div
-                      key={lesson.name}
-                      style={{
-                        paddingTop: "10.77px",
-                        paddingBottom: "10px",
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img src={randomLesson} alt="Занятие" width="70px" />
-                      <Link
-                        fontFamily="Roboto-Regular"
-                        fontWeight="400"
-                        fontSize="14px"
-                        lineHeight="16px"
-                        color="#5F6060"
-                        marginLeft="12px"
-                      >
-                        {lesson.name}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </Sheet>
-            ) : (
-              <div>{randomLessons}</div>
-            )
-          ) : (
-            <div>Loading post...</div>
-          )}
+          <RandomLessons number="3" width="220px" />
+          <Populars city="Гомель" />
           <Cities />
           <VkBlock heigth={"auto"} width={"220px"} />
         </div>

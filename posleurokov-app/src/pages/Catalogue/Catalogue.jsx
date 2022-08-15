@@ -1,14 +1,16 @@
 import {
   Heading,
-  Sheet
-} from 'components/shared';
-import { VkBlock } from 'components';
+  Sheet,
+  VkBlock
+} from 'components';
+import Helmet from 'react-helmet';
 
 import styles from './Catalogue.module.scss';
 
 const Catalogue = () => {
   return (
     <section className={styles.container}>
+      <Helmet title="Каталог" />
       <Heading tag='h1'>
         Каталог кружков, секций и курсов в Гомеле
       </Heading>
