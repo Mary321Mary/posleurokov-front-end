@@ -1,0 +1,49 @@
+@import 'src/assets/styles/_variables.scss';
+
+.online {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 21px 31px 21px 29px;
+  background: linear-gradient(172.26deg, rgba(80, 79, 198, 0.83) -78.2%, #6EB0EC 94.02%);
+  color: rgb(255, 255, 255);
+}
+
+.label {
+  font-family: $category-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.015em;
+}
+
+.count {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .online {
+    padding: 21px 25px 21px 29px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .online {
+    display: block;
+    padding: 19px 5px 19px 13px;
+  }
+
+  .label {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .count {
+    margin-bottom: 10px;
+  }
+}

@@ -3,6 +3,7 @@ import {
   CATEGORIES,
   RANDOM_LESSONS,
   CITIES,
+  COURSES,
   ADDITIONAL,
   POPULARS,
   LESSON,
@@ -43,6 +44,15 @@ export const axiosAPI = {
   async getCities() {
     try {
       const response = await instance.get(CITIES);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
+  async getCourses(params) {
+    try {
+      const response = await instance.get(COURSES + params);
       return response.data;
     } catch (error) {
       console.error(error);

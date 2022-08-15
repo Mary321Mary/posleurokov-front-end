@@ -8,5 +8,6 @@ export * from "./VkBlock/VkBlock";
 export * from "./Additional/Additional";
 export * from "./Populars/Populars";
 export * from "./Filter/Filter";
+export * from "./Online/Online";
 export * from "./LessonPage";
 export * from "./RandomLessons/RandomLessons";
