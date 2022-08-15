@@ -8,7 +8,7 @@ import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
 const Similar = ({ id, ...rest }) => {
-  const [similar, setSimilar] = useState([]);
+  const [similar, setSimilar] = useState(null);
 
   useEffect(() => {
     getSimilar();
@@ -20,11 +20,11 @@ const Similar = ({ id, ...rest }) => {
   };
 
   return (
-    <Sheet maxWidth="900px" marginTop="38px" {...rest}>
+    <Sheet margin="38px 20px 30px 20px" {...rest}>
       <div className={styles.label}>Похожие</div>
       <div className={styles.info}>
         {similar !== null ? (
-          typeof similar !== "string" ? (
+          Array.isArray(similar) ? (
             similar.map((elem) => {
               return (
                 <div key={elem.lesson.id}>

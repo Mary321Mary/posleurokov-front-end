@@ -1,5 +1,15 @@
 import axios from "axios";
-import { CATEGORIES, RANDOM_LESSONS, CITIES, SIMILARS } from "./endpoints";
+
+import {
+  CATEGORIES,
+  RANDOM_LESSONS,
+  CITIES,
+  COURSES,
+  ADDITIONAL,
+  POPULARS,
+  LESSON,
+  SIMILARS,
+} from "./endpoints";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -24,9 +34,9 @@ export const axiosAPI = {
     }
     return "Ошибка сервера";
   },
-  async getRandomLessons() {
+  async getAdditional() {
     try {
-      const response = await instance.get(RANDOM_LESSONS);
+      const response = await instance.get(ADDITIONAL);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -42,13 +52,58 @@ export const axiosAPI = {
     }
     return "Ошибка сервера";
   },
+  async getCourses(params) {
+    try {
+      const response = await instance.get(COURSES + params);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
+  async getPopulars(city) {
+    try {
+      const response = await instance.get(POPULARS(city));
+      return response.data.popular;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
+  async getRandomLessons(param) {
+    try {
+      const response = await instance.get(RANDOM_LESSONS + param);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
+  async getLessonInfo(id) {
+    try {
+      const response = await instance.get(LESSON(id));
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getLessonOrganization(id) {
+    try {
+      const response = await instance.get(LESSON(id) + "/organization");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
   async getSimilar(params) {
     try {
       const response = await instance.get(SIMILARS + params);
       return response.data.commonLessons;
     } catch (error) {
       console.error(error);
+      return "Ошибка сервера";
     }
-    return "Ошибка сервера";
   },
 };
