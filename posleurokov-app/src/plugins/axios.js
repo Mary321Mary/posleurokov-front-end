@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   CATEGORIES,
   RANDOM_LESSONS,
   CITIES,
-  LESSON
-} from './endpoints';
+  POPULARS,
+  LESSON,
+} from "./endpoints";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -29,15 +30,6 @@ export const axiosAPI = {
     }
     return "Ошибка сервера";
   },
-  async getRandomLessons(param) {
-    try {
-      const response = await instance.get(RANDOM_LESSONS + param);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-    return "Ошибка сервера";
-  },
   async getCities() {
     try {
       const response = await instance.get(CITIES);
@@ -47,23 +39,39 @@ export const axiosAPI = {
     }
     return "Ошибка сервера";
   },
+  async getPopulars(city) {
+    try {
+      const response = await instance.get(POPULARS(city));
+      return response.data.popular;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
+  async getRandomLessons(param) {
+    try {
+      const response = await instance.get(RANDOM_LESSONS + param);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+    return "Ошибка сервера";
+  },
   async getLessonInfo(id) {
     try {
-      const response = await instance.get(LESSON(id))
+      const response = await instance.get(LESSON(id));
       return response.data;
-    }
-    catch (error) {
-      console.error(error)
+    } catch (error) {
+      console.error(error);
       return "Ошибка сервера";
     }
   },
   async getLessonOrganization(id) {
     try {
-      const response = await instance.get(LESSON(id) + '/organization')
+      const response = await instance.get(LESSON(id) + "/organization");
       return response.data;
-    }
-    catch (error) {
-      console.error(error)
+    } catch (error) {
+      console.error(error);
       return "Ошибка сервера";
     }
   },

@@ -7,6 +7,7 @@ import {
   Link,
   Cities,
   Filter,
+  Populars,
   RandomLessons,
 } from "components";
 
@@ -85,6 +86,7 @@ const Main = () => {
         </div>
         <div className={styles["section-categories"]}>
           <RandomLessons number="3" width="220px" />
+          <Populars city="Гомель" />
           <Cities />
           <VkBlock heigth={"auto"} width={"220px"} />
         </div>
