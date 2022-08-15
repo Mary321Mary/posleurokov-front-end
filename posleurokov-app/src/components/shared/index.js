@@ -8,3 +8,4 @@ export { Category } from './Category/Category';
 export { List } from './List/List';
 export { Select } from './Select/Select';
 export { Input } from './Input/Input';
+export { Loader } from './Loader/Loader';

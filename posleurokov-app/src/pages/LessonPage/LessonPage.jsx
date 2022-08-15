@@ -2,7 +2,8 @@ import {
   Heading,
   Sheet,
   ImageCarousel,
-  LessonDescription
+  LessonDescription,
+  Loader
 } from 'components';
 
 import styles from './LessonPage.module.scss';
@@ -18,22 +19,7 @@ const LessonPage = () => {
   const [windowWidth, setWindowWidth] = useState('');
   const [sheetMargin, setSheetMargin] = useState('');
   const [headingParams, setHeadingParams] = useState({});
-
-  useEffect(() => {
-    getLesson()
-    getOrganization()
-    getWindowSize()
-
-    function handleWindowResize() {
-      getWindowSize();
-    }
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, [])
+  const [loading, setLoading] = useState(true);
 
   const getLesson = async () => {
     let result = await axiosAPI.getLessonInfo(id);
@@ -93,26 +79,47 @@ const LessonPage = () => {
     }
   }
 
+  useEffect(async () => {
+    setLoading(true)
+
+    await getLesson()
+    await getOrganization()
+    getWindowSize()
+
+    function handleWindowResize() {
+      getWindowSize();
+    }
+
+    setLoading(false)
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, [])
+
   return (
-    <section className={styles.section}>
-      <Sheet
-        margin={sheetMargin} width={windowWidth}>
-        <Heading tag='h1'
-          margin={headingParams['margin']}
-          width={headingParams['width']}
-          height={headingParams['height']}
-          color={headingParams['color']}
-          font-size={headingParams['font-size']}
-          line-height={headingParams['line-height']}
-          font-style={headingParams['font-style']}
-          font-weight={headingParams['font-weight']}
-          font-family={headingParams['font-family']}>
-          {lesson.name}
-        </Heading>
-        <ImageCarousel images={images ?? []} />
-        <LessonDescription lesson={lesson} organization={organization} />
-      </Sheet>
-    </section>
+    <div>
+      {loading ? <Loader /> :
+        <section className={styles.section}><Sheet
+          margin={sheetMargin} width={windowWidth}>
+          <Heading tag='h1'
+            margin={headingParams['margin']}
+            width={headingParams['width']}
+            height={headingParams['height']}
+            color={headingParams['color']}
+            font-size={headingParams['font-size']}
+            line-height={headingParams['line-height']}
+            font-style={headingParams['font-style']}
+            font-weight={headingParams['font-weight']}
+            font-family={headingParams['font-family']}>
+            {lesson.name}
+          </Heading>
+          <ImageCarousel images={images ?? []} />
+          <LessonDescription lesson={lesson} organization={organization} />
+        </Sheet></section>}
+    </div>
   );
 };
 
