@@ -7,37 +7,30 @@ import {
   Link,
   Cities,
   Filter,
-  Populars
-} from 'components';
-import randomLesson from 'assets/img/randomLesson.png';
+  Populars,
+  RandomLessons,
+} from "components";
 
-import styles from './Main.module.scss';
-import { useEffect, useState } from 'react';
-import { axiosAPI } from 'plugins/axios';
+import styles from "./Main.module.scss";
+import { useEffect, useState } from "react";
+import { axiosAPI } from "plugins/axios";
 
 const Main = () => {
   const [result, setResult] = useState(null);
-  const [randomLessons, setRandomLessons] = useState(null);
 
   const getCategories = async () => {
     const categories = await axiosAPI.getCategories();
     setResult(categories);
   };
 
-  const getRandomLessons = async () => {
-    const lessons = await axiosAPI.getRandomLessons();
-    setRandomLessons(lessons);
-  };
-
   useEffect(() => {
     getCategories();
-    getRandomLessons();
   }, []);
 
   return (
     <section className={styles.container}>
-      <section className={styles['section-filter']}>
-        <div className={styles['section-filter__heading']}>
+      <section className={styles["section-filter"]}>
+        <div className={styles["section-filter__heading"]}>
           <Heading tag="h1" center>
             Найти занятия
           </Heading>
@@ -45,15 +38,15 @@ const Main = () => {
             Для взрослых и детей
           </Heading>
         </div>
-        <div className={styles['section-filter__filter']}>
+        <div className={styles["section-filter__filter"]}>
           <Filter />
         </div>
       </section>
-      <div className={styles['section-list']}>
-        <div className={styles['section-categories']}>
+      <div className={styles["section-list"]}>
+        <div className={styles["section-categories"]}>
           <Sheet>
             {result !== null ? (
-              typeof result !== 'string' ? (
+              typeof result !== "string" ? (
                 <Categories number={result.length}>
                   {result.map((category) => {
                     return (
@@ -91,46 +84,11 @@ const Main = () => {
             )}
           </Sheet>
         </div>
-        <div className={styles['section-categories']}>
-          {randomLessons !== null ? (
-            typeof randomLessons !== 'string' ? (
-              <Sheet padding="5.23px 17px 7px">
-                {randomLessons.map((lesson) => {
-                  return (
-                    <div
-                      key={lesson.name}
-                      style={{
-                        paddingTop: '10.77px',
-                        paddingBottom: '10px',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <img src={randomLesson} alt="Занятие" width="70px" />
-                      <Link
-                        fontFamily="Roboto-Regular"
-                        fontWeight="400"
-                        fontSize="14px"
-                        lineHeight="16px"
-                        color="#5F6060"
-                        marginLeft="12px"
-                      >
-                        {lesson.name}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </Sheet>
-            ) : (
-              <div>{randomLessons}</div>
-            )
-          ) : (
-            <div>Loading post...</div>
-          )}
-          <Populars />
+        <div className={styles["section-categories"]}>
+          <RandomLessons number="3" width="220px" />
+          <Populars city="Гомель" />
           <Cities />
-          <VkBlock heigth={'auto'} width={'220px'} />
+          <VkBlock heigth={"auto"} width={"220px"} />
         </div>
       </div>
     </section>

@@ -1,25 +1,30 @@
-import styles from './Populars.module.scss';
-import { useState, useEffect } from 'react';
-import { Sheet, List } from 'components/shared';
-import { axiosAPI } from 'plugins/axios';
+import styles from "./Populars.module.scss";
+import { useState, useEffect } from "react";
+import { Sheet, List } from "components";
+import { axiosAPI } from "plugins/axios";
 
-const Populars = () => {
-  const [populars, setPopulars] = useState([])
+const Populars = ({ city, ...rest }) => {
+  const [populars, setPopulars] = useState([]);
 
   useEffect(() => {
-    getPopulars()
-  }, [])
+    getPopulars();
+  }, []);
 
   const getPopulars = async () => {
-    const result = await axiosAPI.getPopulars();
+    const result = await axiosAPI.getPopulars(city);
     setPopulars(result);
-  }
+  };
 
   return (
-    <Sheet padding='36px 24px 36px 24px' maxWidth={'230px'} marginTop={'35px'}>
+    <Sheet
+      padding="36px 24px 36px 24px"
+      maxWidth="230px"
+      marginTop="35px"
+      {...rest}
+    >
       <h3 className={styles.h3}>Популярное</h3>
       {populars !== null ? (
-        typeof populars !== 'string' ? (
+        Array.isArray(populars) ? (
           <List list={populars} />
         ) : (
           <div>{populars}</div>

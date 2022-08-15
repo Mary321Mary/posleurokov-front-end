@@ -7,3 +7,5 @@ export * from './Cities/Cities';
 export * from './VkBlock/VkBlock';
 export * from './Populars/Populars';
 export * from './Filter/Filter';
+export * from './LessonPage';
+export * from './RandomLessons/RandomLessons';
