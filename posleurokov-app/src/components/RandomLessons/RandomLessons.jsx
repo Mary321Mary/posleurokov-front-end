@@ -18,7 +18,7 @@ const RandomLessons = ({ number, label = false, ...rest }) => {
   };
 
   return randomLessons !== null ? (
-    typeof randomLessons !== "string" ? (
+    Array.isArray(randomLessons) ? (
       <Sheet padding="5.23px 17px 7px" {...rest}>
         <div className={`${styles.label} ${label ? "" : styles["absent"]}`}>
           {label}

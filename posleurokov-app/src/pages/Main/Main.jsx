@@ -7,6 +7,7 @@ import {
   Link,
   Cities,
   Filter,
+  Additional,
   Populars,
   RandomLessons,
 } from "components";
@@ -46,7 +47,7 @@ const Main = () => {
         <div className={styles["section-categories"]}>
           <Sheet>
             {result !== null ? (
-              typeof result !== "string" ? (
+              Array.isArray(result) ? (
                 <Categories number={result.length}>
                   {result.map((category) => {
                     return (
@@ -85,6 +86,7 @@ const Main = () => {
           </Sheet>
         </div>
         <div className={styles["section-categories"]}>
+          <Additional price />
           <RandomLessons number="3" width="220px" />
           <Populars city="Гомель" />
           <Cities />
