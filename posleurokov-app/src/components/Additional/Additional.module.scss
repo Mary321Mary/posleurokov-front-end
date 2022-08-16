@@ -11,35 +11,55 @@
   z-index: 1;
 
   border-radius: 14.3292px;
-  width: 300px;
-  height: 330px;
+  margin-top: 10px;
+  padding-top: 9px;
+  width: 230px;
+  height: 240px;
+}
+
+.union {
+  background: url("../../assets/img/Union.svg") no-repeat;
+  width: 100px;
+  height: 45px;
+  margin-left: 146px;
 }
 
 .price {
-  background: url("../../assets/img/Union.svg") 92% 28%,
-    url("../../assets/img/bgr.svg") 57% 96%,
-    url("../../assets/img/additional.svg");
+  background: url("../../assets/img/Union.svg") 100% 10%,
+    url("../../assets/img/bgr.svg") 57% 96%, url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
-    top: 215px;
+    top: 110px;
+  }
+
+  .exist {
+    top: -8px;
+    left: 155px;
+  }
+
+  .absent {
+    top: 23px;
+    font-size: 16px;
+    left: 140px;
   }
 }
 
 .no-price {
   background: url("../../assets/img/bgr.svg") 57% 96%,
-    url("../../assets/img/additional.svg");
+    url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
-    top: 260px;
+    top: 170px;
   }
 }
 
 .name {
   display: block;
   width: 200px;
-  left: 50px;
+  top: 100px;
+  left: 10px;
 
   font-family: $primary-font-family;
   font-style: normal;
@@ -60,12 +80,12 @@
 }
 
 .exist {
-  top: 82px;
-  left: 210px;
+  top: 2px;
+  left: 20px;
 }
 
 .absent {
-  top: 84px;
+  top: 4px;
   font-size: 16px;
-  left: 195px;
+  left: 5px;
 }
