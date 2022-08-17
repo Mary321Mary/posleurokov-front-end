@@ -1,10 +1,10 @@
-import styles from './Header.module.scss';
-import { Logo, Button, Link, Select } from 'components';
-import { useState } from 'react';
+import styles from "./Header.module.scss";
+import { Logo, Button, Link, Select } from "components";
+import { useState } from "react";
 
 const Header = () => {
-  const [city, setCity] = useState('Гомель');
-  const PHONE = '+375 29 113-67-97';
+  const [city, setCity] = useState("Гомель");
+  const PHONE = "+375 29 113-67-97";
   return (
     <>
       <div>
@@ -12,12 +12,12 @@ const Header = () => {
         <Select
           value={city}
           options={[
-            { text: 'Гомель', value: 'Гомель' },
-            { text: 'Минск', value: 'Минск' },
-            { text: 'Гродно', value: 'Гродно' },
-            { text: 'Витебск', value: 'Витебск' },
-            { text: 'Брест', value: 'Брест' },
-            { text: 'Могилёв', value: 'Могилёв' },
+            { text: "Гомель", value: "Гомель" },
+            { text: "Минск", value: "Минск" },
+            { text: "Гродно", value: "Гродно" },
+            { text: "Витебск", value: "Витебск" },
+            { text: "Брест", value: "Брест" },
+            { text: "Могилёв", value: "Могилёв" },
           ]}
           onChange={(value) => setCity(value)}
         />
@@ -27,10 +27,10 @@ const Header = () => {
           <p>Поможем выбрать</p>
           <p>{PHONE}</p>
         </div>
-        <div className={styles['vertical-line']}></div>
+        <div className={styles["vertical-line"]}></div>
         <div>
           <Link
-            path="/"
+            path="/login"
             fontFamily="Roboto-Bold"
             fontStyle="normal"
             fontWeight="700"
@@ -43,7 +43,7 @@ const Header = () => {
           </Link>
           /
           <Link
-            path="/"
+            path="/signup"
             fontFamily="Roboto-Bold"
             fontStyle="normal"
             fontWeight="700"

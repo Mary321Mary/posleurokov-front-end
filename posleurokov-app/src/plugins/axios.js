@@ -7,6 +7,8 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  SIGNUP,
+  LOGIN,
 } from "./endpoints";
 
 const instance = axios.create({
@@ -93,6 +95,24 @@ export const axiosAPI = {
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
+    }
+  },
+  async getSignUp(params) {
+    try {
+      const response = await instance.post(SIGNUP, { user: params });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLogin(params) {
+    try {
+      const response = await instance.post(LOGIN, { user: params });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
     }
   },
 };
