@@ -44,6 +44,7 @@ const SignUp = () => {
       if (response.status === 400) {
         setError(response.data);
       } else {
+        localStorage.setItem("token", response.token);
         window.location.assign("/");
       }
     } else {
