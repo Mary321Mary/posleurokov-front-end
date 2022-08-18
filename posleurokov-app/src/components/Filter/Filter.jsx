@@ -5,7 +5,7 @@ import { Select, Button } from 'components';
 import { Input } from 'components/shared';
 import search from 'assets/icons/search.svg';
 import { useSelector } from 'react-redux';
-import { store } from 'redux/stores';
+import store from 'redux/stores';
 
 
 function Filter() {

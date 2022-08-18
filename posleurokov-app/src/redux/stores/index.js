@@ -1,28 +1,32 @@
 import reducer from 'redux/reducer/index';
+import { createStore } from 'redux';
+
+const store = createStore(reducer);
+
+export default store;
 
 
-export function createStore(reducer, initialState) {
-    let state = initialState;
-    let callbacks = [];
+// export function createStore(reducer, initialState) {
+//     let state = initialState;
+//     let callbacks = [];
 
-    const getState = () => state;
+//     const getState = () => state;
 
-    const dispatch = action => {
-        state = reducer(state, action);
-        callbacks.forEach(callbacks => callbacks());
-    }
-    const subscribe = callbacks => {
-        callbacks.push(callbacks)
-        return () => callbacks.filter(cb => cb !== callbacks)
-    }
+//     const dispatch = action => {
+//         state = reducer(state, action);
+//         callbacks.forEach(callbacks => callbacks());
+//     }
+//     const subscribe = callbacks => {
+//         callbacks.push(callbacks)
+//         return () => callbacks.filter(cb => cb !== callbacks)
+//     }
 
-    dispatch({})
+//     dispatch({})
 
-    return { getState, dispatch, subscribe };
-}
-const initialState = { count: '' };
+//     return { getState, dispatch, subscribe };
+// }
 
-export const store = createStore(reducer, initialState)
+
 
 
 // class Store {

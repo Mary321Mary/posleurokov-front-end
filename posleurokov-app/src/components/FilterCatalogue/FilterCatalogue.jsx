@@ -7,7 +7,7 @@ import search from 'assets/icons/search.svg';
 import { List } from 'components/List/List';
 import { axiosAPI } from 'plugins/axios';
 import { useDispatch, connect } from 'react-redux'
-import { store } from 'redux/stores';
+import store from 'redux/stores';
 
 
 
@@ -35,13 +35,17 @@ function FilterCatalogue() {
       this.props.categories
     );
   };
+  const count = store.getState().count;
 
 
   return (
     <section className={styles['filter-wrapper']}>
       <section className={styles.filter}>
+        <div className={styles.label}>ПОЛ</div>
+        <div>{count}</div>
 
         <div className={styles.label}>ПОЛ</div>
+
         <Select
           margin="10px"
           height="40px"
