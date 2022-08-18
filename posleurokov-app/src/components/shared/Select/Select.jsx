@@ -9,7 +9,9 @@ const Select = ({
   append = null,
   prepend = null,
   checkbox = false,
+
   onChange,
+  ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
 
@@ -38,6 +40,7 @@ const Select = ({
     >
       <div
         className={styles['select__box']}
+        style={{ ...rest }}
         onClick={() => setShowOptionList(!showOptionList)}
       >
         {append && <div className={styles.append}>{append}</div>}

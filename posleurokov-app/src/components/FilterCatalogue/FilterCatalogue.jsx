@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { stringify } from 'qs';
-import styles from './Filter.module.scss';
-import { Select, Button } from 'components';
+import styles from './FilterCatalogue.module.scss';
+import { Select, Button, Cities } from 'components';
 import { Input } from 'components/shared';
 import search from 'assets/icons/search.svg';
-import { useSelector } from 'react-redux';
+import { List } from 'components/List/List';
+import { axiosAPI } from 'plugins/axios';
+import { useDispatch, connect } from 'react-redux'
 import { store } from 'redux/stores';
 
 
-function Filter() {
+
+function FilterCatalogue() {
   const [age, setAge] = useState([]);
   const [gender, setGender] = useState([]);
   const [cost, setCost] = useState([]);
   const [address, setAddress] = useState('');
   const [categories, setCategories] = useState([]);
   const [other, setOther] = useState([]);
-
-
-
-  const AddCategory = { type: 'Add', amount: categories }
-
-  store.dispatch(AddCategory)
+  const [cities, setCities] = useState([]);
 
   const handleSearch = () => {
+
     console.log(
       'params',
       stringify({
@@ -32,31 +31,41 @@ function Filter() {
         address,
         categories,
         other,
-      })
+      }),
+      this.props.categories
     );
   };
 
-  const count = store.getState().count;
 
   return (
     <section className={styles['filter-wrapper']}>
       <section className={styles.filter}>
-        <div>{count}</div>
 
+        <div className={styles.label}>ПОЛ</div>
         <Select
-          placeholder="Пол"
+          margin="10px"
+          height="40px"
+          padding="0px 22px"
+          border-radius="8px"
+          border="1px solid rgb(197, 197, 197)"
+          placeholder="Любой"
           value={gender}
           options={[
             { text: 'м', value: 'м' },
             { text: 'ж', value: 'ж' },
           ]}
           checkbox
-          prepend={<img src="\images\Gender.png" height="25px" alt="Пол" />}
+          prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
           onChange={(value) => setGender(value)}
         />
-
+        <div className={styles.label}>ВОЗРАСТ</div>
         <Select
-          placeholder="Возраст"
+          margin="10px"
+          height="40px"
+          padding="0px 22px"
+          border-radius="8px"
+          border="1px solid rgb(197, 197, 197)"
+          placeholder="Любой"
           value={age}
           options={[
             { text: '1 год', value: '1' },
@@ -80,12 +89,18 @@ function Filter() {
             { text: 'Старше 18', value: 'Старше 18' },
           ]}
           checkbox
-          prepend={<img src="\images\Age.png" height="25px" alt="Возраст" />}
+          prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
           onChange={(value) => setAge(value)}
         />
 
+        <div className={styles.label}>СТОИМОСТЬ</div>
         <Select
-          placeholder="Стоимость"
+          margin="10px"
+          height="40px"
+          padding="0px 22px"
+          border-radius="8px"
+          border="1px solid #c8c9c9"
+          placeholder="Любая"
           value={cost}
           options={[
             { text: '0 руб', value: '0' },
@@ -96,18 +111,30 @@ function Filter() {
             { text: '200 руб', value: '200' },
           ]}
           checkbox
-          prepend={<img src="\images\Cost.png" height="25px" alt="Стоимость" />}
+          prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
           onChange={(value) => setCost(value)}
         />
+
+        <div className={styles.label}>АДРЕС</div>
         <Input
+          margin="10px"
+          height="40px"
+          padding="0px 22px"
+          border-radius="8px"
+          border="1px solid rgb(197, 197, 197)"
           type="text"
-          placeholder="Адрес"
-          prepend={<img src="\images\Address.png" height="25px" alt="Стоимость" />}
+          width="150px"
+
+          placeholder="Название улицы"
           onChange={(e) => setAddress(e.target.value)}
         />
-
-
+        <div className={styles.label}>КАТЕГОРИЯ</div>
         <Select
+          margin="10px"
+          height="40px"
+          padding="0px 22px"
+          border-radius="8px"
+          border="1px solid rgb(197, 197, 197)"
           placeholder="Категории"
           value={categories}
           options={[
@@ -160,15 +187,34 @@ function Filter() {
             { text: 'Репетиторы', value: 'Репетиторы' },
           ]}
           checkbox
-          prepend={
-            <img src="\images\Categories.png" height="25px" alt="Категории" />
-          }
+          prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
           onChange={(value) => setCategories(value)}
-
         />
+        <li key={categories.id}>{categories.titles}</li>
+        {/* <Category
+          key={category.baseCategory.name}
+          label={category.baseCategory.name}
+          number={category.count}
+        >
+          {category.concreteCategories.map((item) => {
+            return (
+              <Link
+                key={item}
+                path="/"
+                fontFamily="Roboto-Regular"
+                fontWeight="400"
+                fontSize="14px"
+                lineHeight="36px"
+                color="#5F6060"
+              >
+                {item}
+                <br />
+              </Link>
+            );
+          })}
+        </Category> */}
 
-
-        <Select
+        <List
           placeholder="Другое"
           value={other}
           options={[
@@ -177,12 +223,11 @@ function Filter() {
             { text: 'Есть свободные места', value: 'Есть свободные места' },
           ]}
           checkbox
-          prepend={
-            <img src="\images\Other.png" height="25px" alt="Стоимость" />
-          }
           onChange={(value) => setOther(value)}
         />
+
       </section>
+
       <section className={styles['btn-section']}>
         <Button
           width="239px"
@@ -198,11 +243,12 @@ function Filter() {
           />
           Подобрать
         </Button>
-
       </section>
+
     </section >
   );
+};
 
-}
 
-export { Filter };
+
+export { FilterCatalogue }

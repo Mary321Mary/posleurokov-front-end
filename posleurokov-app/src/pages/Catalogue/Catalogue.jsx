@@ -3,8 +3,9 @@ import {
   Sheet
 } from 'components/shared';
 import { VkBlock } from 'components';
-
+import { FilterCatalogue } from 'components/FilterCatalogue/FilterCatalogue';
 import styles from './Catalogue.module.scss';
+import { Checkbox } from 'components';
 
 const Catalogue = () => {
   return (
@@ -16,6 +17,9 @@ const Catalogue = () => {
         <div className={styles['section-categories']}>
           <Sheet>
           </Sheet>
+        </div>
+        <div className={styles['section-categories']}>
+          <FilterCatalogue />
         </div>
         <div className={styles['section-categories']}>
           <VkBlock heigth='auto' width='220px' />

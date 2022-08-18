@@ -1,0 +1,91 @@
+@import 'src/assets/styles/_variables.scss';
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.select {
+    position: relative;
+    display: inline-block;
+    min-width: 215px;
+    background: #ffffff;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &--active {
+        border-radius: 8px 8px 0 0;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 8px 22px;
+
+        height: 48px;
+    }
+
+    &__options {
+        position: absolute;
+        width: 100%;
+
+
+
+        z-index: 1;
+    }
+}
+
+.box {
+    &__text {
+        font-family: 'Roboto-Regular', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: $checkbox-text-color;
+        cursor: pointer;
+    }
+}
+
+.option {
+    list-style-type: none;
+    padding: 8px 22px;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eeefef;
+        color: #ffffff;
+    }
+
+    &:last-child {
+        border-radius: 0 0 8px 8px;
+        border-bottom: none;
+    }
+}
+
+.option-checkbox {
+    padding: 0;
+
+    label {
+        padding: 8px 22px;
+    }
+}
+
+.append {
+    margin-right: 16px;
+}
+
+.prepend {
+    margin-left: 16px;
+}
+
+@media only screen and (max-width: 1175px) {
+    .select {
+        min-width: 239px;
+    }
+}
