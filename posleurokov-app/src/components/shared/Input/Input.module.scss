@@ -1,0 +1,43 @@
+@import "src/assets/styles/_variables.scss";
+
+.Input {
+  margin-bottom: 15px;
+}
+
+.Input label {
+  margin-right: 10px;
+  margin-bottom: 3px;
+  padding: 0;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+}
+
+.Input input {
+  display: inline;
+  box-sizing: border-box;
+  border: 1px solid #bebebe;
+  border-radius: 8px;
+  padding: 7px;
+  margin: 0 0 5px;
+  height: 40px;
+  width: 200px;
+  outline: none;
+  transition: all 300ms ease-in-out;
+}
+
+.Input span {
+  color: brown;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.Input.invalid label {
+  color: brown;
+}
+
+@media only screen and (max-width: 760px) {
+  .Input input {
+    width: 100%;
+  }
+}
