@@ -95,4 +95,18 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async subscribe(id, token) {
+    try {
+      const response = await instance.put(LESSON(id) + '/subscribe/', {},
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
 };

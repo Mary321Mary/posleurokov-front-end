@@ -10,3 +10,4 @@ export { Pagination } from './Pagination/Pagination';
 export { Course } from './Course/Course';
 export { Select } from './Select/Select';
 export { Input } from './Input/Input';
+export { ModalWindow } from './ModalWindow/ModalWindow';
