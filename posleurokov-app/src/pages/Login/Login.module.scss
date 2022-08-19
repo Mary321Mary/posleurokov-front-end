@@ -1,0 +1,18 @@
+@import "src/assets/styles/_variables.scss";
+
+h1 {
+  color: $primary-color;
+}
+
+.form {
+  margin-right: 70px;
+  text-align: right;
+
+  label {
+    color: $primary-color;
+  }
+
+  button {
+    margin-left: 50%;
+  }
+}
