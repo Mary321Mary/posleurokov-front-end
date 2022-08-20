@@ -11,3 +11,4 @@ export * from "./Filter/Filter";
 export * from "./Online/Online";
 export * from "./LessonPage";
 export * from "./RandomLessons/RandomLessons";
+export * from "./FilterCatalogue/FilterCatalogue";

@@ -15,18 +15,26 @@ import {
 import styles from "./Main.module.scss";
 import { useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
+import store from "redux/stores";
+import { useSelector } from "react-redux";
 
 const Main = () => {
+  const city = useSelector((state) => state.city);
+
   const [result, setResult] = useState(null);
 
   const getCategories = async () => {
-    const categories = await axiosAPI.getCategories();
+    const categories = await axiosAPI.getCategories(city);
     setResult(categories);
+  };
+
+  const setCategory = (event) => {
+    store.dispatch({ type: "SetCategory", amount: event.target.innerText });
   };
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [city]);
 
   return (
     <section className={styles.container}>
@@ -59,18 +67,19 @@ const Main = () => {
                       >
                         {category.concreteCategories.map((item) => {
                           return (
-                            <Link
-                              key={item}
-                              path="/"
-                              fontFamily="Roboto-Regular"
-                              fontWeight="400"
-                              fontSize="14px"
-                              lineHeight="36px"
-                              color="#5F6060"
-                            >
-                              {item}
-                              <br />
-                            </Link>
+                            <div key={item}>
+                              <Link
+                                path="/catalogue"
+                                onClick={(item) => setCategory(item)}
+                                fontFamily="Roboto-Regular"
+                                fontWeight="400"
+                                fontSize="14px"
+                                lineHeight="36px"
+                                color="#5F6060"
+                              >
+                                {item}
+                              </Link>
+                            </div>
                           );
                         })}
                       </Category>

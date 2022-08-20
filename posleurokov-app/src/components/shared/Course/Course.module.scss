@@ -97,6 +97,7 @@
 
 .open,
 .close {
+  align-self: flex-end;
   color: rgb(255, 255, 255);
   padding: 4px 6px;
   border-radius: 3px;
@@ -107,7 +108,6 @@
 }
 
 .close {
-  align-self: flex-end;
   background-color: #ff0000;
 }
 

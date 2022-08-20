@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styles from './Select.module.scss';
-import { Checkbox } from 'components';
+import React, { useState } from "react";
+import styles from "./Select.module.scss";
+import { Checkbox } from "components";
 
 const Select = ({
   placeholder = null,
@@ -35,26 +35,27 @@ const Select = ({
   return (
     <div
       style={{ ...rest }}
-      className={`${styles['select']} ${
-        showOptionList ? styles['select--active'] : ''
+      className={`${styles["select"]} ${
+        showOptionList ? styles["select--active"] : ""
       }`}
     >
       <div
-        className={styles['select__box']}
+        className={styles["select__box"]}
+        style={{ ...rest }}
         onClick={() => setShowOptionList(!showOptionList)}
       >
         {append && <div className={styles.append}>{append}</div>}
-        <span className={styles['box__text']}>
+        <span className={styles["box__text"]}>
           {checkbox ? placeholder : value || placeholder}
         </span>
         {prepend && <div className={styles.prepend}>{prepend}</div>}
       </div>
       {showOptionList && (
-        <ul className={styles['select__options']}>
+        <ul className={styles["select__options"]}>
           {options.map((option, i) => {
             return (
               <li
-                className={styles['option']}
+                className={styles["option"]}
                 key={`option-${option.value}-${i}`}
                 data-value={option.value}
                 onClick={

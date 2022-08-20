@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import styles from './Category.module.scss';
-import logo from 'assets/img/art.png';
-import galochka from 'assets/img/galochka.png';
-import galochkaRaskruta from 'assets/img/galochkaRaskruta.png';
+import React, { useState } from "react";
+import styles from "./Category.module.scss";
+import { Link } from "components";
+import logo from "assets/img/art.png";
+import galochka from "assets/img/galochka.png";
+import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
+import store from "redux/stores";
 
 const Category = ({ label, number, image, children, ...rest }) => {
   const [img, setImg] = useState(galochka);
@@ -10,28 +12,34 @@ const Category = ({ label, number, image, children, ...rest }) => {
   const showCategory = () => {
     if (window.screen.width < 760) {
       const categories = document.getElementById(label);
-      if (categories.style.display === 'block') {
+      if (categories.style.display === "block") {
         setImg(galochka);
-        categories.style.display = 'none';
+        categories.style.display = "none";
       } else {
         setImg(galochkaRaskruta);
-        categories.style.display = 'block';
+        categories.style.display = "block";
       }
     }
+  };
+
+  const setCategory = () => {
+    store.dispatch({ type: "SetCategory", amount: label });
   };
 
   return (
     <div className={styles.category} style={{ ...rest }}>
       <div className={styles.header} onClick={() => showCategory()}>
         <img src={logo} className={styles.logo} alt="Все кружки" />
-        <div className={styles.label}>
-          {label}
-          <div className={styles.number}>{number}</div>
-        </div>
+        <Link path="/catalogue" onClick={setCategory}>
+          <div className={styles.label}>
+            {label}
+            <div className={styles.number}>{number}</div>
+          </div>
+        </Link>
         <img
           src={img}
           className={`${
-            img === galochka ? styles['galochka'] : styles['galochkaRaskruta']
+            img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
           }`}
           alt="Галочка"
         />

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./TabsBar.module.scss";
 import other from "assets/img/other.png";
 
 import { TabBarNav, Course } from "components";
+import { useSelector } from "react-redux";
+import store from "redux/stores";
 
 const TabsBar = ({ items, ...rest }) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const tab = useSelector((state) => state.tab);
 
   const openTab = (index) => {
-    setActiveTab(index);
+    store.dispatch({ type: "ChangeTab", amount: index });
   };
 
   const showAll = () => {
@@ -22,35 +24,39 @@ const TabsBar = ({ items, ...rest }) => {
     }
   };
 
+  useEffect(() => {
+    store.dispatch({ type: "ChangeTab", amount: tab });
+  }, [tab]);
+
   return (
     <div style={{ ...rest }}>
       <div className={styles.tabnav}>
         <TabBarNav
-          number={items.counts.free + items.counts.pay + items.counts.adult}
-          isActive={0 === activeTab}
-          onClick={() => openTab(0)}
+          number={items.counts.free + items.counts.pay}
+          isActive={"all" === tab}
+          onClick={() => openTab("all")}
         >
           Все
         </TabBarNav>
         <TabBarNav
           number={items.counts.pay}
-          isActive={1 === activeTab}
-          onClick={() => openTab(1)}
+          isActive={"pay" === tab}
+          onClick={() => openTab("pay")}
         >
           Платные
         </TabBarNav>
         <TabBarNav
           number={items.counts.free}
-          isActive={2 === activeTab}
-          onClick={() => openTab(2)}
+          isActive={"free" === tab}
+          onClick={() => openTab("free")}
         >
           Бесплатные
         </TabBarNav>
         <div name="showAll" className={styles.tab}>
           <TabBarNav
             number={items.counts.adult}
-            isActive={3 === activeTab}
-            onClick={() => openTab(3)}
+            isActive={"adult" === tab}
+            onClick={() => openTab("adult")}
           >
             Для взрослых
           </TabBarNav>
@@ -58,7 +64,7 @@ const TabsBar = ({ items, ...rest }) => {
         <div name="showAll" className={styles.tab}>
           <TabBarNav
             number={-1}
-            isActive={4 === activeTab}
+            isActive={4 === tab}
             onClick={() => openTab(4)}
           >
             На карте
@@ -69,7 +75,11 @@ const TabsBar = ({ items, ...rest }) => {
         </button>
       </div>
       <div>
-        <Course list={items.result} online={items.counts.online} />
+        {items.result.length !== 0 ? (
+          <Course list={items.result} online={items.counts.online} />
+        ) : (
+          <div style={{ padding: "20px" }}>Нет занятий</div>
+        )}
       </div>
     </div>
   );
