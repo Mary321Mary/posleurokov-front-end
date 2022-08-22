@@ -12,6 +12,7 @@ const Catalogue = () => {
 
   const [city, setCity] = useState("online");
   const [category, setCategory] = useState("ИСКУССТВО И ДИЗАЙН");
+
   const [tab, setTab] = useState("all");
   const [sex, setSex] = useState("any");
   const [age, setAge] = useState("any");

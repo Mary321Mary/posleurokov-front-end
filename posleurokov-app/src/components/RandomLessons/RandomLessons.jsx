@@ -45,6 +45,7 @@ const RandomLessons = ({ number, label = false, ...rest }) => {
                 <img src={randomLesson} alt="Занятие" width="70px" />
               )}
               <Link
+                path={`/lesson/${lesson.id}`}
                 fontFamily="Roboto-Regular"
                 fontWeight="400"
                 fontSize="14px"

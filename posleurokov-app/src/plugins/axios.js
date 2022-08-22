@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   CATEGORIES,
   RANDOM_LESSONS,
@@ -7,6 +8,7 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  SIMILARS,
   SIGNUP,
   LOGIN,
 } from "./endpoints";
@@ -92,6 +94,15 @@ export const axiosAPI = {
     try {
       const response = await instance.get(LESSON(id) + "/organization");
       return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getSimilar(params) {
+    try {
+      const response = await instance.get(SIMILARS + params);
+      return response.data.commonLessons;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";

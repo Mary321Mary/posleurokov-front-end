@@ -17,7 +17,7 @@ const Additional = ({ price, ...rest }) => {
   };
 
   return (
-    <Link path="/" style={{ ...rest }}>
+    <Link path={`/lesson/${additional.id}`} style={{ ...rest }}>
       {additional.image !== undefined && additional.image.image !== null ? (
         <div
           className={`${styles.additional} `}
