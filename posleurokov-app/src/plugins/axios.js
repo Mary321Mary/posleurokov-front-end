@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   CATEGORIES,
   RANDOM_LESSONS,
@@ -9,6 +10,9 @@ import {
   LESSON,
   LESSON_CREATE,
   CATEGORIES_LIST,
+  SIMILARS,
+  SIGNUP,
+  LOGIN,
 } from "./endpoints";
 
 const instance = axios.create({
@@ -101,11 +105,37 @@ export const axiosAPI = {
     try {
       const response = await instance.post(LESSON_CREATE, param, {
         headers: {
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYwODM3NTkyLCJpYXQiOjE2NjA4MzAzOTIsImp0aSI6IjRjYjVkMDViODVjODRkZmE4ZTBmY2RjMDcxODA1MzM3IiwidXNlcl9pZCI6MjAsImVtYWlsIjoienp6ekBnbWFpbC5jb20iLCJuYW1lIjoidGVtcCJ9.p7oo0LGi_Hxb_Y_wOPNra7hoCTt02fbfm2HmKjD54V4",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
       return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getSimilar(params) {
+    try {
+      const response = await instance.get(SIMILARS + params);
+      return response.data.commonLessons;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getSignUp(params) {
+    try {
+      const response = await instance.post(SIGNUP, { user: params });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLogin(params) {
+    try {
+      const response = await instance.post(LOGIN, { user: params });
+      return response.data;
     } catch (error) {
       console.error(error);
       return error.response;

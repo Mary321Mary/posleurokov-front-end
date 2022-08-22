@@ -64,6 +64,7 @@ const LessonCreate = () => {
       isOnline: "",
       isFirstFree: "",
       Images: "",
+      meneger: "",
     };
   });
 
@@ -108,6 +109,13 @@ const LessonCreate = () => {
     });
     if (response.status !== 200) {
       setError(response.data);
+      setError((prev) => {
+        return {
+          ...prev,
+          meneger:
+            "Проверьте входные данные и убедитесь, что создана организация",
+        };
+      });
     } else {
       window.location.assign("/");
     }
@@ -192,6 +200,7 @@ const LessonCreate = () => {
               <label htmlFor="city">Город:</label>
               <Select
                 border="1px solid black"
+                width="250px"
                 id="city"
                 value={city}
                 options={cities.map((city) => {
@@ -213,6 +222,7 @@ const LessonCreate = () => {
               </label>
               <Select
                 border="1px solid black"
+                width="250px"
                 id="categories"
                 placeholder="Категории"
                 value={course.lessonCategories}
@@ -478,6 +488,7 @@ const LessonCreate = () => {
             />
             <div className={styles["gorisonlal-line"]}></div>
             <Button onClick={submitChackin}>Создать секцию</Button>
+            {error.meneger !== "" ? <span>{error.meneger}</span> : null}
           </form>
         </div>
       </div>

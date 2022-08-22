@@ -6,14 +6,17 @@ const Header = () => {
   const [city, setCity] = useState("Гомель");
   const PHONE = "+375 29 113-67-97";
 
-  const addLesson = () => {
-    window.location.assign("/lesson/create");
+  const signOut = () => {
+    localStorage.clear();
+    window.location.reload();
   };
 
   return (
     <>
       <div>
-        <Logo />
+        <Link path="/">
+          <Logo />
+        </Link>
         <Select
           value={city}
           options={[
@@ -33,36 +36,63 @@ const Header = () => {
           <p>{PHONE}</p>
         </div>
         <div className={styles["vertical-line"]}></div>
-        <div>
-          <Link
-            path="/"
-            fontFamily="Roboto-Bold"
-            fontStyle="normal"
-            fontWeight="700"
-            fontSize="16px"
-            lineHeight="19px"
-            color="#5F6060"
-            marginRight="10px"
-          >
-            Вход
-          </Link>
-          /
-          <Link
-            path="/"
-            fontFamily="Roboto-Bold"
-            fontStyle="normal"
-            fontWeight="700"
-            fontSize="16px"
-            lineHeight="19px"
-            color="#5F6060"
-            marginLeft="10px"
-          >
-            Регистрация
-          </Link>
-        </div>
-        <Button marginLeft="34px" onClick={addLesson}>
-          Добавить занятие
-        </Button>
+        {localStorage.getItem("token") === null ? (
+          <div>
+            <Link
+              path="/login"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginRight="10px"
+            >
+              Вход
+            </Link>
+            /
+            <Link
+              path="/signup"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginLeft="10px"
+            >
+              Регистрация
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link
+              path="/"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginRight="10px"
+            >
+              email
+            </Link>
+            /
+            <Link
+              path="/"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginLeft="10px"
+              onClick={signOut}
+            >
+              Выход
+            </Link>
+          </div>
+        )}
+        <Link path="/lesson/create">
+          <Button marginLeft="34px">Добавить занятие</Button>
+        </Link>
       </div>
     </>
   );

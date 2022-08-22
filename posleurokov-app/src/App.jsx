@@ -1,11 +1,13 @@
 import "./App.scss";
-import { DefaultLayout } from "./layout";
+import { DefaultLayout, LoginLayout } from "./layout";
 import {
   NotFoundPage,
   Main,
   Catalogue,
   LessonPage,
   LessonCreate,
+  SignUp,
+  Login,
 } from "./pages";
 import Helmet from "react-helmet";
 
@@ -14,15 +16,19 @@ const App = () => {
   return (
     <Router>
       <Helmet titleTemplate="Все Кружки :: %s" />
-      <DefaultLayout>
-        <Routes>
+      <Routes>
+        <Route path="/" element={<DefaultLayout />}>
           <Route exact path="/" element={<Main />} />
           <Route exact path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
           <Route path="/lesson/create" element={<LessonCreate />} />
-        </Routes>
-      </DefaultLayout>
+        </Route>
+        <Route path="/" element={<LoginLayout />}>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };
