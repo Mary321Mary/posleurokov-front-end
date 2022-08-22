@@ -5,3 +5,4 @@ export const COURSES = "/api/search-page";
 export const ADDITIONAL = "/api/panel/random-lesson";
 export const POPULARS = (city) => `/api/main-page/popular-categories/${city}`;
 export const LESSON = (id) => `/api/lesson/${id}`;
+export const PROFILE = '/api/cabinet';
