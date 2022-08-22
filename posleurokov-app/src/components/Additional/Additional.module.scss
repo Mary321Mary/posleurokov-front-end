@@ -1,0 +1,91 @@
+@import "src/assets/styles/_variables.scss";
+
+.additional {
+  margin-bottom: 36px;
+  position: relative;
+
+  p {
+    position: relative;
+    z-index: 2;
+  }
+  z-index: 1;
+
+  border-radius: 14.3292px;
+  margin-top: 10px;
+  padding-top: 9px;
+  width: 230px;
+  height: 240px;
+}
+
+.union {
+  background: url("../../assets/img/Union.svg") no-repeat;
+  width: 100px;
+  height: 45px;
+  margin-left: 146px;
+}
+
+.price {
+  background: url("../../assets/img/Union.svg") 100% 10%,
+    url("../../assets/img/bgr.svg") 57% 96%, url("../../assets/img/img.png");
+  background-repeat: no-repeat;
+
+  .name {
+    top: 110px;
+  }
+
+  .exist {
+    top: -8px;
+    left: 155px;
+  }
+
+  .absent {
+    top: 23px;
+    font-size: 16px;
+    left: 140px;
+  }
+}
+
+.no-price {
+  background: url("../../assets/img/bgr.svg") 57% 96%,
+    url("../../assets/img/img.png");
+  background-repeat: no-repeat;
+
+  .name {
+    top: 170px;
+  }
+}
+
+.name {
+  display: block;
+  width: 200px;
+  top: 100px;
+  left: 10px;
+
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.exist,
+.absent {
+  font-family: $additional-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 133.9%;
+  color: #ffffff;
+}
+
+.exist {
+  top: 2px;
+  left: 20px;
+}
+
+.absent {
+  top: 4px;
+  font-size: 16px;
+  left: 5px;
+}

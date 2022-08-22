@@ -12,10 +12,17 @@ const Header = () => {
 
   const openNav = () => {
     document.getElementById("menu").style.width = "250px";
+    document.getElementById("shadow").style.display = "block";
   };
 
   const closeNav = () => {
     document.getElementById("menu").style.width = "0";
+    document.getElementById("shadow").style.display = "none";
+  };
+
+  const signOut = () => {
+    localStorage.clear();
+    window.location.reload();
   };
 
   const ref = useOutsideClick(closeNav);
@@ -23,7 +30,9 @@ const Header = () => {
   return (
     <>
       <div ref={ref}>
-        <Logo />
+        <Link path="/">
+          <Logo />
+        </Link>
         <Select
           value={city}
           options={[
@@ -71,34 +80,65 @@ const Header = () => {
           </div>
         </Sheet>
         <div className={styles["vertical-line"]}></div>
-        <div>
-          <Link
-            path="/"
-            fontFamily="Roboto-Bold"
-            fontWeight="700"
-            fontSize="16px"
-            lineHeight="19px"
-            color="#5F6060"
-            marginRight="10px"
-          >
-            Вход
-          </Link>
-          /
-          <Link
-            path="/"
-            fontFamily="Roboto-Bold"
-            fontWeight="700"
-            fontSize="16px"
-            lineHeight="19px"
-            color="#5F6060"
-            marginLeft="10px"
-          >
-            Регистрация
-          </Link>
-        </div>
-        <div className={styles.button}>
-          <Button>Добавить занятие</Button>
-        </div>
+        {localStorage.getItem("token") === null ? (
+          <div>
+            <Link
+              path="/login"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginRight="10px"
+            >
+              Вход
+            </Link>
+            /
+            <Link
+              path="/signup"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginLeft="10px"
+            >
+              Регистрация
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link
+              path="/"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginRight="10px"
+            >
+              email
+            </Link>
+            /
+            <Link
+              path="/"
+              fontFamily="Roboto-Bold"
+              fontWeight="700"
+              fontSize="16px"
+              lineHeight="19px"
+              color="#5F6060"
+              marginLeft="10px"
+              onClick={signOut}
+            >
+              Выход
+            </Link>
+          </div>
+        )}
+        <Link path="/lesson/create">
+          <div className={styles.button}>
+            <Button>Добавить занятие</Button>
+          </div>
+        </Link>
       </div>
       <div className={styles.mobile}>
         <img
@@ -111,29 +151,57 @@ const Header = () => {
           <a className={styles.closebtn} onClick={() => closeNav()}>
             &times;
           </a>
-          <div>
-            <Link
-              path="/"
-              fontFamily="Roboto-Bold"
-              fontWeight="700"
-              fontSize="16px"
-              lineHeight="19px"
-              color="#5F6060"
-            >
-              Вход
-            </Link>
-            <Link
-              path="/"
-              fontFamily="Roboto-Bold"
-              fontWeight="700"
-              fontSize="16px"
-              lineHeight="19px"
-              color="#5F6060"
-            >
-              Регистрация
-            </Link>
-          </div>
-          <Button marginLeft="34px">Добавить занятие</Button>
+          {localStorage.getItem("token") === null ? (
+            <div>
+              <Link
+                path="/login"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+              >
+                Вход
+              </Link>
+              <Link
+                path="/signup"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+              >
+                Регистрация
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link
+                path="/"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+              >
+                email
+              </Link>
+              <Link
+                path="/"
+                fontFamily="Roboto-Bold"
+                fontWeight="700"
+                fontSize="16px"
+                lineHeight="19px"
+                color="#5F6060"
+                onClick={signOut}
+              >
+                Выход
+              </Link>
+            </div>
+          )}
+          <Link path="/lesson/create">
+            <Button>Добавить занятие</Button>
+          </Link>
         </div>
       </div>
     </>
