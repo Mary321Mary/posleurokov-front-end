@@ -1,4 +1,4 @@
-import { Sheet } from "components";
+import { Sheet, Link } from "components";
 import styles from "./Similar.module.scss";
 import { useState, useEffect } from "react";
 import { axiosAPI } from "plugins/axios";
@@ -20,7 +20,7 @@ const Similar = ({ id, ...rest }) => {
   };
 
   return (
-    <Sheet margin="38px 20px 30px 20px" {...rest}>
+    <Sheet {...rest}>
       <div className={styles.label}>Похожие</div>
       <div className={styles.info}>
         {similar !== null ? (
@@ -29,11 +29,20 @@ const Similar = ({ id, ...rest }) => {
               return (
                 <div key={elem.lesson.id}>
                   <div className={styles.content}>
-                    <img src={randomLesson} alt="курс" />
+                    {elem.image !== undefined ? (
+                      <img
+                        src={process.env.REACT_APP_BASE_URL + elem.image.image}
+                        alt="Курс"
+                      />
+                    ) : (
+                      <img src={randomLesson} alt="Курс" />
+                    )}
                     <div className={styles.addition}>
-                      <div className={`${styles.name} ${styles.block}`}>
-                        {elem.lesson.name}
-                      </div>
+                      <Link path={`/lesson/${elem.lesson.id}`}>
+                        <div className={`${styles.name} ${styles.block}`}>
+                          {elem.lesson.name}
+                        </div>
+                      </Link>
                       <div className={styles.block}>
                         <img src={age} alt="возраст" />
                         <div>

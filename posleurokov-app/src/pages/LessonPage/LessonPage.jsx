@@ -60,7 +60,6 @@ const LessonPage = () => {
         color: "#6D80D8",
         "font-size": "30px",
         "line-height": "35px",
-        "font-style": "normal",
         "font-weight": "500",
       });
     } else if (innerWidth > 700 && innerWidth <= 1024) {
@@ -73,7 +72,6 @@ const LessonPage = () => {
         color: "#6D80D8",
         "font-size": "30px",
         "line-height": "35px",
-        "font-style": "normal",
         "font-weight": "500",
       });
     } else {
@@ -86,7 +84,6 @@ const LessonPage = () => {
         color: "#6D80D8",
         "font-size": "22px",
         "line-height": "26px",
-        "font-style": "normal",
         "font-weight": "500",
       });
     }
@@ -101,18 +98,16 @@ const LessonPage = () => {
           width={headingParams["width"]}
           height={headingParams["height"]}
           color={headingParams["color"]}
-          font-size={headingParams["font-size"]}
-          line-height={headingParams["line-height"]}
-          font-style={headingParams["font-style"]}
-          font-weight={headingParams["font-weight"]}
-          font-family={headingParams["font-family"]}
+          fontSize={headingParams["font-size"]}
+          lineHeight={headingParams["line-height"]}
+          fontWeight={headingParams["font-weight"]}
         >
           {lesson.name}
         </Heading>
         <ImageCarousel images={images ?? []} />
         <LessonDescription lesson={lesson} organization={organization} />
       </Sheet>
-      <Similar />
+      <Similar id={id} margin={sheetMargin} width={windowWidth} />
     </section>
   );
 };

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styles from './Category.module.scss';
-import logo from 'assets/img/art.png';
-import galochka from 'assets/img/galochka.png';
-import galochkaRaskruta from 'assets/img/galochkaRaskruta.png';
+import React, { useState } from "react";
+import styles from "./Category.module.scss";
+import logo from "assets/img/img.png";
+import galochka from "assets/img/galochka.png";
+import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
 
 const Category = ({ label, number, image, children, ...rest }) => {
   const [img, setImg] = useState(galochka);
@@ -10,12 +10,12 @@ const Category = ({ label, number, image, children, ...rest }) => {
   const showCategory = () => {
     if (window.screen.width < 760) {
       const categories = document.getElementById(label);
-      if (categories.style.display === 'block') {
+      if (categories.style.display === "block") {
         setImg(galochka);
-        categories.style.display = 'none';
+        categories.style.display = "none";
       } else {
         setImg(galochkaRaskruta);
-        categories.style.display = 'block';
+        categories.style.display = "block";
       }
     }
   };
@@ -23,7 +23,15 @@ const Category = ({ label, number, image, children, ...rest }) => {
   return (
     <div className={styles.category} style={{ ...rest }}>
       <div className={styles.header} onClick={() => showCategory()}>
-        <img src={logo} className={styles.logo} alt="Все кружки" />
+        {image !== null ? (
+          <img
+            src={process.env.REACT_APP_BASE_URL + image}
+            className={styles.logo}
+            alt="Категория"
+          />
+        ) : (
+          <img src={logo} className={styles.absent} alt="Категория" />
+        )}
         <div className={styles.label}>
           {label}
           <div className={styles.number}>{number}</div>
@@ -31,7 +39,7 @@ const Category = ({ label, number, image, children, ...rest }) => {
         <img
           src={img}
           className={`${
-            img === galochka ? styles['galochka'] : styles['galochkaRaskruta']
+            img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
           }`}
           alt="Галочка"
         />

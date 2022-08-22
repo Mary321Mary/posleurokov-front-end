@@ -1,4 +1,4 @@
-import { Heading, Sheet, Online, VkBlock } from "components";
+import { Heading, Sheet, Course, Pagination, VkBlock } from "components";
 import Helmet from "react-helmet";
 
 import styles from "./Catalogue.module.scss";
@@ -10,8 +10,9 @@ const Catalogue = () => {
   const [courses, setCourses] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [city, setCity] = useState("Гомель");
-  const [category, setCategory] = useState("МУЗЫКА И ЗВУК");
+  const [city, setCity] = useState("online");
+  const [category, setCategory] = useState("ИСКУССТВО И ДИЗАЙН");
+
   const [tab, setTab] = useState("all");
   const [sex, setSex] = useState("any");
   const [age, setAge] = useState("any");
@@ -47,9 +48,19 @@ const Catalogue = () => {
         <div className={styles["section-categories"]}>
           {courses !== null ? (
             typeof courses !== "string" ? (
-              <Sheet>
-                <Online number={courses.counts.online} />
-              </Sheet>
+              <div>
+                <Sheet marginBottom="55px">
+                  <Course
+                    list={courses.result}
+                    online={courses.counts.online}
+                  />
+                </Sheet>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPageCount={courses.counts.countOfPages}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              </div>
             ) : (
               <div>{courses}</div>
             )
