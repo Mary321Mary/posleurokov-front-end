@@ -38,3 +38,47 @@
   color: #ffffff;
   background-color: $primary-color;
 }
+
+.navImage {
+  margin-right: 16px;
+}
+
+.mobile {
+  display: none !important;
+}
+
+@media only screen and (max-width: 760px) {
+  .tablet {
+    display: none !important;
+  }
+
+  .mobile {
+    display: flex !important;
+  }
+
+  .menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(216, 216, 216);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    z-index: 15;
+  }
+
+  .menu a {
+    padding: 8px 8px 8px 32px;
+    display: block;
+  }
+
+  .menu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}

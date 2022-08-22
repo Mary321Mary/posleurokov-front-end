@@ -16,6 +16,7 @@ const App = () => {
   return (
     <Router>
       <Helmet titleTemplate="Все Кружки :: %s" />
+      <div class="shadow" id="shadow"></div>
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route exact path="/" element={<Main />} />

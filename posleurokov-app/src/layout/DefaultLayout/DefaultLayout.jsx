@@ -2,7 +2,7 @@ import styles from "./Default.module.scss";
 import { Header, Footer } from "components";
 import { Outlet } from "react-router-dom";
 
-const Default = () => {
+const DefaultLayout = () => {
   return (
     <>
       <header className={styles.header}>
@@ -18,4 +18,4 @@ const Default = () => {
   );
 };
 
-export default Default;
+export { DefaultLayout };
