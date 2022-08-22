@@ -5,6 +5,7 @@ import {
   Main,
   Catalogue,
   LessonPage,
+  LessonCreate,
   SignUp,
   Login,
 } from "./pages";
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
+          <Route path="/lesson/create" element={<LessonCreate />} />
         </Route>
         <Route path="/" element={<LoginLayout />}>
           <Route path="/signup" element={<SignUp />} />

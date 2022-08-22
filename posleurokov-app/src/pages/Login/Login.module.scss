@@ -1,11 +1,34 @@
 @import "src/assets/styles/_variables.scss";
 
-h1 {
-  color: $primary-color;
+.container {
+  width: 90%;
+  margin: 0 auto;
+
+  h1 {
+    font-family: $heading-font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+
+    /* blue */
+    color: $primary-color;
+  }
+}
+
+.section {
+  &-list {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 133px;
+  }
+  &-categories {
+    margin-right: 29px;
+  }
 }
 
 .form {
-  margin-right: 70px;
+  margin-right: 80px;
   text-align: right;
 
   label {
@@ -14,5 +37,45 @@ h1 {
 
   button {
     margin-left: 50%;
+  }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .section {
+    &-list {
+      margin-left: 34px;
+      margin-right: 32px;
+      margin-bottom: 79px;
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .container {
+    h1 {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  .section {
+    &-list {
+      flex-direction: column;
+      margin-left: 16px;
+      margin-right: 16px;
+      margin-bottom: 68px;
+      align-content: center;
+    }
+
+    &-categories {
+      margin-right: 0px;
+      margin-bottom: 40px;
+      align-content: center;
+    }
+  }
+
+  .form {
+    margin-right: auto;
+    width: auto;
   }
 }

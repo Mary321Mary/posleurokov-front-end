@@ -90,7 +90,9 @@ const Header = () => {
             </Link>
           </div>
         )}
-        <Button marginLeft="34px">Добавить занятие</Button>
+        <Link path="/lesson/create">
+          <Button marginLeft="34px">Добавить занятие</Button>
+        </Link>
       </div>
     </>
   );

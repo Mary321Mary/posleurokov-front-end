@@ -37,30 +37,36 @@ const Login = () => {
   };
 
   return (
-    <Sheet padding="15px 0px" width="400px" marginLeft="35%">
-      <Helmet title="Вход" />
-      <Heading tag="h1" center>
-        ВОЙТИ
-      </Heading>
-      <form className={styles.form}>
-        <Input
-          type="email"
-          label="Email"
-          name="email"
-          value={user.email}
-          onChange={changeInputRegister}
-        />
-        <Input
-          type="password"
-          label="Пароль"
-          name="password"
-          value={user.password}
-          onChange={changeInputRegister}
-          errorMessage={error}
-        />
-        <Button onClick={submitChackin}>Войти</Button>
-      </form>
-    </Sheet>
+    <section className={styles.container}>
+      <div className={styles["section-list"]}>
+        <div className={styles["section-categories"]}>
+          <Sheet padding="25px">
+            <Helmet title="Вход" />
+            <Heading tag="h1" center>
+              ВОЙТИ
+            </Heading>
+            <form className={styles.form}>
+              <Input
+                type="email"
+                label="Email"
+                name="email"
+                value={user.email}
+                onChange={changeInputRegister}
+              />
+              <Input
+                type="password"
+                label="Пароль"
+                name="password"
+                value={user.password}
+                onChange={changeInputRegister}
+                errorMessage={error}
+              />
+              <Button onClick={submitChackin}>Войти</Button>
+            </form>
+          </Sheet>
+        </div>
+      </div>
+    </section>
   );
 };
 

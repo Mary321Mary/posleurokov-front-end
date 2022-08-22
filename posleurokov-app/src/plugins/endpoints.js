@@ -5,6 +5,8 @@ export const COURSES = "/api/search-page";
 export const ADDITIONAL = "/api/panel/random-lesson";
 export const POPULARS = (city) => `/api/main-page/popular-categories/${city}`;
 export const LESSON = (id) => `/api/lesson/${id}`;
+export const LESSON_CREATE = "/api/card/lesson/create/";
+export const CATEGORIES_LIST = "/api/common-data/categories";
 export const SIMILARS = "/api/lesson";
 export const SIGNUP = "/api/registration/";
 export const LOGIN = "/api/login/";

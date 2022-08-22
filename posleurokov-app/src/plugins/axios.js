@@ -8,6 +8,8 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  LESSON_CREATE,
+  CATEGORIES_LIST,
   SIMILARS,
   SIGNUP,
   LOGIN,
@@ -99,6 +101,19 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getLessonCreate(param) {
+    try {
+      const response = await instance.post(LESSON_CREATE, param, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
   async getSimilar(params) {
     try {
       const response = await instance.get(SIMILARS + params);
@@ -124,6 +139,15 @@ export const axiosAPI = {
     } catch (error) {
       console.error(error);
       return error.response;
+    }
+  },
+  async getCategoriesList() {
+    try {
+      const response = await instance.get(CATEGORIES_LIST);
+      return response.data.categories;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
     }
   },
 };

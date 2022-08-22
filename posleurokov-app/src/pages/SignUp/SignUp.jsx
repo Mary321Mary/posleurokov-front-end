@@ -53,53 +53,59 @@ const SignUp = () => {
   };
 
   return (
-    <Sheet padding="15px 0px" width="400px" marginLeft="35%">
-      <Helmet title="Регистрация" />
-      <Heading tag="h1" center>
-        Регистрируйтесь
-      </Heading>
-      <form className={styles.form}>
-        <Input
-          label="Имя"
-          name="name"
-          value={user.name}
-          onChange={changeInputRegister}
-          errorMessage={error.name}
-        />
-        <Input
-          label="Фамилия"
-          name="surname"
-          value={user.surname}
-          onChange={changeInputRegister}
-          errorMessage={error.surname}
-        />
-        <Input
-          type="email"
-          label="Email"
-          name="email"
-          value={user.email}
-          onChange={changeInputRegister}
-          errorMessage={error.email}
-        />
-        <Input
-          type="password"
-          label="Пароль"
-          name="password"
-          value={user.password}
-          onChange={changeInputRegister}
-          errorMessage={error.password}
-        />
-        <Input
-          type="password"
-          label="Повторите пароль"
-          name="password2"
-          value={user.password2}
-          onChange={changeInputRegister}
-          errorMessage={error.password2}
-        />
-        <Button onClick={submitChackin}>Регистрация</Button>
-      </form>
-    </Sheet>
+    <section className={styles.container}>
+      <div className={styles["section-list"]}>
+        <div className={styles["section-categories"]}>
+          <Sheet padding="25px">
+            <Helmet title="Регистрация" />
+            <Heading tag="h1" center>
+              Регистрируйтесь
+            </Heading>
+            <form className={styles.form}>
+              <Input
+                label="Имя"
+                name="name"
+                value={user.name}
+                onChange={changeInputRegister}
+                errorMessage={error.name}
+              />
+              <Input
+                label="Фамилия"
+                name="surname"
+                value={user.surname}
+                onChange={changeInputRegister}
+                errorMessage={error.surname}
+              />
+              <Input
+                type="email"
+                label="Email"
+                name="email"
+                value={user.email}
+                onChange={changeInputRegister}
+                errorMessage={error.email}
+              />
+              <Input
+                type="password"
+                label="Пароль"
+                name="password"
+                value={user.password}
+                onChange={changeInputRegister}
+                errorMessage={error.password}
+              />
+              <Input
+                type="password"
+                label="Повторите пароль"
+                name="password2"
+                value={user.password2}
+                onChange={changeInputRegister}
+                errorMessage={error.password2}
+              />
+              <Button onClick={submitChackin}>Регистрация</Button>
+            </form>
+          </Sheet>
+        </div>
+      </div>
+    </section>
   );
 };
 
