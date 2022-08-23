@@ -101,6 +101,17 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async subscribe(id, token) {
+    try {
+      const response = await instance.put(LESSON(id) + '/subscribe/', {},
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
   async getLessonCreate(param) {
     try {
       const response = await instance.post(LESSON_CREATE, param, {

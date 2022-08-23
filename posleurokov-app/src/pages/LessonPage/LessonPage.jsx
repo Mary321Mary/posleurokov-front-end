@@ -20,22 +20,6 @@ const LessonPage = () => {
   const [sheetMargin, setSheetMargin] = useState("");
   const [headingParams, setHeadingParams] = useState({});
 
-  useEffect(() => {
-    getLesson();
-    getOrganization();
-    getWindowSize();
-
-    function handleWindowResize() {
-      getWindowSize();
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
   const getLesson = async () => {
     let result = await axiosAPI.getLessonInfo(id);
     setLesson(result.lesson);
@@ -51,43 +35,64 @@ const LessonPage = () => {
     let innerWidth = window.outerWidth;
 
     if (innerWidth > 1024) {
-      setWindowWidth("895px");
-      setSheetMargin("49px 33px 10px 52px");
+      setWindowWidth('910px')
+      setSheetMargin('49px 33px 10px 52px')
       setHeadingParams({
-        width: "500px",
-        height: "auto",
-        margin: "38px 0 29px 110px",
-        color: "#6D80D8",
-        "font-size": "30px",
-        "line-height": "35px",
-        "font-weight": "500",
-      });
-    } else if (innerWidth > 700 && innerWidth <= 1024) {
-      setWindowWidth("723px");
-      setSheetMargin("31px 24px 10px 32px");
+        'width': '500px',
+        'height': 'auto',
+        'margin': '38px 0 29px 110px',
+        'color': '#6D80D8',
+        'font-size': '30px',
+        'line-height': '35px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
+    }
+    else if (innerWidth > 700 && innerWidth <= 1024) {
+      setWindowWidth('723px')
+      setSheetMargin('29px 24px 10px 32px')
       setHeadingParams({
-        width: "500px",
-        height: "auto",
-        margin: "38px 0 12.5px 55px",
-        color: "#6D80D8",
-        "font-size": "30px",
-        "line-height": "35px",
-        "font-weight": "500",
-      });
-    } else {
-      setWindowWidth("312px");
-      setSheetMargin("20px 16px 10px 16px");
+        'width': '500px',
+        'height': 'auto',
+        'margin': '38px 0 12.5px 40px',
+        'color': '#6D80D8',
+        'font-size': '30px',
+        'line-height': '35px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
+    }
+    else {
+      setWindowWidth('312px')
+      setSheetMargin('20px 16px 10px 16px')
       setHeadingParams({
-        width: "130px",
-        height: "auto",
-        margin: "16px 0 14px 30px",
-        color: "#6D80D8",
-        "font-size": "22px",
-        "line-height": "26px",
-        "font-weight": "500",
-      });
+        'width': '288px',
+        'height': 'auto',
+        'margin': '16px 0 14px 15px',
+        'color': '#6D80D8',
+        'font-size': '22px',
+        'line-height': '26px',
+        'font-style': 'normal',
+        'font-weight': '500'
+      })
     }
   };
+
+  useEffect(async () => {
+    await getLesson();
+    await getOrganization();
+    getWindowSize();
+
+    function handleWindowResize() {
+      getWindowSize();
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, [])
 
   return (
     <section className={styles.section}>
