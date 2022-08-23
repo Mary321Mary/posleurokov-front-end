@@ -1,15 +1,27 @@
 import styles from "./Header.module.scss";
 import { Logo, Button, Link, Select } from "components";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { axiosAPI } from "plugins/axios";
+import { useSelector } from "react-redux";
 import store from "redux/stores";
 
 const Header = () => {
-  const [city, setCity] = useState("Гомель");
+  const [cities, setCities] = useState([]);
+  const city = useSelector((state) => state.city);
   const PHONE = "+375 29 113-67-97";
 
+  const getCities = async () => {
+    const result = await axiosAPI.getCities();
+    setCities(result.cities || []);
+  };
+
+  const setCity = (value) => {
+    store.dispatch({ type: "ChangeCity", amount: value });
+  };
+
   useEffect(() => {
-    store.dispatch({ type: "ChangeCity", amount: city });
-  }, [city]);
+    getCities();
+  }, []);
 
   return (
     <>
@@ -18,8 +30,14 @@ const Header = () => {
         <Select
           value={city}
           options={[
-            { text: "Гомель", value: "Гомель" },
             { text: "online", value: "online" },
+            ...cities.map((city) => {
+              return {
+                text: city.name,
+                value: city.name,
+              };
+            }),
+            { text: "Все города", value: "Все города" },
           ]}
           onChange={(value) => setCity(value)}
         />

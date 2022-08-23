@@ -13,7 +13,9 @@ const initialState = {
     cost: [],
     addr: "",
     category: "ИСКУССТВО И ДИЗАЙН",
-    another: [],
+    isInSummer: "false",
+    inNotSummer: "false",
+    hasReception: "false",
   },
 };
 

@@ -97,7 +97,11 @@ const Main = () => {
         <div className={styles["section-categories"]}>
           <Additional price />
           <RandomLessons number="3" width="220px" />
-          <Populars city="Гомель" />
+          <Populars
+            city={city}
+            path="/catalogue"
+            onClick={(item) => setCategory(item)}
+          />
           <Cities />
           <VkBlock heigth={"auto"} width={"220px"} />
         </div>

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Sheet, List } from "components";
 import { axiosAPI } from "plugins/axios";
 
-const Populars = ({ city, ...rest }) => {
+const Populars = ({ city, path, onClick, ...rest }) => {
   const [populars, setPopulars] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Populars = ({ city, ...rest }) => {
       <h3 className={styles.h3}>Популярное</h3>
       {populars !== null ? (
         Array.isArray(populars) ? (
-          <List list={populars} />
+          <List list={populars} path={path} onClick={onClick} />
         ) : (
           <div>{populars}</div>
         )

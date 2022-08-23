@@ -15,7 +15,7 @@ function Filter() {
   const [gender, setGender] = useState([]);
   const [cost, setCost] = useState([]);
   const [addr, setAddress] = useState("");
-  const [category, setCategory] = useState("ИСКУССТВО И ДИЗАЙН");
+  const [category, setCategory] = useState("");
   const [other, setOther] = useState([]);
 
   const AddCategory = { type: "Add", amount: category };
@@ -131,6 +131,8 @@ function Filter() {
           onChange={(value) => setCost(value)}
         />
         <Input
+          width="175px"
+          border="none"
           type="text"
           placeholder="Адрес"
           prepend={
