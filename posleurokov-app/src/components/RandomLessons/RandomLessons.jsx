@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Sheet, Link } from "components";
 import { axiosAPI } from "plugins/axios";
 
-import randomLesson from "assets/img/randomLesson.png";
+import randomLesson from "assets/img/img.png";
 
 const RandomLessons = ({ number, label = false, ...rest }) => {
   const [randomLessons, setRandomLessons] = useState(null);
@@ -18,7 +18,7 @@ const RandomLessons = ({ number, label = false, ...rest }) => {
   };
 
   return randomLessons !== null ? (
-    typeof randomLessons !== "string" ? (
+    Array.isArray(randomLessons) ? (
       <Sheet padding="5.23px 17px 7px" {...rest}>
         <div className={`${styles.label} ${label ? "" : styles["absent"]}`}>
           {label}
@@ -35,8 +35,17 @@ const RandomLessons = ({ number, label = false, ...rest }) => {
                 alignItems: "center",
               }}
             >
-              <img src={randomLesson} alt="Занятие" width="70px" />
+              {lesson.image.image !== null ? (
+                <img
+                  src={process.env.REACT_APP_BASE_URL + lesson.image.image}
+                  alt="Занятие"
+                  width="70px"
+                />
+              ) : (
+                <img src={randomLesson} alt="Занятие" width="70px" />
+              )}
               <Link
+                path={`/lesson/${lesson.id}`}
                 fontFamily="Roboto-Regular"
                 fontWeight="400"
                 fontSize="14px"

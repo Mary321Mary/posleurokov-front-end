@@ -1,20 +1,24 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 @font-face {
-  font-family: 'Roboto-Regular';
+  font-family: "Roboto-Regular";
   src: url(./assets/fonts/Roboto/Roboto-Regular.ttf);
 }
 @font-face {
-  font-family: 'Roboto-Bold';
+  font-family: "Roboto-Bold";
   src: url(./assets/fonts/Roboto/Roboto-Bold.ttf);
 }
 @font-face {
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
   src: url(./assets/fonts/Roboto/Roboto-Medium.ttf);
 }
 @font-face {
-  font-family: 'Ubuntu-Medium';
+  font-family: "Ubuntu-Medium";
   src: url(./assets/fonts/Ubuntu/Ubuntu-Medium.ttf);
+}
+@font-face {
+  font-family: "Ubuntu-Bold";
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Bold.ttf);
 }
 html {
   height: 100%;
@@ -31,4 +35,16 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+@media only screen and (max-width: 760px) {
+  .shadow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    z-index: 10;
+
+    display: none;
+  }
 }
