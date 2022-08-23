@@ -1,0 +1,133 @@
+@import "src/assets/styles/_variables.scss";
+
+.label {
+  font-family: $heading-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+
+  /* blue */
+  color: #6d80d8;
+
+  padding-top: 35px;
+  margin-left: 52px;
+  margin-bottom: 16px;
+}
+
+.info {
+  margin-left: 52px;
+  padding-bottom: 43px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  display: flex;
+  margin-right: 60px;
+
+  img {
+    width: 125px;
+    height: 125px;
+    margin-right: 16px;
+  }
+}
+
+.addition {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* gray */
+  color: #9e9e9e;
+
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .name {
+    font-family: "Roboto-Bold", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    /* dark_gray */
+    color: #5f6060;
+  }
+
+  img {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+  }
+}
+
+.block {
+  width: 200px;
+  display: flex;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .label {
+    margin-left: 32px;
+    padding-top: 21px;
+  }
+
+  .info {
+    margin-left: 32px;
+  }
+
+  .content {
+    margin-right: 30px;
+  }
+
+  .addition {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .block {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .label {
+    margin-left: 15px;
+    padding-top: 28px;
+  }
+
+  .info {
+    margin-left: 15px;
+    padding-bottom: 15px;
+    flex-direction: column;
+  }
+
+  .content {
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+
+    img {
+      width: 90px;
+      height: 90px;
+      margin-right: 9px;
+    }
+  }
+
+  .addition {
+    height: 90px;
+
+    img {
+      width: 12px;
+      height: 12px;
+      margin-right: 7px;
+    }
+  }
+}
