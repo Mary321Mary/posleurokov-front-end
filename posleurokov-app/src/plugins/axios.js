@@ -96,12 +96,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getProfile(token) {
+  async getProfile() {
     try {
       const response = await instance.get(PROFILE + '/profile',
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -110,12 +110,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getProfileCounts(token) {
+  async getProfileCounts() {
     try {
       const response = await instance.get(PROFILE + '/profile/lesson-count',
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -124,12 +124,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async updateUser(user, token) {
+  async updateUser(user) {
     try {
       const response = await instance.put(PROFILE + '/profile/user/', { 'user': user },
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -138,12 +138,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async updateOrganization(organization, token) {
+  async updateOrganization(organization) {
     try {
       const response = await instance.put(PROFILE + '/profile/organizer/', { 'organizer': organization },
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -152,12 +152,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getSubscriptions(token) {
+  async getSubscriptions() {
     try {
       const response = await instance.get(PROFILE + '/subscriptions',
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -166,12 +166,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getActive(token) {
+  async getActive() {
     try {
       const response = await instance.get(PROFILE + '/active',
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -180,12 +180,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getArchive(token) {
+  async getArchive() {
     try {
       const response = await instance.get(PROFILE + '/archive',
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -194,12 +194,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async unSubscribeUser(token, id) {
+  async unSubscribeUser(id) {
     try {
       const response = await instance.put(PROFILE + '/subscriptions/' + id + '/unsubscribe/', {},
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -208,12 +208,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async archivateLessons(token, id) {
+  async archivateLessons(id) {
     try {
       const response = await instance.put(PROFILE + '/lesson/' + id + '/archivate/', {},
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;
@@ -222,12 +222,12 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async deArchivateLessons(token, id) {
+  async deArchivateLessons(id) {
     try {
       const response = await instance.put(PROFILE + '/lesson/' + id + '/dearchivate/', {},
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
         });
       return response.data;

@@ -2,11 +2,9 @@ import styles from "./ActiveLessons.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel } from "components";
 import { axiosAPI } from "plugins/axios";
-import Cookies from 'universal-cookie';
 
 const ActiveLessons = () => {
   const [active, setActive] = useState([]);
-  const [token, setToken] = useState('')
   const [mainWidth, setMainWidth] = useState('')
   const [searchString, setSearchString] = useState('')
 
@@ -25,7 +23,7 @@ const ActiveLessons = () => {
   }
 
   const sendToArchive = async (id) => {
-    let result = await axiosAPI.archivateLessons(token, id);
+    let result = await axiosAPI.archivateLessons(id);
     if (result.status) {
       await getActive();
     }
@@ -67,12 +65,9 @@ const ActiveLessons = () => {
   })
 
   const getActive = async () => {
-    let cookies = new Cookies();
-    let token = cookies.get('token');
-    if (token) {
-      let result = await axiosAPI.getActive(token);
+    if (localStorage.getItem('token')) {
+      let result = await axiosAPI.getActive();
       setActive(result.lessons)
-      setToken(token)
     }
     else {
       window.location.replace('/login')

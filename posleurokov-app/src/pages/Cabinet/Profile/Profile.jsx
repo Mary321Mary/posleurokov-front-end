@@ -2,7 +2,6 @@ import styles from "./Profile.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel } from "components";
 import { axiosAPI } from "plugins/axios";
-import Cookies from 'universal-cookie';
 
 const Profile = () => {
   const [organActive, setOrganActive] = useState(false)
@@ -10,7 +9,6 @@ const Profile = () => {
   const [mainWidth, setMainWidth] = useState('')
   const [showPanel, setShowPanel] = useState('self')
   const [cities, setCities] = useState([])
-  const [token, setToken] = useState('')
   const [userId, setUserId] = useState(0)
 
   const [firstName, setFirstName] = useState('')
@@ -61,13 +59,10 @@ const Profile = () => {
   })
 
   const getUser = async () => {
-    let cookies = new Cookies();
-    let token = cookies.get('token');
-    if (token) {
-      let result = await axiosAPI.getProfile(token);
+    if (localStorage.getItem('token')) {
+      let result = await axiosAPI.getProfile();
       setUser(result.user);
       setOrganization(result.organizer);
-      setToken(token)
     }
     else {
       window.location.replace('/login')
@@ -162,12 +157,10 @@ const Profile = () => {
       'phoneNumber': phone
     }
 
-    let result = await axiosAPI.updateUser(user, token);
+    let result = await axiosAPI.updateUser(user);
     setUser(result.user);
-    setToken(result.token);
 
-    let cookies = new Cookies();
-    cookies.set('token', token)
+    localStorage.setItem('token', result.token)
   }
 
   const saveOrganization = async () => {
@@ -184,7 +177,7 @@ const Profile = () => {
       'picture': orgImage
     }
 
-    let result = await axiosAPI.updateOrganization(organizer, token);
+    let result = await axiosAPI.updateOrganization(organizer);
     setOrganization(result);
   }
 

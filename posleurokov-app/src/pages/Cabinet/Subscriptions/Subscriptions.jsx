@@ -2,11 +2,9 @@ import styles from "./Subscriptions.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel } from "components";
 import { axiosAPI } from "plugins/axios";
-import Cookies from 'universal-cookie';
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([]);
-  const [token, setToken] = useState('')
   const [mainWidth, setMainWidth] = useState('')
   const [searchString, setSearchString] = useState('')
 
@@ -25,7 +23,7 @@ const Subscriptions = () => {
   }
 
   const unSubscribe = async (id) => {
-    let result = await axiosAPI.unSubscribeUser(token, id);
+    let result = await axiosAPI.unSubscribeUser(id);
     if (result.status) {
       await getSubscriptions();
     }
@@ -64,13 +62,9 @@ const Subscriptions = () => {
   })
 
   const getSubscriptions = async () => {
-    let cookies = new Cookies();
-    let token = cookies.get('token');
-    if (token) {
-      let result = await axiosAPI.getSubscriptions(token);
-      console.log(result.subscriptions)
+    if (localStorage.getItem('token')) {
+      let result = await axiosAPI.getSubscriptions();
       setSubscriptions(result.subscriptions)
-      setToken(token)
     }
     else {
       window.location.replace('/login')
