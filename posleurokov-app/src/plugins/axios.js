@@ -112,6 +112,9 @@ export const axiosAPI = {
       return response.data;
     } catch (error) {
       console.error(error);
+      return error.response;
+    }
+  },
   async getLessonCreate(param) {
     try {
       const response = await instance.post(LESSON_CREATE, param, {
