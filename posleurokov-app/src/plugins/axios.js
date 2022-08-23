@@ -15,7 +15,7 @@ import {
   LOGIN,
 } from "./endpoints";
 
-let instance = axios.create({
+const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
