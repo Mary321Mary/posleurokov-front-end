@@ -1,0 +1,25 @@
+@import "src/assets/styles/_variables.scss";
+
+.notfound {
+  color: $primary-color;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+    top: 20vh;
+    position: relative;
+    font-size: 40px;
+  }
+
+  a,
+  a:hover,
+  a:active,
+  a:focus {
+    text-align: center;
+    top: 20vh;
+    position: relative;
+    font-size: 25px;
+    color: inherit;
+  }
+}
