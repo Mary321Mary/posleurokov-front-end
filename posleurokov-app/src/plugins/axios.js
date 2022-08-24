@@ -7,7 +7,7 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
-  COL_CATEGORIES,
+  COUNT_CATEGORIES,
 } from "./endpoints";
 
 const instance = axios.create({
@@ -96,13 +96,14 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getColCategories() {
+  async getCountCategories(category) {
     try {
-      const response = await instance.get(COL_CATEGORIES);
+      const response = await instance.get(COUNT_CATEGORIES(category) + "/counts");
       return response.data;
     } catch (error) {
       console.error(error);
+      return "Ошибка сервера";
+
     }
-    return "Ошибка сервера";
   },
 };

@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
-import styles from './List.module.scss';
+import styles from './ListFilter.module.scss';
 import { Checkbox } from 'components';
 
-const List = ({
+const ListFilter = ({
     placeholder = null,
     value = null,
     options = [],
     append = null,
     prepend = null,
     checkbox = false,
-
     onChange,
-
 }) => {
     const [showOptionList, setShowOptionList] = useState(false);
-
     let checkboxList = checkbox && Array.isArray(value) ? value : [];
-
     const handleClick = (value) => {
         if (checkbox) {
             let updatedList = [...checkboxList];
@@ -77,4 +73,4 @@ const List = ({
     );
 };
 
-export { List };
+export { ListFilter };

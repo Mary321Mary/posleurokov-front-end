@@ -135,6 +135,7 @@ function Filter() {
           border="none"
           type="text"
           placeholder="Адрес"
+
           prepend={
             <img src="\images\Address.png" height="25px" alt="Стоимость" />
           }

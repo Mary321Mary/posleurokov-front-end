@@ -22,7 +22,7 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case "Add":
-      return { ...state, count: state.count + action.amount };
+      return { ...state, count: action.amount };
     case "ChangeTab":
       return {
         ...state,
