@@ -29,7 +29,7 @@ const Main = () => {
   };
 
   const setCategory = (event) => {
-    store.dispatch({ type: "SetCategory", amount: event.target.innerText });
+    store.dispatch({ type: "SetCategory", amount: event });
   };
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Main = () => {
                             <div key={item}>
                               <Link
                                 path="/catalogue"
-                                onClick={(item) => setCategory(item)}
+                                onClick={() => setCategory(item)}
                                 fontFamily="Roboto-Regular"
                                 fontWeight="400"
                                 fontSize="14px"

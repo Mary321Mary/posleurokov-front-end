@@ -96,9 +96,10 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async getCountCategories(category) {
+  async getCountCategories(city, category) {
     try {
-      const response = await instance.get(COUNT_CATEGORIES(category) + "/counts");
+      console.log(category)
+      const response = await instance.get(COUNT_CATEGORIES(city, category) + "/counts");
       return response.data;
     } catch (error) {
       console.error(error);

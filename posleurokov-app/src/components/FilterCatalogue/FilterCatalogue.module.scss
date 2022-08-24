@@ -1,5 +1,6 @@
+@import 'src/assets/styles/_variables.scss';
+
 .filter-wrapper {
-  margin-top: 46px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 16px;
@@ -48,6 +49,7 @@
 @media only screen and (max-width: 760px) {
   .filter-wrapper {
     margin-top: 20px;
+    display: none;
   }
 }
 
@@ -67,8 +69,35 @@
   font-size: 15px;
   line-height: 28px;
   margin-left: 10px;
+  margin-top: 10px;
 
   /* dark_gray */
 
   color: #5F6060;
+}
+
+.nameCategory {
+  margin: 10px;
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5F6060;
+}
+
+div.podCategory {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #5F6060;
+  border-left: 1px solid #EEEFEF;
+  margin-left: 10px;
+  padding-left: 13px;
+}
+
+.active {
+  font-family: $btn-font-family  !important;
 }

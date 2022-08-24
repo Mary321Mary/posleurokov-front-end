@@ -18,7 +18,7 @@ function Filter() {
   const [category, setCategory] = useState("");
   const [other, setOther] = useState([]);
 
-  const AddCategory = { type: "Add", amount: category };
+  const AddCategory = { type: "SetCategory", amount: category };
 
   const getCategories = async () => {
     const categories = await axiosAPI.getCategories(city);
@@ -40,9 +40,9 @@ function Filter() {
     if (gender.length === 1) {
       sex = gender[0];
     }
-    let isInSummer = false;
-    let inNotSummer = false;
-    let hasReception = false;
+    let isInSummer = "";
+    let inNotSummer = "";
+    let hasReception = "";
     for (let i = 0; i < other.length; i++) {
       switch (other[i]) {
         case "isInSummer":
@@ -70,7 +70,7 @@ function Filter() {
     });
   }, [age, gender, cost, addr, category, other, city]);
 
-  const count = store.getState().count;
+  // const count = store.getState().count;
 
   return (
     <section className={styles["filter-wrapper"]}>
@@ -145,12 +145,12 @@ function Filter() {
         <Select
           placeholder="Категории"
           value={category}
-          options={result.map((category) => {
+          options={Array.isArray(result) ? result.map((category) => {
             return {
               text: category.baseCategory.name,
               value: category.baseCategory.name,
             };
-          })}
+          }) : {}}
           prepend={
             <img src="\images\Categories.png" height="25px" alt="Категории" />
           }

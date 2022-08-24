@@ -26,6 +26,12 @@ const Category = ({ label, number, image, children, ...rest }) => {
     store.dispatch({ type: "SetCategory", amount: label });
   };
 
+
+
+  // const AddCategory = { type: 'Add', amount: label }
+
+  // store.dispatch(AddCategory)
+
   return (
     <div className={styles.category} style={{ ...rest }}>
       <div className={styles.header} onClick={() => showCategory()}>
@@ -38,9 +44,8 @@ const Category = ({ label, number, image, children, ...rest }) => {
         </Link>
         <img
           src={img}
-          className={`${
-            img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
-          }`}
+          className={`${img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
+            }`}
           alt="Галочка"
         />
       </div>

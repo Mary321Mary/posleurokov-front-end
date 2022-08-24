@@ -10,6 +10,7 @@ const Select = ({
   prepend = null,
   checkbox = false,
   onChange,
+  zIndex,
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
@@ -36,6 +37,8 @@ const Select = ({
     <div
       className={`${styles["select"]} ${showOptionList ? styles["select--active"] : ""
         }`}
+      style={{ zIndex: zIndex }}
+
     >
       <div
         className={styles["select__box"]}
