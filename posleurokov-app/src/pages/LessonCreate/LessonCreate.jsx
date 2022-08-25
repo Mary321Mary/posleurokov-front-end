@@ -1,4 +1,4 @@
-import { Heading, Input, Button, Select, Checkbox, Sheet } from "components";
+import { Heading, Input, Button, Select, Checkbox } from "components";
 import Helmet from "react-helmet";
 
 import styles from "./LessonCreate.module.scss";
@@ -98,6 +98,19 @@ const LessonCreate = () => {
     event.persist();
     getBase64(event.target.files[0], (result) => {
       setImages([...Images, result]);
+    });
+  };
+
+  const changeSelectRegister = (event) => {
+    let value = Array.from(
+      event.target.selectedOptions,
+      (option) => option.value
+    );
+    setCourse((prev) => {
+      return {
+        ...prev,
+        lessonCategories: value,
+      };
     });
   };
 
@@ -201,7 +214,6 @@ const LessonCreate = () => {
               <Select
                 border="1px solid black"
                 borderRadius="8px"
-                width="250px"
                 id="city"
                 value={city}
                 options={cities.map((city) => {
@@ -221,33 +233,20 @@ const LessonCreate = () => {
               <label htmlFor="categories">
                 <span>* </span>Категории:
               </label>
-              <Select
-                border="1px solid black"
-                borderRadius="8px"
-                width="250px"
-                id="categories"
-                placeholder="Категории"
+              <select
                 value={course.lessonCategories}
-                options={categories.map((category) => {
-                  return { text: category.name, value: category.id };
+                multiple
+                size="8"
+                onChange={changeSelectRegister}
+              >
+                {categories.map((category) => {
+                  return (
+                    <option value={category.id} key={category.id}>
+                      {category.name}
+                    </option>
+                  );
                 })}
-                checkbox
-                prepend={
-                  <img
-                    src="\images\Categories.png"
-                    height="25px"
-                    alt="Категории"
-                  />
-                }
-                onChange={(value) => {
-                  setCourse((prev) => {
-                    return {
-                      ...prev,
-                      lessonCategories: value,
-                    };
-                  });
-                }}
-              />
+              </select>
             </div>
             {error.lessonCategories !== "" ? (
               <span>{error.lessonCategories}</span>
@@ -314,7 +313,6 @@ const LessonCreate = () => {
               <Select
                 border="1px solid black"
                 borderRadius="8px"
-                width="250px"
                 id="sex"
                 value={sex}
                 options={[
