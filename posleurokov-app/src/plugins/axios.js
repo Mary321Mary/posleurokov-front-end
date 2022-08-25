@@ -22,7 +22,7 @@ const instance = axios.create({
 });
 
 export const axiosAPI = {
-  async getCategories() {
+  async getCategories(param) {
     try {
       const response = await instance.get(CATEGORIES(param));
       return response.data;
@@ -97,7 +97,7 @@ export const axiosAPI = {
   async getProfile() {
     try {
       const response = await instance.get(PROFILE + '/profile',
-	  {
+        {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token'),
           }
@@ -132,7 +132,7 @@ export const axiosAPI = {
       return response.data;
     } catch (error) {
       console.error(error);
-	  return error.response;
+      return error.response;
     }
   },
   async getProfileCounts() {
@@ -144,10 +144,10 @@ export const axiosAPI = {
           }
         });
       return response.data;
-	} catch (error) {
-	  console.error(error);
-	  return error.response;
-	}
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
   },
   async getLessonCreate(param) {
     try {

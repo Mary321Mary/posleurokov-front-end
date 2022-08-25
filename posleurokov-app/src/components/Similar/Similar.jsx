@@ -15,7 +15,7 @@ const Similar = ({ id, ...rest }) => {
   }, []);
 
   const getSimilar = async () => {
-    const result = await axiosAPI.getSimilar(`/${id}/similar`);
+    const result = await axiosAPI.getSimilar(`${id}/similar`);
     setSimilar(result);
   };
 
