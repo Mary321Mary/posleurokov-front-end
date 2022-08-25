@@ -1,0 +1,29 @@
+@import 'src/assets/styles/_variables.scss';
+
+.tabnav {
+  background: #EEEFEF;
+  border-radius: 16px 16px 0px 0px;
+}
+
+.tab {
+  display: inline;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 760px) {
+  .tab {
+    display: none;
+  }
+  
+  .hide {
+    display: inline;
+    border: none;
+
+    img {
+      margin-bottom: -5px;
+    }
+  }
+}

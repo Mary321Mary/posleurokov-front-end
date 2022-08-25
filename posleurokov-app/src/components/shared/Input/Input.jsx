@@ -1,32 +1,48 @@
-import React from 'react';
-import classes from './Input.scss';
+import React from "react";
+import styles from "./Input.module.scss";
 
-function isInvalid({ valid, touched, shouldValidate }) {
-  return !valid && shouldValidate && touched;
-}
-
-const Input = (props) => {
-  const inputType = props.type || 'text';
-  const cls = [classes.Input];
+const Input = ({
+  type,
+  required,
+  label,
+  name,
+  step,
+  placeholder,
+  multiple,
+  prepend = null,
+  value,
+  onChange,
+  errorMessage,
+  ...rest
+}) => {
+  const inputType = type || "text";
+  const cls = [styles.Input];
   const htmlFor = `${inputType}-${Math.random()}`;
 
-  if (isInvalid(props)) {
-    cls.push(classes.invalid);
-  }
-
   return (
-    <div className={cls.join(' ')}>
-      <label htmlFor={htmlFor}>{props.label}</label>
-      <input
-        type={inputType}
-        id={htmlFor}
-        value={props.value}
-        onChange={props.onChange}
-      />
-      {isInvalid(props) ? (
-        <span>{props.errorMessage || 'Введите верную информацию'}</span>
+    <div
+      className={`${cls.join(" ")} ${prepend !== null ? styles.padding : ""}`}
+    >
+      {label ? (
+        <label htmlFor={htmlFor}>
+          {required ? <span>* </span> : null}
+          {label}
+        </label>
       ) : null}
-      <span>{props.errorMessage}</span>
+      <input
+        style={{ ...rest }}
+        type={inputType}
+        name={name}
+        step={step}
+        multiple={multiple}
+        id={htmlFor}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+      {prepend}
+      <br />
+      <span>{errorMessage}</span>
     </div>
   );
 };

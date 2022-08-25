@@ -10,5 +10,7 @@ export * from "./Populars/Populars";
 export * from "./Filter/Filter";
 export * from "./Online/Online";
 export * from "./LessonPage";
+export * from "./Similar/Similar";
 export * from "./RandomLessons/RandomLessons";
 export * from "./Profile";
+export * from "./FilterCatalogue/FilterCatalogue";

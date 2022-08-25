@@ -1,15 +1,28 @@
-import './App.scss';
-import { DefaultLayout } from './layout';
-import { NotFoundPage, Main, Catalogue, LessonPage, Profile, Subscriptions, ActiveLessons, ArchiveLessons } from './pages';
-import Helmet from 'react-helmet';
+import "./App.scss";
+import { DefaultLayout, LoginLayout } from "./layout";
+import {
+  NotFoundPage,
+  Main,
+  Catalogue,
+  LessonPage,
+  LessonCreate,
+  SignUp,
+  Login,
+  Profile, 
+  Subscriptions, 
+  ActiveLessons, 
+  ArchiveLessons
+} from "./pages";
+import Helmet from "react-helmet";
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <Router>
       <Helmet titleTemplate="Все Кружки :: %s" />
-      <DefaultLayout>
-        <Routes>
+      <div className="shadow" id="shadow"></div>
+      <Routes>
+        <Route path="/" element={<DefaultLayout />}>
           <Route exact path="/" element={<Main />} />
           <Route exact path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -18,8 +31,13 @@ const App = () => {
           <Route path='/cabinet/Subscriptions' element={<Subscriptions />} />
           <Route path='/cabinet/active' element={<ActiveLessons />} />
           <Route path='/cabinet/archive' element={<ArchiveLessons />} />
-        </Routes>
-      </DefaultLayout>
+          <Route path="/lesson/create" element={<LessonCreate />} />
+        </Route>
+        <Route path="/" element={<LoginLayout />}>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };
