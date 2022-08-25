@@ -46,7 +46,7 @@ const Catalogue = () => {
       },
       { arrayFormat: "repeat" }
     );
-    const result = await axiosAPI.getCourses(`/result?${queryString}`);
+    const result = await axiosAPI.getCourses(`/result/?${queryString}`);
     setCourses(result);
   };
 

@@ -32,7 +32,7 @@ export const axiosAPI = {
   },
   async getCategories(param) {
     try {
-      const response = await instance.get(CATEGORIES + param);
+      const response = await instance.get(CATEGORIES(param));
       return response.data;
     } catch (error) {
       console.error(error);
@@ -77,7 +77,7 @@ export const axiosAPI = {
   },
   async getRandomLessons(param) {
     try {
-      const response = await instance.get(RANDOM_LESSONS + param);
+      const response = await instance.get(RANDOM_LESSONS(param));
       return response.data;
     } catch (error) {
       console.error(error);
@@ -95,7 +95,7 @@ export const axiosAPI = {
   },
   async getLessonOrganization(id) {
     try {
-      const response = await instance.get(LESSON(id) + "/organization");
+      const response = await instance.get(LESSON(id) + "/organization/");
       return response.data;
     } catch (error) {
       console.error(error);
@@ -105,7 +105,7 @@ export const axiosAPI = {
   async getCountCategories(city, category) {
     try {
       const response = await instance.get(
-        COUNT_CATEGORIES(city, category) + "/counts"
+        COUNT_CATEGORIES(city, category) + "/counts/"
       );
       return response.data;
     } catch (error) {
@@ -145,7 +145,7 @@ export const axiosAPI = {
   },
   async getSimilar(params) {
     try {
-      const response = await instance.get(SIMILARS + params);
+      const response = await instance.get(SIMILARS(params));
       return response.data.commonLessons;
     } catch (error) {
       console.error(error);
