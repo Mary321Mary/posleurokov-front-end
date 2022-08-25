@@ -1,0 +1,31 @@
+.text {
+  margin-top: 10px;
+  margin-bottom: 0%;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+  width: 35vw;
+}
+
+.head {
+  font-weight: 400;
+
+  img {
+    padding-right: 5px;
+  }
+}
+
+.submit {
+  border-bottom: 0;
+
+  button {
+    float: right;
+    width: 40px;
+    height: 40px;
+    background-color: #6D80D8;
+    border-radius: 6px;
+    border: 0px;
+    color: white;
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+}

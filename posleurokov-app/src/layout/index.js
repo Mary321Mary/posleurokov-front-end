@@ -1,1 +1,2 @@
-export { default as DefaultLayout } from "./Default";
+export * from "./DefaultLayout/DefaultLayout";
+export * from "./LoginLayout/LoginLayout";

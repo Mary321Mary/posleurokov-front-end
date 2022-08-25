@@ -1,4 +1,5 @@
 import styles from './LessonDescription.module.scss';
+import { InfoPanel } from '..';
 
 const LessonDescription = ({ lesson, organization, ...rest }) => {
 
@@ -104,7 +105,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
   }
 
   const GetLastUpdate = () => {
-    if (window.innerWidth < 700) {
+    if (window.outerWidth < 700) {
       return;
     }
 
@@ -116,15 +117,18 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
   }
 
   return (
-    <div className={styles.description}>
-      <GetAddress />
-      <GetPhones />
-      <GetPlace />
-      <GetDescr />
-      <GetRasp />
-      <GetContacts />
-      <GetLastUpdate />
-    </div >
+    <div className={styles.container}>
+      <div className={styles.description}>
+        <GetAddress />
+        <GetPhones />
+        <GetPlace />
+        <GetDescr />
+        <GetRasp />
+        <GetContacts />
+        <GetLastUpdate />
+      </div>
+      <InfoPanel lesson={lesson} />
+    </div>
   );
 };
 

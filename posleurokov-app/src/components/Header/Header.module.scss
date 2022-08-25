@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 .vertical-line {
   width: 1px;
@@ -8,4 +8,59 @@
   border-radius: 1px;
 
   margin: 0 34px;
+}
+
+.button {
+  margin-left: 34px;
+}
+
+.navImage {
+  margin-right: 16px;
+}
+
+.mobile {
+  display: none !important;
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1200px) {
+  .button {
+    margin-left: 22px;
+    margin-right: 32px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .tablet {
+    display: none !important;
+  }
+
+  .mobile {
+    display: flex !important;
+  }
+
+  .menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(216, 216, 216);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    z-index: 15;
+  }
+
+  .menu a {
+    padding: 8px 8px 8px 32px;
+    display: block;
+  }
+
+  .menu .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
 }

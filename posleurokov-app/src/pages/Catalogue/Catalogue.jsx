@@ -52,7 +52,18 @@ const Catalogue = () => {
 
   useEffect(() => {
     getCourses();
-  }, [tab, city, currentPage, category, sex, age, addr, isInSummer, inNotSummer, hasReception]);
+  }, [
+    tab,
+    city,
+    currentPage,
+    category,
+    sex,
+    age,
+    addr,
+    isInSummer,
+    inNotSummer,
+    hasReception,
+  ]);
 
   return (
     <section className={styles.container}>
@@ -82,8 +93,7 @@ const Catalogue = () => {
           )}
         </div>
         <div className={styles["section-categories"]}>
-          <Sheet
-            padding="21px 31px 27px 30px">
+          <Sheet padding="21px 31px 27px 30px">
             <FilterCatalogue />
           </Sheet>
           <VkBlock heigth="auto" width="220px" />

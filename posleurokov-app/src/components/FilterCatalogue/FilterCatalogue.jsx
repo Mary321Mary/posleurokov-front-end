@@ -1,47 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { stringify } from "qs";
 import styles from "./FilterCatalogue.module.scss";
 import { Select, Button, Link } from "components";
 import { Input } from "components/shared";
-import search from "assets/icons/search.svg";
 import { ListFilter } from "components/ListFilter/ListFilter";
 import { axiosAPI } from "plugins/axios";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector } from "react-redux";
 import store from "redux/stores";
 
 function FilterCatalogue() {
-
   const age = useSelector((state) => state.params.age);
-  const gender = useSelector((state) => state.params.sex === "any" ? ["female", "male"] : [state.params.sex]);
-  const [cost, setCost] = useState([]);
-  const address = useSelector((state) => state.params.addr)
-  const [categories, setCategories] = useState([]);
+  const gender = useSelector((state) =>
+    state.params.sex === "any" ? ["female", "male"] : [state.params.sex]
+  );
+  const address = useSelector((state) => state.params.addr);
   const city = useSelector((state) => state.city);
 
-  const other = useSelector((state) => [state.params.isInSummer === true ? "isInSummer" : "",
-  state.params.inNotSummer === true ? "inNotSummer" : "",
-  state.params.hasReception === true ? "hasReception" : ""])
+  const other = useSelector((state) => [
+    state.params.isInSummer === true ? "isInSummer" : "",
+    state.params.inNotSummer === true ? "inNotSummer" : "",
+    state.params.hasReception === true ? "hasReception" : "",
+  ]);
 
-  const [cities, setCities] = useState([]);
   const setGender = (value) => {
     let sex = "any";
     if (value.length === 1) {
       sex = value[0];
     }
-    store.dispatch({ type: "ChangeGender", amount: sex })
-  }
+    store.dispatch({ type: "ChangeGender", amount: sex });
+  };
 
   const setAge = (value) => {
-    store.dispatch({ type: "ChangeAge", amount: value })
-  }
+    store.dispatch({ type: "ChangeAge", amount: value });
+  };
 
   const setAddress = (value) => {
-    store.dispatch({ type: "ChangeAddress", amount: value })
-
-  }
+    store.dispatch({ type: "ChangeAddress", amount: value });
+  };
   const SetCategory = (event) => {
-    store.dispatch({ type: "SetCategory", amount: event })
-  }
+    store.dispatch({ type: "SetCategory", amount: event });
+  };
 
   const setOther = (value) => {
     let isInSummer = "";
@@ -60,23 +57,14 @@ function FilterCatalogue() {
           break;
       }
     }
-    store.dispatch({ type: "ChangeOther", isInSummer: isInSummer, inNotSummer: inNotSummer, hasReception: hasReception })
-  }
-
-  const handleSearch = () => {
-    console.log(
-      "params",
-      stringify({
-        gender,
-        age,
-        cost,
-        address,
-        categories,
-        other,
-      }),
-      this.props.categories
-    );
+    store.dispatch({
+      type: "ChangeOther",
+      isInSummer: isInSummer,
+      inNotSummer: inNotSummer,
+      hasReception: hasReception,
+    });
   };
+
   const category = useSelector((state) => state.params.category);
 
   const [res, setCountCategories] = useState(null);
@@ -85,10 +73,7 @@ function FilterCatalogue() {
     getCountCategories();
   }, [city]);
 
-
-
   const getCountCategories = async () => {
-    console.log(category)
     const result = await axiosAPI.getCountCategories(city, encodeURI(category));
     setCountCategories(result);
   };
@@ -149,10 +134,9 @@ function FilterCatalogue() {
           onChange={(value) => setAge(value)}
         />
 
-
         <div className={styles.label}>АДРЕС</div>
         <Input
-          marginLeft="-10px"
+          marginLeft="10px"
           height="40px"
           borderRadius="8px"
           border="1px solid rgb(197, 197, 197)"
@@ -165,28 +149,40 @@ function FilterCatalogue() {
         />
         <div className={styles.label}>КАТЕГОРИЯ</div>
 
-        {res !== null ? (<Link className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""}`}
-          onClick={() => SetCategory(res.baseCategory)}>
-          {res.baseCategory}
-        </Link >) : (null)}
+        {category !== "" && res !== null ? (
+          <Link
+            className={`${styles.nameCategory} ${
+              category === res.baseCategory ? styles["active"] : ""
+            }`}
+            onClick={() => SetCategory(res.baseCategory)}
+          >
+            {res.baseCategory}
+          </Link>
+        ) : (
+          <div style={{ color: "red" }}>Выберите категорию</div>
+        )}
         <div className={styles.podCategory}>
-          {res !== null && Array.isArray(res.concreteCategories) ? (res.concreteCategories.map((key) => {
-            return (
-              <div style={{ margin: "10px", }} key={key.name}>
-                <Link
-                  className={`${category === key.name ? styles["active"] : ""}`}
-                  fontFamily='Roboto-Regular'
-                  fontWeight='400'
-                  fontSize='13px'
-                  lineHeight='15px'
-                  color="#5F6060"
-                  onClick={() => SetCategory(key.name)}
-                >
-                  {key.name} ({key.count})
-                </Link>
-              </div>
-            )
-          })) : (null)}
+          {res !== null && Array.isArray(res.concreteCategories)
+            ? res.concreteCategories.map((key) => {
+                return (
+                  <div style={{ margin: "10px" }} key={key.name}>
+                    <Link
+                      className={`${
+                        category === key.name ? styles["active"] : ""
+                      }`}
+                      fontFamily="Roboto-Regular"
+                      fontWeight="400"
+                      fontSize="13px"
+                      lineHeight="15px"
+                      color="#5F6060"
+                      onClick={() => SetCategory(key.name)}
+                    >
+                      {key.name} ({key.count})
+                    </Link>
+                  </div>
+                );
+              })
+            : null}
         </div>
         <ListFilter
           placeholder="Другое"
@@ -199,23 +195,6 @@ function FilterCatalogue() {
           checkbox
           onChange={(value) => setOther(value)}
         />
-      </section>
-
-      <section className={styles["btn-section"]}>
-        <Button
-          width="239px"
-          margin="0 auto"
-          background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
-          onClick={handleSearch}
-        >
-          <img
-            style={{ marginRight: "8px" }}
-            src={search}
-            height="20px"
-            alt="Подобрать"
-          />
-          Подобрать
-        </Button>
       </section>
     </section>
   );

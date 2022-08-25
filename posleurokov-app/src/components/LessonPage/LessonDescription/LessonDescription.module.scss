@@ -1,5 +1,13 @@
 @import 'src/assets/styles/_variables.scss';
 
+.container {
+  display: flex;
+
+  @media only screen and (max-width: 699px) {
+    display: inline;
+  }
+}
+
 .description {
   .h3 {
     text-transform: uppercase;
@@ -16,6 +24,7 @@
     line-height: 16px;
     text-align: justify;
     color: #5F6060;
+    margin-left: 0%;
   }
 
   a {
@@ -37,36 +46,40 @@
   }
 
   @media only screen and (min-width: 1025px) {
+    width: 570px;
+
     .h3 {
       height: 21px;
       font-size: 18px;
       line-height: 28px;
-      margin-left: 52px;
       margin-top: 22px;
     }
 
     div {
       margin-left: 52px;
-      width: 624px;
+      width: 518px;
     }
   }
 
   @media only screen and (max-width: 1024px) and (min-width: 700px) {
+    width: 372px;
+
     .h3 {
       height: 21px;
       font-size: 18px;
       line-height: 21px;
-      margin-left: 32.4px;
       margin-top: 22px;
     }
 
     div {
-      margin-left: 32.4px;
-      width: 372px;
+      margin-left: 34px;
+      width: 350px;
     }
   }
 
   @media only screen and (max-width: 699px) {
+    width: 262px;
+
     .h3 {
       height: 14px;
       font-size: 12px;

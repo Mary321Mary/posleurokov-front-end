@@ -36,7 +36,7 @@ const Cities = () => {
       <Link
         className={styles.all_cities}
         path="/"
-        onClick={() => setCity("Все города")}
+        onClick={() => setCity("all")}
       >
         <img src={arrow} alt="arrow" />
         <div>Все города</div>

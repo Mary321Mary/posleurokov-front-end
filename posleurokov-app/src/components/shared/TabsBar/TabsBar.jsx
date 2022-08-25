@@ -61,7 +61,7 @@ const TabsBar = ({ items, ...rest }) => {
             Для взрослых
           </TabBarNav>
         </div>
-        <div name="showAll" className={styles.tab}>
+        {/* <div name="showAll" className={styles.tab}>
           <TabBarNav
             number={-1}
             isActive={4 === tab}
@@ -69,7 +69,7 @@ const TabsBar = ({ items, ...rest }) => {
           >
             На карте
           </TabBarNav>
-        </div>
+        </div> */}
         <button onClick={() => showAll()} className={styles.hide}>
           <img src={other} alt="other" />
         </button>

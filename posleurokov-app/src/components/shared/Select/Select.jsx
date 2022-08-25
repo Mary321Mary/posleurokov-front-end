@@ -35,10 +35,10 @@ const Select = ({
 
   return (
     <div
-      className={`${styles["select"]} ${showOptionList ? styles["select--active"] : ""
-        }`}
+      className={`${styles["select"]} ${
+        showOptionList ? styles["select--active"] : ""
+      }`}
       style={{ zIndex: zIndex }}
-
     >
       <div
         className={styles["select__box"]}
@@ -78,15 +78,6 @@ const Select = ({
         </ul>
       )}
     </div>
-    // <select className={styles.select} value={value} onChange={onChange}>
-    //   {options.map((option, index) => {
-    //     return (
-    //       <option value={option.value} key={option.value + index}>
-    //         {option.text}
-    //       </option>
-    //     );
-    //   })}
-    // </select>
   );
 };
 

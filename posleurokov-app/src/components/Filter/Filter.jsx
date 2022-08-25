@@ -135,22 +135,23 @@ function Filter() {
           border="none"
           type="text"
           placeholder="Адрес"
-
-          prepend={
-            <img src="\images\Address.png" height="25px" alt="Стоимость" />
-          }
+          prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
           onChange={(e) => setAddress(e.target.value)}
         />
 
         <Select
           placeholder="Категории"
           value={category}
-          options={Array.isArray(result) ? result.map((category) => {
-            return {
-              text: category.baseCategory.name,
-              value: category.baseCategory.name,
-            };
-          }) : {}}
+          options={
+            Array.isArray(result)
+              ? result.map((category) => {
+                  return {
+                    text: category.baseCategory.name,
+                    value: category.baseCategory.name,
+                  };
+                })
+              : {}
+          }
           prepend={
             <img src="\images\Categories.png" height="25px" alt="Категории" />
           }
@@ -167,9 +168,7 @@ function Filter() {
             { text: "Есть свободные места", value: "hasReception" },
           ]}
           checkbox
-          prepend={
-            <img src="\images\Other.png" height="25px" alt="Стоимость" />
-          }
+          prepend={<img src="\images\Other.png" height="25px" alt="Другое" />}
           zIndex="2"
           onChange={(value) => setOther(value)}
         />

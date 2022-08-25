@@ -20,7 +20,9 @@ const Input = ({
   const htmlFor = `${inputType}-${Math.random()}`;
 
   return (
-    <div className={cls.join(" ")}>
+    <div
+      className={`${cls.join(" ")} ${prepend !== null ? styles.padding : ""}`}
+    >
       {label ? (
         <label htmlFor={htmlFor}>
           {required ? <span>* </span> : null}

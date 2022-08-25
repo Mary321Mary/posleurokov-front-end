@@ -1,6 +1,6 @@
 import styles from "./Course.module.scss";
 import { Online, Link } from "components";
-import randomLesson from "assets/img/randomLesson.png";
+import randomLesson from "assets/img/img.png";
 import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
@@ -14,7 +14,14 @@ const Course = ({ list, online, ...rest }) => {
             <div className={styles.label}>{elem.lesson.name}</div>
           </Link>
           <div className={styles.content}>
-            <img src={randomLesson} alt="курс" />
+            {elem.image !== null ? (
+              <img
+                src={process.env.REACT_APP_BASE_URL + elem.image.image}
+                alt="Курс"
+              />
+            ) : (
+              <img src={randomLesson} alt="Курс" />
+            )}
             <div className={styles.info}>{elem.lesson.info}</div>
             <div className={styles.addition}>
               <div className={styles.block}>

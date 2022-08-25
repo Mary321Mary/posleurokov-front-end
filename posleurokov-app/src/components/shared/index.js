@@ -12,3 +12,4 @@ export { Select } from "./Select/Select";
 export { TabBarNav } from "./TabBarNav/TabBarNav";
 export { TabsBar } from "./TabsBar/TabsBar";
 export { Input } from "./Input/Input";
+export { ModalWindow } from "./ModalWindow/ModalWindow";
