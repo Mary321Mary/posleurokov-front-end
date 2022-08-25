@@ -1,12 +1,11 @@
-import { Sheet, ModalWindow } from 'components/shared';
+import { Sheet, ModalWindow, Button } from 'components';
 import styles from './InfoPanel.module.scss';
 import checkbox from 'assets/img/CheckBox.png';
 import bell from 'assets/img/bell.png';
 import warning from 'assets/img/info.png';
-import Cookies from 'universal-cookie';
 import { axiosAPI } from 'plugins/axios';
 import { useState, useEffect } from 'react';
-import { SubscribeForm } from '..';
+import { SubscribeForm, CorrectionForm, ApplicationForm } from '..';
 
 const InfoPanel = ({ lesson, ...rest }) => {
   const [showModal, setShowModal] = useState(false);
@@ -81,19 +80,25 @@ const InfoPanel = ({ lesson, ...rest }) => {
   }
 
   const SubscribeUser = async () => {
-    let cookies = new Cookies();
-    let token = cookies.get('token');
-    if (token) {
-      let result = await axiosAPI.subscribe(lesson.id, token);
-      if (result.Ok) {
-        setChild(<SubscribeForm isLogin={true} handler={() => { setShowModal(false) }} />)
-        setShowModal(true)
-      }
+    let result = await axiosAPI.subscribe(lesson.id);
+    if (result.Ok) {
+      setChild(<SubscribeForm isLogin={true} handler={() => { setShowModal(false) }} />)
+      setShowModal(true)
     }
     else {
       setChild(<SubscribeForm isLogin={false} handler={() => { setShowModal(false) }} />)
       setShowModal(true)
     }
+  }
+
+  const showCorrection = () => {
+    setChild(<CorrectionForm id={lesson.id} handler={() => { setShowModal(false) }} />)
+    setShowModal(true)
+  }
+
+  const showApplication = () => {
+    setChild(<ApplicationForm id={lesson.id} handler={() => { setShowModal(false) }} />)
+    setShowModal(true)
   }
 
   const SetParams = () => {
@@ -122,7 +127,7 @@ const InfoPanel = ({ lesson, ...rest }) => {
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     SetParams();
 
     function handleWindowResize() {
@@ -171,8 +176,15 @@ const InfoPanel = ({ lesson, ...rest }) => {
         </div>
       </Sheet>
       <div className={styles.actions}><a onClick={SubscribeUser}><img src={bell} />Получать уведомления</a></div>
-      <div className={styles.actions}><a onClick={SubscribeUser}><img src={warning} />Пожаловаться или исправить ошибку</a></div>
-      <button className={styles.request}>Отправить заявку</button>
+      <div className={styles.actions}><a onClick={showCorrection}><img src={warning} />Пожаловаться или исправить ошибку</a></div>
+      <Button
+        width={'270px'}
+        margin-left={'6px'}
+        height={'37px'}
+        margin-top={'23px'}
+        onClick={showApplication}>
+        Отправить заявку
+      </Button>
       <ModalWindow show={showModal} handler={() => { setShowModal(false) }}>{child}</ModalWindow>
     </div >
   );

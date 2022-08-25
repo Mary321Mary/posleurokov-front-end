@@ -10,6 +10,7 @@ import {
   Additional,
   Populars,
   RandomLessons,
+  Loader
 } from "components";
 
 import styles from "./Main.module.scss";
@@ -22,10 +23,13 @@ const Main = () => {
   const city = useSelector((state) => state.city);
 
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const getCategories = async () => {
+    setLoading(true)
     const categories = await axiosAPI.getCategories(city);
     setResult(categories);
+    setLoading(false)
   };
 
   const setCategory = (event) => {
@@ -38,6 +42,7 @@ const Main = () => {
 
   return (
     <section className={styles.container}>
+      {loading ? <Loader margin-left={'42vw'} /> : <div>
       <section className={styles["section-filter"]}>
         <div className={styles["section-filter__heading"]}>
           <Heading tag="h1" center>
@@ -101,7 +106,7 @@ const Main = () => {
           <Cities />
           <VkBlock heigth={"auto"} width={"220px"} />
         </div>
-      </div>
+      </div></div>}
     </section>
   );
 };

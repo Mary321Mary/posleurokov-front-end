@@ -16,6 +16,7 @@ import { stringify } from "qs";
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false)
 
   const tab = useSelector((state) => state.tab);
   const city = useSelector((state) => state.city);
@@ -30,6 +31,7 @@ const Catalogue = () => {
   const hasReception = useSelector((state) => state.params.hasReception);
 
   const getCourses = async () => {
+    setLoading(true)
     const queryString = stringify(
       {
         city,
@@ -48,6 +50,7 @@ const Catalogue = () => {
     );
     const result = await axiosAPI.getCourses(`/result/?${queryString}`);
     setCourses(result);
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -67,6 +70,7 @@ const Catalogue = () => {
 
   return (
     <section className={styles.container}>
+      {loading ? <Loader /> : <div>
       <Helmet title="Каталог" />
       <Heading tag="h1" center>
         Каталог кружков, секций и курсов в Гомеле
@@ -98,7 +102,7 @@ const Catalogue = () => {
           </Sheet>
           <VkBlock heigth="auto" width="220px" />
         </div>
-      </div>
+      </div></div>}
     </section>
   );
 };

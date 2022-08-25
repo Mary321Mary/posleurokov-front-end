@@ -21,16 +21,7 @@ const instance = axios.create({
 });
 
 export const axiosAPI = {
-  async getUser() {
-    const response = await instance.get("", {
-      params: {
-        results: 1,
-        inc: "name,email",
-      },
-    });
-    return response.data;
-  },
-  async getCategories(param) {
+  async getCategories() {
     try {
       const response = await instance.get(CATEGORIES(param));
       return response.data;
@@ -113,17 +104,16 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
-  async subscribe(id, token) {
+  async subscribe(id) {
     try {
       const response = await instance.put(
         LESSON(id) + "/subscribe/",
         {},
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -134,8 +124,8 @@ export const axiosAPI = {
     try {
       const response = await instance.post(LESSON_CREATE, param, {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
       });
       return response;
     } catch (error) {
@@ -154,7 +144,7 @@ export const axiosAPI = {
   },
   async getSignUp(params) {
     try {
-      const response = await instance.post(SIGNUP, { user: params });
+      const response = await instance.post(SIGNUP, { user: params }, {});
       return response.data;
     } catch (error) {
       console.error(error);
@@ -163,7 +153,7 @@ export const axiosAPI = {
   },
   async getLogin(params) {
     try {
-      const response = await instance.post(LOGIN, { user: params });
+      const response = await instance.post(LOGIN, { user: params }, {});
       return response.data;
     } catch (error) {
       console.error(error);
@@ -177,6 +167,24 @@ export const axiosAPI = {
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
+    }
+  },
+  async sendCorrection(id, correction) {
+    try {
+      const response = await instance.post(LESSON(id) + '/correct/', { 'correction': correction }, {});
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async sendApplication(id, phone) {
+    try {
+      const response = await instance.post(LESSON(id) + '/contact/', { 'phone': phone }, {});
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
     }
   },
 };

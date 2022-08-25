@@ -1,4 +1,4 @@
-import { Heading, Input, Button, Select, Checkbox } from "components";
+import { Heading, Input, Button, Select, Checkbox, Loader } from "components";
 import Helmet from "react-helmet";
 
 import styles from "./LessonCreate.module.scss";
@@ -8,6 +8,7 @@ import { axiosAPI } from "plugins/axios";
 const LessonCreate = () => {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   const [city, setCity] = useState("Гомель");
   const [sex, setSex] = useState("Любой");
@@ -140,6 +141,7 @@ const LessonCreate = () => {
   };
 
   const getCities = async () => {
+    setLoading(true)
     const result = await axiosAPI.getCities();
     setCities(result.cities || []);
   };
@@ -190,6 +192,8 @@ const LessonCreate = () => {
         sex: sexText,
       };
     });
+
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -202,6 +206,7 @@ const LessonCreate = () => {
 
   return (
     <section className={styles.container}>
+      {loading ? <Loader /> : <div>
       <Helmet title="Создать секцию" />
       <Heading tag="h1" center>
         Создать секцию
@@ -276,7 +281,7 @@ const LessonCreate = () => {
                   setCourse((prev) => {
                     return {
                       ...prev,
-                      info: value.target.value,
+                      isInSummer: value,
                     };
                   });
                 }}
@@ -324,175 +329,55 @@ const LessonCreate = () => {
                   <img src="\images\Gender.png" height="25px" alt="Пол" />
                 }
                 onChange={(value) => {
-                  setSex(value);
+                  setCourse((prev) => {
+                    return {
+                      ...prev,
+                      isInNotSummer: value,
+                    };
+                  });
                 }}
+              ></Checkbox>
+              <div className={styles["gorisonlal-line"]}></div>
+              <Checkbox
+                value={course.isOnline}
+                text="Онлайн"
+                onChange={(value) => {
+                  setCourse((prev) => {
+                    return {
+                      ...prev,
+                      isOnline: value,
+                    };
+                  });
+                }}
+              ></Checkbox>
+              <div className={styles["gorisonlal-line"]}></div>
+              <Checkbox
+                value={course.isFirstFree}
+                text="Первое занятие бесплатно"
+                onChange={(value) => {
+                  setCourse((prev) => {
+                    return {
+                      ...prev,
+                      isFirstFree: value,
+                    };
+                  });
+                }}
+              ></Checkbox>
+              <div className={styles["gorisonlal-line"]}></div>
+              <Input
+                type="file"
+                multiple
+                label="Картинки:"
+                name="Images"
+                onChange={changeImageRegister}
+                errorMessage={error.Images}
               />
-            </div>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Расписание:"
-              name="timetable"
-              value={course.timetable}
-              onChange={changeInputRegister}
-              errorMessage={error.timetable}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Адрес:"
-              name="address"
-              value={course.address}
-              onChange={changeInputRegister}
-              errorMessage={error.address}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Описание места/ближайшие остановки:"
-              name="place"
-              value={course.place}
-              onChange={changeInputRegister}
-              errorMessage={error.place}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              type="number"
-              step="0.01"
-              label="Цена:"
-              name="price"
-              value={course.price}
-              onChange={changeInputRegister}
-              errorMessage={error.price}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Пояснение к цене (за 1 месяц и т.д.):"
-              name="additionalPriceInfo"
-              value={course.additionalPriceInfo}
-              onChange={changeInputRegister}
-              errorMessage={error.additionalPriceInfo}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Имя/название доп. контакта:"
-              name="additionalContactName"
-              value={course.additionalContactName}
-              onChange={changeInputRegister}
-              errorMessage={error.additionalContactName}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              type="email"
-              label="Email доп. контакта:"
-              name="additionalContactEmail"
-              value={course.additionalContactEmail}
-              onChange={changeInputRegister}
-              errorMessage={error.additionalContactEmail}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              type="tel"
-              label="Номер доп. контакта (+375112223344):"
-              name="additionalContactPhoneNumber"
-              value={course.additionalContactPhoneNumber}
-              onChange={changeInputRegister}
-              errorMessage={error.additionalContactPhoneNumber}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              height="66px"
-              label="Сайт или группа доп. контака:"
-              name="additionalContactCite"
-              value={course.additionalContactCite}
-              onChange={changeInputRegister}
-              errorMessage={error.additionalContactCite}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Checkbox
-              value={course.hasReception}
-              text="Есть свободные места"
-              onChange={(value) => {
-                setCourse((prev) => {
-                  return {
-                    ...prev,
-                    hasReception: value,
-                  };
-                });
-              }}
-            ></Checkbox>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Checkbox
-              value={course.isInSummer}
-              text="Работает летом"
-              onChange={(value) => {
-                setCourse((prev) => {
-                  return {
-                    ...prev,
-                    isInSummer: value,
-                  };
-                });
-              }}
-            ></Checkbox>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Checkbox
-              value={course.isInNotSummer}
-              text="Работает сентябрь/май"
-              onChange={(value) => {
-                setCourse((prev) => {
-                  return {
-                    ...prev,
-                    isInNotSummer: value,
-                  };
-                });
-              }}
-            ></Checkbox>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Checkbox
-              value={course.isOnline}
-              text="Онлайн"
-              onChange={(value) => {
-                setCourse((prev) => {
-                  return {
-                    ...prev,
-                    isOnline: value,
-                  };
-                });
-              }}
-            ></Checkbox>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Checkbox
-              value={course.isFirstFree}
-              text="Первое занятие бесплатно"
-              onChange={(value) => {
-                setCourse((prev) => {
-                  return {
-                    ...prev,
-                    isFirstFree: value,
-                  };
-                });
-              }}
-            ></Checkbox>
-            <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              type="file"
-              multiple
-              label="Картинки:"
-              name="Images"
-              onChange={changeImageRegister}
-              errorMessage={error.Images}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Button onClick={submitChackin}>Создать секцию</Button>
-            {error.meneger !== "" ? <span>{error.meneger}</span> : null}
-          </form>
-        </div>
-      </div>
+              <div className={styles["gorisonlal-line"]}></div>
+              <Button onClick={submitChackin}>Создать секцию</Button>
+              {error.meneger !== "" ? <span>{error.meneger}</span> : null}
+            </form>
+          </div>
+        </div></div>}
     </section>
   );
 };
