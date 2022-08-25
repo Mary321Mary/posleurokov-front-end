@@ -200,6 +200,7 @@ const LessonCreate = () => {
               <label htmlFor="city">Город:</label>
               <Select
                 border="1px solid black"
+                borderRadius="8px"
                 width="250px"
                 id="city"
                 value={city}
@@ -222,6 +223,7 @@ const LessonCreate = () => {
               </label>
               <Select
                 border="1px solid black"
+                borderRadius="8px"
                 width="250px"
                 id="categories"
                 placeholder="Категории"
@@ -297,7 +299,6 @@ const LessonCreate = () => {
             <div className={styles["gorisonlal-line"]}></div>
             <Input
               height="66px"
-              // minWidth="215px"
               type="number"
               label="Возраст до:"
               name="endAge"
@@ -312,6 +313,8 @@ const LessonCreate = () => {
               <label htmlFor="sex">Пол:</label>
               <Select
                 border="1px solid black"
+                borderRadius="8px"
+                width="250px"
                 id="sex"
                 value={sex}
                 options={[

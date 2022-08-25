@@ -1,5 +1,5 @@
 import styles from "./Course.module.scss";
-import { Online } from "components";
+import { Online, Link } from "components";
 import randomLesson from "assets/img/img.png";
 import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
@@ -10,7 +10,9 @@ const Course = ({ list, online, ...rest }) => {
     return (
       <div key={elem.lesson.name}>
         <div className={styles.course}>
-          <div className={styles.label}>{elem.lesson.name}</div>
+          <Link path={`/lesson/${elem.lesson.id}`}>
+            <div className={styles.label}>{elem.lesson.name}</div>
+          </Link>
           <div className={styles.content}>
             {elem.image !== null ? (
               <img
@@ -46,7 +48,7 @@ const Course = ({ list, online, ...rest }) => {
                 <div>{elem.lesson.price} руб.</div>
                 <div>{elem.lesson.additionalPriceInfo}</div>
               </div>
-              {elem.lesson.hasReseption ? (
+              {elem.lesson.hasReception ? (
                 <div className={styles.open}>Прием: идет</div>
               ) : (
                 <div className={styles.close}>Прием: закрыт</div>
@@ -75,7 +77,7 @@ const Course = ({ list, online, ...rest }) => {
           </div>
           <div className={styles.tablet}>
             <div>
-              {elem.lesson.hasReseption ? (
+              {elem.lesson.hasReception ? (
                 <div className={styles.open}>Прием: идет</div>
               ) : (
                 <div className={styles.close}>Прием: закрыт</div>

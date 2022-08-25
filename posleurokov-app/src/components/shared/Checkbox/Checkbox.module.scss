@@ -9,11 +9,13 @@ input[type='checkbox'] {
   white-space: nowrap;
   width: 1px;
 }
+
 .wrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
+
 .square {
   position: absolute;
   top: 1.5px;
@@ -44,6 +46,7 @@ input[type='checkbox'] {
     display: inline-block;
   }
 }
+
 .checkbox-text {
   font-weight: 400;
   font-size: 14px;
@@ -51,6 +54,7 @@ input[type='checkbox'] {
 
   color: $checkbox-text-color;
 }
+
 .checkbox-text--active {
   font-weight: 400;
   font-size: 14px;

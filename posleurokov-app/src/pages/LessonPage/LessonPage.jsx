@@ -78,9 +78,12 @@ const LessonPage = () => {
     }
   };
 
-  useEffect(async () => {
-    await getLesson();
-    await getOrganization();
+  useEffect(() => {
+    let getResult = async () => {
+      await getLesson();
+      await getOrganization();
+    }
+    getResult();
     getWindowSize();
 
     function handleWindowResize() {
