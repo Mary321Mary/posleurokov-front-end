@@ -1,14 +1,31 @@
 import styles from "./Header.module.scss";
-import { useState } from "react";
-import { Logo, Button, Link, Sheet, Select } from "components";
+import { Logo, Button, Link, Select, Sheet } from "components";
+import { useState, useEffect } from "react";
 import { useOutsideClick } from "hooks";
 import galochka from "assets/img/galochka.png";
 import tel from "assets/img/teleph.svg";
 import menu from "assets/img/Menu.svg";
+import { axiosAPI } from "plugins/axios";
+import { useSelector } from "react-redux";
+import store from "redux/stores";
 
 const Header = () => {
-  const [city, setCity] = useState("Гомель");
+  const [cities, setCities] = useState([]);
+  const [cityTitle, setCityTitle] = useState("Гомель");
   const PHONE = "+375 29 113-67-97";
+
+  const getCities = async () => {
+    const result = await axiosAPI.getCities();
+    setCities(result.cities || []);
+  };
+
+  const setCity = (value) => {
+    setCityTitle(value);
+    if (value === "Все города") {
+      value = "all";
+    }
+    store.dispatch({ type: "ChangeCity", amount: value });
+  };
 
   const openNav = () => {
     document.getElementById("menu").style.width = "250px";
@@ -27,6 +44,10 @@ const Header = () => {
 
   const ref = useOutsideClick(closeNav);
 
+  useEffect(() => {
+    getCities();
+  }, []);
+
   return (
     <>
       <div ref={ref}>
@@ -34,20 +55,21 @@ const Header = () => {
           <Logo />
         </Link>
         <Select
-          value={city}
+          value={cityTitle}
           options={[
-            { text: "Гомель", value: "Гомель" },
-            { text: "Минск", value: "Минск" },
-            { text: "Гродно", value: "Гродно" },
-            { text: "Витебск", value: "Витебск" },
-            { text: "Брест", value: "Брест" },
-            { text: "Могилёв", value: "Могилёв" },
+            { text: "online", value: "online" },
+            ...cities.map((city) => {
+              return {
+                text: city.name,
+                value: city.name,
+              };
+            }),
+            { text: "Все города", value: "Все города" },
           ]}
           prepend={<img src={galochka} height="6px" alt="галочка" />}
           textDecoration="underline"
           textDecorationStyle="dashed"
           textUnderlineOffset="5px"
-          minWidth="130px"
           onChange={(value) => setCity(value)}
         />
       </div>

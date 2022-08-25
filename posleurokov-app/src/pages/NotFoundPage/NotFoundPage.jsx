@@ -1,7 +1,10 @@
 import styles from './NotFoundPage.module.scss';
 
 const NotFoundPage = () => {
-  return <p>NotFoundPage</p>;
+  return (<div className={styles.notfound}>
+    <h1>Такой страницы нет!</h1>
+    <a href='/'>Перейти на главную?</a>
+  </div>)
 };
 
 export { NotFoundPage };

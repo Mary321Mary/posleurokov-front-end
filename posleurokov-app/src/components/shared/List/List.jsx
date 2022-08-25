@@ -1,13 +1,14 @@
-import styles from './List.module.scss';
-import arrow from 'assets/img/arrow-right.png';
+import { Link } from "components";
+import styles from "./List.module.scss";
+import arrow from "assets/img/arrow-right.png";
 
-const List = ({ list }) => {
+const List = ({ list, path, onClick }) => {
   const displayList = list.map((elem, index) => {
     return (
-      <a key={index} href="/" className={styles.list}>
+      <Link key={index} path={path} className={styles.list} onClick={onClick}>
         <img src={arrow} alt="arrow" />
         <div>{elem.name}</div>
-      </a>
+      </Link>
     );
   });
 
