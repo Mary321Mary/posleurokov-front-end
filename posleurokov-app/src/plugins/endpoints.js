@@ -12,3 +12,4 @@ export const CATEGORIES_LIST = "/api/common-data/categories/";
 export const SIMILARS = (id) => `/api/lesson/${id}/`;
 export const SIGNUP = "/api/registration/";
 export const LOGIN = "/api/login/";
+export const PROFILE = '/api/cabinet';

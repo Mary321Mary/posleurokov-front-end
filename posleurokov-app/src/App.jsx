@@ -8,6 +8,10 @@ import {
   LessonCreate,
   SignUp,
   Login,
+  Profile, 
+  Subscriptions, 
+  ActiveLessons, 
+  ArchiveLessons
 } from "./pages";
 import Helmet from "react-helmet";
 
@@ -23,6 +27,10 @@ const App = () => {
           <Route exact path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
+          <Route path='/cabinet/Profile' element={<Profile />} />
+          <Route path='/cabinet/Subscriptions' element={<Subscriptions />} />
+          <Route path='/cabinet/active' element={<ActiveLessons />} />
+          <Route path='/cabinet/archive' element={<ArchiveLessons />} />
           <Route path="/lesson/create" element={<LessonCreate />} />
         </Route>
         <Route path="/" element={<LoginLayout />}>

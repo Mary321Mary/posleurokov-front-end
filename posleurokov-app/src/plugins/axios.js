@@ -14,6 +14,7 @@ import {
   SIMILARS,
   SIGNUP,
   LOGIN,
+  PROFILE
 } from "./endpoints";
 
 const instance = axios.create({
@@ -93,6 +94,20 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getProfile() {
+    try {
+      const response = await instance.get(PROFILE + '/profile',
+	  {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
   async getCountCategories(city, category) {
     try {
       const response = await instance.get(
@@ -117,8 +132,22 @@ export const axiosAPI = {
       return response.data;
     } catch (error) {
       console.error(error);
-      return error.response;
+	  return error.response;
     }
+  },
+  async getProfileCounts() {
+    try {
+      const response = await instance.get(PROFILE + '/profile/lesson-count',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+	} catch (error) {
+	  console.error(error);
+	  return error.response;
+	}
   },
   async getLessonCreate(param) {
     try {
@@ -137,6 +166,118 @@ export const axiosAPI = {
     try {
       const response = await instance.get(SIMILARS(params));
       return response.data.commonLessons;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async updateUser(user) {
+    try {
+      const response = await instance.put(PROFILE + '/profile/user/', { 'user': user },
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async updateOrganization(organization) {
+    try {
+      const response = await instance.put(PROFILE + '/profile/organizer/', { 'organizer': organization },
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getSubscriptions() {
+    try {
+      const response = await instance.get(PROFILE + '/subscriptions',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getActive() {
+    try {
+      const response = await instance.get(PROFILE + '/active',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getArchive() {
+    try {
+      const response = await instance.get(PROFILE + '/archive',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async unSubscribeUser(id) {
+    try {
+      const response = await instance.put(PROFILE + '/subscriptions/' + id + '/unsubscribe/', {},
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async archivateLessons(id) {
+    try {
+      const response = await instance.put(PROFILE + '/lesson/' + id + '/archivate/', {},
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async deArchivateLessons(id) {
+    try {
+      const response = await instance.put(PROFILE + '/lesson/' + id + '/dearchivate/', {},
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        });
+      return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
