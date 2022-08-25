@@ -8,6 +8,7 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  COUNT_CATEGORIES,
   LESSON_CREATE,
   CATEGORIES_LIST,
   SIMILARS,
@@ -29,9 +30,9 @@ export const axiosAPI = {
     });
     return response.data;
   },
-  async getCategories() {
+  async getCategories(param) {
     try {
-      const response = await instance.get(CATEGORIES);
+      const response = await instance.get(CATEGORIES + param);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -101,14 +102,28 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getCountCategories(city, category) {
+    try {
+      const response = await instance.get(
+        COUNT_CATEGORIES(city, category) + "/counts"
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
   async subscribe(id, token) {
     try {
-      const response = await instance.put(LESSON(id) + '/subscribe/', {},
+      const response = await instance.put(
+        LESSON(id) + "/subscribe/",
+        {},
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        });
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);

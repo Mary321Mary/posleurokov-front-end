@@ -12,3 +12,4 @@ export * from "./Online/Online";
 export * from "./LessonPage";
 export * from "./Similar/Similar";
 export * from "./RandomLessons/RandomLessons";
+export * from "./FilterCatalogue/FilterCatalogue";

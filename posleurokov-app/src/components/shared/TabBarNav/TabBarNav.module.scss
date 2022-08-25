@@ -1,0 +1,88 @@
+@import 'src/assets/styles/_variables.scss';
+
+.number {
+  display: inline;
+  margin-left: 6px;
+  
+  font-family: 'Roboto-Bold', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #FFFFFF;
+}
+
+.tabbutton {
+  border-radius: 16px 16px 0px 0px;
+  border: none;
+  padding: 12px 35px 16px 35px;
+
+  font-family: 'Roboto-Regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #5F6060;
+
+  img {
+    margin-left: 6px;
+  }
+
+  .number {
+    padding: 2px 6px;
+    
+    /* gray */
+    background: #9E9E9E;
+    border-radius: 7.125px;
+  }
+}
+
+.tabbutton--active {
+  font-family: 'Roboto-Medium', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  background-color: rgb(255, 255, 255);
+
+  .number {
+    padding: 2px 8px;
+    
+    /* fuchsia */
+    background: #EA2182;
+    border-radius: 7.125px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .number {
+    font-size: 9px;
+    line-height: 11px;
+  }
+
+  .tabbutton {
+    padding: 6px 6px 11px 8px;
+
+    font-size: 12px;
+    line-height: 14px;
+
+    .number {
+      font-size: 8px;
+      line-height: 9px;
+    }
+
+    img {
+      width: 14px;
+    }
+  }
+
+  .tabbutton--active {
+    font-size: 16px;
+    line-height: 19px;
+  
+    .number {
+      padding: 2px 8px;
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Category.module.scss";
+import { Link } from "components";
 import logo from "assets/img/img.png";
 import galochka from "assets/img/galochka.png";
 import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
+import store from "redux/stores";
 
 const Category = ({ label, number, image, children, ...rest }) => {
   const [img, setImg] = useState(galochka);
@@ -20,6 +22,10 @@ const Category = ({ label, number, image, children, ...rest }) => {
     }
   };
 
+  const setCategory = () => {
+    store.dispatch({ type: "SetCategory", amount: label });
+  };
+
   return (
     <div className={styles.category} style={{ ...rest }}>
       <div className={styles.header} onClick={() => showCategory()}>
@@ -32,10 +38,12 @@ const Category = ({ label, number, image, children, ...rest }) => {
         ) : (
           <img src={logo} className={styles.absent} alt="Категория" />
         )}
-        <div className={styles.label}>
-          {label}
-          <div className={styles.number}>{number}</div>
-        </div>
+        <Link path="/catalogue" onClick={setCategory}>
+          <div className={styles.label}>
+            {label}
+            <div className={styles.number}>{number}</div>
+          </div>
+        </Link>
         <img
           src={img}
           className={`${
