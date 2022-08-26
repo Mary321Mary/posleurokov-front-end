@@ -15,7 +15,12 @@ import {
   SIMILARS,
   SIGNUP,
   LOGIN,
-  PROFILE
+  LESSON_DATA,
+  LESSON_UPDATE,
+  LESSON_DELETE,
+  ADD_PICTURE,
+  DELETE_PICTURE,
+  PROFILE,
 } from "./endpoints";
 
 const instance = axios.create({
@@ -98,7 +103,7 @@ export const axiosAPI = {
   async getAbout() {
     try {
       const response = await instance.get(ADDINFO + "about");
-	  return response.data;
+      return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
@@ -106,12 +111,11 @@ export const axiosAPI = {
   },
   async getProfile() {
     try {
-      const response = await instance.get(PROFILE + '/profile',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+      const response = await instance.get(PROFILE + "/profile", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -121,7 +125,7 @@ export const axiosAPI = {
   async getTerms() {
     try {
       const response = await instance.get(ADDINFO + "terms");
-	  return response.data;
+      return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
@@ -141,7 +145,7 @@ export const axiosAPI = {
   async getFAQ() {
     try {
       const response = await instance.get(ADDINFO + "faq");
-	  return response.data;
+      return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
@@ -154,9 +158,10 @@ export const axiosAPI = {
         {},
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -165,12 +170,11 @@ export const axiosAPI = {
   },
   async getProfileCounts() {
     try {
-      const response = await instance.get(PROFILE + '/profile/lesson-count',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+      const response = await instance.get(PROFILE + "/profile/lesson-count", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -181,8 +185,8 @@ export const axiosAPI = {
     try {
       const response = await instance.post(LESSON_CREATE, param, {
         headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        }
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       });
       return response;
     } catch (error) {
@@ -201,12 +205,15 @@ export const axiosAPI = {
   },
   async updateUser(user) {
     try {
-      const response = await instance.put(PROFILE + '/profile/user/', { 'user': user },
+      const response = await instance.put(
+        PROFILE + "/profile/user/",
+        { user: user },
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -216,7 +223,7 @@ export const axiosAPI = {
   async getContacts() {
     try {
       const response = await instance.get(ADDINFO + "contacts");
-	  return response.data;
+      return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
@@ -224,12 +231,15 @@ export const axiosAPI = {
   },
   async updateOrganization(organization) {
     try {
-      const response = await instance.put(PROFILE + '/profile/organizer/', { 'organizer': organization },
+      const response = await instance.put(
+        PROFILE + "/profile/organizer/",
+        { organizer: organization },
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -238,12 +248,11 @@ export const axiosAPI = {
   },
   async getSubscriptions() {
     try {
-      const response = await instance.get(PROFILE + '/subscriptions',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+      const response = await instance.get(PROFILE + "/subscriptions", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -252,12 +261,11 @@ export const axiosAPI = {
   },
   async getActive() {
     try {
-      const response = await instance.get(PROFILE + '/active',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+      const response = await instance.get(PROFILE + "/active", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -266,12 +274,11 @@ export const axiosAPI = {
   },
   async getArchive() {
     try {
-      const response = await instance.get(PROFILE + '/archive',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+      const response = await instance.get(PROFILE + "/archive", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -280,12 +287,15 @@ export const axiosAPI = {
   },
   async unSubscribeUser(id) {
     try {
-      const response = await instance.put(PROFILE + '/subscriptions/' + id + '/unsubscribe/', {},
+      const response = await instance.put(
+        PROFILE + "/subscriptions/" + id + "/unsubscribe/",
+        {},
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -294,12 +304,15 @@ export const axiosAPI = {
   },
   async archivateLessons(id) {
     try {
-      const response = await instance.put(PROFILE + '/lesson/' + id + '/archivate/', {},
+      const response = await instance.put(
+        PROFILE + "/lesson/" + id + "/archivate/",
+        {},
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -308,12 +321,15 @@ export const axiosAPI = {
   },
   async deArchivateLessons(id) {
     try {
-      const response = await instance.put(PROFILE + '/lesson/' + id + '/dearchivate/', {},
+      const response = await instance.put(
+        PROFILE + "/lesson/" + id + "/dearchivate/",
+        {},
         {
           headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          }
-        });
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -347,10 +363,79 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getLessonData(id) {
+    try {
+      const response = await instance.get(LESSON_DATA(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
   async sendCorrection(id, correction) {
     try {
-      const response = await instance.post(LESSON(id) + '/correct/', { 'correction': correction }, {});
+      const response = await instance.post(
+        LESSON(id) + "/correct/",
+        { correction: correction },
+        {}
+      );
       return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLessonUpdate(id, param) {
+    try {
+      const response = await instance.put(LESSON_UPDATE(id), param, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLessonDelete(id) {
+    try {
+      const response = await instance.delete(LESSON_DELETE(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getPictureAdd(id, param) {
+    try {
+      const response = await instance.post(ADD_PICTURE(id), param, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getPictureDelete(id) {
+    try {
+      const response = await instance.delete(DELETE_PICTURE(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
     } catch (error) {
       console.error(error);
       return error.response;
@@ -358,7 +443,11 @@ export const axiosAPI = {
   },
   async sendApplication(id, phone) {
     try {
-      const response = await instance.post(LESSON(id) + '/contact/', { 'phone': phone }, {});
+      const response = await instance.post(
+        LESSON(id) + "/contact/",
+        { phone: phone },
+        {}
+      );
       return response.data;
     } catch (error) {
       console.error(error);
