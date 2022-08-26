@@ -13,3 +13,4 @@ export { TabBarNav } from "./TabBarNav/TabBarNav";
 export { TabsBar } from "./TabsBar/TabsBar";
 export { Input } from "./Input/Input";
 export { ModalWindow } from "./ModalWindow/ModalWindow";
+export { Loader } from './Loader/Loader';

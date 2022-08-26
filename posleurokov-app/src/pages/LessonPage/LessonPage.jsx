@@ -4,12 +4,16 @@ import {
   ImageCarousel,
   LessonDescription,
   Similar,
+  Additional,
+  RandomLessons,
+  VkBlock
 } from "components";
 
 import styles from "./LessonPage.module.scss";
 import { useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
 import { useParams } from "react-router-dom";
+import { Loader } from "components";
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState({});
@@ -18,10 +22,16 @@ const LessonPage = () => {
   const { id } = useParams();
   const [windowWidth, setWindowWidth] = useState("");
   const [sheetMargin, setSheetMargin] = useState("");
+  const [panelPosition, setPanelPosition] = useState({})
   const [headingParams, setHeadingParams] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const getLesson = async () => {
+    setLoading(true);
     let result = await axiosAPI.getLessonInfo(id);
+    if (result == 'Ошибка сервера') {
+      window.location.replace('/login')
+    }
     setLesson(result.lesson);
     setImages(result.images);
   };
@@ -29,6 +39,7 @@ const LessonPage = () => {
   const getOrganization = async () => {
     let result = await axiosAPI.getLessonOrganization(id);
     setOrganization(result);
+    setLoading(false)
   };
 
   const getWindowSize = () => {
@@ -47,6 +58,10 @@ const LessonPage = () => {
         'font-style': 'normal',
         'font-weight': '500'
       })
+      setPanelPosition({
+        'top': '150px',
+        'left': '1300px'
+      })
     }
     else if (innerWidth > 700 && innerWidth <= 1024) {
       setWindowWidth('723px')
@@ -60,6 +75,10 @@ const LessonPage = () => {
         'line-height': '35px',
         'font-style': 'normal',
         'font-weight': '500'
+      })
+      setPanelPosition({
+        'top': '150px',
+        'left': '850px'
       })
     }
     else {
@@ -75,15 +94,19 @@ const LessonPage = () => {
         'font-style': 'normal',
         'font-weight': '500'
       })
+      setPanelPosition({
+        'top': '300px',
+        'left': '0'
+      })
     }
   };
 
   useEffect(() => {
-    let getResult = async () => {
+    let getResults = async () => {
       await getLesson();
       await getOrganization();
     }
-    getResult();
+    getResults();
     getWindowSize();
 
     function handleWindowResize() {
@@ -99,23 +122,29 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
-      <Sheet margin={sheetMargin} width={windowWidth}>
-        <Heading
-          tag="h1"
-          margin={headingParams["margin"]}
-          width={headingParams["width"]}
-          height={headingParams["height"]}
-          color={headingParams["color"]}
-          fontSize={headingParams["font-size"]}
-          lineHeight={headingParams["line-height"]}
-          fontWeight={headingParams["font-weight"]}
-        >
-          {lesson.name}
-        </Heading>
-        <ImageCarousel images={images ?? []} />
-        <LessonDescription lesson={lesson} organization={organization} />
-      </Sheet>
-      <Similar id={id} margin={sheetMargin} width={windowWidth} />
+      {loading ? <Loader margin-left={'30%'} /> : <div>
+        <Sheet margin={sheetMargin} width={windowWidth}>
+          <Heading
+            tag="h1"
+            margin={headingParams["margin"]}
+            width={headingParams["width"]}
+            height={headingParams["height"]}
+            color={headingParams["color"]}
+            fontSize={headingParams["font-size"]}
+            lineHeight={headingParams["line-height"]}
+            fontWeight={headingParams["font-weight"]}
+          >
+            {lesson.name}
+          </Heading>
+          <ImageCarousel images={images ?? []} />
+          <LessonDescription lesson={lesson} organization={organization} />
+        </Sheet>
+        <Similar id={id} margin={sheetMargin} width={windowWidth} />
+        <div style={{ position: 'absolute', top: panelPosition['top'], left: panelPosition['left'] }}>
+          <Additional price />
+          <RandomLessons label='Другие занятия' number="3" width="220px" />
+          <VkBlock heigth={"auto"} width={"220px"} />
+        </div></div>}
     </section>
   );
 };

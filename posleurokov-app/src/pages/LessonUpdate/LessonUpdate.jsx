@@ -191,7 +191,7 @@ const LessonUpdate = () => {
     setCourse((prev) => {
       return {
         ...prev,
-        city: value.id,
+        city: value?.id || 1,
       };
     });
   };

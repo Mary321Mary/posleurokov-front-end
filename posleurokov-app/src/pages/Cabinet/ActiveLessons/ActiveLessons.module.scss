@@ -1,0 +1,293 @@
+.page {
+  display: flex;
+}
+
+.main {
+  h3 {
+    font-family: 'Roboto';
+    color: #6D80D8;
+  }
+}
+
+.search {
+  display: flex;
+
+  input {
+    border: 1px solid #EEEFEF;
+    vertical-align: middle;
+    background-color: #EEEFEF;
+  }
+}
+
+table {
+  display: block;
+  border: 1px solid #EEEFEF;
+  width: 95%;
+
+  thead {
+    border: none;
+
+    th {
+      text-align: center;
+      background-color: #EEEFEF;
+    }
+  }
+
+  td {
+    border-left: 1px solid #EEEFEF;
+    border-right: 1px solid #EEEFEF;
+    border-bottom: 1px solid #EEEFEF;
+  }
+
+  .info {
+    text-align: left;
+  }
+
+  tbody {
+    text-align: center;
+  }
+
+  .scroll {
+    overflow-y: scroll;
+    width: 100%;
+  }
+
+  .name {
+    font-weight: 600;
+  }
+
+  .category {
+    background-color: #6D80D8;
+    width: fit-content;
+    color: white;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #6D80D8;
+    color: white;
+    border: 0;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .page {
+    margin-left: 19vw;
+  }
+
+  .main {
+    margin-left: 70px;
+
+    h3 {
+      padding: 15px;
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
+
+  .search {
+    padding-left: 30px;
+    margin-bottom: 10px;
+
+    div {
+      padding-right: 7px;
+    }
+
+    input {
+      height: 20px;
+    }
+  }
+
+  table {
+    margin: 15px;
+
+    .status {
+      width: 100px;
+    }
+
+    .info {
+      width: 400px;
+      font-size: 15px;
+
+      div {
+        padding: 7px 0;
+      }
+    }
+
+    .price {
+      width: 150px;
+    }
+
+    .actions {
+      width: 150px;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .scroll {
+      height: 500px;
+    }
+
+    .category {
+      padding: 5px !important;
+      font-size: 13px;
+    }
+
+    button {
+      padding: 5px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 700px) {
+  .page {
+    margin-left: 5vw;
+  }
+
+  .main {
+    margin-left: 30px;
+
+    h3 {
+      padding: 10px;
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
+
+  .search {
+    padding-left: 20px;
+    margin-bottom: 8px;
+
+    div {
+      padding-right: 7px;
+    }
+
+    input {
+      height: 16px;
+    }
+  }
+
+  table {
+    margin: 10px;
+
+    .status {
+      width: 80px;
+    }
+
+    .info {
+      width: 220px;
+      text-align: left;
+      font-size: 14px;
+
+      div {
+        padding: 4px 0;
+      }
+    }
+
+    .price {
+      width: 100px;
+    }
+
+    .actions {
+      width: 100px;
+    }
+
+    .scroll {
+      height: 300px;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .category {
+      padding: 5px !important;
+      font-size: 13px;
+    }
+
+    button {
+      padding: 3px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .page {
+    margin: 0 auto;
+    display: table;
+  }
+
+  .main {
+    float: left;
+
+    h3 {
+      padding: 10px;
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
+
+  .search {
+    padding-left: 20px;
+    margin-bottom: 8px;
+
+    div {
+      padding-right: 7px;
+    }
+
+    input {
+      height: 16px;
+    }
+  }
+
+  table {
+    margin: 10px;
+
+    .status {
+      width: 100px;
+    }
+
+    .info {
+      width: 280px;
+      text-align: left;
+      font-size: 14px;
+
+      div {
+        padding: 4px 0;
+      }
+    }
+
+    .price {
+      width: 120px;
+    }
+
+    .actions {
+      width: 100px;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .scroll {
+      height: 250px;
+    }
+
+    .category {
+      padding: 5px !important;
+      font-size: 13px;
+    }
+
+    button {
+      padding: 3px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -9,6 +9,14 @@ import {
   SignUp,
   Login,
   LessonUpdate,
+  Profile,
+  Subscriptions,
+  ActiveLessons,
+  ArchiveLessons,
+  About,
+  Terms,
+  FAQ,
+  Contacts,
 } from "./pages";
 import Helmet from "react-helmet";
 
@@ -24,8 +32,16 @@ const App = () => {
           <Route exact path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
+          <Route path="/cabinet/Profile" element={<Profile />} />
+          <Route path="/cabinet/Subscriptions" element={<Subscriptions />} />
+          <Route path="/cabinet/active" element={<ActiveLessons />} />
+          <Route path="/cabinet/archive" element={<ArchiveLessons />} />
           <Route path="/lesson/create" element={<LessonCreate />} />
           <Route path="/lesson/update/:id" element={<LessonUpdate />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contacts" element={<Contacts />} />
         </Route>
         <Route path="/" element={<LoginLayout />}>
           <Route path="/signup" element={<SignUp />} />
