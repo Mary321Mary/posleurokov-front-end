@@ -1,6 +1,7 @@
 import {
   Heading,
-  Sheet
+  Sheet,
+  Loader
 } from 'components';
 
 import styles from './Terms.module.scss';
@@ -12,10 +13,13 @@ const Terms = () => {
   const [sheetMargin, setSheetMargin] = useState('');
   const [headingParams, setHeadingParams] = useState({});
   const [info, setInfo] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const getInfo = async () => {
+    setLoading(true)
     let result = await axiosAPI.getTerms()
     setData(result)
+    setLoading(false)
   }
 
   const setData = (data) => {
@@ -104,25 +108,27 @@ const Terms = () => {
 
   return (
     <section className={styles.section}>
-      <Sheet
-        margin={sheetMargin} width={windowWidth}>
-        <Heading tag='h1'
-          margin={headingParams['margin']}
-          width={headingParams['width']}
-          height={headingParams['height']}
-          color={headingParams['color']}
-          font-size={headingParams['font-size']}
-          line-height={headingParams['line-height']}
-          font-style={headingParams['font-style']}
-          font-weight={headingParams['font-weight']}
-          font-family={headingParams['font-family']}
-          padding-top={'20px'}>
-          Условия использования
-        </Heading>
-        <div>
-          {StyleInfo}
-        </div>
-      </Sheet>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <Sheet
+          margin={sheetMargin} width={windowWidth}>
+          <Heading tag='h1'
+            margin={headingParams['margin']}
+            width={headingParams['width']}
+            height={headingParams['height']}
+            color={headingParams['color']}
+            font-size={headingParams['font-size']}
+            line-height={headingParams['line-height']}
+            font-style={headingParams['font-style']}
+            font-weight={headingParams['font-weight']}
+            font-family={headingParams['font-family']}
+            padding-top={'20px'}>
+            Условия использования
+          </Heading>
+          <div>
+            {StyleInfo}
+          </div>
+        </Sheet>}
     </section>
   );
 };

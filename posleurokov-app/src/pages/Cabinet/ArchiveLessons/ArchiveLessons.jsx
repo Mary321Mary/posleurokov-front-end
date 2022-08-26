@@ -1,12 +1,13 @@
 import styles from "./ArchiveLessons.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, LeftPanel } from "components";
+import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
 
 const ArchiveLessons = () => {
   const [archive, setArchive] = useState([]);
   const [mainWidth, setMainWidth] = useState('')
   const [searchString, setSearchString] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const getSizes = () => {
     let innerWidth = window.outerWidth;
@@ -66,17 +67,19 @@ const ArchiveLessons = () => {
 
   const getArchive = async () => {
     if (localStorage.getItem('token')) {
+      setLoading(true)
       let result = await axiosAPI.getArchive();
       setArchive(result.lessons)
+      setLoading(false)
     }
     else {
       window.location.replace('/login')
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     getSizes();
-    await getArchive();
+    getArchive();
 
     function handleWindowResize() {
       getSizes();
@@ -90,38 +93,41 @@ const ArchiveLessons = () => {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <LeftPanel active={'Archive'} />
-      <div className={styles.main}>
-        <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
-          <h3>Занятия в архиве</h3>
-          <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
-          <table>
-            <thead>
-              <tr>
-                <th className={styles.status}>
-                  Статус
-                </th>
-                <th className={styles.info}>
-                  Занятия
-                </th>
-                <th className={styles.price}>
-                  Цена
-                </th>
-                <th className={styles.actions}>
-                  Действия
-                </th>
-                <th></th>
-              </tr>
-            </thead>
-            <div className={styles.scroll}>
-              <tbody>
-                {showArchive}
-              </tbody>
-            </div>
-          </table>
-        </Sheet>
-      </div>
+    <div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div className={styles.page}>
+          <LeftPanel active={'Archive'} />
+          <div className={styles.main}>
+            <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
+              <h3>Занятия в архиве</h3>
+              <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
+              <table>
+                <thead>
+                  <tr>
+                    <th className={styles.status}>
+                      Статус
+                    </th>
+                    <th className={styles.info}>
+                      Занятия
+                    </th>
+                    <th className={styles.price}>
+                      Цена
+                    </th>
+                    <th className={styles.actions}>
+                      Действия
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <div className={styles.scroll}>
+                  <tbody>
+                    {showArchive}
+                  </tbody>
+                </div>
+              </table>
+            </Sheet>
+          </div></div>}
     </div>
   )
 };

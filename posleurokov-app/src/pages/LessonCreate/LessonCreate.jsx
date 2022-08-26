@@ -8,7 +8,7 @@ import { axiosAPI } from "plugins/axios";
 const LessonCreate = () => {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [city, setCity] = useState("Гомель");
   const [sex, setSex] = useState("Любой");
@@ -138,6 +138,7 @@ const LessonCreate = () => {
   const getCategories = async () => {
     const categories = await axiosAPI.getCategoriesList();
     setCategories(categories);
+    setLoading(false);
   };
 
   const getCities = async () => {
@@ -194,13 +195,14 @@ const LessonCreate = () => {
         sex: sexText,
       };
     });
-
-    setLoading(false);
   };
 
   useEffect(() => {
     getCities();
     getCategories();
+  }, [])
+
+  useEffect(() => {
     setAgeField();
     setSexField();
   }, [city, startAge, endAge, sex]);
@@ -208,7 +210,7 @@ const LessonCreate = () => {
   return (
     <section className={styles.container}>
       {loading ? (
-        <Loader />
+        <Loader marginLeft={"42vw"} />
       ) : (
         <div>
           <Helmet title="Создать секцию" />

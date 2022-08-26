@@ -1,6 +1,6 @@
 import styles from "./Profile.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, LeftPanel } from "components";
+import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
 
 const Profile = () => {
@@ -10,6 +10,7 @@ const Profile = () => {
   const [showPanel, setShowPanel] = useState("self");
   const [cities, setCities] = useState([]);
   const [userId, setUserId] = useState(0);
+  const [loading, setLoading] = useState(false)
 
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
@@ -57,6 +58,7 @@ const Profile = () => {
 
   const getUser = async () => {
     if (localStorage.getItem("token")) {
+      setLoading(true)
       let result = await axiosAPI.getProfile();
       setUser(result.user);
       setOrganization(result.organizer);
@@ -68,6 +70,7 @@ const Profile = () => {
   const getCities = async () => {
     let result = await axiosAPI.getCities();
     setCities(result.cities);
+    setLoading(false)
   };
 
   const setUser = (user) => {
@@ -174,238 +177,242 @@ const Profile = () => {
     };
 
     let result = await axiosAPI.updateOrganization(organizer);
-    setOrganization(result);
+    setOrganization(result.organization);
+    localStorage.setItem("token", result.token);
   };
 
   return (
-    <div className={styles.page}>
-      <LeftPanel active={"Profile"} />
-      <div className={styles.main}>
-        <Sheet width={mainWidth} height={"auto"} padding={"7px 5px"}>
-          <div className={styles.nav}>
-            <button
-              onClick={() => {
-                changePanel("self");
-              }}
-              className={[
-                styles.button,
-                selfActive ? styles.active : "",
-                styles.selfTab,
-              ].join(" ")}
-            >
-              Личный профиль
-            </button>
-            <button
-              onClick={() => {
-                changePanel("org");
-              }}
-              className={[styles.button, organActive ? styles.active : ""].join(
-                " "
-              )}
-            >
-              Профиль организатора занятий
-            </button>
-          </div>
-          {showPanel == "self" ? (
-            <div className={styles.form}>
-              <div>
-                Данные доступны только администрации сервиса для связи с вами.
-              </div>
-              <div>
-                <div>
-                  Имя<sup>*</sup>
-                </div>
-                <input
-                  key={"name"}
-                  type={"text"}
-                  value={firstName}
-                  onChange={(e) => {
-                    setFirstName(e.target.value);
+    <div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div className={styles.page}>
+          <LeftPanel active={"Profile"} />
+          <div className={styles.main}>
+            <Sheet width={mainWidth} height={"auto"} padding={"7px 5px"}>
+              <div className={styles.nav}>
+                <button
+                  onClick={() => {
+                    changePanel("self");
                   }}
-                  placeholder={"Введите имя"}
-                  maxLength={100}
-                  minLength={1}
-                ></input>
-              </div>
-              <div>
-                <div>
-                  Фамилия<sup>*</sup>
-                </div>
-                <input
-                  type={"text"}
-                  value={surname}
-                  onChange={(e) => {
-                    setSurname(e.target.value);
-                  }}
-                  placeholder={"Введите фамилию"}
-                  maxLength={100}
-                  minLength={1}
-                ></input>
-              </div>
-              <div>
-                <div>
-                  Email<sup>*</sup>
-                </div>
-                <input
-                  type={"email"}
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  placeholder={"petr@example.com"}
-                ></input>
-              </div>
-              <div>
-                <div>Адрес</div>
-                <input
-                  type={"text"}
-                  value={address}
-                  onChange={(e) => {
-                    setAddress(e.target.value);
-                  }}
-                  maxLength={200}
-                ></input>
-              </div>
-              <div>
-                <div>Телефон</div>
-                <input
-                  type={"text"}
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                  }}
-                  placeholder={"+375441234567"}
-                ></input>
-              </div>
-              <div className={styles.buttons}>
-                <button onClick={saveUser}>Сохранить</button>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.form}>
-              <div>
-                <div>
-                  Организатор<sup>*</sup>
-                </div>
-                <input
-                  type={"text"}
-                  value={orgName}
-                  onChange={(e) => {
-                    setOrgName(e.target.value);
-                  }}
-                  placeholder={
-                    "Название организации или фамилия, имя организатора"
-                  }
-                  maxLength={100}
-                  minLength={1}
-                ></input>
-              </div>
-              <div>
-                <div>Об организаторе</div>
-                <textarea
-                  value={orgInfo}
-                  onChange={(e) => {
-                    setOrgInfo(e.target.value);
-                  }}
-                ></textarea>
-              </div>
-              <div>
-                <div>
-                  Email<sup>*</sup>
-                </div>
-                <input
-                  type={"email"}
-                  value={orgEmail}
-                  onChange={(e) => {
-                    setOrgEmail(e.target.value);
-                  }}
-                  placeholder={"petr@example.com"}
-                ></input>
-              </div>
-              <div>
-                <div>
-                  Город<sup>*</sup>
-                </div>
-                <select
-                  value={city}
-                  onChange={(e) => {
-                    setCity(e.target.value);
-                  }}
+                  className={[
+                    styles.button,
+                    selfActive ? styles.active : "",
+                    styles.selfTab,
+                  ].join(" ")}
                 >
-                  {citiesSelect}
-                </select>
+                  Личный профиль
+                </button>
+                <button
+                  onClick={() => {
+                    changePanel("org");
+                  }}
+                  className={[styles.button, organActive ? styles.active : ""].join(
+                    " "
+                  )}
+                >
+                  Профиль организатора занятий
+                </button>
               </div>
-              <div>
-                <div>
-                  Адрес<sup>*</sup>
+              {showPanel == "self" ? (
+                <div className={styles.form}>
+                  <div>
+                    Данные доступны только администрации сервиса для связи с вами.
+                  </div>
+                  <div>
+                    <div>
+                      Имя<sup>*</sup>
+                    </div>
+                    <input
+                      key={"name"}
+                      type={"text"}
+                      value={firstName}
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                      placeholder={"Введите имя"}
+                      maxLength={100}
+                      minLength={1}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>
+                      Фамилия<sup>*</sup>
+                    </div>
+                    <input
+                      type={"text"}
+                      value={surname}
+                      onChange={(e) => {
+                        setSurname(e.target.value);
+                      }}
+                      placeholder={"Введите фамилию"}
+                      maxLength={100}
+                      minLength={1}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>
+                      Email<sup>*</sup>
+                    </div>
+                    <input
+                      type={"email"}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      placeholder={"petr@example.com"}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>Адрес</div>
+                    <input
+                      type={"text"}
+                      value={address}
+                      onChange={(e) => {
+                        setAddress(e.target.value);
+                      }}
+                      maxLength={200}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>Телефон</div>
+                    <input
+                      type={"text"}
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                      }}
+                      placeholder={"+375441234567"}
+                    ></input>
+                  </div>
+                  <div className={styles.buttons}>
+                    <button onClick={saveUser}>Сохранить</button>
+                  </div>
                 </div>
-                <input
-                  type={"text"}
-                  value={orgAddress}
-                  onChange={(e) => {
-                    setOrgAddress(e.target.value);
-                  }}
-                  maxLength={200}
-                  minLength={1}
-                ></input>
-              </div>
-              <div>
-                <div>Контакт</div>
-                <input
-                  type={"text"}
-                  value={contactName}
-                  onChange={(e) => {
-                    setContactName(e.target.value);
-                  }}
-                  placeholder={"Контактное лицо для связи или приемная"}
-                  maxLength={200}
-                ></input>
-              </div>
-              <div>
-                <div>Телефоны</div>
-                <textarea
-                  value={orgPhones}
-                  onChange={(e) => {
-                    setOrgPhones(e.target.value);
-                  }}
-                  placeholder={"+375441234567"}
-                ></textarea>
-              </div>
-              <div>
-                <div>Сайты или группы</div>
-                <textarea
-                  value={orgSites}
-                  onChange={(e) => {
-                    setOrgSites(e.target.value);
-                  }}
-                  placeholder={"Ссылки на сайты или группы"}
-                ></textarea>
-              </div>
-              <div>
-                <div>Картинка</div>
-                <input
-                  className={styles.image}
-                  type={"file"}
-                  onChange={(e) => {
-                    convertImage(e.target.files[0]);
-                  }}
-                ></input>
-              </div>
-              <div>
-                <div></div>
-                <img
-                  className={styles.preview}
-                  src={orgImage}
-                  style={{ display: orgImage != "" ? "initial" : "none" }}
-                ></img>
-              </div>
-              <div className={styles.buttons}>
-                <button onClick={saveOrganization}>Сохранить</button>
-              </div>
-            </div>
-          )}
-        </Sheet>
-      </div>
+              ) : (
+                <div className={styles.form}>
+                  <div>
+                    <div>
+                      Организатор<sup>*</sup>
+                    </div>
+                    <input
+                      type={"text"}
+                      value={orgName}
+                      onChange={(e) => {
+                        setOrgName(e.target.value);
+                      }}
+                      placeholder={
+                        "Название организации или фамилия, имя организатора"
+                      }
+                      maxLength={100}
+                      minLength={1}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>Об организаторе</div>
+                    <textarea
+                      value={orgInfo}
+                      onChange={(e) => {
+                        setOrgInfo(e.target.value);
+                      }}
+                    ></textarea>
+                  </div>
+                  <div>
+                    <div>
+                      Email<sup>*</sup>
+                    </div>
+                    <input
+                      type={"email"}
+                      value={orgEmail}
+                      onChange={(e) => {
+                        setOrgEmail(e.target.value);
+                      }}
+                      placeholder={"petr@example.com"}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>
+                      Город<sup>*</sup>
+                    </div>
+                    <select
+                      value={city}
+                      onChange={(e) => {
+                        setCity(e.target.value);
+                      }}
+                    >
+                      {citiesSelect}
+                    </select>
+                  </div>
+                  <div>
+                    <div>
+                      Адрес<sup>*</sup>
+                    </div>
+                    <input
+                      type={"text"}
+                      value={orgAddress}
+                      onChange={(e) => {
+                        setOrgAddress(e.target.value);
+                      }}
+                      maxLength={200}
+                      minLength={1}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>Контакт</div>
+                    <input
+                      type={"text"}
+                      value={contactName}
+                      onChange={(e) => {
+                        setContactName(e.target.value);
+                      }}
+                      placeholder={"Контактное лицо для связи или приемная"}
+                      maxLength={200}
+                    ></input>
+                  </div>
+                  <div>
+                    <div>Телефоны</div>
+                    <textarea
+                      value={orgPhones}
+                      onChange={(e) => {
+                        setOrgPhones(e.target.value);
+                      }}
+                      placeholder={"+375441234567"}
+                    ></textarea>
+                  </div>
+                  <div>
+                    <div>Сайты или группы</div>
+                    <textarea
+                      value={orgSites}
+                      onChange={(e) => {
+                        setOrgSites(e.target.value);
+                      }}
+                      placeholder={"Ссылки на сайты или группы"}
+                    ></textarea>
+                  </div>
+                  <div>
+                    <div>Картинка</div>
+                    <input
+                      className={styles.image}
+                      type={"file"}
+                      onChange={(e) => {
+                        convertImage(e.target.files[0]);
+                      }}
+                    ></input>
+                  </div>
+                  <div>
+                    <div></div>
+                    <img
+                      className={styles.preview}
+                      src={orgImage}
+                      style={{ display: orgImage != "" ? "initial" : "none" }}
+                    ></img>
+                  </div>
+                  <div className={styles.buttons}>
+                    <button onClick={saveOrganization}>Сохранить</button>
+                  </div>
+                </div>
+              )}
+            </Sheet>
+          </div></div>}
     </div>
   );
 };

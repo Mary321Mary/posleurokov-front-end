@@ -1,5 +1,5 @@
 import {
-  Heading
+  Heading, Loader
 } from 'components';
 
 import styles from './Contacts.module.scss';
@@ -11,10 +11,13 @@ import email from 'assets/img/mail.png';
 const Contacts = () => {
   const [headingParams, setHeadingParams] = useState({});
   const [contacts, setContacts] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const getInfo = async () => {
+    setLoading(true)
     let result = await axiosAPI.getContacts()
     setContacts(result)
+    setLoading(false)
   }
 
   const StyleInfo = contacts.map((elem) => {
@@ -106,22 +109,25 @@ const Contacts = () => {
 
   return (
     <section className={styles.section}>
-      <Heading tag='h1'
-        margin={headingParams['margin']}
-        width={headingParams['width']}
-        height={headingParams['height']}
-        color={headingParams['color']}
-        font-size={headingParams['font-size']}
-        line-height={headingParams['line-height']}
-        font-style={headingParams['font-style']}
-        font-weight={headingParams['font-weight']}
-        font-family={headingParams['font-family']}
-        padding-top={'20px'}>
-        Контакты
-      </Heading>
-      <div>
-        {StyleInfo}
-      </div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div>
+          <Heading tag='h1'
+            margin={headingParams['margin']}
+            width={headingParams['width']}
+            height={headingParams['height']}
+            color={headingParams['color']}
+            font-size={headingParams['font-size']}
+            line-height={headingParams['line-height']}
+            font-style={headingParams['font-style']}
+            font-weight={headingParams['font-weight']}
+            font-family={headingParams['font-family']}
+            padding-top={'20px'}>
+            Контакты
+          </Heading>
+          <div>
+            {StyleInfo}
+          </div></div>}
     </section>
   );
 };

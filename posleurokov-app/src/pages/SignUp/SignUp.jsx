@@ -8,7 +8,7 @@ import { axiosAPI } from "plugins/axios";
 const SignUp = () => {
   const [user, setUser] = useState(() => {
     return {
-      name: "",
+      fio: "",
       surname: "",
       email: "",
       password: "",
@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const [error, setError] = useState(() => {
     return {
-      name: "",
+      fio: "",
       surname: "",
       email: "",
       password: "",
@@ -39,6 +39,7 @@ const SignUp = () => {
   const submitChackin = async (event) => {
     event.preventDefault();
     if (user.password === user.password2) {
+      user.fio += ' ' + user.surname
       const response = await axiosAPI.getSignUp(user);
       console.log(response);
       if (response.status === 400) {
@@ -64,10 +65,10 @@ const SignUp = () => {
             <form className={styles.form}>
               <Input
                 label="Имя"
-                name="name"
-                value={user.name}
+                name="fio"
+                value={user.fio}
                 onChange={changeInputRegister}
-                errorMessage={error.name}
+                errorMessage={error.fio}
               />
               <Input
                 label="Фамилия"

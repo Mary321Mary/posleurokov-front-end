@@ -1,12 +1,13 @@
 import styles from "./Subscriptions.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, LeftPanel } from "components";
+import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([]);
   const [mainWidth, setMainWidth] = useState('')
   const [searchString, setSearchString] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const getSizes = () => {
     let innerWidth = window.outerWidth;
@@ -63,17 +64,19 @@ const Subscriptions = () => {
 
   const getSubscriptions = async () => {
     if (localStorage.getItem('token')) {
+      setLoading(true)
       let result = await axiosAPI.getSubscriptions();
       setSubscriptions(result.subscriptions)
+      setLoading(false)
     }
     else {
       window.location.replace('/login')
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     getSizes();
-    await getSubscriptions()
+    getSubscriptions();
 
     function handleWindowResize() {
       getSizes();
@@ -87,33 +90,36 @@ const Subscriptions = () => {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <LeftPanel active={'Subscriptions'} />
-      <div className={styles.main}>
-        <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
-          <h3>Мои подписки</h3>
-          <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
-          <table>
-            <thead>
-              <tr>
-                <th className={styles.info}>
-                  Занятия
-                </th>
-                <th className={styles.price}>
-                  Цена
-                </th>
-                <th className={styles.actions}>
-                  Действия
-                </th></tr>
-            </thead>
-            <div className={styles.scroll}>
-              <tbody>
-                {showSubscriptions}
-              </tbody>
-            </div>
-          </table>
-        </Sheet>
-      </div>
+    <div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div className={styles.page}>
+          <LeftPanel active={'Subscriptions'} />
+          <div className={styles.main}>
+            <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
+              <h3>Мои подписки</h3>
+              <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
+              <table>
+                <thead>
+                  <tr>
+                    <th className={styles.info}>
+                      Занятия
+                    </th>
+                    <th className={styles.price}>
+                      Цена
+                    </th>
+                    <th className={styles.actions}>
+                      Действия
+                    </th></tr>
+                </thead>
+                <div className={styles.scroll}>
+                  <tbody>
+                    {showSubscriptions}
+                  </tbody>
+                </div>
+              </table>
+            </Sheet>
+          </div></div>}
     </div>
   )
 };
