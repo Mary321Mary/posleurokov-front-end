@@ -45,9 +45,9 @@ const LeftPanel = ({ active }) => {
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     getSizes()
-    await getCounts()
+    getCounts()
 
     function handleWindowResize() {
       getSizes();
