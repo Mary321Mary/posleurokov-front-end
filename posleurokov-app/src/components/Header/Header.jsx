@@ -139,7 +139,7 @@ const Header = () => {
               color="#5F6060"
               marginRight="10px"
             >
-              email
+              Мой Профиль
             </Link>
             /
             <Link
