@@ -120,7 +120,7 @@ const About = () => {
           padding-top={'20px'}>
           О проекте
         </Heading>
-        <img src={about}></img>
+        <img src={about} width={'800px'}></img>
         <div>
           {StyleInfo}
         </div>
