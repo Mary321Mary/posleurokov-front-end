@@ -2,7 +2,6 @@ import styles from "./LeftPanel.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet } from "components";
 import { axiosAPI } from "plugins/axios";
-import Cookies from 'universal-cookie';
 
 const LeftPanel = ({ active }) => {
   const [sheetWidth, setSheetWidth] = useState('');
@@ -36,10 +35,8 @@ const LeftPanel = ({ active }) => {
   }
 
   const getCounts = async () => {
-    let cookies = new Cookies();
-    let token = cookies.get('token');
-    if (token) {
-      let result = await axiosAPI.getProfileCounts(token);
+    if (localStorage.getItem('token')) {
+      let result = await axiosAPI.getProfileCounts();
       setActiveCount(result.active)
       setArchiveCount(result.archive)
     }
