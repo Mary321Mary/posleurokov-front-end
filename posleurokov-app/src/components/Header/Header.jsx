@@ -131,7 +131,7 @@ const Header = () => {
         ) : (
           <div>
             <Link
-              path="/"
+              path="/cabinet/profile"
               fontFamily="Roboto-Bold"
               fontWeight="700"
               fontSize="16px"
@@ -139,7 +139,7 @@ const Header = () => {
               color="#5F6060"
               marginRight="10px"
             >
-              email
+              Мой Профиль
             </Link>
             /
             <Link

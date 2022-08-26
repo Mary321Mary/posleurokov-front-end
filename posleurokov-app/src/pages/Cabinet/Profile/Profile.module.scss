@@ -1,0 +1,273 @@
+.page {
+  display: flex;
+}
+
+.nav {
+  border-bottom: 1px solid #F9FAFA;
+  display: flex;
+  background-color: #EEEFEF;
+
+  .button {
+    background-color: inherit;
+    border: 0px;
+    margin-bottom: -1px;
+    border-bottom: inherit;
+    color: #6D80D8;
+  }
+
+  .active {
+    background-color: white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid #F9FAFA;
+    border-left: 1px solid #F9FAFA;
+
+    &.selfTab {
+      border-left: none;
+    }
+  }
+}
+
+.form {
+  div {
+
+    input,
+    textarea,
+    select {
+      margin: auto 0;
+      border-radius: 5px;
+    }
+
+    textarea {
+      vertical-align: middle;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    div {
+      display: inline-block;
+      text-align: right;
+    }
+
+    sup {
+      color: red;
+    }
+
+    .image {
+      margin: auto 0;
+      background-color: none;
+    }
+  }
+
+  .buttons {
+    button {
+      background: linear-gradient(172.26deg, rgba(80, 79, 198, 0.83) -78.2%, #6EB0EC 94.02%);
+      border: 1.5px solid #FFFFFF;
+      border-radius: 8px;
+      color: white;
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .page {
+    margin-left: 19vw;
+  }
+
+  .main {
+    margin-left: 70px;
+  }
+
+  .nav {
+    .button {
+      padding: 15px;
+    }
+  }
+
+  .form {
+    padding: 15px;
+    font-size: 13px;
+    line-height: 21px;
+
+    div {
+      margin-bottom: -10px;
+      padding: 15px;
+
+      input,
+      textarea,
+      select {
+        width: 50%;
+      }
+
+      input {
+        height: 20px;
+      }
+
+      textarea {
+        height: 40px;
+      }
+
+      div {
+        width: 23%;
+        font-size: 15px;
+      }
+
+      select {
+        height: 30px;
+      }
+
+      .image {
+        height: 40px;
+      }
+
+      .preview {
+        max-width: 400px;
+        height: 200px;
+      }
+    }
+
+    .buttons {
+      padding-left: 27.5%;
+
+      button {
+        padding: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 700px) {
+  .page {
+    margin-left: 7vw;
+  }
+
+  .main {
+    margin-left: 30px;
+  }
+
+  .nav {
+    .button {
+      padding: 10px;
+    }
+  }
+
+  .form {
+    padding: 10px;
+    font-size: 13px;
+    line-height: 21px;
+
+    div {
+      margin-bottom: -10px;
+      padding: 12px;
+
+      input,
+      textarea,
+      select {
+        width: 40%;
+      }
+
+      input {
+        height: 17px;
+      }
+
+      textarea {
+        height: 30px;
+      }
+
+      div {
+        width: 25%;
+        font-size: 15px;
+      }
+
+      select {
+        height: 25px;
+      }
+
+      .image {
+        height: 25px;
+      }
+
+      .preview {
+        max-width: 290px;
+        height: 110px;
+      }
+    }
+
+    .buttons {
+      padding-left: 30%;
+
+      button {
+        padding: 12px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .page {
+    margin: 0 auto;
+    display: table;
+  }
+
+  .main {
+    float: left;
+  }
+
+  .nav {
+    .button {
+      padding: 7px;
+      width: 50%;
+    }
+  }
+
+  .form {
+    padding: 15px;
+    font-size: 16px;
+    line-height: 21px;
+
+    div {
+      margin-bottom: -10px;
+      padding: 15px;
+
+      input,
+      textarea,
+      select {
+        width: 50%;
+      }
+
+      input {
+        height: 20px;
+      }
+
+      textarea {
+        height: 40px;
+      }
+
+      div {
+        width: 27%;
+        font-size: 15px;
+      }
+
+      select {
+        height: 30px;
+      }
+
+      .image {
+        height: 30px;
+      }
+
+      .preview {
+        max-width: 200px;
+        height: 70px;
+      }
+    }
+
+    .buttons {
+      padding-left: 35%;
+
+      button {
+        padding: 15px;
+      }
+    }
+  }
+}
