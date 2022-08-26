@@ -5,3 +5,4 @@ export * from "./LessonPage/LessonPage";
 export * from "./LessonCreate/LessonCreate";
 export * from "./SignUp/SignUp";
 export * from "./Login/Login";
+export * from "./LessonUpdate/LessonUpdate";

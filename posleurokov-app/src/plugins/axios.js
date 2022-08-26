@@ -14,6 +14,11 @@ import {
   SIMILARS,
   SIGNUP,
   LOGIN,
+  LESSON_DATA,
+  LESSON_UPDATE,
+  LESSON_DELETE,
+  ADD_PICTURE,
+  DELETE_PICTURE,
 } from "./endpoints";
 
 const instance = axios.create({
@@ -177,6 +182,71 @@ export const axiosAPI = {
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
+    }
+  },
+  async getLessonData(id) {
+    try {
+      const response = await instance.get(LESSON_DATA(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLessonUpdate(id, param) {
+    try {
+      const response = await instance.put(LESSON_UPDATE(id), param, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getLessonDelete(id) {
+    try {
+      const response = await instance.delete(LESSON_DELETE(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getPictureAdd(id, param) {
+    try {
+      const response = await instance.post(ADD_PICTURE(id), param, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getPictureDelete(id) {
+    try {
+      const response = await instance.delete(DELETE_PICTURE(id), {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response;
     }
   },
 };

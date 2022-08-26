@@ -1,11 +1,14 @@
 import { Heading, Input, Button, Select, Checkbox } from "components";
 import Helmet from "react-helmet";
 
-import styles from "./LessonCreate.module.scss";
+import styles from "./LessonUpdate.module.scss";
 import { React, useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
+import { useParams } from "react-router-dom";
 
-const LessonCreate = () => {
+const LessonUpdate = () => {
+  const { id } = useParams();
+
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
 
@@ -13,6 +16,7 @@ const LessonCreate = () => {
   const [sex, setSex] = useState("Любой");
   const [startAge, setStartAge] = useState("");
   const [endAge, setEndAge] = useState("");
+  const [file, setFile] = useState("");
   const [Images, setImages] = useState([]);
   const [course, setCourse] = useState(() => {
     return {
@@ -63,7 +67,6 @@ const LessonCreate = () => {
       isInNotSummer: "",
       isOnline: "",
       isFirstFree: "",
-      Images: "",
       meneger: "",
     };
   });
@@ -84,6 +87,13 @@ const LessonCreate = () => {
     };
   };
 
+  const changeImageRegister = (event) => {
+    event.persist();
+    getBase64(event.target.files[0], (result) => {
+      setFile(result);
+    });
+  };
+
   const changeInputRegister = (event) => {
     event.persist();
     setCourse((prev) => {
@@ -91,13 +101,6 @@ const LessonCreate = () => {
         ...prev,
         [event.target.name]: event.target.value,
       };
-    });
-  };
-
-  const changeImageRegister = (event) => {
-    event.persist();
-    getBase64(event.target.files[0], (result) => {
-      setImages([...Images, result]);
     });
   };
 
@@ -114,23 +117,61 @@ const LessonCreate = () => {
     });
   };
 
-  const submitChackin = async (event) => {
+  const submitUpdate = async (event) => {
     event.preventDefault();
-    const response = await axiosAPI.getLessonCreate({
+    const response = await axiosAPI.getLessonUpdate(id, {
       lesson: course,
-      images: Images,
     });
     if (response.status !== 200) {
       setError(response.data);
       setError((prev) => {
         return {
           ...prev,
-          meneger:
-            "Проверьте входные данные и убедитесь, что создана организация",
+          meneger: "Проверьте входные данные",
+        };
+      });
+    } else {
+      window.location.reload();
+    }
+  };
+
+  const submitDelete = async (event) => {
+    event.preventDefault();
+    const response = await axiosAPI.getLessonDelete(id, {
+      lesson: course,
+    });
+    if (response.status !== 200) {
+      setError(response.data);
+      setError((prev) => {
+        return {
+          ...prev,
+          meneger: "Проверьте входные данные",
         };
       });
     } else {
       window.location.assign("/");
+    }
+  };
+
+  const submitAddPicture = async (event) => {
+    event.preventDefault();
+    console.log(file);
+    const response = await axiosAPI.getPictureAdd(id, {
+      image: file,
+    });
+    if (response.status !== 200) {
+      setError(response.data);
+    } else {
+      window.location.reload();
+    }
+  };
+
+  const submitDeletePicture = async (id) => {
+    const response = await axiosAPI.getPictureDelete(id);
+    if (response.status !== 200) {
+      setError(response.data);
+    } else {
+      window.location.reload();
     }
   };
 
@@ -141,7 +182,7 @@ const LessonCreate = () => {
 
   const getCities = async () => {
     const result = await axiosAPI.getCities();
-    setCities(result.cities || []);
+    setCities(result.cities);
   };
 
   const setCityField = (item) => {
@@ -161,28 +202,34 @@ const LessonCreate = () => {
     });
   };
 
-  const setAgeField = () => {
-    if (startAge !== "") {
+  const setStartAgeField = (value) => {
+    setStartAge(value);
+    if (value !== "") {
       setCourse((prev) => {
         return {
           ...prev,
-          startAge: startAge,
-        };
-      });
-    }
-    if (endAge !== "") {
-      setCourse((prev) => {
-        return {
-          ...prev,
-          endAge: endAge,
+          startAge: value,
         };
       });
     }
   };
 
-  const setSexField = () => {
+  const setEndAgeField = (value) => {
+    setEndAge(value);
+    if (value !== "") {
+      setCourse((prev) => {
+        return {
+          ...prev,
+          endAge: value,
+        };
+      });
+    }
+  };
+
+  const setSexField = (value) => {
+    setSex(value);
     let sexText = "any";
-    switch (sex) {
+    switch (value) {
       case "Мужской": {
         sexText = "male";
         break;
@@ -200,18 +247,40 @@ const LessonCreate = () => {
     });
   };
 
+  const getLesson = async () => {
+    let result = await axiosAPI.getLessonData(id);
+    if (result.lesson.price === null) {
+      result.lesson.price = "";
+    }
+    setCourse(result.lesson);
+    setImages(result.images);
+    if (result.lesson.startAge !== null) {
+      setStartAge(result.lesson.startAge);
+    }
+    if (result.lesson.endAge !== null) {
+      setEndAge(result.lesson.endAge);
+    }
+    let value = "Гомель";
+    for (let i = 0; i < cities.length; i++) {
+      if (cities[i].id === result.lesson.city) {
+        value = cities[i].name;
+        break;
+      }
+    }
+    setCityField(value);
+  };
+
   useEffect(() => {
-    getCities();
     getCategories();
-    setAgeField();
-    setSexField();
-  }, [city, startAge, endAge, sex]);
+    getCities();
+    getLesson();
+  }, []);
 
   return (
     <section className={styles.container}>
-      <Helmet title="Создать секцию" />
+      <Helmet title="Обновить секцию" />
       <Heading tag="h1" center>
-        Создать секцию
+        Обновить секцию
       </Heading>
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
@@ -298,7 +367,7 @@ const LessonCreate = () => {
               name="startAge"
               value={startAge}
               onChange={(event) => {
-                setStartAge(event.target.value);
+                setStartAgeField(event.target.value);
               }}
               errorMessage={error.startAge}
             />
@@ -310,7 +379,7 @@ const LessonCreate = () => {
               name="endAge"
               value={endAge}
               onChange={(event) => {
-                setEndAge(event.target.value);
+                setEndAgeField(event.target.value);
               }}
               errorMessage={error.endAge}
             />
@@ -331,7 +400,7 @@ const LessonCreate = () => {
                   <img src="\images\Gender.png" height="25px" alt="Пол" />
                 }
                 onChange={(value) => {
-                  setSex(value);
+                  setSexField(value);
                 }}
               />
             </div>
@@ -486,22 +555,42 @@ const LessonCreate = () => {
               }}
             ></Checkbox>
             <div className={styles["gorisonlal-line"]}></div>
-            <Input
-              type="file"
-              multiple
-              label="Картинки:"
-              name="Images"
-              onChange={changeImageRegister}
-              errorMessage={error.Images}
-            />
-            <div className={styles["gorisonlal-line"]}></div>
-            <Button onClick={submitChackin}>Создать секцию</Button>
+            <div className={styles.picture}>
+              <Button onClick={submitUpdate}>Обновить секцию</Button>
+              <Button onClick={submitDelete}>Удалить секцию</Button>
+            </div>
             {error.meneger !== "" ? <span>{error.meneger}</span> : null}
           </form>
+        </div>
+        <div className={styles["section-categories"]}>
+          <Input
+            type="file"
+            label="Картинки:"
+            name="Images"
+            onChange={changeImageRegister}
+            errorMessage={error.Images}
+          />
+          <Button onClick={submitAddPicture}>Добавить картинку</Button>
+          <div className={styles["gorisonlal-line"]}></div>
+          {Images.map((image) => {
+            return (
+              <div className={styles.picture} key={image.id}>
+                <img
+                  src={process.env.REACT_APP_BASE_URL + image.image}
+                  width="70px"
+                  alt="Картинка"
+                ></img>
+                <Button onClick={() => submitDeletePicture(image.id)}>
+                  Удалить картинку
+                </Button>
+                <div className={styles["gorisonlal-line"]}></div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-export { LessonCreate };
+export { LessonUpdate };

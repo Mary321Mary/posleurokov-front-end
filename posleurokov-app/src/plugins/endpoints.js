@@ -12,3 +12,8 @@ export const CATEGORIES_LIST = "/api/common-data/categories/";
 export const SIMILARS = (id) => `/api/lesson/${id}/`;
 export const SIGNUP = "/api/registration/";
 export const LOGIN = "/api/login/";
+export const LESSON_DATA = (id) => `/api/card/lesson/${id}/data/`;
+export const LESSON_UPDATE = (id) => `/api/card/lesson/${id}/update/`;
+export const LESSON_DELETE = (id) => `/api/card/lesson/${id}/`;
+export const ADD_PICTURE = (id) => `/api/card/lesson/${id}/picture/`;
+export const DELETE_PICTURE = (id) => `/api/card/lesson/picture/${id}/`;

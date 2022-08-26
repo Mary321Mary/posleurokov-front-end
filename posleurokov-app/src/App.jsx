@@ -8,6 +8,7 @@ import {
   LessonCreate,
   SignUp,
   Login,
+  LessonUpdate,
 } from "./pages";
 import Helmet from "react-helmet";
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
           <Route path="/lesson/create" element={<LessonCreate />} />
+          <Route path="/lesson/update/:id" element={<LessonUpdate />} />
         </Route>
         <Route path="/" element={<LoginLayout />}>
           <Route path="/signup" element={<SignUp />} />
