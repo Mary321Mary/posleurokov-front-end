@@ -7,6 +7,7 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  ADDINFO
 } from "./endpoints";
 
 const instance = axios.create({
@@ -89,6 +90,42 @@ export const axiosAPI = {
   async getLessonOrganization(id) {
     try {
       const response = await instance.get(LESSON(id) + "/organization");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getAbout() {
+    try {
+      const response = await instance.get(ADDINFO + "about");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getTerms() {
+    try {
+      const response = await instance.get(ADDINFO + "terms");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getFAQ() {
+    try {
+      const response = await instance.get(ADDINFO + "faq");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getContacts() {
+    try {
+      const response = await instance.get(ADDINFO + "contacts");
       return response.data;
     } catch (error) {
       console.error(error);

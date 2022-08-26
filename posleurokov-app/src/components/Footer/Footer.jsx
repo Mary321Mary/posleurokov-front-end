@@ -3,33 +3,33 @@ import { Link, Button } from 'components';
 const Footer = () => {
   const navItems = [
     {
-      path: '#',
+      path: '/',
       text: 'Главная',
     },
     {
-      path: '#',
+      path: '/about',
       text: 'О проекте',
     },
     {
-      path: '#',
+      path: '/terms',
       text: 'Условия',
     },
     {
-      path: '#',
+      path: '/contacts',
       text: 'Контакты',
     },
     {
-      path: '/qwe/qasd',
+      path: '/faq',
       text: 'Вопросы и ответы',
     },
   ];
 
   const nav = navItems.map((item, i) => (
-      <li key={item.text} className={styles['nav__item']}>
-        <Link path={item.path}>{item.text}</Link>
-        {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
-      </li>
-    ));
+    <li key={item.text} className={styles['nav__item']}>
+      <Link path={item.path}>{item.text}</Link>
+      {i < navItems.length - 1 && <div className={styles['vertical-line']} />}
+    </li>
+  ));
 
   return (
     <section className={styles.container}>
