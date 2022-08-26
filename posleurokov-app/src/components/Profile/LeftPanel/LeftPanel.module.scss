@@ -1,0 +1,136 @@
+@import 'src/assets/styles/_variables.scss';
+
+.name {
+  border: 0;
+  background-color: transparent;
+  font-weight: 400;
+  width: 100%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.button {
+  transition: background-color .5s ease-in-out, color .5s ease-in-out;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #6D80D8;
+    color: white;
+  }
+}
+
+.button.active {
+  background-color: #6D80D8;
+  color: white;
+}
+
+.section {
+  border-bottom: 1px solid #EEEFEF;
+}
+
+.additional {
+  border: 0;
+  background-color: transparent;
+  font-weight: 400;
+  width: 90%;
+  text-align: left;
+}
+
+.number {
+  display: inline-block;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  color: white;
+  background-color: #9E9E9E;
+  border-radius: 50%;
+}
+
+@media only screen and (min-width: 1025px) {
+  .name {
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .section {
+    padding-bottom: 25px;
+    padding-top: 10px;
+  }
+
+  .additional {
+    font-size: 17px;
+    line-height: 23px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+  }
+
+  .number {
+    margin-left: 6px;
+
+    font-size: 12px;
+    line-height: 14px;
+
+    width: 17px;
+    height: 15px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 700px) {
+  .name {
+    font-size: 16px;
+    line-height: 31px;
+  }
+
+  .section {
+    padding-bottom: 15px;
+    padding-top: 5px;
+  }
+
+  .additional {
+    font-size: 13px;
+    line-height: 17px;
+    margin-left: 4px;
+    padding-bottom: 3px;
+  }
+
+  .number {
+    margin-left: 2px;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    width: 15px;
+    height: 13px;
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .name {
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .section {
+    padding-bottom: 25px;
+    padding-top: 10px;
+  }
+
+  .additional {
+    font-size: 17px;
+    line-height: 23px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+  }
+
+  .number {
+    margin-left: 6px;
+
+    font-size: 12px;
+    line-height: 14px;
+
+    width: 17px;
+    height: 15px;
+  }
+}

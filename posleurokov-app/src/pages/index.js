@@ -6,3 +6,7 @@ export * from './About/About';
 export * from './Terms/Terms';
 export * from './FAQ/FAQ';
 export * from './Contacts/Contacts';
+export * from "./LessonCreate/LessonCreate";
+export * from "./SignUp/SignUp";
+export * from "./Login/Login";
+export * from './Cabinet';

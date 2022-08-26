@@ -1,6 +1,6 @@
 import styles from "./Course.module.scss";
-import { Online } from "components";
-import randomLesson from "assets/img/randomLesson.png";
+import { Online, Link } from "components";
+import randomLesson from "assets/img/img.png";
 import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
@@ -10,9 +10,18 @@ const Course = ({ list, online, ...rest }) => {
     return (
       <div key={elem.lesson.name}>
         <div className={styles.course}>
-          <div className={styles.label}>{elem.lesson.name}</div>
+          <Link path={`/lesson/${elem.lesson.id}`}>
+            <div className={styles.label}>{elem.lesson.name}</div>
+          </Link>
           <div className={styles.content}>
-            <img src={randomLesson} alt="курс" />
+            {elem.image !== null ? (
+              <img
+                src={process.env.REACT_APP_BASE_URL + elem.image.image}
+                alt="Курс"
+              />
+            ) : (
+              <img src={randomLesson} alt="Курс" />
+            )}
             <div className={styles.info}>{elem.lesson.info}</div>
             <div className={styles.addition}>
               <div className={styles.block}>
@@ -39,7 +48,7 @@ const Course = ({ list, online, ...rest }) => {
                 <div>{elem.lesson.price} руб.</div>
                 <div>{elem.lesson.additionalPriceInfo}</div>
               </div>
-              {elem.lesson.hasReseption ? (
+              {elem.lesson.hasReception ? (
                 <div className={styles.open}>Прием: идет</div>
               ) : (
                 <div className={styles.close}>Прием: закрыт</div>
@@ -68,7 +77,7 @@ const Course = ({ list, online, ...rest }) => {
           </div>
           <div className={styles.tablet}>
             <div>
-              {elem.lesson.hasReseption ? (
+              {elem.lesson.hasReception ? (
                 <div className={styles.open}>Прием: идет</div>
               ) : (
                 <div className={styles.close}>Прием: закрыт</div>

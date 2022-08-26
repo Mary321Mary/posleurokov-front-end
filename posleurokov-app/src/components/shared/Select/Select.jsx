@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styles from './Select.module.scss';
-import { Checkbox } from 'components';
+import React, { useState } from "react";
+import styles from "./Select.module.scss";
+import { Checkbox } from "components";
 
 const Select = ({
   placeholder = null,
@@ -10,6 +10,7 @@ const Select = ({
   prepend = null,
   checkbox = false,
   onChange,
+  zIndex,
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
@@ -34,27 +35,28 @@ const Select = ({
 
   return (
     <div
-      style={{ ...rest }}
-      className={`${styles['select']} ${
-        showOptionList ? styles['select--active'] : ''
+      className={`${styles["select"]} ${
+        showOptionList ? styles["select--active"] : ""
       }`}
+      style={{ zIndex: zIndex }}
     >
       <div
-        className={styles['select__box']}
+        className={styles["select__box"]}
+        style={{ ...rest }}
         onClick={() => setShowOptionList(!showOptionList)}
       >
         {append && <div className={styles.append}>{append}</div>}
-        <span className={styles['box__text']}>
+        <span className={styles["box__text"]}>
           {checkbox ? placeholder : value || placeholder}
         </span>
         {prepend && <div className={styles.prepend}>{prepend}</div>}
       </div>
       {showOptionList && (
-        <ul className={styles['select__options']}>
+        <ul className={styles["select__options"]}>
           {options.map((option, i) => {
             return (
               <li
-                className={styles['option']}
+                className={styles["option"]}
                 key={`option-${option.value}-${i}`}
                 data-value={option.value}
                 onClick={
@@ -76,15 +78,6 @@ const Select = ({
         </ul>
       )}
     </div>
-    // <select className={styles.select} value={value} onChange={onChange}>
-    //   {options.map((option, index) => {
-    //     return (
-    //       <option value={option.value} key={option.value + index}>
-    //         {option.text}
-    //       </option>
-    //     );
-    //   })}
-    // </select>
   );
 };
 

@@ -46,6 +46,8 @@
   @media only screen and (min-width: 1025px) {
     margin-left: 52px;
     margin-right: 55px;
+    width: 787px;
+    padding: 0 110px 0 0;
 
     img {
       width: 787px;
@@ -54,11 +56,13 @@
   }
 
   @media only screen and (max-width: 1024px) and (min-width: 700px) {
-    margin-left: 25px;
+    margin-left: 23px;
     margin-right: 31.6px;
+    width: 630px;
+    padding: 0 110px 0 0;
 
     img {
-      width: 660px;
+      width: 630px;
       height: 360px;
     }
   }
@@ -66,6 +70,8 @@
   @media only screen and (max-width: 699px) {
     margin-left: 14px;
     margin-right: 10px;
+    width: 263px;
+    padding: 0 50px 0 0;
 
     img {
       width: 263px;
