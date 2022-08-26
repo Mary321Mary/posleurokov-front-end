@@ -8,6 +8,7 @@ import {
   ADDITIONAL,
   POPULARS,
   LESSON,
+  ADDINFO,
   COUNT_CATEGORIES,
   LESSON_CREATE,
   CATEGORIES_LIST,
@@ -94,6 +95,15 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getAbout() {
+    try {
+      const response = await instance.get(ADDINFO + "about");
+	  return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
   async getProfile() {
     try {
       const response = await instance.get(PROFILE + '/profile',
@@ -108,12 +118,30 @@ export const axiosAPI = {
       return "Ошибка сервера";
     }
   },
+  async getTerms() {
+    try {
+      const response = await instance.get(ADDINFO + "terms");
+	  return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
   async getCountCategories(city, category) {
     try {
       const response = await instance.get(
         COUNT_CATEGORIES(city, category) + "/counts/"
       );
       return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getFAQ() {
+    try {
+      const response = await instance.get(ADDINFO + "faq");
+	  return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
@@ -180,6 +208,15 @@ export const axiosAPI = {
           }
         });
       return response.data;
+    } catch (error) {
+      console.error(error);
+      return "Ошибка сервера";
+    }
+  },
+  async getContacts() {
+    try {
+      const response = await instance.get(ADDINFO + "contacts");
+	  return response.data;
     } catch (error) {
       console.error(error);
       return "Ошибка сервера";
