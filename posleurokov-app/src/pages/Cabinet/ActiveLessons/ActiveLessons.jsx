@@ -1,12 +1,13 @@
 import styles from "./ActiveLessons.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, LeftPanel } from "components";
+import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
 
 const ActiveLessons = () => {
   const [active, setActive] = useState([]);
   const [mainWidth, setMainWidth] = useState('')
   const [searchString, setSearchString] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const getSizes = () => {
     let innerWidth = window.outerWidth;
@@ -66,17 +67,19 @@ const ActiveLessons = () => {
 
   const getActive = async () => {
     if (localStorage.getItem('token')) {
+      setLoading(true)
       let result = await axiosAPI.getActive();
       setActive(result.lessons)
+      setLoading(false)
     }
     else {
       window.location.replace('/login')
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     getSizes();
-    await getActive();
+    getActive();
 
     function handleWindowResize() {
       getSizes();
@@ -90,37 +93,41 @@ const ActiveLessons = () => {
   }, []);
 
   return (
-    <div className={styles.page}>
-      <LeftPanel active={'Active'} />
-      <div className={styles.main}>
-        <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
-          <h3>Активные занятия</h3>
-          <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
-          <table>
-            <thead>
-              <tr><th className={styles.status}>
-                Статус
-              </th>
-                <th className={styles.info}>
-                  Занятия
-                </th>
-                <th className={styles.price}>
-                  Цена
-                </th>
-                <th className={styles.actions}>
-                  Действия
-                </th>
-                <th></th>
-              </tr>
-            </thead>
-            <div className={styles.scroll}>
-              <tbody>
-                {showActive}
-              </tbody>
-            </div>
-          </table>
-        </Sheet>
-      </div>
+    <div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div className={styles.page}>
+          <LeftPanel active={'Active'} />
+          <div className={styles.main}>
+            <Sheet width={mainWidth} height={'auto'} padding={'7px 5px'}>
+              <h3>Активные занятия</h3>
+              <div className={styles.search}><div>Поиск</div><input type={'text'} value={searchString} onChange={(e) => setSearchString(e.target.value)}></input></div>
+              <table>
+                <thead>
+                  <tr><th className={styles.status}>
+                    Статус
+                  </th>
+                    <th className={styles.info}>
+                      Занятия
+                    </th>
+                    <th className={styles.price}>
+                      Цена
+                    </th>
+                    <th className={styles.actions}>
+                      Действия
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <div className={styles.scroll}>
+                  <tbody>
+                    {showActive}
+                  </tbody>
+                </div>
+              </table>
+            </Sheet>
+          </div>
+        </div>}
     </div>
   )
 };

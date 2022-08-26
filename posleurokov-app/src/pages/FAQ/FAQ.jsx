@@ -1,6 +1,6 @@
 import {
   Heading,
-  Sheet
+  Loader
 } from 'components';
 
 import styles from './FAQ.module.scss';
@@ -10,10 +10,13 @@ import { axiosAPI } from 'plugins/axios';
 const FAQ = () => {
   const [headingParams, setHeadingParams] = useState({});
   const [pairs, setPairs] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const getInfo = async () => {
+    setLoading(true)
     let result = await axiosAPI.getFAQ()
     setData(result)
+    setLoading(false)
   }
 
   const setData = (data) => {
@@ -105,22 +108,25 @@ const FAQ = () => {
 
   return (
     <section className={styles.section}>
-      <Heading tag='h1'
-        margin={headingParams['margin']}
-        width={headingParams['width']}
-        height={headingParams['height']}
-        color={headingParams['color']}
-        font-size={headingParams['font-size']}
-        line-height={headingParams['line-height']}
-        font-style={headingParams['font-style']}
-        font-weight={headingParams['font-weight']}
-        font-family={headingParams['font-family']}
-        padding-top={'20px'}>
-        Вопросы и ответы
-      </Heading>
-      <div>
-        {StyleInfo}
-      </div>
+      {loading ?
+        <Loader marginLeft={"42vw"} /> :
+        <div>
+          <Heading tag='h1'
+            margin={headingParams['margin']}
+            width={headingParams['width']}
+            height={headingParams['height']}
+            color={headingParams['color']}
+            font-size={headingParams['font-size']}
+            line-height={headingParams['line-height']}
+            font-style={headingParams['font-style']}
+            font-weight={headingParams['font-weight']}
+            font-family={headingParams['font-family']}
+            padding-top={'20px'}>
+            Вопросы и ответы
+          </Heading>
+          <div>
+            {StyleInfo}
+          </div></div>}
     </section>
   );
 };
