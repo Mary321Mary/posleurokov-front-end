@@ -146,17 +146,11 @@ const LessonCreate = () => {
 
   const setCityField = (item) => {
     setCity(item);
-    let value = "1";
-    for (let i = 0; i < cities.length; i++) {
-      if (cities[i].name === item) {
-        value = cities[i].id;
-        break;
-      }
-    }
+    let value = cities.find((elem) => elem.name === item);
     setCourse((prev) => {
       return {
         ...prev,
-        city: value,
+        city: value.id,
       };
     });
   };

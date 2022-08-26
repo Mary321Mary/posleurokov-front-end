@@ -187,17 +187,11 @@ const LessonUpdate = () => {
 
   const setCityField = (item) => {
     setCity(item);
-    let value = "1";
-    for (let i = 0; i < cities.length; i++) {
-      if (cities[i].name === item) {
-        value = cities[i].id;
-        break;
-      }
-    }
+    let value = cities.find((elem) => elem.name === item);
     setCourse((prev) => {
       return {
         ...prev,
-        city: value,
+        city: value.id,
       };
     });
   };
@@ -260,14 +254,8 @@ const LessonUpdate = () => {
     if (result.lesson.endAge !== null) {
       setEndAge(result.lesson.endAge);
     }
-    let value = "Гомель";
-    for (let i = 0; i < cities.length; i++) {
-      if (cities[i].id === result.lesson.city) {
-        value = cities[i].name;
-        break;
-      }
-    }
-    setCityField(value);
+    let value = cities.find((elem) => elem.id === result.lesson.city);
+    setCity(value.name);
   };
 
   useEffect(() => {
