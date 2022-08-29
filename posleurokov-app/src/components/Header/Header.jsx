@@ -6,10 +6,12 @@ import galochka from "assets/img/galochka.png";
 import tel from "assets/img/teleph.svg";
 import menu from "assets/img/Menu.svg";
 import { axiosAPI } from "plugins/axios";
+import { useSelector } from "react-redux";
 import store from "redux/stores";
 
 const Header = () => {
   const [cities, setCities] = useState([]);
+  const city = useSelector((state) => state.city);
   const [cityTitle, setCityTitle] = useState("Гомель");
   const PHONE = "+375 29 113-67-97";
 
@@ -19,6 +21,12 @@ const Header = () => {
   };
 
   const setCity = (value) => {
+    if (value === "all") {
+      value = "Все города";
+    }
+    if (value === "online") {
+      value = "Online";
+    }
     setCityTitle(value);
     if (value === "Все города") {
       value = "all";
@@ -48,7 +56,8 @@ const Header = () => {
 
   useEffect(() => {
     getCities();
-  }, []);
+    setCity(city);
+  }, [city]);
 
   return (
     <>

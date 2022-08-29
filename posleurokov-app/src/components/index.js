@@ -14,3 +14,4 @@ export * from "./Similar/Similar";
 export * from "./RandomLessons/RandomLessons";
 export * from "./Profile";
 export * from "./FilterCatalogue/FilterCatalogue";
+export * from "./ListFilter/ListFilter";

@@ -23,6 +23,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  width: 300px;
+
   margin-bottom: 31px;
   margin-top: 52px;
 }
@@ -38,7 +40,6 @@
   text-transform: uppercase;
 
   /* dark_gray */
-
   color: #5f6060;
 }
 
@@ -53,7 +54,6 @@
   line-height: 19px;
 
   /* gray */
-
   color: #9e9e9e;
 }
 
@@ -100,7 +100,7 @@ galochkaRaskruta {
     text-transform: uppercase;
 
     /* blue */
-    color: #6d80d8;
+    color: $primary-color;
   }
 
   .number {

@@ -1,51 +1,49 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Link } from "components";
-import { Input } from "components/shared";
-import { ListFilter } from "components/ListFilter/ListFilter";
+import { Select, Link, Button, Input, ListFilter } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
+import search from "assets/icons/search.svg";
 
 function FilterCatalogue() {
-  const age = useSelector((state) => state.params.age);
-  const gender = useSelector((state) =>
-    state.params.sex === "any" ? ["female", "male"] : [state.params.sex]
-  );
-  const address = useSelector((state) => state.params.addr);
   const city = useSelector((state) => state.city);
+  const category = useSelector((state) => state.params.category);
 
-  const other = useSelector((state) => [
-    state.params.isInSummer === true ? "isInSummer" : "",
-    state.params.inNotSummer === true ? "inNotSummer" : "",
-    state.params.hasReception === true ? "hasReception" : "",
-  ]);
+  const [res, setCountCategories] = useState(null);
+  const [fields, setFields] = useState(() => {
+    return {
+      gender:
+        store.getState().params.sex === "any"
+          ? ["female", "male"]
+          : [store.getState().params.sex],
+      age: store.getState().params.age,
+      address: store.getState().params.addr,
+      other: [
+        store.getState().params.isInSummer === true ? "isInSummer" : "",
+        store.getState().params.inNotSummer === true ? "inNotSummer" : "",
+        store.getState().params.hasReception === true ? "hasReception" : "",
+      ],
+    };
+  });
 
-  const setGender = (value) => {
-    let sex = "any";
-    if (value.length === 1) {
-      sex = value[0];
-    }
-    store.dispatch({ type: "ChangeGender", amount: sex });
-  };
-
-  const setAge = (value) => {
-    store.dispatch({ type: "ChangeAge", amount: value });
-  };
-
-  const setAddress = (value) => {
-    store.dispatch({ type: "ChangeAddress", amount: value });
-  };
-  const SetCategory = (event) => {
+  const setCategory = (event) => {
     store.dispatch({ type: "SetCategory", amount: event });
   };
 
-  const setOther = (value) => {
+  const setParams = () => {
+    let sex = "any";
+    if (fields.gender.length === 1) {
+      sex = fields.gender[0];
+    }
+    store.dispatch({ type: "ChangeGender", amount: sex });
+    store.dispatch({ type: "ChangeAge", amount: fields.age });
+    store.dispatch({ type: "ChangeAddress", amount: fields.address });
     let isInSummer = "";
     let inNotSummer = "";
     let hasReception = "";
-    for (let i = 0; i < value.length; i++) {
-      switch (value[i]) {
+    for (let i = 0; i < fields.other.length; i++) {
+      switch (fields.other[i]) {
         case "isInSummer":
           isInSummer = true;
           break;
@@ -65,14 +63,6 @@ function FilterCatalogue() {
     });
   };
 
-  const category = useSelector((state) => state.params.category);
-
-  const [res, setCountCategories] = useState(null);
-
-  useEffect(() => {
-    getCountCategories();
-  }, [city]);
-
   const getCountCategories = async () => {
     if (category !== "all") {
       const result = await axiosAPI.getCountCategories(
@@ -82,10 +72,13 @@ function FilterCatalogue() {
       setCountCategories(result);
     } else {
       const result = await axiosAPI.getCategories(city);
-      console.log(result);
       setCountCategories(result);
     }
   };
+
+  useEffect(() => {
+    getCountCategories();
+  }, [city]);
 
   return (
     <section className={styles["filter-wrapper"]}>
@@ -98,15 +91,22 @@ function FilterCatalogue() {
           padding="0px 22px"
           borderRadius="8px"
           border="1px solid rgb(197, 197, 197)"
-          placeholder="Любой"
-          value={gender}
+          placeholder="Пол"
+          value={fields.gender}
           options={[
             { text: "м", value: "male" },
             { text: "ж", value: "female" },
           ]}
           checkbox
           prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
-          onChange={(value) => setGender(value)}
+          onChange={(value) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                gender: value,
+              };
+            });
+          }}
         />
         <div className={styles.label}>ВОЗРАСТ</div>
         <Select
@@ -115,8 +115,8 @@ function FilterCatalogue() {
           padding="0px 22px"
           borderRadius="8px"
           border="1px solid rgb(197, 197, 197)"
-          placeholder="Любой"
-          value={age}
+          placeholder="Возраст"
+          value={fields.age}
           options={[
             { text: "1 год", value: "1" },
             { text: "2 года", value: "2" },
@@ -140,7 +140,14 @@ function FilterCatalogue() {
           ]}
           checkbox
           prepend={<img src="\images\Arrow.png" height="15px" alt="Стрелка" />}
-          onChange={(value) => setAge(value)}
+          onChange={(value) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                age: value,
+              };
+            });
+          }}
         />
 
         <div className={styles.label}>АДРЕС</div>
@@ -152,9 +159,16 @@ function FilterCatalogue() {
           type="text"
           width="195px"
           placeholder="Название улицы"
-          value={address}
+          value={fields.address}
           padding="0px 22px"
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={(event) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                address: event.target.value,
+              };
+            });
+          }}
         />
 
         {res !== null ? (
@@ -165,7 +179,7 @@ function FilterCatalogue() {
                 className={`${styles.nameCategory} ${
                   category === res.baseCategory ? styles["active"] : ""
                 }`}
-                onClick={() => SetCategory(res.baseCategory)}
+                onClick={() => setCategory(res.baseCategory)}
               >
                 {res.baseCategory}
               </Link>
@@ -183,7 +197,7 @@ function FilterCatalogue() {
                             fontSize="13px"
                             lineHeight="15px"
                             color="#5F6060"
-                            onClick={() => SetCategory(key.name)}
+                            onClick={() => setCategory(key.name)}
                           >
                             {key.name} ({key.count})
                           </Link>
@@ -202,7 +216,7 @@ function FilterCatalogue() {
                 >
                   <Link
                     className={`${styles.nameCategory}`}
-                    onClick={() => SetCategory(category.baseCategory.name)}
+                    onClick={() => setCategory(category.baseCategory.name)}
                   >
                     {category.baseCategory.name} ({category.count})
                   </Link>
@@ -215,15 +229,40 @@ function FilterCatalogue() {
         )}
         <ListFilter
           placeholder="Другое"
-          value={other}
+          value={fields.other}
           options={[
             { text: "Работает сент-май", value: "inNotSummer" },
             { text: "Работает летом", value: "isInSummer" },
             { text: "Есть свободные места", value: "hasReception" },
           ]}
           checkbox
-          onChange={(value) => setOther(value)}
+          onChange={(value) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                other: value,
+              };
+            });
+          }}
         />
+      </section>
+      <section>
+        <Link path="/catalogue">
+          <Button
+            width="239px"
+            margin="0 auto"
+            background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
+            onClick={setParams}
+          >
+            <img
+              style={{ marginRight: "8px" }}
+              src={search}
+              height="20px"
+              alt="Подобрать"
+            />
+            Подобрать
+          </Button>
+        </Link>
       </section>
     </section>
   );

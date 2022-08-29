@@ -1,4 +1,3 @@
-import { Link } from "components";
 import styles from "./Additional.module.scss";
 import { useState, useEffect } from "react";
 import { axiosAPI } from "plugins/axios";
@@ -17,7 +16,7 @@ const Additional = ({ price, ...rest }) => {
   };
 
   return (
-    <Link path={`/lesson/${additional.id}`} style={{ ...rest }}>
+    <a href={`/lesson/${additional.id}`} style={{ ...rest }}>
       {additional.image !== undefined && additional.image.image !== null ? (
         <div
           className={`${styles.additional} `}
@@ -73,7 +72,7 @@ const Additional = ({ price, ...rest }) => {
           <p className={styles.name}>{additional.name}</p>
         </div>
       )}
-    </Link>
+    </a>
   );
 };
 
