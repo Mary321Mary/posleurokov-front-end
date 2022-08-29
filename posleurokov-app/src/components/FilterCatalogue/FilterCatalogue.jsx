@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Button, Link } from "components";
+import { Select, Link } from "components";
 import { Input } from "components/shared";
 import { ListFilter } from "components/ListFilter/ListFilter";
 import { axiosAPI } from "plugins/axios";
@@ -74,8 +74,17 @@ function FilterCatalogue() {
   }, [city]);
 
   const getCountCategories = async () => {
-    const result = await axiosAPI.getCountCategories(city, encodeURI(category));
-    setCountCategories(result);
+    if (category !== "all") {
+      const result = await axiosAPI.getCountCategories(
+        city,
+        encodeURI(category)
+      );
+      setCountCategories(result);
+    } else {
+      const result = await axiosAPI.getCategories(city);
+      console.log(result);
+      setCountCategories(result);
+    }
   };
 
   return (
@@ -147,43 +156,63 @@ function FilterCatalogue() {
           padding="0px 22px"
           onChange={(e) => setAddress(e.target.value)}
         />
-        <div className={styles.label}>КАТЕГОРИЯ</div>
 
-        {category !== "" && res !== null ? (
-          <Link
-            className={`${styles.nameCategory} ${
-              category === res.baseCategory ? styles["active"] : ""
-            }`}
-            onClick={() => SetCategory(res.baseCategory)}
-          >
-            {res.baseCategory}
-          </Link>
+        {res !== null ? (
+          category !== "all" ? (
+            <div>
+              <div className={styles.label}>КАТЕГОРИЯ</div>
+              <Link
+                className={`${styles.nameCategory} ${
+                  category === res.baseCategory ? styles["active"] : ""
+                }`}
+                onClick={() => SetCategory(res.baseCategory)}
+              >
+                {res.baseCategory}
+              </Link>
+              <div className={styles.podCategory}>
+                {Array.isArray(res.concreteCategories)
+                  ? res.concreteCategories.map((key) => {
+                      return (
+                        <div style={{ margin: "10px" }} key={key.name}>
+                          <Link
+                            className={`${
+                              category === key.name ? styles["active"] : ""
+                            }`}
+                            fontFamily="Roboto-Regular"
+                            fontWeight="400"
+                            fontSize="13px"
+                            lineHeight="15px"
+                            color="#5F6060"
+                            onClick={() => SetCategory(key.name)}
+                          >
+                            {key.name} ({key.count})
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+            </div>
+          ) : (
+            res.map((category) => {
+              return (
+                <div
+                  style={{ margin: "10px" }}
+                  key={category.baseCategory.name}
+                >
+                  <Link
+                    className={`${styles.nameCategory}`}
+                    onClick={() => SetCategory(category.baseCategory.name)}
+                  >
+                    {category.baseCategory.name} ({category.count})
+                  </Link>
+                </div>
+              );
+            })
+          )
         ) : (
-          <div style={{ color: "red" }}>Выберите категорию</div>
+          <div> Loading </div>
         )}
-        <div className={styles.podCategory}>
-          {res !== null && Array.isArray(res.concreteCategories)
-            ? res.concreteCategories.map((key) => {
-                return (
-                  <div style={{ margin: "10px" }} key={key.name}>
-                    <Link
-                      className={`${
-                        category === key.name ? styles["active"] : ""
-                      }`}
-                      fontFamily="Roboto-Regular"
-                      fontWeight="400"
-                      fontSize="13px"
-                      lineHeight="15px"
-                      color="#5F6060"
-                      onClick={() => SetCategory(key.name)}
-                    >
-                      {key.name} ({key.count})
-                    </Link>
-                  </div>
-                );
-              })
-            : null}
-        </div>
         <ListFilter
           placeholder="Другое"
           value={other}

@@ -68,9 +68,10 @@ function Filter() {
         hasReception,
       },
     });
+    if (category === "") {
+      store.dispatch({ type: "SetCategory", amount: "all" });
+    }
   }, [age, gender, cost, addr, category, other, city]);
-
-  // const count = store.getState().count;
 
   return (
     <section className={styles["filter-wrapper"]}>
