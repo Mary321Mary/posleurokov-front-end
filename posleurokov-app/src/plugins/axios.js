@@ -217,7 +217,7 @@ export const axiosAPI = {
       return response.data;
     } catch (error) {
       console.error(error);
-      return "Ошибка сервера";
+      return error;
     }
   },
   async getContacts() {

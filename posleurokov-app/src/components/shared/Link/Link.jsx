@@ -1,5 +1,4 @@
 import styles from "./Link.module.scss";
-import { Link as RouterLink } from "react-router-dom";
 
 const Link = ({
   path = "#",
@@ -10,15 +9,15 @@ const Link = ({
   ...rest
 }) => {
   return (
-    <RouterLink
+    <a
       className={`${styles.link} ${className}`}
-      to={path}
+      href={path}
       target={target}
       onClick={onClick}
       style={{ ...rest }}
     >
       {children}
-    </RouterLink>
+    </a>
   );
 };
 

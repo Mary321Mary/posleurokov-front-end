@@ -22,7 +22,7 @@ const LessonPage = () => {
   const { id } = useParams();
   const [windowWidth, setWindowWidth] = useState("");
   const [sheetMargin, setSheetMargin] = useState("");
-  const [panelPosition, setPanelPosition] = useState({})
+  const [panelMargin, setPanelMargin] = useState('initial')
   const [headingParams, setHeadingParams] = useState({});
   const [loading, setLoading] = useState(false)
 
@@ -51,21 +51,18 @@ const LessonPage = () => {
       setHeadingParams({
         'width': '500px',
         'height': 'auto',
-        'margin': '38px 0 29px 110px',
+        'margin': '38px 0 29px 49px',
         'color': '#6D80D8',
         'font-size': '30px',
         'line-height': '35px',
         'font-style': 'normal',
         'font-weight': '500'
       })
-      setPanelPosition({
-        'top': '150px',
-        'left': '1300px'
-      })
+      setPanelMargin('initial')
     }
     else if (innerWidth > 700 && innerWidth <= 1024) {
       setWindowWidth('723px')
-      setSheetMargin('29px 24px 10px 32px')
+      setSheetMargin('10px auto')
       setHeadingParams({
         'width': '500px',
         'height': 'auto',
@@ -76,14 +73,11 @@ const LessonPage = () => {
         'font-style': 'normal',
         'font-weight': '500'
       })
-      setPanelPosition({
-        'top': '150px',
-        'left': '850px'
-      })
+      setPanelMargin('initial')
     }
     else {
       setWindowWidth('312px')
-      setSheetMargin('20px 16px 10px 16px')
+      setSheetMargin('10px auto')
       setHeadingParams({
         'width': '288px',
         'height': 'auto',
@@ -94,10 +88,7 @@ const LessonPage = () => {
         'font-style': 'normal',
         'font-weight': '500'
       })
-      setPanelPosition({
-        'top': '300px',
-        'left': '0'
-      })
+      setPanelMargin('10px 0 10px 43%')
     }
   };
 
@@ -122,29 +113,34 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
-      {loading ? <Loader margin-left={'30%'} /> : <div>
-        <Sheet margin={sheetMargin} width={windowWidth}>
-          <Heading
-            tag="h1"
-            margin={headingParams["margin"]}
-            width={headingParams["width"]}
-            height={headingParams["height"]}
-            color={headingParams["color"]}
-            fontSize={headingParams["font-size"]}
-            lineHeight={headingParams["line-height"]}
-            fontWeight={headingParams["font-weight"]}
-          >
-            {lesson.name}
-          </Heading>
-          <ImageCarousel images={images ?? []} />
-          <LessonDescription lesson={lesson} organization={organization} />
-        </Sheet>
-        <Similar id={id} margin={sheetMargin} width={windowWidth} />
-        <div style={{ position: 'absolute', top: panelPosition['top'], left: panelPosition['left'] }}>
-          <Additional price />
-          <RandomLessons label='Другие занятия' number="3" width="220px" />
-          <VkBlock heigth={"auto"} width={"220px"} />
-        </div></div>}
+      {loading ? <Loader margin-left={'42%'} /> : <div className={styles.table}>
+        <div className={styles.table_row}>
+          <Sheet margin={sheetMargin} width={windowWidth}>
+            <Heading
+              tag="h1"
+              margin={headingParams["margin"]}
+              width={headingParams["width"]}
+              height={headingParams["height"]}
+              color={headingParams["color"]}
+              fontSize={headingParams["font-size"]}
+              lineHeight={headingParams["line-height"]}
+              fontWeight={headingParams["font-weight"]}
+            >
+              {lesson.name}
+            </Heading>
+            <ImageCarousel images={images ?? []} />
+            <LessonDescription lesson={lesson} organization={organization} />
+          </Sheet>
+          <div className={styles.table_cell}>
+            <Additional price />
+            <RandomLessons label='Другие занятия' number="3" width="220px" />
+            <VkBlock heigth={"auto"} width={"220px"} />
+          </div>
+        </div>
+        <div className={styles.table_row}>
+          <Similar id={id} margin={sheetMargin} width={windowWidth} marginTop={'10px'} />
+        </div>
+      </div>}
     </section>
   );
 };
