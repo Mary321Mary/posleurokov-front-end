@@ -113,7 +113,7 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
-      {loading ? <Loader margin-left={'42%'} /> : <div className={styles.table}>
+      {loading ? <Loader margin-left={'35%'} /> : <div className={styles.table}>
         <div className={styles.table_row}>
           <Sheet margin={sheetMargin} width={windowWidth}>
             <Heading
