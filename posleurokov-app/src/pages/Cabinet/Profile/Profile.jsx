@@ -319,6 +319,12 @@ const Profile = () => {
               ) : (
                 <div className={styles.form}>
                   <div>
+                    <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                      {error}
+                    </div>
+                    <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
+                      Данные обновлены!
+                    </div>
                     <div>
                       Организатор<sup>*</sup>
                     </div>
