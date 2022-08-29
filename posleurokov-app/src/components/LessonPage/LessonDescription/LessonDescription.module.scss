@@ -9,6 +9,8 @@
 }
 
 .description {
+  white-space: break-word;
+  
   .h3 {
     text-transform: uppercase;
     color: $checkbox-text-color;
