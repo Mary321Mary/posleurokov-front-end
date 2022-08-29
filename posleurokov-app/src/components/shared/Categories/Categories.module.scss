@@ -5,6 +5,38 @@
   flex-wrap: wrap;
 }
 
+.masonry_grid {
+  display: -webkit-box;
+  /* Not needed if autoprefixing */
+  display: -ms-flexbox;
+  /* Not needed if autoprefixing */
+  display: flex;
+  /* gutter size offset */
+  width: auto;
+}
+
+.masonry_grid_column {
+  margin-right: 200px;
+  background-clip: padding-box;
+  margin-left: 20px;
+  width: 200px !important;
+  word-wrap: break-word;
+
+  &:last-of-type {
+    padding-right: 50px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    margin-left: -10px;
+    width: 240px !important;
+    margin-right: 70px;
+
+    &:last-of-type {
+      padding-right: 73px;
+    }
+  }
+}
+
 .categories {
   margin-left: 51px;
   margin-right: 51px;
@@ -13,7 +45,7 @@
 }
 
 .label {
-  display:inline;
+  display: inline;
 
   /* (main) */
   font-family: 'Roboto-Bold';
@@ -22,6 +54,7 @@
   font-size: 24px;
   line-height: 28px;
   text-decoration-line: underline;
+  margin-left: 10px;
 
   /* dark_gray */
 
@@ -29,7 +62,7 @@
 }
 
 .number {
-  display:inline;
+  display: inline;
   margin-left: 19px;
 
   font-family: 'Roboto-Medium';
@@ -46,6 +79,10 @@
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
   .categories {
     padding-top: 32px;
+  }
+
+  .label {
+    margin-left: -10px;
   }
 }
 

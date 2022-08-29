@@ -30,7 +30,7 @@
 }
 
 .label {
-  display: inline;
+  display: inline-block;
 
   font-family: $category-font-family;
   font-style: normal;
@@ -66,7 +66,7 @@ galochkaRaskruta {
   display: none;
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1400px) {
+@media only screen and (min-width: 700px) and (max-width: 1024px) {
   .category {
     width: 50%;
   }
@@ -74,16 +74,25 @@ galochkaRaskruta {
   .label {
     font-size: 14px;
     line-height: 17px;
+    width: 60%;
+    word-wrap: break-word;
   }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 699px) {
   .category {
     width: 100%;
 
     .logo {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
+      padding: 5px;
+      margin-right: 6px;
+    }
+
+    .absent {
+      width: 27px;
+      height: 27px;
       padding: 5px;
       margin-right: 6px;
     }
