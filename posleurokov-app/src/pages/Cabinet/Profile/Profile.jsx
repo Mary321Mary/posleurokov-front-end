@@ -10,7 +10,9 @@ const Profile = () => {
   const [showPanel, setShowPanel] = useState("self");
   const [cities, setCities] = useState([]);
   const [userId, setUserId] = useState(0);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('')
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
@@ -149,17 +151,30 @@ const Profile = () => {
   }, []);
 
   const saveUser = async () => {
-    let user = {
-      fio: firstName + " " + surname,
-      email: email,
-      address: address,
-      phoneNumber: phone,
-    };
+    if (firstName != '' && surname != '') {
+      let user = {
+        fio: firstName + " " + surname,
+        email: email,
+        address: address,
+        phoneNumber: phone,
+      };
 
-    let result = await axiosAPI.updateUser(user);
-    setUser(result.user);
-
-    localStorage.setItem("token", result.token);
+      let result = await axiosAPI.updateUser(user);
+      if (result.token) {
+        setUser(result.user);
+        localStorage.setItem("token", result.token);
+        setIsSuccess(true)
+        setError('')
+      }
+      else {
+        setError('Некорректные данные')
+        setIsSuccess(false)
+      }
+    }
+    else {
+      setError('Нет имени или фамилии')
+      setIsSuccess(false)
+    }
   };
 
   const saveOrganization = async () => {
@@ -177,8 +192,15 @@ const Profile = () => {
     };
 
     let result = await axiosAPI.updateOrganization(organizer);
-    setOrganization(result.organization);
-    localStorage.setItem("token", result.token);
+    if (result.token) {
+      setOrganization(result.organization);
+      localStorage.setItem("token", result.token);
+      setIsSuccess(true)
+    }
+    else {
+      setError('Некорректные данные')
+      setIsSuccess(false)
+    }
   };
 
   return (
@@ -217,6 +239,12 @@ const Profile = () => {
                 <div className={styles.form}>
                   <div>
                     Данные доступны только администрации сервиса для связи с вами.
+                  </div>
+                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                    {error}
+                  </div>
+                  <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
+                    Данные обновлены!
                   </div>
                   <div>
                     <div>
@@ -291,6 +319,12 @@ const Profile = () => {
               ) : (
                 <div className={styles.form}>
                   <div>
+                    <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                      {error}
+                    </div>
+                    <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
+                      Данные обновлены!
+                    </div>
                     <div>
                       Организатор<sup>*</sup>
                     </div>

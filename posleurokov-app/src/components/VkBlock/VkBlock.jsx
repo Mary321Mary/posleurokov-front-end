@@ -9,7 +9,7 @@ const VkBlock = ({ heigth, width, ...rest }) => {
             width={width}
             height={heigth}
         >
-            <div id="vk_groups" className={styles.vk}></div>
+            <div id="vk_groups" className={styles.vk} style={{ ...rest }}></div>
         </Sheet>
     );
 };

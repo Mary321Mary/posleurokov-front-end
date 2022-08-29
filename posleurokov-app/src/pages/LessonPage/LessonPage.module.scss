@@ -12,7 +12,34 @@
     padding-left: 32px;
   }
 
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: 699px) {
     padding-left: 16px;
+  }
+}
+
+.table {
+  display: table;
+
+  .table_row {
+    display: table-row;
+
+    .table_cell {
+      display: table-cell;
+    }
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .table {
+    display: block;
+
+    .table_row {
+      display: inline;
+    }
+
+    .table_cell {
+      width: auto;
+      padding-left: calc(100vw - 50%);
+    }
   }
 }

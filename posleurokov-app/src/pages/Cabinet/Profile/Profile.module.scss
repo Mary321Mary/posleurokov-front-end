@@ -67,6 +67,28 @@
       color: white;
     }
   }
+
+  .error {
+    background-color: #f2dede;
+    margin: 10px;
+    margin-top: 10px;
+    padding: 20px 10px;
+    border-radius: 5px;
+    width: 95%;
+    text-align: left;
+  }
+
+  .success {
+    margin: 10px;
+    margin-top: 10px;
+    padding: 20px 10px;
+    border-radius: 5px;
+    width: 95%;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    text-align: left;
+  }
 }
 
 @media only screen and (min-width: 1025px) {

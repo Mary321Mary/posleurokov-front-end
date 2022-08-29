@@ -12,7 +12,7 @@ const initialState = {
     age: [],
     cost: [],
     addr: "",
-    category: "ИСКУССТВО И ДИЗАЙН",
+    category: "all",
     isInSummer: "",
     inNotSummer: "",
     hasReception: "",
@@ -52,8 +52,7 @@ function reducer(state = initialState, action) {
         ...state,
         params: {
           ...state.params,
-          sex:
-            action.amount === undefined ? state.params.sex : action.amount,
+          sex: action.amount === undefined ? state.params.sex : action.amount,
         },
       };
     case "ChangeAge":
@@ -61,8 +60,7 @@ function reducer(state = initialState, action) {
         ...state,
         params: {
           ...state.params,
-          age:
-            action.amount === undefined ? state.params.age : action.amount,
+          age: action.amount === undefined ? state.params.age : action.amount,
         },
       };
     case "ChangeAddress":
@@ -70,8 +68,7 @@ function reducer(state = initialState, action) {
         ...state,
         params: {
           ...state.params,
-          addr:
-            action.amount === undefined ? state.params.addr : action.amount,
+          addr: action.amount === undefined ? state.params.addr : action.amount,
         },
       };
     case "ChangeOther":
@@ -80,12 +77,17 @@ function reducer(state = initialState, action) {
         params: {
           ...state.params,
           isInSummer:
-            action.isInSummer === undefined ? state.params.isInSummer : action.isInSummer,
+            action.isInSummer === undefined
+              ? state.params.isInSummer
+              : action.isInSummer,
           inNotSummer:
-            action.inNotSummer === undefined ? state.params.inNotSummer : action.inNotSummer,
+            action.inNotSummer === undefined
+              ? state.params.inNotSummer
+              : action.inNotSummer,
           hasReception:
-            action.hasReception === undefined ? state.params.hasReception : action.hasReception,
-
+            action.hasReception === undefined
+              ? state.params.hasReception
+              : action.hasReception,
         },
       };
     default:

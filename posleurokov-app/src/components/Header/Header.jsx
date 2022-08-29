@@ -6,7 +6,6 @@ import galochka from "assets/img/galochka.png";
 import tel from "assets/img/teleph.svg";
 import menu from "assets/img/Menu.svg";
 import { axiosAPI } from "plugins/axios";
-import { useSelector } from "react-redux";
 import store from "redux/stores";
 
 const Header = () => {
@@ -23,6 +22,9 @@ const Header = () => {
     setCityTitle(value);
     if (value === "Все города") {
       value = "all";
+    }
+    if (value === "Online") {
+      value = "online";
     }
     store.dispatch({ type: "ChangeCity", amount: value });
   };
@@ -57,7 +59,7 @@ const Header = () => {
         <Select
           value={cityTitle}
           options={[
-            { text: "online", value: "online" },
+            { text: "Online", value: "Online" },
             ...cities.map((city) => {
               return {
                 text: city.name,
@@ -199,14 +201,14 @@ const Header = () => {
           ) : (
             <div>
               <Link
-                path="/"
+                path="/cabinet/profile"
                 fontFamily="Roboto-Bold"
                 fontWeight="700"
                 fontSize="16px"
                 lineHeight="19px"
                 color="#5F6060"
               >
-                email
+                Мой Профиль
               </Link>
               <Link
                 path="/"
