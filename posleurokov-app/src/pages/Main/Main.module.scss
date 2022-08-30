@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 .container {
   margin: 0 auto;
@@ -11,20 +11,19 @@
     justify-content: center;
     align-items: center;
 
-    background-image: url('../../assets/img/main_pic.png');
+    background-image: url("../../assets/img/main_pic.png");
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
 
     &__heading {
-      // position: relative;
       margin-top: 86px;
 
       display: flex;
       flex-direction: column;
 
       h1 {
-        font-family: 'Roboto-Bold', sans-serif;
+        font-family: "Roboto-Bold", sans-serif;
         font-style: normal;
         font-weight: 800;
         font-size: 46px;
@@ -62,7 +61,7 @@
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
   .section {
     &-filter {
-      background-image: url('../../assets/img/main_pic_tablet.png');
+      background-image: url("../../assets/img/main_pic_tablet.png");
     }
   }
 
@@ -79,7 +78,7 @@
   .section {
     &-filter {
       padding-top: 38px;
-      background-image: url('../../assets/img/main_pic_mobile.png');
+      background-image: url("../../assets/img/main_pic_mobile.png");
 
       &__heading {
         margin-top: 0;
