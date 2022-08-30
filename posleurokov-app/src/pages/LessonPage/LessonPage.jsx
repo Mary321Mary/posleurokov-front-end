@@ -111,43 +111,34 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
-      {loading ? (
-        <Loader marginLeft={"42%"} />
-      ) : (
-        <div className={styles.table}>
-          <div className={styles.table_row}>
-            <Sheet margin={sheetMargin} width={windowWidth}>
-              <Heading
-                tag="h1"
-                margin={headingParams["margin"]}
-                width={headingParams["width"]}
-                height={headingParams["height"]}
-                color={headingParams["color"]}
-                fontSize={headingParams["font-size"]}
-                lineHeight={headingParams["line-height"]}
-                fontWeight={headingParams["font-weight"]}
-              >
-                {lesson.name}
-              </Heading>
-              <ImageCarousel images={images ?? []} />
-              <LessonDescription lesson={lesson} organization={organization} />
-            </Sheet>
-            <div className={styles.table_cell}>
-              <Additional price />
-              <RandomLessons label="Другие занятия" number="3" width="220px" />
-              <VkBlock heigth={"auto"} width={"220px"} />
-            </div>
-          </div>
-          <div className={styles.table_row}>
-            <Similar
-              id={id}
-              margin={sheetMargin}
-              width={windowWidth}
-              marginTop={"10px"}
-            />
+	{loading ? <Loader marginLeft={'35%'} /> : <div className={styles.table}>
+        <div className={styles.table_row}>
+          <Sheet margin={sheetMargin} width={windowWidth}>
+            <Heading
+              tag="h1"
+              margin={headingParams["margin"]}
+              width={headingParams["width"]}
+              height={headingParams["height"]}
+              color={headingParams["color"]}
+              fontSize={headingParams["font-size"]}
+              lineHeight={headingParams["line-height"]}
+              fontWeight={headingParams["font-weight"]}
+            >
+              {lesson.name}
+            </Heading>
+            <ImageCarousel images={images ?? []} />
+            <LessonDescription lesson={lesson} organization={organization} />
+          </Sheet>
+          <div className={styles.table_cell}>
+            <Additional price />
+            <RandomLessons label='Другие занятия' number="3" width="220px" />
+            <VkBlock heigth={"auto"} width={"220px"} />
           </div>
         </div>
-      )}
+        <div className={styles.table_row}>
+          <Similar id={id} margin={sheetMargin} width={windowWidth} marginTop={'10px'} />
+        </div>
+      </div>}
     </section>
   );
 };
