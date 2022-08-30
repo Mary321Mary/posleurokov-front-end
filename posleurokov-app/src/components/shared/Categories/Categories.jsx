@@ -10,7 +10,7 @@ const Categories = ({ number, children, ...rest }) => {
 
     if (innerWidth > 1024) {
       setColumnCount(3)
-    } else if (innerWidth > 700 && innerWidth <= 1024) {
+    } else if (innerWidth >= 760 && innerWidth <= 1024) {
       setColumnCount(2)
     } else {
       setColumnCount(1)
