@@ -24,6 +24,7 @@ const Main = () => {
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [marginParams, setMarginParams] = useState({})
 
   const getCategories = async () => {
     setLoading(true);
@@ -35,6 +36,38 @@ const Main = () => {
   const setCategory = (event) => {
     store.dispatch({ type: "SetCategory", amount: event });
   };
+
+  const getWindowSize = () => {
+    let innerWidth = window.outerWidth;
+
+    if (innerWidth > 1024) {
+      setMarginParams({
+        'marginLeft': '10%'
+      });
+    } else if (innerWidth > 700 && innerWidth <= 1024) {
+      setMarginParams({
+        'marginLeft': '20%'
+      });
+    } else {
+      setMarginParams({
+        'marginLeft': 'auto'
+      });
+    }
+  };
+
+  useEffect(() => {
+    getWindowSize();
+
+    function handleWindowResize() {
+      getWindowSize();
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   useEffect(() => {
     getCategories();
@@ -66,7 +99,7 @@ const Main = () => {
           </section>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
-              <Sheet>
+              <Sheet marginLeft={marginParams['marginLeft']}>
                 {result !== null ? (
                   Array.isArray(result) ? (
                     <Categories number={result.length}>

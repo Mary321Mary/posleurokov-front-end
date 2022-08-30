@@ -1,6 +1,6 @@
 import styles from "./RandomLessons.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, Link } from "components";
+import { Sheet } from "components";
 import { axiosAPI } from "plugins/axios";
 
 import randomLesson from "assets/img/img.png";
@@ -44,17 +44,19 @@ const RandomLessons = ({ number, label = false, ...rest }) => {
               ) : (
                 <img src={randomLesson} alt="Занятие" width="70px" />
               )}
-              <Link
-                path={`/lesson/${lesson.id}`}
-                fontFamily="Roboto-Regular"
-                fontWeight="400"
-                fontSize="14px"
-                lineHeight="16px"
-                color="#5F6060"
-                marginLeft="12px"
+              <a
+                href={`/lesson/${lesson.id}`}
+                style={{
+                  fontFamily: "Roboto-Regular",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "16px",
+                  color: "#5F6060",
+                  marginLeft: "12px",
+                }}
               >
                 {lesson.name}
-              </Link>
+              </a>
             </div>
           );
         })}
