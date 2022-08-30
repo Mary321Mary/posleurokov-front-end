@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Link, Button, Input, ListFilter } from "components";
+import { Select, Link, Button, Input, ListFilter, Sheet } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
@@ -81,7 +81,7 @@ function FilterCatalogue() {
   }, [city]);
 
   return (
-    <section className={styles["filter-wrapper"]}>
+    <Sheet padding="21px 31px 27px 30px" className={styles["filter-wrapper"]}>
       <section className={styles.filter}>
         <div className={styles.label}>ПОЛ</div>
 
@@ -264,7 +264,7 @@ function FilterCatalogue() {
           </Button>
         </Link>
       </section>
-    </section>
+    </Sheet>
   );
 }
 

@@ -101,9 +101,7 @@ const Catalogue = () => {
               )}
             </div>
             <div className={styles["section-categories"]}>
-              <Sheet padding="21px 31px 27px 30px">
-                <FilterCatalogue />
-              </Sheet>
+              <FilterCatalogue />
               <VkBlock heigth="auto" width="220px" />
             </div>
           </div>
