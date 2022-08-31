@@ -38,9 +38,9 @@ const LessonCreate = () => {
       isInNotSummer: false,
       isOnline: false,
       isFirstFree: false,
+      agreement: false,
     };
   });
-
   const [error, setError] = useState(() => {
     return {
       city: "",
@@ -66,6 +66,7 @@ const LessonCreate = () => {
       isFirstFree: "",
       Images: "",
       meneger: "",
+      agreement: "",
     };
   });
 
@@ -84,7 +85,6 @@ const LessonCreate = () => {
       });
     };
   };
-
   const changeInputRegister = (event) => {
     event.persist();
     setCourse((prev) => {
@@ -114,7 +114,6 @@ const LessonCreate = () => {
       };
     });
   };
-
   const submitChackin = async (event) => {
     event.preventDefault();
     const response = await axiosAPI.getLessonCreate({
@@ -501,7 +500,25 @@ const LessonCreate = () => {
                   errorMessage={error.Images}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
-                <Button onClick={submitChackin}>Создать секцию</Button>
+                <label>
+                  <span>* </span>Условия:
+                </label>
+                <Checkbox
+                  value={course.agreement}
+                  text='Ознакомлен и согласен с условиями использования'
+                  onChange={(value) => {
+                    setCourse((prev) => {
+                      return {
+                        ...prev,
+                        agreement: value,
+                      };
+                    });
+                  }}
+                ></Checkbox>
+                <div className={styles["gorisonlal-line"]}></div>
+                <div>{course.agreement !== false &&
+                  <Button onClick={submitChackin}>Создать секцию</Button>
+                }</div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}
               </form>
             </div>
