@@ -1,0 +1,52 @@
+.text {
+  margin-top: 10px;
+  margin-bottom: 0%;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+  width: 35vw;
+  background-color: #ffffff;
+
+  select,
+  input,
+  textarea {
+    display: block;
+    margin-top: 7px;
+    width: 85%;
+    padding: 11px 14px;
+    height: 41px;
+    border: 1px solid #6D80D8;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #9E9E9E;
+    margin-bottom: 12px;
+  }
+
+  input {
+    height: 20px;
+  }
+}
+
+.head {
+  font-weight: 400;
+
+  img {
+    padding-right: 5px;
+  }
+}
+
+.submit {
+  border-bottom: 0;
+
+  button {
+    float: right;
+    min-width: 40px;
+    height: 40px;
+    background-color: #6D80D8;
+    border-radius: 6px;
+    border: 0px;
+    color: white;
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+}
