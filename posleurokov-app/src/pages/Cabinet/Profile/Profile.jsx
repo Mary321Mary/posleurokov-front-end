@@ -35,10 +35,14 @@ const Profile = () => {
       setOrganActive(false);
       setSelfActive(true);
       setShowPanel("self");
+      setIsSuccess(false)
+      setError('')
     } else {
       setOrganActive(true);
       setSelfActive(false);
       setShowPanel("org");
+      setIsSuccess(false)
+      setError('')
     }
   };
 
@@ -150,8 +154,26 @@ const Profile = () => {
     };
   }, []);
 
+  const validateUser = () => {
+    let isValid = true;
+    let error = ''
+    if (firstName == '' || surname == '') {
+      error += 'Имя и фамилия должны быть заполнены!\n'
+      isValid = false
+    }
+
+    if (!(email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
+      error += 'Email: неправильно введенная почта!\n'
+      isValid = false
+    }
+
+    setError(error)
+    return isValid;
+  }
+
   const saveUser = async () => {
-    if (firstName != '' && surname != '') {
+    let isValid = validateUser()
+    if (isValid) {
       let user = {
         fio: firstName + " " + surname,
         email: email,
@@ -167,38 +189,66 @@ const Profile = () => {
         setError('')
       }
       else {
-        setError('Некорректные данные')
+        setError('Произошла ошибка!')
         setIsSuccess(false)
       }
     }
     else {
-      setError('Нет имени или фамилии')
       setIsSuccess(false)
     }
   };
 
-  const saveOrganization = async () => {
-    let organizer = {
-      user: userId,
-      city: city,
-      name: orgName,
-      info: orgInfo,
-      email: orgEmail,
-      address: orgAddress,
-      contactName: contactName,
-      phoneNumber: orgPhones,
-      additionalLink: orgSites,
-      picture: orgImage,
-    };
+  const validateOrganization = () => {
+    let isValid = true;
+    let error = ''
+    if (orgName == '') {
+      error += 'Название: название не должно быть пустым!\n'
+      isValid = false
+    }
+    else if (orgName.length < 3) {
+      error += 'Название: название должно быть длиной от 3 до 100 символов!\n'
+      isValid = false
+    }
 
-    let result = await axiosAPI.updateOrganization(organizer);
-    if (result.token) {
-      setOrganization(result.organization);
-      localStorage.setItem("token", result.token);
-      setIsSuccess(true)
+    if (!(orgEmail.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
+      error += 'Email: неправильно введенная почта!\n'
+      isValid = false
+    }
+
+    setError(error)
+    return isValid;
+  }
+
+  const saveOrganization = async () => {
+    let isValid = validateOrganization()
+    if (isValid) {
+      let organizer = {
+        user: userId,
+        city: city,
+        name: orgName,
+        info: orgInfo,
+        email: orgEmail,
+        address: orgAddress,
+        contactName: contactName,
+        phoneNumber: orgPhones,
+        additionalLink: orgSites,
+        picture: orgImage,
+      };
+
+      let result = await axiosAPI.updateOrganization(organizer);
+      if (result.token) {
+        setOrganization(result.organization);
+        localStorage.setItem("token", result.token);
+        localStorage.setItem('name', result.name)
+        setIsSuccess(true)
+        setError('')
+      }
+      else {
+        setError('Произошла ошибка!')
+        setIsSuccess(false)
+      }
     }
     else {
-      setError('Некорректные данные')
       setIsSuccess(false)
     }
   };
@@ -338,7 +388,7 @@ const Profile = () => {
                         "Название организации или фамилия, имя организатора"
                       }
                       maxLength={100}
-                      minLength={1}
+                      minLength={3}
                     ></input>
                   </div>
                   <div>
@@ -371,6 +421,7 @@ const Profile = () => {
                       value={city}
                       onChange={(e) => {
                         setCity(e.target.value);
+                        setOrgAddress('г ' + cities.find(item => item.id == e.target.value).name + ', ');
                       }}
                     >
                       {citiesSelect}
@@ -439,6 +490,7 @@ const Profile = () => {
                       src={orgImage}
                       style={{ display: orgImage != "" ? "initial" : "none" }}
                     ></img>
+                    {orgImage != '' ? <button onClick={() => { setOrgImage('') }} className={styles.removeImage}>Удалить картинку</button> : <div></div>}
                   </div>
                   <div className={styles.buttons}>
                     <button onClick={saveOrganization}>Сохранить</button>

@@ -1,11 +1,24 @@
 import styles from "./Course.module.scss";
 import { Online, Link } from "components";
+import { useEffect, useState } from "react";
+import { axiosAPI } from "plugins/axios";
 import randomLesson from "assets/img/img.png";
 import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
 const Course = ({ list, online, ...rest }) => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    const categories = await axiosAPI.getCategoriesList();
+    setCategories(categories);
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   const displayCourses = list.map((elem, id) => {
     return (
       <div key={elem.lesson.name}>
@@ -22,7 +35,23 @@ const Course = ({ list, online, ...rest }) => {
             ) : (
               <img src={randomLesson} alt="Курс" />
             )}
-            <div className={styles.info}>{elem.lesson.info}</div>
+            <div className={styles.info}>
+              <div>
+                {elem.lesson.lessonCategories.map((category) => {
+                  let value = categories.find((elem) => elem.id == category);
+                  return value ? (
+                    <div
+                      key={category}
+                      style={{ display: "inline", marginRight: "5px" }}
+                    >
+                      #{value.name.split("/")[1]}
+                    </div>
+                  ) : null;
+                })}
+              </div>
+              <br />
+              <div>{elem.lesson.info}</div>
+            </div>
             <div className={styles.addition}>
               <div className={styles.block}>
                 <img src={age} alt="возраст" />
@@ -88,7 +117,11 @@ const Course = ({ list, online, ...rest }) => {
               )}
             </div>
             <div>
-              <div>{elem.lesson.price} руб.</div>
+              {elem.lesson.price ? (
+                <div>{elem.lesson.price} руб.</div>
+              ) : (
+                <div>Цена не указана</div>
+              )}
               <div>{elem.lesson.additionalPriceInfo}</div>
             </div>
           </div>

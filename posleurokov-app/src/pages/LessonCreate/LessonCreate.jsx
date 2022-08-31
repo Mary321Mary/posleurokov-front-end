@@ -38,9 +38,9 @@ const LessonCreate = () => {
       isInNotSummer: false,
       isOnline: false,
       isFirstFree: false,
+      agreement: false,
     };
   });
-
   const [error, setError] = useState(() => {
     return {
       city: "",
@@ -66,6 +66,7 @@ const LessonCreate = () => {
       isFirstFree: "",
       Images: "",
       meneger: "",
+      agreement: "",
     };
   });
 
@@ -84,7 +85,6 @@ const LessonCreate = () => {
       });
     };
   };
-
   const changeInputRegister = (event) => {
     event.persist();
     setCourse((prev) => {
@@ -114,15 +114,74 @@ const LessonCreate = () => {
       };
     });
   };
-
   const submitChackin = async (event) => {
     event.preventDefault();
-    const response = await axiosAPI.getLessonCreate({
-      lesson: course,
-      images: Images,
-    });
-    if (response.status !== 200) {
-      setError(response.data);
+    let valid = true;
+    if (course.lessonCategories.length === 0) {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          lessonCategories: "Выберите категорию",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          lessonCategories: "",
+        };
+      });
+    }
+    if (course.name === "") {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          name: "Введите название",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          name: "",
+        };
+      });
+    }
+    if (course.info === "") {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          info: "Введите описание",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          info: "",
+        };
+      });
+    }
+    if (valid) {
+      const response = await axiosAPI.getLessonCreate({
+        lesson: course,
+        images: Images,
+      });
+      if (response.status !== 200) {
+        setError((prev) => {
+          return {
+            ...prev,
+            meneger:
+              "Проверьте входные данные и убедитесь, что создана организация",
+          };
+        });
+      } else {
+        window.location.assign("/");
+      }
+    } else {
       setError((prev) => {
         return {
           ...prev,
@@ -130,8 +189,6 @@ const LessonCreate = () => {
             "Проверьте входные данные и убедитесь, что создана организация",
         };
       });
-    } else {
-      window.location.assign("/");
     }
   };
 
@@ -200,12 +257,12 @@ const LessonCreate = () => {
   useEffect(() => {
     getCities();
     getCategories();
-  }, [])
+  }, []);
 
   useEffect(() => {
     setAgeField();
     setSexField();
-  }, [city, startAge, endAge, sex]);
+  }, [startAge, endAge, sex]);
 
   return (
     <section className={styles.container}>
@@ -501,7 +558,27 @@ const LessonCreate = () => {
                   errorMessage={error.Images}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
-                <Button onClick={submitChackin}>Создать секцию</Button>
+                <label>
+                  <span>* </span>Условия:
+                </label>
+                <Checkbox
+                  value={course.agreement}
+                  text="Ознакомлен и согласен с условиями использования"
+                  onChange={(value) => {
+                    setCourse((prev) => {
+                      return {
+                        ...prev,
+                        agreement: value,
+                      };
+                    });
+                  }}
+                ></Checkbox>
+                <div className={styles["gorisonlal-line"]}></div>
+                <div>
+                  {course.agreement !== false && (
+                    <Button onClick={submitChackin}>Создать секцию</Button>
+                  )}
+                </div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}
               </form>
             </div>
