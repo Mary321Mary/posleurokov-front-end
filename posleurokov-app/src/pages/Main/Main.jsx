@@ -109,17 +109,18 @@ const Main = () => {
                           >
                             {category.concreteCategories.map((item) => {
                               return (
-                                <div key={item}>
+                                <div key={item.name}>
                                   <Link
                                     path="/catalogue"
-                                    onClick={() => setCategory(item)}
+                                    onClick={() => setCategory(item.name)}
                                     fontFamily="Roboto-Regular"
                                     fontWeight="400"
                                     fontSize="14px"
-                                    lineHeight="36px"
+                                    lineHeight="20px"
                                     color="#5F6060"
+                                    padding={'0 0 20px 0 !important'}
                                   >
-                                    {item}
+                                    {item.name}<div className={styles.number}>{item.count}</div>
                                   </Link>
                                 </div>
                               );
