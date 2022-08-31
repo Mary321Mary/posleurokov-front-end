@@ -58,6 +58,23 @@
   }
 }
 
+.number {
+  display: inline;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  color: #9E9E9E;
+  margin-left: 5px;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  width: 17px;
+  height: 15px;
+}
+
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
   .section {
     &-filter {
