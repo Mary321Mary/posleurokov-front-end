@@ -29,9 +29,17 @@ const Login = () => {
     event.preventDefault();
     const response = await axiosAPI.getLogin(user);
     if (response.status === 400) {
-      setError(response.data);
+      if (response.data === "No such user") {
+        setError("Нет такого пользователя");
+      } else if (response.data === "No such password") {
+        setError("Неверный пароль");
+      } else {
+        setError(response.data);
+      }
     } else {
+      console.log(response);
       localStorage.setItem("token", response.token);
+      localStorage.setItem("name", response.name);
       window.location.assign("/");
     }
   };
@@ -61,7 +69,9 @@ const Login = () => {
                 onChange={changeInputRegister}
                 errorMessage={error}
               />
-              <Button onClick={submitChackin}>Войти</Button>
+              <Button onClick={submitChackin} marginTop="5px">
+                Войти
+              </Button>
             </form>
           </Sheet>
         </div>
