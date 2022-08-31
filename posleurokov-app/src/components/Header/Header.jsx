@@ -78,6 +78,7 @@ const Header = () => {
             { text: "Все города", value: "Все города" },
           ]}
           prepend={<img src={galochka} height="6px" alt="галочка" />}
+          minWidth="150px"
           textDecoration="underline"
           textDecorationStyle="dashed"
           textUnderlineOffset="5px"
