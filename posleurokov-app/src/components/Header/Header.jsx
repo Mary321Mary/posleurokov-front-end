@@ -67,7 +67,7 @@ const Header = () => {
       setShowModal(true)
     }
     else {
-      window.location.replace('/lesson/create')
+      window.location.href = '/lesson/create'
     }
   }
 
