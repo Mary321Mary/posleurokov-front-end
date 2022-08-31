@@ -242,7 +242,7 @@ export const axiosAPI = {
       );
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.error(error.response);
       return "Ошибка сервера";
     }
   },
