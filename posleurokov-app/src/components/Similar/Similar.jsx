@@ -7,7 +7,7 @@ import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
-const Similar = ({ id, ...rest }) => {
+const Similar = ({ id, className, ...rest }) => {
   const [similar, setSimilar] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Similar = ({ id, ...rest }) => {
   };
 
   return (
-    <Sheet {...rest}>
+    <Sheet className={className} {...rest}>
       <div className={styles.label}>Похожие</div>
       <div className={styles.info}>
         {similar !== null ? (
