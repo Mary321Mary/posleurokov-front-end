@@ -7,6 +7,7 @@ import {
   Additional,
   RandomLessons,
   VkBlock,
+  Link,
 } from "components";
 
 import styles from "./LessonPage.module.scss";
@@ -14,6 +15,7 @@ import { useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
 import { useParams } from "react-router-dom";
 import { Loader } from "components";
+import store from "redux/stores";
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState({});
@@ -22,6 +24,12 @@ const LessonPage = () => {
   const { id } = useParams();
   const [headingParams, setHeadingParams] = useState({});
   const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    const categories = await axiosAPI.getCategoriesList();
+    setCategories(categories);
+  };
 
   const getLesson = async () => {
     setLoading(true);
@@ -63,9 +71,14 @@ const LessonPage = () => {
     }
   };
 
+  const setCategory = (event) => {
+    store.dispatch({ type: "SetCategory", amount: event });
+  };
+
   useEffect(() => {
     let getResults = async () => {
       await getLesson();
+      await getCategories();
       await getOrganization();
     };
     getResults();
@@ -86,6 +99,31 @@ const LessonPage = () => {
       ) : (
         <div className={styles["section-list"]}>
           <div className={styles["section-categories"]}>
+            <div className={styles.sheet}>
+              {Array.isArray(lesson.lessonCategories)
+                ? lesson.lessonCategories.map((category) => {
+                    let value = categories.find((elem) => elem.id == category);
+                    return (
+                      <div
+                        key={category}
+                        style={{ display: "inline", marginRight: "5px" }}
+                      >
+                        <Link
+                          path="/catalogue"
+                          onClick={() => setCategory(value.name.split("/")[1])}
+                          fontFamily="Roboto-Regular"
+                          fontWeight="400"
+                          fontSize="14px"
+                          lineHeight="36px"
+                          color="#5F6060"
+                        >
+                          #{value.name.split("/")[1]}
+                        </Link>
+                      </div>
+                    );
+                  })
+                : null}
+            </div>
             <Sheet className={styles.sheet}>
               <Heading
                 tag="h1"
