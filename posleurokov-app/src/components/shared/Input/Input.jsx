@@ -20,29 +20,30 @@ const Input = ({
   const htmlFor = `${inputType}-${Math.random()}`;
 
   return (
-    <div
-      className={`${cls.join(" ")} ${prepend !== null ? styles.padding : ""}`}
-    >
-      {label ? (
-        <label htmlFor={htmlFor}>
-          {required ? <span>* </span> : null}
-          {label}
-        </label>
-      ) : null}
-      <input
-        style={{ ...rest }}
-        type={inputType}
-        name={name}
-        step={step}
-        multiple={multiple}
-        id={htmlFor}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
-      {prepend}
-      <br />
-      <span>{errorMessage}</span>
+    <div>
+      <div
+        className={`${cls.join(" ")} ${prepend !== null ? styles.padding : ""}`}
+      >
+        {label ? (
+          <label htmlFor={htmlFor}>
+            {required ? <span>* </span> : null}
+            {label}
+          </label>
+        ) : null}
+        <input
+          style={{ ...rest }}
+          type={inputType}
+          name={name}
+          step={step}
+          multiple={multiple}
+          id={htmlFor}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+        {prepend}
+      </div>
+      {errorMessage ? <span>{errorMessage}</span> : null}
     </div>
   );
 };
