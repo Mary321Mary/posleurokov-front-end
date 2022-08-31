@@ -116,12 +116,72 @@ const LessonCreate = () => {
   };
   const submitChackin = async (event) => {
     event.preventDefault();
-    const response = await axiosAPI.getLessonCreate({
-      lesson: course,
-      images: Images,
-    });
-    if (response.status !== 200) {
-      setError(response.data);
+    let valid = true;
+    if (course.lessonCategories.length === 0) {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          lessonCategories: "Выберите категорию",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          lessonCategories: "",
+        };
+      });
+    }
+    if (course.name === "") {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          name: "Введите название",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          name: "",
+        };
+      });
+    }
+    if (course.info === "") {
+      valid = false;
+      setError((prev) => {
+        return {
+          ...prev,
+          info: "Введите описание",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          info: "",
+        };
+      });
+    }
+    if (valid) {
+      const response = await axiosAPI.getLessonCreate({
+        lesson: course,
+        images: Images,
+      });
+      if (response.status !== 200) {
+        setError((prev) => {
+          return {
+            ...prev,
+            meneger:
+              "Проверьте входные данные и убедитесь, что создана организация",
+          };
+        });
+      } else {
+        window.location.assign("/");
+      }
+    } else {
       setError((prev) => {
         return {
           ...prev,
@@ -129,8 +189,6 @@ const LessonCreate = () => {
             "Проверьте входные данные и убедитесь, что создана организация",
         };
       });
-    } else {
-      window.location.assign("/");
     }
   };
 
@@ -199,12 +257,12 @@ const LessonCreate = () => {
   useEffect(() => {
     getCities();
     getCategories();
-  }, [])
+  }, []);
 
   useEffect(() => {
     setAgeField();
     setSexField();
-  }, [city, startAge, endAge, sex]);
+  }, [startAge, endAge, sex]);
 
   return (
     <section className={styles.container}>
@@ -505,7 +563,7 @@ const LessonCreate = () => {
                 </label>
                 <Checkbox
                   value={course.agreement}
-                  text='Ознакомлен и согласен с условиями использования'
+                  text="Ознакомлен и согласен с условиями использования"
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
@@ -516,9 +574,11 @@ const LessonCreate = () => {
                   }}
                 ></Checkbox>
                 <div className={styles["gorisonlal-line"]}></div>
-                <div>{course.agreement !== false &&
-                  <Button onClick={submitChackin}>Создать секцию</Button>
-                }</div>
+                <div>
+                  {course.agreement !== false && (
+                    <Button onClick={submitChackin}>Создать секцию</Button>
+                  )}
+                </div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}
               </form>
             </div>
