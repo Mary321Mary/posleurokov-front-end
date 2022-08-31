@@ -45,7 +45,11 @@ const Course = ({ list, online, ...rest }) => {
             </div>
             <div className={styles.price}>
               <div>
-                <div>{elem.lesson.price} руб.</div>
+                {elem.lesson.price ? (
+                  <div>{elem.lesson.price} руб.</div>
+                ) : (
+                  <div>Цена не указана</div>
+                )}
                 <div>{elem.lesson.additionalPriceInfo}</div>
               </div>
               {elem.lesson.hasReception ? (

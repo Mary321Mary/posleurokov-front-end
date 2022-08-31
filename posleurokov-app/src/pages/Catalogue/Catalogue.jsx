@@ -16,7 +16,7 @@ import { stringify } from "qs";
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const tab = useSelector((state) => state.tab);
@@ -37,7 +37,7 @@ const Catalogue = () => {
       {
         city,
         category,
-        currentPage,
+        page,
         tab,
         sex,
         age,
@@ -59,7 +59,7 @@ const Catalogue = () => {
   }, [
     tab,
     city,
-    currentPage,
+    page,
     category,
     sex,
     age,
@@ -88,7 +88,7 @@ const Catalogue = () => {
                       <TabsBar items={courses} />
                     </Sheet>
                     <Pagination
-                      currentPage={currentPage}
+                      currentPage={page}
                       totalPageCount={courses.counts.countOfPages}
                       onPageChange={(page) => setCurrentPage(page)}
                     />
