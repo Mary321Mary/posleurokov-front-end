@@ -245,6 +245,7 @@ const Profile = () => {
       if (result.token) {
         setOrganization(result.organization);
         localStorage.setItem("token", result.token);
+        localStorage.setItem('name', result.name)
         setIsSuccess(true)
         setError('')
       }
