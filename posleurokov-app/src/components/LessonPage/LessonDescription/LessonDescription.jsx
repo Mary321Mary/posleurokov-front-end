@@ -6,7 +6,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
     if (lesson.address !== null) {
       return (
         <div>
-          <h3 className={styles.h3}>Адреса</h3>
+          <h3 className={styles.h3}>Адрес</h3>
           <div>{lesson.address}</div>
         </div>
       );
@@ -40,10 +40,23 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
 
   const GetPlace = () => {
     if (lesson.place !== null) {
+      let LinkOrText = () => {
+        if (String(lesson.place).startsWith("http")) {
+          return (
+            <div>
+              <a href={lesson.place}>{lesson.place}</a>
+            </div>
+          );
+        }
+        else {
+          return <div>{lesson.place}</div>;
+        }
+      };
+
       return (
         <div>
           <h3 className={styles.h3}>Место</h3>
-          <div>{lesson.place}</div>
+          <LinkOrText />
         </div>
       );
     } else {
@@ -73,7 +86,8 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
               <a href={lesson.timetable}>{lesson.timetable}</a>
             </div>
           );
-        } else {
+        }
+        else {
           return <div>{lesson.timetable}</div>;
         }
       };
@@ -96,11 +110,11 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         <div>
           {organization.name}
           <br />
-          Email: {organization.email}
+          Email: <a href={'mailto:' + organization.email}>{organization.email}</a>
           <br />
           Телефон: {organization.phoneNumber}
           <br />
-          {organization.additionalLink}
+          <a href={organization.additionalLink}>{organization.additionalLink}</a>
         </div>
       </div>
     );
