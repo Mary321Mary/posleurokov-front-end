@@ -24,7 +24,7 @@ const Main = () => {
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [marginParams, setMarginParams] = useState({})
+  const [marginParams, setMarginParams] = useState({});
 
   const getCategories = async () => {
     setLoading(true);
@@ -40,17 +40,13 @@ const Main = () => {
   const getWindowSize = () => {
     let innerWidth = window.outerWidth;
 
-    if (innerWidth > 1024) {
+    if (innerWidth > 1200) {
       setMarginParams({
-        'marginLeft': '10%'
-      });
-    } else if (innerWidth >= 760 && innerWidth <= 1024) {
-      setMarginParams({
-        'marginLeft': '20%'
+        marginLeft: "10%",
       });
     } else {
       setMarginParams({
-        'marginLeft': 'auto'
+        marginLeft: "auto",
       });
     }
   };
@@ -99,7 +95,7 @@ const Main = () => {
           </section>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
-              <Sheet marginLeft={marginParams['marginLeft']}>
+              <Sheet marginLeft={marginParams["marginLeft"]}>
                 {result !== null ? (
                   Array.isArray(result) ? (
                     <Categories number={result.length}>
@@ -113,17 +109,17 @@ const Main = () => {
                           >
                             {category.concreteCategories.map((item) => {
                               return (
-                                <div key={item}>
+                                <div key={item.name} style={{ marginBottom: '10px' }}>
                                   <Link
                                     path="/catalogue"
-                                    onClick={() => setCategory(item)}
+                                    onClick={() => setCategory(item.name)}
                                     fontFamily="Roboto-Regular"
                                     fontWeight="400"
                                     fontSize="14px"
-                                    lineHeight="36px"
+                                    lineHeight="20px"
                                     color="#5F6060"
                                   >
-                                    {item}
+                                    {item.name}<div className={styles.number}>{item.count}</div>
                                   </Link>
                                 </div>
                               );

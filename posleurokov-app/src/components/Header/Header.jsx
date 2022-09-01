@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { Logo, Button, Link, Select, Sheet } from "components";
+import { Logo, Button, Link, Select, Sheet, ModalWindow } from "components";
 import { useState, useEffect } from "react";
 import { useOutsideClick } from "hooks";
 import galochka from "assets/img/galochka.png";
@@ -8,11 +8,13 @@ import menu from "assets/img/Menu.svg";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
+import { CheckIfOrganizationForm } from './CheckIfOrganizationForm/CheckIfOrganizationForm';
 
 const Header = () => {
   const [cities, setCities] = useState([]);
   const city = useSelector((state) => state.city);
   const [cityTitle, setCityTitle] = useState("Гомель");
+  const [showModal, setShowModal] = useState(false)
   const PHONE = "+375 29 113-67-97";
 
   const getCities = async () => {
@@ -60,8 +62,21 @@ const Header = () => {
     setCity(city);
   }, [city]);
 
+  const checkIfOrganization = () => {
+    let name = localStorage.getItem('name')
+    if (name == null) {
+      setShowModal(true)
+    }
+    else {
+      window.location.href = '/lesson/create'
+    }
+  }
+
   return (
     <>
+      <ModalWindow show={showModal} handler={() => { setShowModal(false) }}>
+        <CheckIfOrganizationForm handler={() => { setShowModal(false) }} />
+      </ModalWindow>
       <div ref={ref}>
         <Link path="/">
           <Logo />
@@ -79,6 +94,7 @@ const Header = () => {
             { text: "Все города", value: "Все города" },
           ]}
           prepend={<img src={galochka} height="6px" alt="галочка" />}
+          minWidth="150px"
           textDecoration="underline"
           textDecorationStyle="dashed"
           textUnderlineOffset="5px"
@@ -168,11 +184,9 @@ const Header = () => {
             </Link>
           </div>
         )}
-        <Link path="/lesson/create">
-          <div className={styles.button}>
-            <Button>Добавить занятие</Button>
-          </div>
-        </Link>
+        <div className={styles.button}>
+          <Button onClick={checkIfOrganization}>Добавить занятие</Button>
+        </div>
       </div>
       <div className={styles.mobile}>
         <img

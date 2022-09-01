@@ -96,6 +96,7 @@
     border-radius: 5px;
     width: 95%;
     text-align: left;
+    white-space: pre-line;
   }
 
   .success {
@@ -166,6 +167,12 @@
         max-width: 400px;
         height: 200px;
       }
+
+      .removeImage {
+        height: 25px;
+        display: block;
+        margin-left: 220px;
+      }
     }
 
     .buttons {
@@ -232,6 +239,12 @@
       .preview {
         max-width: 290px;
         height: 110px;
+      }
+
+      .removeImage {
+        height: 25px;
+        display: block;
+        margin-left: 150px;
       }
     }
 
@@ -317,6 +330,12 @@
       .preview {
         max-width: 200px;
         height: 70px;
+      }
+
+      .removeImage {
+        height: 25px;
+        display: block;
+        margin-left: 133px;
       }
     }
 

@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 .filter-wrapper {
   padding-top: 15px;
@@ -41,11 +41,11 @@
   align-items: center;
   margin-bottom: 20px;
 
-  &>div {
+  & > div {
     margin-right: 20px;
   }
 
-  &>div:last-child {
+  & > div:last-child {
     margin-right: 0;
   }
 }
@@ -54,16 +54,26 @@
   margin-top: 53px;
 }
 
+.galochka,
+.galochkaRaskruta {
+  margin-left: 15px;
+}
+
+.categories {
+  margin-left: 10px;
+  border-left: 1px solid #eeefef;
+}
+
 @media only screen and (max-width: 1175px) {
   .filter {
     flex-direction: column;
 
-    &>div {
+    & > div {
       margin-right: 0;
       margin-bottom: 20px;
     }
 
-    &>div:last-child {
+    & > div:last-child {
       margin-right: 0;
       margin-bottom: 0;
     }
@@ -82,7 +92,6 @@
 }
 
 .box {
-
   display: block;
   border: 2px solid rgb(197, 197, 197);
   margin: 10px;
@@ -91,7 +100,6 @@
 }
 
 .label {
-
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
@@ -101,7 +109,7 @@
 
   /* dark_gray */
 
-  color: #5F6060;
+  color: #5f6060;
 }
 
 .nameCategory {
@@ -111,7 +119,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: #5F6060;
+  color: #5f6060;
 }
 
 div.podCategory {
@@ -120,12 +128,12 @@ div.podCategory {
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
-  color: #5F6060;
-  border-left: 1px solid #EEEFEF;
+  color: #5f6060;
+  border-left: 1px solid #eeefef;
   margin-left: 10px;
   padding-left: 13px;
 }
 
 .active {
-  font-family: $btn-font-family  !important;
+  font-family: $btn-font-family !important;
 }

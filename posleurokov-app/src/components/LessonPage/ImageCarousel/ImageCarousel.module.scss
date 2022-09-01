@@ -7,7 +7,7 @@
     border-radius: 10px;
   }
 
-  @media only screen and (min-width: 1025px) {
+  @media only screen and (min-width: 1200px) {
     width: 166px;
     height: 96px;
     margin-bottom: 13px;
@@ -18,7 +18,7 @@
     }
   }
 
-  @media only screen and (max-width: 1024px) and (min-width: 700px) {
+  @media only screen and (max-width: 1200px) and (min-width: 700px) {
     width: 133px;
     height: 77px;
     margin-bottom: 6.7px;
@@ -42,10 +42,8 @@
 }
 
 .original {
-
-  @media only screen and (min-width: 1025px) {
+  @media only screen and (min-width: 1200px) {
     margin-left: 52px;
-    margin-right: 55px;
     width: 787px;
     padding: 0 110px 0 0;
 
@@ -55,9 +53,8 @@
     }
   }
 
-  @media only screen and (max-width: 1024px) and (min-width: 700px) {
+  @media only screen and (max-width: 1200px) and (min-width: 700px) {
     margin-left: 23px;
-    margin-right: 31.6px;
     width: 630px;
     padding: 0 110px 0 0;
 

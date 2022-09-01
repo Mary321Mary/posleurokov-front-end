@@ -27,6 +27,12 @@
     width: 130px;
     height: 130px;
     margin-right: 23px;
+    border-radius: 12px;
+  }
+
+  .random {
+    width: 130px;
+    height: 100px;
   }
 }
 
@@ -46,7 +52,6 @@
   /* dark_gray */
   color: #5f6060;
 
-  height: 95px;
   max-width: 300px;
   margin-right: 67px;
 }
@@ -155,6 +160,11 @@
       width: 100px;
       height: 100px;
       margin-right: 14px;
+    }
+
+    .random {
+      width: 100px;
+      height: 70px;
     }
   }
 

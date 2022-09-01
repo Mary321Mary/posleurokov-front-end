@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Link, Button, Input, ListFilter, SuggestComponent } from "components";
+import { Select, Link, Button, Input, ListFilter, Sheet, SuggestComponent } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
 import search from "assets/icons/search.svg";
+import galochka from "assets/img/galochka.png";
+import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
 
 function FilterCatalogue() {
   const city = useSelector((state) => state.city);
   const category = useSelector((state) => state.params.category);
 
   const [res, setCountCategories] = useState(null);
+  const [baseCategories, setBaseCategories] = useState([]);
   const [fields, setFields] = useState(() => {
     return {
+
       gender:
         store.getState().params.sex === "any"
           ? ["female", "male"]
           : [store.getState().params.sex],
       age: store.getState().params.age,
       address: store.getState().params.addr,
+      name: store.getState().params.name,
       other: [
         store.getState().params.isInSummer === true ? "isInSummer" : "",
         store.getState().params.inNotSummer === true ? "inNotSummer" : "",
@@ -26,6 +31,18 @@ function FilterCatalogue() {
       ],
     };
   });
+  const [img, setImg] = useState(galochkaRaskruta);
+
+  const showCategory = () => {
+    const categories = document.getElementById("categories");
+    if (categories.style.display === "block") {
+      setImg(galochka);
+      categories.style.display = "none";
+    } else {
+      setImg(galochkaRaskruta);
+      categories.style.display = "block";
+    }
+  };
 
   const setCategory = (event) => {
     store.dispatch({ type: "SetCategory", amount: event });
@@ -36,9 +53,11 @@ function FilterCatalogue() {
     if (fields.gender.length === 1) {
       sex = fields.gender[0];
     }
+    store.dispatch({ type: "ChangeName", amount: fields.name });
     store.dispatch({ type: "ChangeGender", amount: sex });
     store.dispatch({ type: "ChangeAge", amount: fields.age });
     store.dispatch({ type: "ChangeAddress", amount: fields.address });
+
     let isInSummer = "";
     let inNotSummer = "";
     let hasReception = "";
@@ -70,6 +89,8 @@ function FilterCatalogue() {
         encodeURI(category)
       );
       setCountCategories(result);
+      const resultBase = await axiosAPI.getCategories(city);
+      setBaseCategories(resultBase);
     } else {
       const result = await axiosAPI.getCategories(city);
       setCountCategories(result);
@@ -90,8 +111,32 @@ function FilterCatalogue() {
   }, [city]);
 
   return (
-    <section className={styles["filter-wrapper"]}>
+
+    <Sheet padding="21px 31px 27px 30px" className={styles["filter-wrapper"]}>
       <section className={styles.filter}>
+
+        <div className={styles.label}>ЗАНЯТИЕ</div>
+
+        <Input
+          marginLeft="10px"
+          height="40px"
+          borderRadius="8px"
+          border="1px solid rgb(197, 197, 197)"
+          type="text"
+          width="195px"
+          placeholder="Название занятия"
+          value={fields.name}
+          padding="0px 22px"
+          onChange={(event) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                name: event.target.value,
+              };
+            });
+          }}
+        />
+
         <div className={styles.label}>ПОЛ</div>
 
         <Select
@@ -171,7 +216,36 @@ function FilterCatalogue() {
         {res !== null ? (
           category !== "all" ? (
             <div>
-              <div className={styles.label}>КАТЕГОРИЯ</div>
+              <div className={styles.label} onClick={() => showCategory()}>
+                КАТЕГОРИИ
+                <img
+                  src={img}
+                  className={`${
+                    img === galochka
+                      ? styles["galochka"]
+                      : styles["galochkaRaskruta"]
+                  }`}
+                  alt="Галочка"
+                />
+              </div>
+              <div id="categories" className={styles.categories}>
+                {baseCategories.map((category) => {
+                  return (
+                    <div
+                      style={{ margin: "10px" }}
+                      key={category.baseCategory.name}
+                    >
+                      <Link
+                        className={`${styles.nameCategory}`}
+                        onClick={() => setCategory(category.baseCategory.name)}
+                      >
+                        {category.baseCategory.name} ({category.count})
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+
               <Link
                 className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""
                   }`}
@@ -259,7 +333,7 @@ function FilterCatalogue() {
           </Button>
         </Link>
       </section>
-    </section>
+    </Sheet>
   );
 }
 

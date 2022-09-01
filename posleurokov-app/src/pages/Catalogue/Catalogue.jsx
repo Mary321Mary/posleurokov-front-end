@@ -16,13 +16,14 @@ import { stringify } from "qs";
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const tab = useSelector((state) => state.tab);
   const city = useSelector((state) => state.city);
 
   const category = useSelector((state) => state.params.category);
+  const name = useSelector((state) => state.params.name);
   const sex = useSelector((state) => state.params.sex);
   const age = useSelector((state) => state.params.age);
   const cost = useSelector((state) => state.params.cost);
@@ -37,7 +38,8 @@ const Catalogue = () => {
       {
         city,
         category,
-        currentPage,
+        name,
+        page,
         tab,
         sex,
         age,
@@ -49,6 +51,7 @@ const Catalogue = () => {
       },
       { arrayFormat: "repeat" }
     );
+    console.log(queryString)
     const result = await axiosAPI.getCourses(`/result/?${queryString}`);
     setCourses(result);
     setLoading(false);
@@ -59,8 +62,9 @@ const Catalogue = () => {
   }, [
     tab,
     city,
-    currentPage,
+    page,
     category,
+    name,
     sex,
     age,
     addr,
@@ -88,7 +92,7 @@ const Catalogue = () => {
                       <TabsBar items={courses} />
                     </Sheet>
                     <Pagination
-                      currentPage={currentPage}
+                      currentPage={page}
                       totalPageCount={courses.counts.countOfPages}
                       onPageChange={(page) => setCurrentPage(page)}
                     />
@@ -101,9 +105,7 @@ const Catalogue = () => {
               )}
             </div>
             <div className={styles["section-categories"]}>
-              <Sheet padding="21px 31px 27px 30px">
-                <FilterCatalogue />
-              </Sheet>
+              <FilterCatalogue />
               <VkBlock heigth="auto" width="220px" />
             </div>
           </div>

@@ -26,20 +26,23 @@
 
 .price {
   background: url("../../assets/img/Union.svg") 100% 10%,
-    url("../../assets/img/bgr.svg") 57% 96%, url("../../assets/img/img.png");
+    url("../../assets/img/bgr.svg") 57% 96%,
+    center/80% url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
-    top: 115px;
+    top: 135px;
   }
 
   .exist {
-    top: -8px;
+    display: inline;
+    top: 15px;
     left: 155px;
   }
 
   .absent {
-    top: 0px;
+    display: inline;
+    top: 15px;
     font-size: 16px;
     left: 140px;
   }
@@ -47,7 +50,7 @@
 
 .no-price {
   background: url("../../assets/img/bgr.svg") 57% 96%,
-    url("../../assets/img/img.png");
+    center/80% url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
@@ -88,4 +91,10 @@
   top: 4px;
   font-size: 16px;
   left: 5px;
+}
+
+@media only screen and (max-width: 760px) {
+  .additional {
+    margin: 10px auto;
+  }
 }
