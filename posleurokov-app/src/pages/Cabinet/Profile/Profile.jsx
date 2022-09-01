@@ -215,12 +215,6 @@ const Profile = () => {
       isValid = false
     }
 
-    if (orgAddress == '' || !orgAddress.startsWith('г ' + cities.find(item => item.id == city).name)) {
-      console.log(orgAddress)
-      error += 'Адрес: адрес должен начинаться "г {указанный город}!\n'
-      isValid = false
-    }
-
     setError(error)
     return isValid;
   }

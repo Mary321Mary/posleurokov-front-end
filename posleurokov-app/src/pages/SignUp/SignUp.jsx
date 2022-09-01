@@ -8,8 +8,9 @@ import { axiosAPI } from "plugins/axios";
 const SignUp = () => {
   const [user, setUser] = useState(() => {
     return {
-      fio: "",
+      firstname: "",
       surname: "",
+      fio: "",
       email: "",
       password: "",
       password2: "",
@@ -18,7 +19,7 @@ const SignUp = () => {
 
   const [error, setError] = useState(() => {
     return {
-      fio: "",
+      firstname: "",
       surname: "",
       email: "",
       password: "",
@@ -38,18 +39,110 @@ const SignUp = () => {
 
   const submitChackin = async (event) => {
     event.preventDefault();
-    if (user.password === user.password2) {
-      user.fio += ' ' + user.surname
+    setError((prev) => {
+      return {
+        ...prev,
+        password2: "",
+      };
+    });
+    if (user.firstname === "") {
+      setError((prev) => {
+        return {
+          ...prev,
+          firstname: "Пустое имя",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          firstname: "",
+        };
+      });
+    }
+    if (user.surname === "") {
+      setError((prev) => {
+        return {
+          ...prev,
+          surname: "Пустая фамилия",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          surname: "",
+        };
+      });
+    }
+    if (user.email === "") {
+      setError((prev) => {
+        return {
+          ...prev,
+          email: "Пустой email",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          email: "",
+        };
+      });
+    }
+    if (user.password === "") {
+      setError((prev) => {
+        return {
+          ...prev,
+          password: "Пустой пароль",
+        };
+      });
+    } else {
+      setError((prev) => {
+        return {
+          ...prev,
+          password: "",
+        };
+      });
+    }
+    if (
+      error.firstname === "" &&
+      error.surname === "" &&
+      error.email === "" &&
+      user.password !== "" &&
+      user.password === user.password2
+    ) {
+      user.fio += user.firstname + " " + user.surname;
       const response = await axiosAPI.getSignUp(user);
-      console.log(response);
       if (response.status === 400) {
-        setError(response.data);
+        setUser((prev) => {
+          return {
+            ...prev,
+            fio: "",
+          };
+        });
+        if (response.data === "ExistUser") {
+          setError((prev) => {
+            return {
+              ...prev,
+              email: "Такой email занят, свяжитель с администратором",
+            };
+          });
+        } else {
+          setError(response.data);
+        }
       } else {
         localStorage.setItem("token", response.token);
+        localStorage.setItem("name", null);
         window.location.assign("/");
       }
     } else {
-      setError({ password2: "Повторите пароль правильно" });
+      setError((prev) => {
+        return {
+          ...prev,
+          password2: "Повторите пароль правильно",
+        };
+      });
     }
   };
 
@@ -65,10 +158,10 @@ const SignUp = () => {
             <form className={styles.form}>
               <Input
                 label="Имя"
-                name="fio"
-                value={user.fio}
+                name="firstname"
+                value={user.firstname}
                 onChange={changeInputRegister}
-                errorMessage={error.fio}
+                errorMessage={error.firstname}
               />
               <Input
                 label="Фамилия"
@@ -101,7 +194,9 @@ const SignUp = () => {
                 onChange={changeInputRegister}
                 errorMessage={error.password2}
               />
-              <Button onClick={submitChackin}>Регистрация</Button>
+              <Button onClick={submitChackin} marginTop="5px">
+                Регистрация
+              </Button>
             </form>
           </Sheet>
         </div>
