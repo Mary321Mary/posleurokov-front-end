@@ -12,7 +12,8 @@
     line-height: 35px;
 
     /* blue */
-    color: #6d80d8;
+    color: $primary-color;
+    margin-left: 10%;
   }
 }
 
@@ -27,7 +28,13 @@
   }
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1200px) {
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .container {
+    h1 {
+      margin-left: 34px;
+    }
+  }
+
   .section {
     &-list {
       margin-left: 34px;
@@ -37,11 +44,12 @@
   }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 1000px) {
   .container {
     h1 {
       font-size: 20px;
       line-height: 26px;
+      margin-left: 16px;
     }
   }
 

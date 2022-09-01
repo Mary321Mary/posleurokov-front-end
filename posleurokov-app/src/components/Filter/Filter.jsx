@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Filter.module.scss";
-import { Select, Button, Link, Input } from "components";
+import { Select, Button, Link, Input, SuggestComponent } from "components";
 import search from "assets/icons/search.svg";
 import store from "redux/stores";
 import { useSelector } from "react-redux";
@@ -17,6 +17,8 @@ function Filter() {
   const [addr, setAddress] = useState("");
   const [category, setCategory] = useState("");
   const [other, setOther] = useState([]);
+  const [name, setName] = useState("");
+
 
   const AddCategory = { type: "SetCategory", amount: category };
 
@@ -43,6 +45,7 @@ function Filter() {
     let isInSummer = "";
     let inNotSummer = "";
     let hasReception = "";
+
     for (let i = 0; i < other.length; i++) {
       switch (other[i]) {
         case "isInSummer":
@@ -59,6 +62,7 @@ function Filter() {
     store.dispatch({
       type: "SetParamsForCatalogue",
       amount: {
+        name,
         age,
         sex,
         addr,
@@ -71,22 +75,19 @@ function Filter() {
     if (category === "") {
       store.dispatch({ type: "SetCategory", amount: "all" });
     }
-  }, [age, gender, cost, addr, category, other, city]);
+  }, [name, age, gender, cost, addr, category, other, city]);
 
   return (
     <section className={styles["filter-wrapper"]}>
       <section className={styles.filter}>
-        <Select
-          placeholder="Пол"
-          value={gender}
-          options={[
-            { text: "м", value: "male" },
-            { text: "ж", value: "female" },
-          ]}
-          checkbox
-          prepend={<img src="\images\Gender.png" height="25px" alt="Пол" />}
-          zIndex="7"
-          onChange={(value) => setGender(value)}
+
+        <Input
+          width="175px"
+          border="none"
+          type="text"
+          placeholder="Занятие"
+          prepend={<img src="\images\Name.png" height="25px" alt="Название" />}
+          onChange={(e) => setName(e.target.value)}
         />
 
         <Select
@@ -131,26 +132,27 @@ function Filter() {
           zIndex="5"
           onChange={(value) => setCost(value)}
         />
-        <Input
-          width="175px"
-          border="none"
-          type="text"
-          placeholder="Адрес"
+        <SuggestComponent
+          className={styles.suggest}
+          value={addr}
+          handler={setAddress}
+          width={'175'}
+          border={'none'}
+          placeholder={'Адрес'}
           prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
-          onChange={(e) => setAddress(e.target.value)}
+          isCitySet={true}
         />
-
         <Select
           placeholder="Категории"
           value={category}
           options={
             Array.isArray(result)
               ? result.map((category) => {
-                  return {
-                    text: category.baseCategory.name,
-                    value: category.baseCategory.name,
-                  };
-                })
+                return {
+                  text: category.baseCategory.name,
+                  value: category.baseCategory.name,
+                };
+              })
               : {}
           }
           prepend={
@@ -175,6 +177,7 @@ function Filter() {
         />
       </section>
       <section className={styles["btn-section"]}>
+
         <Link path="/catalogue">
           <Button
             width="239px"

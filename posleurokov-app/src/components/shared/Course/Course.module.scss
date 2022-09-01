@@ -15,19 +15,24 @@
   /* blue */
   color: $primary-color;
 
-  padding-top: 48px;
   padding-bottom: 16px;
 }
 
 .content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   img {
     width: 130px;
     height: 130px;
     margin-right: 23px;
     border-radius: 12px;
+  }
+
+  .random {
+    width: 130px;
+    height: 100px;
   }
 }
 
@@ -62,8 +67,11 @@
   /* gray */
   color: #9e9e9e;
 
-  width: 200px;
+  max-width: 200px;
+  min-width: 150px;
   margin-right: 60px;
+  word-break: break-word;
+
   img {
     width: 22px;
     height: 22px;
@@ -75,6 +83,10 @@
   margin-bottom: 21px;
   display: flex;
   align-items: center;
+
+  img {
+    border-radius: 0px;
+  }
 }
 
 .price,
@@ -95,6 +107,19 @@
   justify-content: space-between;
 }
 
+.firstFree {
+  align-self: flex-end;
+  background-color: $primary-color;
+  font-weight: 400;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 16px;
+  font-style: normal;
+  width: 130px;
+  border-radius: 5px;
+  color: white;
+}
+
 .open,
 .close {
   align-self: flex-end;
@@ -104,10 +129,12 @@
 }
 
 .open {
+  width: 85px;
   background-color: $primary-color;
 }
 
 .close {
+  width: 100px;
   background-color: #ff0000;
 }
 
@@ -125,6 +152,14 @@
     margin-bottom: 26px;
   }
 
+  .info {
+    margin-right: 10px;
+  }
+
+  .addition {
+    margin-right: 0px;
+  }
+
   .price {
     display: none;
   }
@@ -135,6 +170,16 @@
 
     display: flex;
     flex-direction: row;
+    align-items: center;
+
+    &-price {
+      width: 100px;
+    }
+  }
+
+  .firstFree {
+    text-align: center;
+    align-self: auto;
   }
 }
 
@@ -156,6 +201,11 @@
       height: 100px;
       margin-right: 14px;
     }
+
+    .random {
+      width: 100px;
+      height: 70px;
+    }
   }
 
   .addition,
@@ -173,5 +223,15 @@
 
     display: flex;
     flex-direction: row;
+    align-items: center;
+
+    &-price {
+      width: 100px;
+    }
+  }
+
+  .firstFree {
+    text-align: center;
+    align-self: auto;
   }
 }

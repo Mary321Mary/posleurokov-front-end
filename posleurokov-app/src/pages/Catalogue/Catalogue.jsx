@@ -23,6 +23,7 @@ const Catalogue = () => {
   const city = useSelector((state) => state.city);
 
   const category = useSelector((state) => state.params.category);
+  const name = useSelector((state) => state.params.name);
   const sex = useSelector((state) => state.params.sex);
   const age = useSelector((state) => state.params.age);
   const cost = useSelector((state) => state.params.cost);
@@ -37,6 +38,7 @@ const Catalogue = () => {
       {
         city,
         category,
+        name,
         page,
         tab,
         sex,
@@ -49,6 +51,7 @@ const Catalogue = () => {
       },
       { arrayFormat: "repeat" }
     );
+    console.log(queryString)
     const result = await axiosAPI.getCourses(`/result/?${queryString}`);
     setCourses(result);
     setLoading(false);
@@ -61,6 +64,7 @@ const Catalogue = () => {
     city,
     page,
     category,
+    name,
     sex,
     age,
     addr,
@@ -76,9 +80,7 @@ const Catalogue = () => {
       ) : (
         <div>
           <Helmet title="Каталог" />
-          <Heading tag="h1" center>
-            Каталог кружков, секций и курсов в Гомеле
-          </Heading>
+          <Heading tag="h1">Каталог кружков, секций и курсов в Гомеле</Heading>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
               {courses !== null ? (

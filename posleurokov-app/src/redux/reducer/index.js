@@ -1,13 +1,10 @@
-import React from "react";
-import ReactDom from "react-dom";
-
-import { createStore } from "redux/stores";
-
 const initialState = {
   count: "",
   tab: "any",
   city: "Гомель",
+  suggestCity: 'Гомель',
   params: {
+    name: "",
     sex: "any",
     age: [],
     cost: [],
@@ -33,6 +30,11 @@ function reducer(state = initialState, action) {
         ...state,
         city: action.amount === undefined ? state.city : action.amount,
       };
+    case "ChangeSuggestCity":
+      return {
+        ...state,
+        suggestCity: action.amount === undefined ? state.suggestCity : action.amount,
+      };
     case "SetParamsForCatalogue":
       return {
         ...state,
@@ -45,6 +47,14 @@ function reducer(state = initialState, action) {
           ...state.params,
           category:
             action.amount === undefined ? state.params.category : action.amount,
+        },
+      };
+    case "ChangeName":
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          name: action.amount === undefined ? state.params.name : action.amount,
         },
       };
     case "ChangeGender":
