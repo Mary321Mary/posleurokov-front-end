@@ -8,6 +8,7 @@ const initialState = {
   tab: "any",
   city: "Гомель",
   params: {
+    name: "",
     sex: "any",
     age: [],
     cost: [],
@@ -45,6 +46,14 @@ function reducer(state = initialState, action) {
           ...state.params,
           category:
             action.amount === undefined ? state.params.category : action.amount,
+        },
+      };
+    case "ChangeName":
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          name: action.amount === undefined ? state.params.name : action.amount,
         },
       };
     case "ChangeGender":

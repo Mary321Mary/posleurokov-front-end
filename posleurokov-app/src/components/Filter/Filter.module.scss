@@ -1,18 +1,22 @@
 .filter-wrapper {
   margin-top: 46px;
 }
+
 .filter {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  & > div {
+
+  &>div {
     margin-right: 20px;
   }
-  & > div:last-child {
+
+  &>div:last-child {
     margin-right: 0;
   }
 }
+
 .btn-section {
   margin-top: 53px;
 }
@@ -20,19 +24,23 @@
 @media only screen and (max-width: 1400px) {
   .filter {
     flex-direction: column;
-    & > div {
+
+    &>div {
       margin-right: 0;
       margin-bottom: 20px;
     }
-    & > div:last-child {
+
+    &>div:last-child {
       margin-right: 0;
       margin-bottom: 0;
     }
   }
+
   .btn-section {
     margin-top: 20px;
   }
 }
+
 @media only screen and (max-width: 760px) {
   .filter-wrapper {
     margin-top: 20px;

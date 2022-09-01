@@ -13,12 +13,14 @@ function FilterCatalogue() {
   const [res, setCountCategories] = useState(null);
   const [fields, setFields] = useState(() => {
     return {
+
       gender:
         store.getState().params.sex === "any"
           ? ["female", "male"]
           : [store.getState().params.sex],
       age: store.getState().params.age,
       address: store.getState().params.addr,
+      name: store.getState().params.name,
       other: [
         store.getState().params.isInSummer === true ? "isInSummer" : "",
         store.getState().params.inNotSummer === true ? "inNotSummer" : "",
@@ -36,9 +38,11 @@ function FilterCatalogue() {
     if (fields.gender.length === 1) {
       sex = fields.gender[0];
     }
+    store.dispatch({ type: "ChangeName", amount: fields.name });
     store.dispatch({ type: "ChangeGender", amount: sex });
     store.dispatch({ type: "ChangeAge", amount: fields.age });
     store.dispatch({ type: "ChangeAddress", amount: fields.address });
+
     let isInSummer = "";
     let inNotSummer = "";
     let hasReception = "";
@@ -81,8 +85,32 @@ function FilterCatalogue() {
   }, [city]);
 
   return (
+
     <Sheet padding="21px 31px 27px 30px" className={styles["filter-wrapper"]}>
       <section className={styles.filter}>
+
+        <div className={styles.label}>ЗАНЯТИЕ</div>
+
+        <Input
+          marginLeft="10px"
+          height="40px"
+          borderRadius="8px"
+          border="1px solid rgb(197, 197, 197)"
+          type="text"
+          width="195px"
+          placeholder="Название занятия"
+          value={fields.name}
+          padding="0px 22px"
+          onChange={(event) => {
+            setFields((prev) => {
+              return {
+                ...prev,
+                name: event.target.value,
+              };
+            });
+          }}
+        />
+
         <div className={styles.label}>ПОЛ</div>
 
         <Select
@@ -176,9 +204,8 @@ function FilterCatalogue() {
             <div>
               <div className={styles.label}>КАТЕГОРИЯ</div>
               <Link
-                className={`${styles.nameCategory} ${
-                  category === res.baseCategory ? styles["active"] : ""
-                }`}
+                className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""
+                  }`}
                 onClick={() => setCategory(res.baseCategory)}
               >
                 {res.baseCategory}
@@ -186,24 +213,23 @@ function FilterCatalogue() {
               <div className={styles.podCategory}>
                 {Array.isArray(res.concreteCategories)
                   ? res.concreteCategories.map((key) => {
-                      return (
-                        <div style={{ margin: "10px" }} key={key.name}>
-                          <Link
-                            className={`${
-                              category === key.name ? styles["active"] : ""
+                    return (
+                      <div style={{ margin: "10px" }} key={key.name}>
+                        <Link
+                          className={`${category === key.name ? styles["active"] : ""
                             }`}
-                            fontFamily="Roboto-Regular"
-                            fontWeight="400"
-                            fontSize="13px"
-                            lineHeight="15px"
-                            color="#5F6060"
-                            onClick={() => setCategory(key.name)}
-                          >
-                            {key.name} ({key.count})
-                          </Link>
-                        </div>
-                      );
-                    })
+                          fontFamily="Roboto-Regular"
+                          fontWeight="400"
+                          fontSize="13px"
+                          lineHeight="15px"
+                          color="#5F6060"
+                          onClick={() => setCategory(key.name)}
+                        >
+                          {key.name} ({key.count})
+                        </Link>
+                      </div>
+                    );
+                  })
                   : null}
               </div>
             </div>
