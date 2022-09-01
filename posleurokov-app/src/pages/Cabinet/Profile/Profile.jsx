@@ -1,7 +1,8 @@
 import styles from "./Profile.module.scss";
 import { useState, useEffect } from "react";
-import { Sheet, LeftPanel, Loader } from "components";
+import { Sheet, LeftPanel, Loader, SuggestComponent } from "components";
 import { axiosAPI } from "plugins/axios";
+import store from "redux/stores";
 
 const Profile = () => {
   const [organActive, setOrganActive] = useState(false);
@@ -64,14 +65,16 @@ const Profile = () => {
       let result = await axiosAPI.getProfile();
       setUser(result.user);
       setOrganization(result.organizer);
+      getCities(result.organizer.city);
     } else {
       window.location.replace("/login");
     }
   };
 
-  const getCities = async () => {
+  const getCities = async (cityId) => {
     let result = await axiosAPI.getCities();
     setCities(result.cities);
+    store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id == cityId).name });
     setLoading(false)
   };
 
@@ -136,7 +139,6 @@ const Profile = () => {
 
   useEffect(() => {
     getUser();
-    getCities();
     getSizes();
 
     function handleWindowResize() {
@@ -292,14 +294,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <input
-                      type={"text"}
-                      value={address}
-                      onChange={(e) => {
-                        setAddress(e.target.value);
-                      }}
-                      maxLength={200}
-                    ></input>
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} />
                   </div>
                   <div>
                     <div>Телефон</div>
@@ -371,6 +366,7 @@ const Profile = () => {
                       value={city}
                       onChange={(e) => {
                         setCity(e.target.value);
+                        store.dispatch({ type: "ChangeSuggestCity", amount: cities.find(item => item.id == e.target.value).name });
                       }}
                     >
                       {citiesSelect}
@@ -380,15 +376,12 @@ const Profile = () => {
                     <div>
                       Адрес<sup>*</sup>
                     </div>
-                    <input
-                      type={"text"}
+                    <SuggestComponent
                       value={orgAddress}
-                      onChange={(e) => {
-                        setOrgAddress(e.target.value);
-                      }}
-                      maxLength={200}
-                      minLength={1}
-                    ></input>
+                      handler={setOrgAddress}
+                      className={styles.suggest}
+                      isCitySet={true}
+                      initialCity={cities.find(item => item.id == city).name} />
                   </div>
                   <div>
                     <div>Контакт</div>

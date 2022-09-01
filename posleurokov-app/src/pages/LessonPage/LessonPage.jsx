@@ -22,7 +22,6 @@ const LessonPage = () => {
   const { id } = useParams();
   const [windowWidth, setWindowWidth] = useState("");
   const [sheetMargin, setSheetMargin] = useState("");
-  const [panelMargin, setPanelMargin] = useState("initial");
   const [headingParams, setHeadingParams] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -58,8 +57,7 @@ const LessonPage = () => {
         "font-style": "normal",
         "font-weight": "500",
       });
-      setPanelMargin("initial");
-    } else if (innerWidth > 700 && innerWidth <= 1024) {
+    } else if (innerWidth >= 700 && innerWidth <= 1024) {
       setWindowWidth("723px");
       setSheetMargin("10px auto");
       setHeadingParams({
@@ -72,7 +70,6 @@ const LessonPage = () => {
         "font-style": "normal",
         "font-weight": "500",
       });
-      setPanelMargin("initial");
     } else {
       setWindowWidth("312px");
       setSheetMargin("10px auto");
@@ -86,7 +83,6 @@ const LessonPage = () => {
         "font-style": "normal",
         "font-weight": "500",
       });
-      setPanelMargin("10px 0 10px 43%");
     }
   };
 
@@ -111,7 +107,7 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
-	{loading ? <Loader marginLeft={'35%'} /> : <div className={styles.table}>
+      {loading ? <Loader marginLeft={'35%'} /> : <div className={styles.table}>
         <div className={styles.table_row}>
           <Sheet margin={sheetMargin} width={windowWidth}>
             <Heading

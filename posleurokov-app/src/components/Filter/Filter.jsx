@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Filter.module.scss";
-import { Select, Button, Link, Input } from "components";
+import { Select, Button, Link, Input, SuggestComponent } from "components";
 import search from "assets/icons/search.svg";
 import store from "redux/stores";
 import { useSelector } from "react-redux";
@@ -131,6 +131,16 @@ function Filter() {
           zIndex="5"
           onChange={(value) => setCost(value)}
         />
+        <SuggestComponent
+          className={styles.suggest}
+          value={addr}
+          handler={setAddress}
+          width={'175'}
+          border={'none'}
+          placeholder={'Адрес'}
+          prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
+          isCitySet={true}
+        />
         <Input
           width="175px"
           border="none"
@@ -146,11 +156,11 @@ function Filter() {
           options={
             Array.isArray(result)
               ? result.map((category) => {
-                  return {
-                    text: category.baseCategory.name,
-                    value: category.baseCategory.name,
-                  };
-                })
+                return {
+                  text: category.baseCategory.name,
+                  value: category.baseCategory.name,
+                };
+              })
               : {}
           }
           prepend={

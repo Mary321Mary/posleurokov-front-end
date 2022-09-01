@@ -35,6 +35,7 @@ const Header = () => {
       value = "online";
     }
     store.dispatch({ type: "ChangeCity", amount: value });
+    store.dispatch({ type: "ChangeSuggestCity", amount: value });
   };
 
   const openNav = () => {

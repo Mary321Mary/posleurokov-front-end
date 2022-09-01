@@ -1,5 +1,6 @@
-import { Heading, Input, Button, Select, Checkbox, Loader } from "components";
+import { Heading, Input, Button, Select, Checkbox, Loader, SuggestComponent } from "components";
 import Helmet from "react-helmet";
+import store from "redux/stores";
 
 import styles from "./LessonCreate.module.scss";
 import { React, useEffect, useState } from "react";
@@ -95,6 +96,15 @@ const LessonCreate = () => {
     });
   };
 
+  const changeAddress = (value) => {
+    setCourse((prev) => {
+      return {
+        ...prev,
+        'address': value
+      }
+    })
+  }
+
   const changeImageRegister = (event) => {
     event.persist();
     getBase64(event.target.files[0], (result) => {
@@ -150,6 +160,7 @@ const LessonCreate = () => {
   const setCityField = (item) => {
     setCity(item);
     let value = cities.find((elem) => elem.name === item);
+    store.dispatch({ type: "ChangeSuggestCity", amount: item });
     setCourse((prev) => {
       return {
         ...prev,
@@ -351,14 +362,12 @@ const LessonCreate = () => {
                   errorMessage={error.timetable}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
-                <Input
-                  height="66px"
-                  label="Адрес:"
-                  name="address"
+                <label>Адрес:</label>
+                <SuggestComponent
                   value={course.address}
-                  onChange={changeInputRegister}
-                  errorMessage={error.address}
-                />
+                  handler={changeAddress}
+                  className={styles.suggest}
+                  isCitySet={true} />
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"

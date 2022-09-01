@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Link, Button, Input, ListFilter } from "components";
+import { Select, Link, Button, Input, ListFilter, SuggestComponent } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
@@ -75,6 +75,15 @@ function FilterCatalogue() {
       setCountCategories(result);
     }
   };
+
+  const changeAddress = value => {
+    setFields((prev) => {
+      return {
+        ...prev,
+        address: value,
+      };
+    });
+  }
 
   useEffect(() => {
     getCountCategories();
@@ -151,24 +160,12 @@ function FilterCatalogue() {
         />
 
         <div className={styles.label}>АДРЕС</div>
-        <Input
-          marginLeft="10px"
-          height="40px"
-          borderRadius="8px"
-          border="1px solid rgb(197, 197, 197)"
-          type="text"
-          width="195px"
-          placeholder="Название улицы"
+        <SuggestComponent
           value={fields.address}
-          padding="0px 22px"
-          onChange={(event) => {
-            setFields((prev) => {
-              return {
-                ...prev,
-                address: event.target.value,
-              };
-            });
-          }}
+          handler={changeAddress}
+          className={styles.suggest}
+          placeholder="Название улицы"
+          isCitySet={true}
         />
 
         {res !== null ? (
@@ -176,9 +173,8 @@ function FilterCatalogue() {
             <div>
               <div className={styles.label}>КАТЕГОРИЯ</div>
               <Link
-                className={`${styles.nameCategory} ${
-                  category === res.baseCategory ? styles["active"] : ""
-                }`}
+                className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""
+                  }`}
                 onClick={() => setCategory(res.baseCategory)}
               >
                 {res.baseCategory}
@@ -186,24 +182,23 @@ function FilterCatalogue() {
               <div className={styles.podCategory}>
                 {Array.isArray(res.concreteCategories)
                   ? res.concreteCategories.map((key) => {
-                      return (
-                        <div style={{ margin: "10px" }} key={key.name}>
-                          <Link
-                            className={`${
-                              category === key.name ? styles["active"] : ""
+                    return (
+                      <div style={{ margin: "10px" }} key={key.name}>
+                        <Link
+                          className={`${category === key.name ? styles["active"] : ""
                             }`}
-                            fontFamily="Roboto-Regular"
-                            fontWeight="400"
-                            fontSize="13px"
-                            lineHeight="15px"
-                            color="#5F6060"
-                            onClick={() => setCategory(key.name)}
-                          >
-                            {key.name} ({key.count})
-                          </Link>
-                        </div>
-                      );
-                    })
+                          fontFamily="Roboto-Regular"
+                          fontWeight="400"
+                          fontSize="13px"
+                          lineHeight="15px"
+                          color="#5F6060"
+                          onClick={() => setCategory(key.name)}
+                        >
+                          {key.name} ({key.count})
+                        </Link>
+                      </div>
+                    );
+                  })
                   : null}
               </div>
             </div>
