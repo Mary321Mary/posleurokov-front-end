@@ -8,13 +8,13 @@ import menu from "assets/img/Menu.svg";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
-import { CheckIfOrganizationForm } from './CheckIfOrganizationForm/CheckIfOrganizationForm';
+import { CheckIfOrganizationForm } from "./CheckIfOrganizationForm/CheckIfOrganizationForm";
 
 const Header = () => {
   const [cities, setCities] = useState([]);
   const city = useSelector((state) => state.city);
   const [cityTitle, setCityTitle] = useState("Гомель");
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const PHONE = "+375 29 113-67-97";
 
   const getCities = async () => {
@@ -62,19 +62,27 @@ const Header = () => {
   }, [city]);
 
   const checkIfOrganization = () => {
-    let name = localStorage.getItem('name')
+    let name = localStorage.getItem("name");
     if (name == null) {
-      setShowModal(true)
+      setShowModal(true);
+    } else {
+      window.location.href = "/lesson/create";
     }
-    else {
-      window.location.href = '/lesson/create'
-    }
-  }
+  };
 
   return (
     <>
-      <ModalWindow show={showModal} handler={() => { setShowModal(false) }}>
-        <CheckIfOrganizationForm handler={() => { setShowModal(false) }} />
+      <ModalWindow
+        show={showModal}
+        handler={() => {
+          setShowModal(false);
+        }}
+      >
+        <CheckIfOrganizationForm
+          handler={() => {
+            setShowModal(false);
+          }}
+        />
       </ModalWindow>
       <div ref={ref}>
         <Link path="/">
@@ -247,7 +255,7 @@ const Header = () => {
             </div>
           )}
           <Link path="/lesson/create">
-            <Button>Добавить занятие</Button>
+            <Button onClick={checkIfOrganization}>Добавить занятие</Button>
           </Link>
         </div>
       </div>

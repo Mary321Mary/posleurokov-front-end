@@ -76,9 +76,7 @@ const Catalogue = () => {
       ) : (
         <div>
           <Helmet title="Каталог" />
-          <Heading tag="h1" center>
-            Каталог кружков, секций и курсов в Гомеле
-          </Heading>
+          <Heading tag="h1">Каталог кружков, секций и курсов в Гомеле</Heading>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
               {courses !== null ? (
