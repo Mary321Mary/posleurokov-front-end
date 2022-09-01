@@ -142,15 +142,6 @@ function Filter() {
           prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
           isCitySet={true}
         />
-        <Input
-          width="175px"
-          border="none"
-          type="text"
-          placeholder="Адрес"
-          prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-
         <Select
           placeholder="Категории"
           value={category}
