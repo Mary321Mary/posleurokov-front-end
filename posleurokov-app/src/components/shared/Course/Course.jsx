@@ -33,7 +33,7 @@ const Course = ({ list, online, ...rest }) => {
                 alt="Курс"
               />
             ) : (
-              <img src={randomLesson} alt="Курс" />
+              <img src={randomLesson} alt="Курс" className={styles.random} />
             )}
             <div className={styles.info}>
               <div>

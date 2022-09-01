@@ -26,7 +26,8 @@
 
 .price {
   background: url("../../assets/img/Union.svg") 100% 10%,
-    url("../../assets/img/bgr.svg") 57% 96%, url("../../assets/img/img.png");
+    url("../../assets/img/bgr.svg") 57% 96%,
+    center/80% url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
@@ -49,7 +50,7 @@
 
 .no-price {
   background: url("../../assets/img/bgr.svg") 57% 96%,
-    url("../../assets/img/img.png");
+    center/80% url("../../assets/img/img.png");
   background-repeat: no-repeat;
 
   .name {
