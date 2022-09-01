@@ -1,5 +1,13 @@
 @import "src/assets/styles/_variables.scss";
 
+.similar {
+  display: block;
+}
+
+.notsimilar {
+  display: none;
+}
+
 .label {
   font-family: $heading-font-family;
   font-style: normal;
@@ -8,7 +16,7 @@
   line-height: 33px;
 
   /* blue */
-  color: #6d80d8;
+  color: $primary-color;
 
   padding-top: 35px;
   margin-left: 52px;
@@ -69,7 +77,8 @@
 }
 
 .block {
-  width: 200px;
+  max-width: 200px;
+  min-width: 150px;
   display: flex;
 }
 
@@ -116,7 +125,7 @@
 
     img {
       width: 90px;
-      height: 90px;
+      height: 70px;
       margin-right: 9px;
     }
   }

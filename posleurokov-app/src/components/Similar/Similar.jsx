@@ -8,7 +8,7 @@ import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
 const Similar = ({ id, className, ...rest }) => {
-  const [similar, setSimilar] = useState(null);
+  const [similar, setSimilar] = useState([]);
 
   useEffect(() => {
     getSimilar();
@@ -20,7 +20,12 @@ const Similar = ({ id, className, ...rest }) => {
   };
 
   return (
-    <Sheet className={className} {...rest}>
+    <Sheet
+      className={`${className} ${
+        similar.length === 0 ? styles.notsimilar : styles.similar
+      }`}
+      {...rest}
+    >
       <div className={styles.label}>Похожие</div>
       <div className={styles.info}>
         {similar !== null ? (
@@ -53,14 +58,12 @@ const Similar = ({ id, className, ...rest }) => {
                         <img src={map} alt="адрес" />
                         <div>{elem.lesson.address}</div>
                       </div>
-                      <div className={styles.block}>
-                        <img src={time} alt="время" />
-                        <div>
-                          {elem.lesson.timetable !== null
-                            ? elem.lesson.timetable
-                            : "Не назначено"}
+                      {elem.lesson.timetable !== null ? (
+                        <div className={styles.block}>
+                          <img src={time} alt="время" />
+                          <div>{elem.lesson.timetable}</div>
                         </div>
-                      </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
