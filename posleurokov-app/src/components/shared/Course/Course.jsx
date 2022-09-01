@@ -63,14 +63,12 @@ const Course = ({ list, online, ...rest }) => {
                 <img src={map} alt="адрес" />
                 <div>{elem.lesson.address}</div>
               </div>
-              <div className={styles.block}>
-                <img src={time} alt="время" />
-                <div>
-                  {elem.lesson.timetable !== null
-                    ? elem.lesson.timetable
-                    : "Не назначено"}
+              {elem.lesson.timetable !== null ? (
+                <div className={styles.block}>
+                  <img src={time} alt="время" />
+                  <div>{elem.lesson.timetable}</div>
                 </div>
-              </div>
+              ) : null}
             </div>
             <div className={styles.price}>
               <div>
@@ -81,6 +79,9 @@ const Course = ({ list, online, ...rest }) => {
                 )}
                 <div>{elem.lesson.additionalPriceInfo}</div>
               </div>
+              {elem.lesson.isFirstFree ? (
+                <div className={styles.firstFree}>Первое Бесплатно</div>
+              ) : null}
               {elem.lesson.hasReception ? (
                 <div className={styles.open}>Прием: идет</div>
               ) : (
@@ -99,14 +100,12 @@ const Course = ({ list, online, ...rest }) => {
               <img src={map} alt="адрес" />
               <div>{elem.lesson.address}</div>
             </div>
-            <div className={styles.block}>
-              <img src={time} alt="время" />
-              <div>
-                {elem.lesson.timetable !== null
-                  ? elem.lesson.timetable
-                  : "Не назначено"}
+            {elem.lesson.timetable !== null ? (
+              <div className={styles.block}>
+                <img src={time} alt="время" />
+                <div>{elem.lesson.timetable}</div>
               </div>
-            </div>
+            ) : null}
           </div>
           <div className={styles.tablet}>
             <div>
@@ -116,7 +115,10 @@ const Course = ({ list, online, ...rest }) => {
                 <div className={styles.close}>Прием: закрыт</div>
               )}
             </div>
-            <div>
+            {elem.lesson.isFirstFree ? (
+              <div className={styles.firstFree}>Первое Бесплатно</div>
+            ) : null}
+            <div className={styles["tablet-price"]}>
               {elem.lesson.price ? (
                 <div>{elem.lesson.price} руб.</div>
               ) : (

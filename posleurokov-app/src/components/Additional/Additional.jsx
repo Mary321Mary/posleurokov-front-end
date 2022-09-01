@@ -16,7 +16,10 @@ const Additional = ({ price, ...rest }) => {
   };
 
   return (
-    <a href={`/lesson/${additional.id}`} style={{ ...rest }}>
+    <a
+      href={`/lesson/${additional.id}`}
+      style={{ textDecoration: "none", ...rest }}
+    >
       {additional.image !== undefined && additional.image.image !== null ? (
         <div
           className={`${styles.additional} `}

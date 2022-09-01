@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import styles from "./Login.module.scss";
 import { useState } from "react";
 import { axiosAPI } from "plugins/axios";
+import { Link } from "components";
 
 const Login = () => {
   const [user, setUser] = useState(() => {
@@ -37,7 +38,6 @@ const Login = () => {
         setError(response.data);
       }
     } else {
-      console.log(response);
       localStorage.setItem("token", response.token);
       localStorage.setItem("name", response.name);
       window.location.assign("/");
@@ -74,6 +74,12 @@ const Login = () => {
               </Button>
             </form>
           </Sheet>
+          <div className={styles.signup}>
+            <div>Еще не регистрировались?</div>
+            <Link path="/signup" color="black">
+              Регистрация
+            </Link>
+          </div>
         </div>
       </div>
     </section>
