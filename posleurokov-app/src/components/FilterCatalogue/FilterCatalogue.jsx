@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FilterCatalogue.module.scss";
-import { Select, Link, Button, Input, ListFilter, Sheet } from "components";
+import { Select, Link, Button, Input, ListFilter, Sheet, SuggestComponent } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
@@ -96,6 +96,15 @@ function FilterCatalogue() {
       setCountCategories(result);
     }
   };
+
+  const changeAddress = value => {
+    setFields((prev) => {
+      return {
+        ...prev,
+        address: value,
+      };
+    });
+  }
 
   useEffect(() => {
     getCountCategories();
@@ -196,24 +205,12 @@ function FilterCatalogue() {
         />
 
         <div className={styles.label}>АДРЕС</div>
-        <Input
-          marginLeft="10px"
-          height="40px"
-          borderRadius="8px"
-          border="1px solid rgb(197, 197, 197)"
-          type="text"
-          width="195px"
-          placeholder="Название улицы"
+        <SuggestComponent
           value={fields.address}
-          padding="0px 22px"
-          onChange={(event) => {
-            setFields((prev) => {
-              return {
-                ...prev,
-                address: event.target.value,
-              };
-            });
-          }}
+          handler={changeAddress}
+          className={styles.suggest}
+          placeholder="Название улицы"
+          isCitySet={true}
         />
 
         {res !== null ? (
