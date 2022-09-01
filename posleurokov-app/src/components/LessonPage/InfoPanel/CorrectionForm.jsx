@@ -10,7 +10,7 @@ const CorrectionForm = ({ id, handler }) => {
   const [isSuccess, setIsSuccess] = useState(false)
 
   const sendMessage = async () => {
-    if (cause != 'Выбрать причину' && message != '' && /\S+@\S+\.\S+/.test(email)) {
+    if (cause != 'Выбрать причину' && message != '' && (/\S+@\S+\.\S+/.test(email) || email == '')) {
       let correction = {
         'email': email,
         'reason': cause,
