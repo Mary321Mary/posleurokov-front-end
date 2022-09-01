@@ -1,41 +1,41 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 .thumbnail {
-  border-radius: 10px;
+  border-radius: 15px;
 
   img {
     border-radius: 10px;
   }
 
   @media only screen and (min-width: 1200px) {
-    width: 166px;
+    width: auto;
     height: 96px;
     margin-bottom: 13px;
 
     img {
-      width: 158px;
+      width: auto;
       height: 88px;
     }
   }
 
   @media only screen and (max-width: 1200px) and (min-width: 700px) {
-    width: 133px;
+    width: auto;
     height: 77px;
     margin-bottom: 6.7px;
 
     img {
-      width: 125px;
+      width: auto;
       height: 69px;
     }
   }
 
   @media only screen and (max-width: 699px) {
-    width: 56px;
+    width: auto;
     height: 33px;
     margin-bottom: 1.4px;
 
     img {
-      width: 48px;
+      width: auto;
       height: 25px;
     }
   }

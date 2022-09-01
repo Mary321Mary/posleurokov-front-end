@@ -18,10 +18,6 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
   const GetPhones = () => {
     let phones = "";
 
-    if (organization.phoneNumber !== null) {
-      phones += organization.phoneNumber + ", ";
-    }
-
     if (lesson.additionalContactPhoneNumber !== null) {
       phones += lesson.additionalContactPhoneNumber;
     }
