@@ -36,8 +36,8 @@ const Footer = () => {
       <nav>
         <ul className={styles.nav}>{nav}</ul>
       </nav>
-      <form action="https://vk.com/o_cheshun">
-        <Button type="submit" width="210px">ПРОФОРИЕТЕАЦИЯ</Button>
+      <form action="https://vk.com/o_cheshun" target="_blank">
+        <Button type="submit" width="210px">ПРОФОРИЕНТАЦИЯ</Button>
       </form>
     </section>
   );
