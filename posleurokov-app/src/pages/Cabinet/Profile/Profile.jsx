@@ -85,6 +85,7 @@ const Profile = () => {
     setCities(result.cities);
     if (cityId == -1) {
       store.dispatch({ type: "ChangeSuggestCity", amount: result.cities[0].name });
+      setCity(result.cities[0].id)
     }
     else {
       store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id == cityId).name });
@@ -302,12 +303,6 @@ const Profile = () => {
                   <div>
                     Данные доступны только администрации сервиса для связи с вами.
                   </div>
-                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
-                    {error}
-                  </div>
-                  <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
-                    Данные обновлены!
-                  </div>
                   <div>
                     <div>
                       Имя<sup>*</sup>
@@ -367,6 +362,12 @@ const Profile = () => {
                       placeholder={"+375441234567"}
                     ></input>
                   </div>
+                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                    {error}
+                  </div>
+                  <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
+                    Данные обновлены!
+                  </div>
                   <div className={styles.buttons}>
                     <button onClick={saveUser}>Сохранить</button>
                   </div>
@@ -374,12 +375,6 @@ const Profile = () => {
               ) : (
                 <div className={styles.form}>
                   <div>
-                    <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
-                      {error}
-                    </div>
-                    <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
-                      Данные обновлены!
-                    </div>
                     <div>
                       Организатор<sup>*</sup>
                     </div>
@@ -492,6 +487,12 @@ const Profile = () => {
                       style={{ display: orgImage != "" ? "initial" : "none" }}
                     ></img>
                     {orgImage != '' ? <button onClick={() => { setOrgImage('') }} className={styles.removeImage}>Удалить картинку</button> : <div></div>}
+                  </div>
+                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                    {error}
+                  </div>
+                  <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
+                    Данные обновлены!
                   </div>
                   <div className={styles.buttons}>
                     <button onClick={saveOrganization}>Сохранить</button>
