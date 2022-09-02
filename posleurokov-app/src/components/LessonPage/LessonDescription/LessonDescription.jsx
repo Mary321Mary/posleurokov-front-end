@@ -40,7 +40,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         if (String(lesson.place).startsWith("http")) {
           return (
             <div>
-              <a href={lesson.place}>{lesson.place}</a>
+              <a href={lesson.place} target={'_blank'}>{lesson.place}</a>
             </div>
           );
         }
@@ -79,7 +79,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         if (String(lesson.timetable).startsWith("http")) {
           return (
             <div>
-              <a href={lesson.timetable}>{lesson.timetable}</a>
+              <a href={lesson.timetable} target={'_blank'}>{lesson.timetable}</a>
             </div>
           );
         }

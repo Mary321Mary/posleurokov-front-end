@@ -27,7 +27,7 @@ const Contacts = () => {
         <div className={styles.info}>
           <div className={styles.fio}>{elem.fio}</div>
           <div className={styles.textInfo}>{elem.info}</div>
-          {elem.vk ? <a href={elem.vk} className={styles.vk}><img src={vk}></img></a> : <div></div>}<a href={'mailto:' + elem.email} className={styles.mail}><img src={email}></img></a>
+          {elem.vk ? <a href={elem.vk} className={styles.vk} target={'_blank'}><img src={vk}></img></a> : <div></div>}<a href={'mailto:' + elem.email} className={styles.mail}><img src={email}></img></a>
         </div>
         <div className={styles.additional}>
           {elem.address ? <div>

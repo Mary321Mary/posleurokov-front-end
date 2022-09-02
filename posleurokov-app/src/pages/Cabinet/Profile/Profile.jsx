@@ -69,7 +69,12 @@ const Profile = () => {
       let result = await axiosAPI.getProfile();
       setUser(result.user);
       setOrganization(result.organizer);
-      getCities(result.organizer.city);
+      if (result.organizer == null) {
+        getCities(-1);
+      }
+      else {
+        getCities(result.organizer.city);
+      }
     } else {
       window.location.replace("/login");
     }
@@ -78,7 +83,12 @@ const Profile = () => {
   const getCities = async (cityId) => {
     let result = await axiosAPI.getCities();
     setCities(result.cities);
-    store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id == cityId).name });
+    if (cityId == -1) {
+      store.dispatch({ type: "ChangeSuggestCity", amount: result.cities[0].name });
+    }
+    else {
+      store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id == cityId).name });
+    }
     setLoading(false)
   };
 
