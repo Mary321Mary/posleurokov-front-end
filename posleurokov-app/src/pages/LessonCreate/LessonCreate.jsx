@@ -189,7 +189,7 @@ const LessonCreate = () => {
           };
         });
       } else {
-        window.location.assign("/");
+        window.location.assign("/cabinet/active");
       }
     } else {
       setError((prev) => {
@@ -585,7 +585,7 @@ const LessonCreate = () => {
                 <div className={styles["gorisonlal-line"]}></div>
                 <div>
                   {course.agreement !== false && (
-                    <Button onClick={submitChackin}>Создать секцию</Button>
+                    <Button onClick={submitChackin}>Добавить занятие</Button>
                   )}
                 </div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}

@@ -160,7 +160,7 @@ const LessonUpdate = () => {
         };
       });
     } else {
-      window.location.assign("/");
+      window.location.assign("/cabinet/active");
     }
   };
 
@@ -562,8 +562,8 @@ const LessonUpdate = () => {
                 ></Checkbox>
                 <div className={styles["gorisonlal-line"]}></div>
                 <div className={styles.picture}>
-                  <Button onClick={submitUpdate}>Обновить секцию</Button>
-                  <Button onClick={submitDelete}>Удалить секцию</Button>
+                  <Button onClick={submitUpdate}>Обновить занятие</Button>
+                  <Button onClick={submitDelete}>Удалить занятие</Button>
                 </div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}
               </form>
