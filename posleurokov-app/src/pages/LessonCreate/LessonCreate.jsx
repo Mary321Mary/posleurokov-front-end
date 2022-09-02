@@ -6,7 +6,6 @@ import {
   Checkbox,
   Loader,
   SuggestComponent,
-  Link,
 } from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
@@ -17,6 +16,7 @@ import { axiosAPI } from "plugins/axios";
 
 const LessonCreate = () => {
   const [categories, setCategories] = useState([]);
+  const [lessonCategory, setLessonCategory] = useState([]);
   const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -318,28 +318,80 @@ const LessonCreate = () => {
                 </div>
                 {error.city !== "" ? <span>{error.city}</span> : null}
                 <div className={styles["gorisonlal-line"]}></div>
-                <div>
-                  <label htmlFor="categories">
-                    <span>* </span>Категории:
-                  </label>
-                  <select
-                    value={course.lessonCategories}
-                    multiple
-                    size="8"
-                    onChange={changeSelectRegister}
-                  >
-                    {categories.map((category) => {
-                      return (
-                        <option value={category.id} key={category.id}>
-                          {category.name}
-                        </option>
+
+                <label htmlFor="categories">
+                  <span>* </span>Категории:
+                </label>
+                <div style={{ textAlign: "right" }}>
+                  {lessonCategory.map((category) => {
+                    return (
+                      <div key={category} style={{ margin: "5px 0" }}>
+                        {category}
+                        <span
+                          onClick={() => {
+                            setLessonCategory(
+                              lessonCategory.filter((elem) => {
+                                return elem !== category;
+                              })
+                            );
+                            setCourse((prev) => {
+                              let value = categories.find(
+                                (elem) => elem.name === category
+                              );
+                              return {
+                                ...prev,
+                                lessonCategories:
+                                  course.lessonCategories.filter((elem) => {
+                                    return elem !== value.id;
+                                  }),
+                              };
+                            });
+                          }}
+                          style={{ marginLeft: "5px", cursor: "pointer" }}
+                        >
+                          Убрать
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <input
+                    id="input-id"
+                    type="text"
+                    list="categories"
+                    style={{ width: "400px", height: "30px" }}
+                    onChange={() => {
+                      let inputValue =
+                        document.getElementById("input-id").value;
+                      let value = categories.find(
+                        (elem) => elem.name === inputValue
                       );
+                      if (value !== undefined) {
+                        setLessonCategory([...lessonCategory, inputValue]);
+                        setCourse((prev) => {
+                          let value = categories.find(
+                            (elem) => elem.name === inputValue
+                          );
+                          return {
+                            ...prev,
+                            lessonCategories: [
+                              ...course.lessonCategories,
+                              value.id,
+                            ],
+                          };
+                        });
+                      }
+                    }}
+                  />
+                  <datalist id="categories">
+                    {categories.map((category) => {
+                      return <option key={category.id}>{category.name}</option>;
                     })}
-                  </select>
+                  </datalist>
                 </div>
                 {error.lessonCategories !== "" ? (
                   <span>{error.lessonCategories}</span>
                 ) : null}
+
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"
@@ -577,14 +629,12 @@ const LessonCreate = () => {
                   errorMessage={error.Images}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
+                <label>
+                  <span>* </span>Условия:
+                </label>
                 <Checkbox
                   value={course.agreement}
-                  text={[
-                    "Ознакомлен и согласен с ",
-                    <Link path="/terms" color="black">
-                      <span>* </span> условиями использования
-                    </Link>,
-                  ]}
+                  text="Ознакомлен и согласен с условиями использования"
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
