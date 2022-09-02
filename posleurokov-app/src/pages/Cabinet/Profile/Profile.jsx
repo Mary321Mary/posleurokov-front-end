@@ -256,6 +256,7 @@ const Profile = () => {
         setError('')
       }
       else {
+        console.log(result['ValidationError'])
         setError('Произошла ошибка!')
         setIsSuccess(false)
       }
