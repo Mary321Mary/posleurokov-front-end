@@ -53,6 +53,15 @@ ul {
 }
 
 .option {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  /* dark_gray */
+  color: #5f6060;
+
   list-style-type: none;
   padding: 8px 22px;
   background-color: #ffffff;
@@ -61,7 +70,7 @@ ul {
 
   &:hover {
     background-color: #eeefef;
-    color: #ffffff;
+    color: black;
   }
 
   &:last-child {
