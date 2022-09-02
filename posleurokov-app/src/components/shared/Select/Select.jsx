@@ -9,6 +9,7 @@ const Select = ({
   append = null,
   prepend = null,
   checkbox = false,
+  showValue = false,
   onChange,
   zIndex,
   minWidth,
@@ -48,7 +49,13 @@ const Select = ({
       >
         {append && <div className={styles.append}>{append}</div>}
         <span className={styles["box__text"]}>
-          {checkbox ? placeholder : value || placeholder}
+          {showValue
+            ? checkboxList.length === 0
+              ? placeholder
+              : checkboxList
+            : checkbox
+            ? placeholder
+            : value || placeholder}
         </span>
         {prepend && <div className={styles.prepend}>{prepend}</div>}
       </div>

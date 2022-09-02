@@ -1,4 +1,13 @@
-import { Heading, Input, Button, Select, Checkbox, Loader, SuggestComponent } from "components";
+import {
+  Heading,
+  Input,
+  Button,
+  Select,
+  Checkbox,
+  Loader,
+  SuggestComponent,
+  Link,
+} from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
 
@@ -100,10 +109,10 @@ const LessonCreate = () => {
     setCourse((prev) => {
       return {
         ...prev,
-        'address': value
-      }
-    })
-  }
+        address: value,
+      };
+    });
+  };
 
   const changeImageRegister = (event) => {
     event.persist();
@@ -189,7 +198,7 @@ const LessonCreate = () => {
           };
         });
       } else {
-        window.location.assign("/");
+        window.location.assign("/cabinet/active");
       }
     } else {
       setError((prev) => {
@@ -424,7 +433,8 @@ const LessonCreate = () => {
                   value={course.address}
                   handler={changeAddress}
                   className={styles.suggest}
-                  isCitySet={true} />
+                  isCitySet={true}
+                />
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"
@@ -567,12 +577,14 @@ const LessonCreate = () => {
                   errorMessage={error.Images}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
-                <label>
-                  <span>* </span>Условия:
-                </label>
                 <Checkbox
                   value={course.agreement}
-                  text="Ознакомлен и согласен с условиями использования"
+                  text={[
+                    "Ознакомлен и согласен с ",
+                    <Link path="/terms" color="black">
+                      <span>* </span> условиями использования
+                    </Link>,
+                  ]}
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
@@ -585,7 +597,7 @@ const LessonCreate = () => {
                 <div className={styles["gorisonlal-line"]}></div>
                 <div>
                   {course.agreement !== false && (
-                    <Button onClick={submitChackin}>Создать секцию</Button>
+                    <Button onClick={submitChackin}>Добавить занятие</Button>
                   )}
                 </div>
                 {error.meneger !== "" ? <span>{error.meneger}</span> : null}
