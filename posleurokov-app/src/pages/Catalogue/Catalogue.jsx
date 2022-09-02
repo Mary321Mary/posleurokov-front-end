@@ -51,7 +51,6 @@ const Catalogue = () => {
       },
       { arrayFormat: "repeat" }
     );
-    console.log(queryString)
     const result = await axiosAPI.getCourses(`/result/?${queryString}`);
     setCourses(result);
     setLoading(false);
