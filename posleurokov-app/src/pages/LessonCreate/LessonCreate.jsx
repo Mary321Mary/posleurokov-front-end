@@ -281,9 +281,9 @@ const LessonCreate = () => {
         <Loader marginLeft={"42vw"} />
       ) : (
         <div>
-          <Helmet title="Создать секцию" />
+          <Helmet title="Добавить занятие" />
           <Heading tag="h1" center>
-            Создать секцию
+            Добавить занятие
           </Heading>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
