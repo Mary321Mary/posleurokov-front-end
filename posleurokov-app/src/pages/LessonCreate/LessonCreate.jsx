@@ -1,4 +1,13 @@
-import { Heading, Input, Button, Select, Checkbox, Loader, SuggestComponent } from "components";
+import {
+  Heading,
+  Input,
+  Button,
+  Select,
+  Checkbox,
+  Loader,
+  SuggestComponent,
+  Link,
+} from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
 
@@ -100,10 +109,10 @@ const LessonCreate = () => {
     setCourse((prev) => {
       return {
         ...prev,
-        'address': value
-      }
-    })
-  }
+        address: value,
+      };
+    });
+  };
 
   const changeImageRegister = (event) => {
     event.persist();
@@ -424,7 +433,8 @@ const LessonCreate = () => {
                   value={course.address}
                   handler={changeAddress}
                   className={styles.suggest}
-                  isCitySet={true} />
+                  isCitySet={true}
+                />
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"
@@ -567,12 +577,14 @@ const LessonCreate = () => {
                   errorMessage={error.Images}
                 />
                 <div className={styles["gorisonlal-line"]}></div>
-                <label>
-                  <span>* </span>Условия:
-                </label>
                 <Checkbox
                   value={course.agreement}
-                  text="Ознакомлен и согласен с условиями использования"
+                  text={[
+                    "Ознакомлен и согласен с ",
+                    <Link path="/terms" color="black">
+                      <span>* </span> условиями использования
+                    </Link>,
+                  ]}
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {

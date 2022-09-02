@@ -54,16 +54,16 @@ const Login = () => {
               ВОЙТИ
             </Heading>
             <form className={styles.form}>
+              <label>Email</label>
               <Input
                 type="email"
-                label="Email"
                 name="email"
                 value={user.email}
                 onChange={changeInputRegister}
               />
+              <label>Пароль</label>
               <Input
                 type="password"
-                label="Пароль"
                 name="password"
                 value={user.password}
                 onChange={changeInputRegister}
