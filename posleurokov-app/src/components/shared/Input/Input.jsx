@@ -12,6 +12,7 @@ const Input = ({
   prepend = null,
   value,
   onChange,
+  onKeyPress,
   errorMessage,
   ...rest
 }) => {
@@ -40,6 +41,7 @@ const Input = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          onKeyPress={onKeyPress}
         />
         {prepend}
       </div>
