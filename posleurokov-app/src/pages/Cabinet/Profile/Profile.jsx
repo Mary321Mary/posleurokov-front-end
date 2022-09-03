@@ -52,7 +52,7 @@ const Profile = () => {
 
     if (innerWidth > 1024) {
       setMainWidth("880px");
-    } else if (innerWidth > 700 && innerWidth <= 1024) {
+    } else if (innerWidth >= 700 && innerWidth <= 1024) {
       setMainWidth("550px");
     } else {
       setMainWidth("440px");

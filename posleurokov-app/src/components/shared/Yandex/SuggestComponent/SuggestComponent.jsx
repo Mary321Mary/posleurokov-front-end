@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import { useSelector } from "react-redux";
 
-const SuggestComponent = ({ handler, value, placeholder, prepend, className, isCitySet = false, ...rest }) => {
+const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, isCitySet = false, ...rest }) => {
 
   function MapSuggestComponent(props) {
     const { ymaps } = props;
@@ -52,6 +52,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, isC
       <input
         type={"text"}
         maxLength={200}
+        width={suggestWidth}
         id={'suggest'}
         defaultValue={value}
         placeholder={placeholder}

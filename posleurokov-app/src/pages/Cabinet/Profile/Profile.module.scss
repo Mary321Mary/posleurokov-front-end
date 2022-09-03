@@ -1,5 +1,6 @@
 .page {
   display: flex;
+  margin: 0 auto !important;
 }
 
 .nav {
@@ -113,12 +114,9 @@
 }
 
 @media only screen and (min-width: 1025px) {
-  .page {
-    margin-left: 19vw;
-  }
 
   .main {
-    margin-left: 70px;
+    margin-left: 5%;
   }
 
   .nav {
@@ -186,9 +184,6 @@
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 700px) {
-  .page {
-    margin-left: 7vw;
-  }
 
   .main {
     margin-left: 30px;
@@ -262,13 +257,13 @@
 
     input {
       padding: 0 2px !important;
+      width: 201px !important;
     }
   }
 }
 
 @media only screen and (max-width: 699px) {
   .page {
-    margin: 0 auto;
     display: table;
   }
 
@@ -288,6 +283,7 @@
 
     input {
       padding: 0 2px !important;
+      width: 190px !important;
     }
   }
 
