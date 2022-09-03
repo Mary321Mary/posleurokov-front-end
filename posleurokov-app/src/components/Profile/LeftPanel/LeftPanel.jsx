@@ -20,7 +20,7 @@ const LeftPanel = ({ active }) => {
       setSheetPadding('10px 15px 20px 15px')
       setSheetMargin('0px')
     }
-    else if (innerWidth > 700 && innerWidth <= 1024) {
+    else if (innerWidth >= 700 && innerWidth <= 1024) {
       setSheetWidth('177px')
       setSheetHeight('240px')
       setSheetPadding('10px 15px 20px 15px')
@@ -60,8 +60,12 @@ const LeftPanel = ({ active }) => {
     };
   }, [])
 
+  const getMarginLeft = () => {
+    return '' + window.outerWidth / 20 + 'px';
+  }
+
   return (
-    <Sheet width={sheetWidth} height={sheetHeight} padding={sheetPadding} marginBottom={sheetMargin}>
+    <Sheet width={sheetWidth} height={sheetHeight} padding={sheetPadding} marginBottom={sheetMargin} marginLeft={getMarginLeft}>
       <div className={styles.section}>
         <a href="/cabinet/profile"><button className={[styles.name, styles.button, active == 'Profile' ? styles.active : ''].join(' ')}>Профиль</button></a>
       </div>

@@ -18,6 +18,8 @@ function Filter() {
   const [category, setCategory] = useState("");
   const [other, setOther] = useState([]);
   const [name, setName] = useState("");
+  const [fieldWidth, setFieldWidth] = useState('')
+  const [prependWidth, setPrependWidth] = useState('')
 
 
   const AddCategory = { type: "SetCategory", amount: category };
@@ -77,17 +79,47 @@ function Filter() {
     }
   }, [name, age, gender, cost, addr, category, other, city]);
 
+  const setDynamicWidth = () => {
+    let windowWidth = window.outerWidth
+    if (windowWidth > 1249) {
+      setFieldWidth('' + windowWidth / 8.8 + 'px')
+    }
+    else {
+      setFieldWidth('175px')
+    }
+
+    if (windowWidth > 1200 && windowWidth < 1400) {
+      setPrependWidth('' + windowWidth / 55 + 'px')
+    }
+    else {
+      setPrependWidth('28.75px')
+    }
+  }
+
+  useEffect(() => {
+    setDynamicWidth();
+
+    function handleWindowResize() {
+      setDynamicWidth();
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <section className={styles["filter-wrapper"]}>
       <section className={styles.filter}>
-
         <Input
-          width="175px"
           border="none"
           type="text"
           placeholder="Занятие"
-          prepend={<img src="\images\Name.png" height="25px" alt="Название" />}
+          prepend={<img src="\images\Name.png" width={prependWidth} alt="Название" />}
           onChange={(e) => setName(e.target.value)}
+          inputWidth={fieldWidth}
         />
 
         <Select
@@ -115,7 +147,8 @@ function Filter() {
             { text: "Старше 18", value: "bigger" },
           ]}
           checkbox
-          prepend={<img src="\images\Age.png" height="25px" alt="Возраст" />}
+          selectWidth={fieldWidth}
+          prepend={<img src="\images\Age.png" width={prependWidth} alt="Возраст" />}
           zIndex="6"
           onChange={(value) => setAge(value)}
         />
@@ -128,7 +161,8 @@ function Filter() {
             { text: "Бесплатные", value: "free" },
           ]}
           checkbox
-          prepend={<img src="\images\Cost.png" height="25px" alt="Стоимость" />}
+          selectWidth={fieldWidth}
+          prepend={<img src="\images\Cost.png" width={prependWidth} alt="Стоимость" />}
           zIndex="5"
           onChange={(value) => setCost(value)}
         />
@@ -136,10 +170,9 @@ function Filter() {
           className={styles.suggest}
           value={addr}
           handler={setAddress}
-          width={'175'}
           border={'none'}
           placeholder={'Адрес'}
-          prepend={<img src="\images\Address.png" height="25px" alt="Адрес" />}
+          prepend={<img src="\images\Address.png" height={'25px'} alt="Адрес" />}
           isCitySet={true}
         />
         <Select
@@ -156,8 +189,9 @@ function Filter() {
               : {}
           }
           prepend={
-            <img src="\images\Categories.png" height="25px" alt="Категории" />
+            <img src="\images\Categories.png" width={prependWidth} alt="Категории" />
           }
+          selectWidth={fieldWidth}
           zIndex="3"
           onChange={(value) => setCategory(value)}
         />
@@ -171,7 +205,8 @@ function Filter() {
             { text: "Есть свободные места", value: "hasReception" },
           ]}
           checkbox
-          prepend={<img src="\images\Other.png" height="25px" alt="Другое" />}
+          selectWidth={fieldWidth}
+          prepend={<img src="\images\Other.png" width={prependWidth} alt="Другое" />}
           zIndex="2"
           onChange={(value) => setOther(value)}
         />

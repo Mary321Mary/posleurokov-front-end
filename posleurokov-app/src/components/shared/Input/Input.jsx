@@ -14,6 +14,7 @@ const Input = ({
   onChange,
   onKeyPress,
   errorMessage,
+  inputWidth,
   ...rest
 }) => {
   const inputType = type || "text";
@@ -24,6 +25,7 @@ const Input = ({
     <div>
       <div
         className={`${cls.join(" ")} ${prepend !== null ? styles.padding : ""}`}
+        style={{ width: inputWidth }}
       >
         {label ? (
           <label htmlFor={htmlFor}>

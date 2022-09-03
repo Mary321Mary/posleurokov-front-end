@@ -13,6 +13,7 @@ const Select = ({
   onChange,
   zIndex,
   minWidth,
+  selectWidth,
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
@@ -37,15 +38,15 @@ const Select = ({
 
   return (
     <div
-      className={`${styles["select"]} ${
-        showOptionList ? styles["select--active"] : ""
-      }`}
-      style={{ zIndex: zIndex, minWidth: minWidth }}
+      className={`${styles["select"]} ${showOptionList ? styles["select--active"] : ""
+        }`}
+      style={{ zIndex: zIndex, minWidth: minWidth, width: selectWidth }}
     >
       <div
         className={styles["select__box"]}
         style={{ ...rest }}
         onClick={() => setShowOptionList(!showOptionList)}
+        width={selectWidth}
       >
         {append && <div className={styles.append}>{append}</div>}
         <span className={styles["box__text"]}>
@@ -54,8 +55,8 @@ const Select = ({
               ? placeholder
               : checkboxList
             : checkbox
-            ? placeholder
-            : value || placeholder}
+              ? placeholder
+              : value || placeholder}
         </span>
         {prepend && <div className={styles.prepend}>{prepend}</div>}
       </div>
