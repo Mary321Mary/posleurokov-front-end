@@ -82,7 +82,16 @@ const SignUp = () => {
           email: "Пустой email",
         };
       });
-    } else {
+    }
+    else if (!(user.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
+      setError((prev) => {
+        return {
+          ...prev,
+          email: "Неправильный email",
+        };
+      });
+    }
+    else {
       setError((prev) => {
         return {
           ...prev,
@@ -142,7 +151,7 @@ const SignUp = () => {
             };
           });
         } else {
-          setError(response.data);
+          setError('Неправи');
         }
       } else {
         localStorage.setItem("token", response.token);

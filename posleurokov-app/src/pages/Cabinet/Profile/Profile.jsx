@@ -94,7 +94,7 @@ const Profile = () => {
   };
 
   const setUser = (user) => {
-    if ((user.fio.trim() != null) & (user.fio.trim() != "")) {
+    if ((user.fio != null) & (user.fio != "")) {
       let fio = String(user.fio).trim().split(" ");
       setFirstName(fio[0]);
       if (fio.length == 2) {
