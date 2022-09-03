@@ -84,10 +84,22 @@ ymaps[class*="search__suggest"] {
   .btn-section {
     margin-top: 20px;
   }
+
+  .suggest {
+    min-width: 165px;
+    padding: 0 12px 0 22px;
+    min-height: 55px;
+  }
 }
 
 @media only screen and (max-width: 760px) {
   .filter-wrapper {
     margin-top: 20px;
+  }
+
+  .suggest {
+    min-width: 165px;
+    padding: 0 12px 0 22px;
+    min-height: 55px;
   }
 }

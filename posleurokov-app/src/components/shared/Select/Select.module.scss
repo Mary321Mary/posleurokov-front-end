@@ -94,3 +94,9 @@ ul {
 .prepend {
   margin-left: 16px;
 }
+
+@media only screen and (min-width: 1250px) {
+  .select {
+    min-width: 200px !important;
+  }
+}
