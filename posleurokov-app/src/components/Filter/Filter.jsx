@@ -19,6 +19,7 @@ function Filter() {
   const [other, setOther] = useState([]);
   const [name, setName] = useState("");
   const [fieldWidth, setFieldWidth] = useState('')
+  const [selectWidth, setSelectWidth] = useState('')
   const [prependWidth, setPrependWidth] = useState('')
 
 
@@ -81,11 +82,13 @@ function Filter() {
 
   const setDynamicWidth = () => {
     let windowWidth = window.outerWidth
-    if (windowWidth > 1249) {
+    if (windowWidth > 1200) {
       setFieldWidth('' + windowWidth / 8.8 + 'px')
+      setSelectWidth('' + windowWidth / 8.8 + 'px')
     }
     else {
       setFieldWidth('175px')
+      setSelectWidth('195px')
     }
 
     if (windowWidth > 1200 && windowWidth < 1400) {
@@ -147,7 +150,7 @@ function Filter() {
             { text: "Старше 18", value: "bigger" },
           ]}
           checkbox
-          selectWidth={fieldWidth}
+          selectWidth={selectWidth}
           prepend={<img src="\images\Age.png" width={prependWidth} alt="Возраст" />}
           zIndex="6"
           onChange={(value) => setAge(value)}
@@ -161,7 +164,7 @@ function Filter() {
             { text: "Бесплатные", value: "free" },
           ]}
           checkbox
-          selectWidth={fieldWidth}
+          selectWidth={selectWidth}
           prepend={<img src="\images\Cost.png" width={prependWidth} alt="Стоимость" />}
           zIndex="5"
           onChange={(value) => setCost(value)}
@@ -191,7 +194,7 @@ function Filter() {
           prepend={
             <img src="\images\Categories.png" width={prependWidth} alt="Категории" />
           }
-          selectWidth={fieldWidth}
+          selectWidth={selectWidth}
           zIndex="3"
           onChange={(value) => setCategory(value)}
         />
@@ -205,7 +208,7 @@ function Filter() {
             { text: "Есть свободные места", value: "hasReception" },
           ]}
           checkbox
-          selectWidth={fieldWidth}
+          selectWidth={selectWidth}
           prepend={<img src="\images\Other.png" width={prependWidth} alt="Другое" />}
           zIndex="2"
           onChange={(value) => setOther(value)}

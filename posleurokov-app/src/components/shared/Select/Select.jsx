@@ -13,7 +13,7 @@ const Select = ({
   onChange,
   zIndex,
   minWidth,
-  selectWidth,
+  selectWidth = '200px',
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
