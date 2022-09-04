@@ -1,5 +1,8 @@
 .page {
   display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .main {
@@ -72,10 +75,6 @@ table {
 }
 
 @media only screen and (min-width: 1025px) {
-  .page {
-    margin-left: 19vw;
-  }
-
   .main {
     margin-left: 70px;
 
@@ -142,11 +141,12 @@ table {
 
 @media only screen and (max-width: 1024px) and (min-width: 700px) {
   .page {
-    margin-left: 5vw;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .main {
-    margin-left: 30px;
+    margin-left: 2%;
 
     h3 {
       padding: 10px;
@@ -217,7 +217,6 @@ table {
   }
 
   .main {
-    float: left;
 
     h3 {
       padding: 10px;

@@ -60,12 +60,8 @@ const LeftPanel = ({ active }) => {
     };
   }, [])
 
-  const getMarginLeft = () => {
-    return '' + window.outerWidth / 20 + 'px';
-  }
-
   return (
-    <Sheet width={sheetWidth} height={sheetHeight} padding={sheetPadding} marginBottom={sheetMargin} marginLeft={getMarginLeft}>
+    <Sheet width={sheetWidth} height={sheetHeight} padding={sheetPadding} marginBottom={sheetMargin}>
       <div className={styles.section}>
         <a href="/cabinet/profile"><button className={[styles.name, styles.button, active == 'Profile' ? styles.active : ''].join(' ')}>Профиль</button></a>
       </div>

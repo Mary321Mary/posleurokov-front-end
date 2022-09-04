@@ -1,6 +1,8 @@
 .page {
   display: flex;
-  margin: 0 auto !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .nav {
@@ -185,8 +187,13 @@
 
 @media only screen and (max-width: 1024px) and (min-width: 700px) {
 
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
   .main {
-    margin-left: 30px;
+    margin-left: 2%;
   }
 
   .nav {
@@ -265,10 +272,7 @@
 @media only screen and (max-width: 699px) {
   .page {
     display: table;
-  }
-
-  .main {
-    float: left;
+    margin: 0 auto;
   }
 
   .nav {
