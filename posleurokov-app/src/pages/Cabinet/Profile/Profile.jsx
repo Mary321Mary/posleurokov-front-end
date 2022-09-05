@@ -76,7 +76,7 @@ const Profile = () => {
         getCities(result.organizer.city);
       }
     } else {
-      window.location.replace("/login");
+      window.location.href = "/login";
     }
   };
 
@@ -143,7 +143,6 @@ const Profile = () => {
       setOrgName(organization.name);
       setOrgInfo(organization.info);
       setOrgEmail(organization.email);
-      setOrgAddress(organization.address);
       setContactName(organization.contactName);
       setOrgPhones(organization.phoneNumber);
       setCity(organization.city);
