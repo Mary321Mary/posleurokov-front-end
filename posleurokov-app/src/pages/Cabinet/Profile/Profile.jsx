@@ -228,6 +228,11 @@ const Profile = () => {
       isValid = false
     }
 
+    if (orgAddress == '') {
+      error += 'Адрес: адрес не должен быть пустым!\n'
+      isValid = false
+    }
+
     setError(error)
     return isValid;
   }
@@ -257,7 +262,6 @@ const Profile = () => {
         setError('')
       }
       else {
-        console.log(address)
         setError('Произошла ошибка!')
         setIsSuccess(false)
       }
