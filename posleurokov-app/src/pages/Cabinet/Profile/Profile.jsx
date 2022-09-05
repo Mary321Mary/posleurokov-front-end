@@ -103,7 +103,6 @@ const Profile = () => {
     }
 
     setEmail(user.email);
-    setAddress(user.address);
     setPhone(user.phoneNumber);
     setUserId(user.id);
   };
@@ -143,6 +142,7 @@ const Profile = () => {
       setOrgName(organization.name);
       setOrgInfo(organization.info);
       setOrgEmail(organization.email);
+      setOrgAddress(organization.address);
       setContactName(organization.contactName);
       setOrgPhones(organization.phoneNumber);
       setCity(organization.city);
