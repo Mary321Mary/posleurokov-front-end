@@ -167,6 +167,10 @@ const Profile = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(orgAddress)
+  }, [orgAddress, city])
+
   const validateUser = () => {
     let isValid = true;
     let error = ''
@@ -436,8 +440,7 @@ const Profile = () => {
                       value={orgAddress}
                       handler={setOrgAddress}
                       className={styles.suggest}
-                      isCitySet={true}
-                      id={'suggest1'} />
+                      isCitySet={true} />
                   </div>
                   <div>
                     <div>Контакт</div>
