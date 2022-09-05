@@ -437,7 +437,7 @@ const Profile = () => {
                       handler={setOrgAddress}
                       className={styles.suggest}
                       isCitySet={true}
-                      suggestId={'suggest1'} />
+                      isTwo={true} />
                   </div>
                   <div>
                     <div>Контакт</div>
