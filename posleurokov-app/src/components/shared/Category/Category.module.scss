@@ -64,7 +64,7 @@
   display: none;
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1400px) {
+@media only screen and (min-width: 900px) and (max-width: 1400px) {
   .label {
     font-size: 14px;
     line-height: 17px;
@@ -72,7 +72,7 @@
   }
 }
 
-@media only screen and (max-width: 759px) {
+@media only screen and (max-width: 899px) {
   .category {
     .logo {
       width: 24px;

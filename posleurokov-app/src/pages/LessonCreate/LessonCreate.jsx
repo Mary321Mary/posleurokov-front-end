@@ -6,6 +6,7 @@ import {
   Checkbox,
   Loader,
   SuggestComponent,
+  ModalWindow,
 } from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
@@ -79,6 +80,7 @@ const LessonCreate = () => {
       agreement: "",
     };
   });
+  const [showModal, setShowModal] = useState(false);
 
   const getBase64 = (file, callback) => {
     let reader = new FileReader();
@@ -121,18 +123,6 @@ const LessonCreate = () => {
     });
   };
 
-  const changeSelectRegister = (event) => {
-    let value = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
-    setCourse((prev) => {
-      return {
-        ...prev,
-        lessonCategories: value,
-      };
-    });
-  };
   const submitChackin = async (event) => {
     event.preventDefault();
     let valid = true;
@@ -198,7 +188,7 @@ const LessonCreate = () => {
           };
         });
       } else {
-        window.location.assign("/cabinet/active");
+        setShowModal(true);
       }
     } else {
       setError((prev) => {
@@ -365,7 +355,13 @@ const LessonCreate = () => {
                       let value = categories.find(
                         (elem) => elem.name === inputValue
                       );
-                      if (value !== undefined) {
+                      let valueLessonCategory = lessonCategory.find(
+                        (elem) => elem === inputValue
+                      );
+                      if (
+                        value !== undefined &&
+                        valueLessonCategory === undefined
+                      ) {
                         setLessonCategory([...lessonCategory, inputValue]);
                         setCourse((prev) => {
                           let value = categories.find(
@@ -656,6 +652,30 @@ const LessonCreate = () => {
           </div>
         </div>
       )}
+      <ModalWindow
+        show={showModal}
+        handler={() => {
+          setShowModal(false);
+          window.location.assign("/cabinet/active");
+        }}
+      >
+        <div style={{ margin: "10px" }}>
+          <div>
+            Занятие отправлено на модерацию и будет опубликовано в ближайшее
+            время
+          </div>
+          <Button
+            onClick={() => {
+              setShowModal(false);
+              window.location.assign("/cabinet/active");
+            }}
+            margin="10px 0"
+            float="right"
+          >
+            Закрыть
+          </Button>
+        </div>
+      </ModalWindow>
     </section>
   );
 };
