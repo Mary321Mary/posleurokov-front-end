@@ -76,7 +76,7 @@ const Profile = () => {
         getCities(result.organizer.city);
       }
     } else {
-      window.location.replace("/login");
+      window.location.href = "/login";
     }
   };
 
@@ -177,6 +177,11 @@ const Profile = () => {
 
     if (!(email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
       error += 'Email: неправильно введенная почта!\n'
+      isValid = false
+    }
+
+    if (orgAddress == '') {
+      error += 'Адрес: адрес не должен быть пустым!\n'
       isValid = false
     }
 
@@ -350,7 +355,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} />
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} />
                   </div>
                   <div>
                     <div>Телефон</div>
@@ -436,7 +441,9 @@ const Profile = () => {
                       value={orgAddress}
                       handler={setOrgAddress}
                       className={styles.suggest}
-                      isCitySet={true} />
+                      isCitySet={true}
+                      key={'suggest1'}
+                      keyName={'suggest1'} />
                   </div>
                   <div>
                     <div>Контакт</div>
