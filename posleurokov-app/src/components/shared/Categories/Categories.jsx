@@ -5,7 +5,7 @@ import Masonry from "react-masonry-css";
 const Categories = ({ number, children, ...rest }) => {
   const breakpointColumnsObj = {
     default: 3,
-    1400: 2,
+    1200: 2,
     760: 1,
   };
 
