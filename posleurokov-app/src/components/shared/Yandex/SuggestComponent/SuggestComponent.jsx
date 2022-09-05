@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import { useSelector } from "react-redux";
 
-const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, isCitySet = false, ...rest }) => {
+const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, id = 'suggest', isCitySet = false, ...rest }) => {
 
   function MapSuggestComponent(props) {
     const { ymaps } = props;
@@ -10,7 +10,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
 
     useEffect(() => {
       ymaps.ready(() => {
-        const suggestView = new ymaps.SuggestView("suggest", {
+        const suggestView = new ymaps.SuggestView(id, {
           provider: {
             suggest: request => {
               let boundResult = 'Беларусь, '
@@ -55,7 +55,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
         type={"text"}
         maxLength={200}
         width={suggestWidth}
-        id={'suggest'}
+        id={id}
         defaultValue={value}
         placeholder={placeholder}
         style={{ ...rest }}
@@ -75,7 +75,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
   return (
     <YMaps
       enterprise
-      query={{ apikey: "3b52de14-8e8c-489d-b6d0-00b02db443c2" }}>
+      query={{ apikey: "f98ffb5a-5dfc-422e-a2e0-71271e1136e7" }}>
       <SuggestField />
     </YMaps>
   );
