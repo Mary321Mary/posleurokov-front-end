@@ -75,7 +75,7 @@
   height: 15px;
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1200px) {
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
   .section {
     &-filter {
       background-image: url("../../assets/img/main_pic_tablet.png");
@@ -91,7 +91,7 @@
   }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 899px) {
   .section {
     &-filter {
       padding-top: 38px;
