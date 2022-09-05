@@ -37,6 +37,8 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
           }
         });
         suggestView.events.add("select", (e) => {
+          console.log(e.get('item').value)
+          console.log(e)
           handler(e.get('item').value)
         });
       })
