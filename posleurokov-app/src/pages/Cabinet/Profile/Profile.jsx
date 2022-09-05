@@ -257,7 +257,7 @@ const Profile = () => {
         setError('')
       }
       else {
-        console.log(result)
+        console.log(orgAddress)
         setError('Произошла ошибка!')
         setIsSuccess(false)
       }
