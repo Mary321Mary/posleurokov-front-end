@@ -1,7 +1,6 @@
 import styles from './Forms.module.scss';
 
 const CheckIfOrganizationForm = ({ handler }) => {
-  console.log(localStorage.getItem('name'))
   if (localStorage.getItem('token') == 'null' || localStorage.getItem('token') == null) {
     return <div>
       <div className={styles.text}>
