@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Select.module.scss";
 import { Checkbox, Link } from "components";
+import { useOutsideClick } from "hooks";
 
 const Select = ({
   placeholder = null,
@@ -36,9 +37,11 @@ const Select = ({
     onChange(value);
     setShowOptionList(false);
   };
+  const ref = useOutsideClick(() => setShowOptionList(false))
 
   return (
     <div
+      ref={ref}
       className={`${styles["select"]} ${showOptionList ? styles["select--active"] : ""
         }`}
       style={{ zIndex: zIndex, minWidth: minWidth, width: selectWidth }}
