@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Select.module.scss";
-import { Checkbox } from "components";
+import { Checkbox, Link } from "components";
 
 const Select = ({
   placeholder = null,
@@ -10,10 +10,11 @@ const Select = ({
   prepend = null,
   checkbox = false,
   showValue = false,
+  path = "#",
   onChange,
   zIndex,
   minWidth,
-  selectWidth = '200px',
+  selectWidth = "200px",
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
@@ -62,28 +63,63 @@ const Select = ({
       </div>
       {showOptionList && (
         <ul className={styles["select__options"]}>
-          {options.map((option, i) => {
-            return (
-              <li
-                className={styles["option"]}
-                key={`option-${option.value}-${i}`}
-                data-value={option.value}
-                onClick={
-                  !checkbox ? () => handleClick(option.value) : undefined
-                }
-              >
-                {checkbox ? (
-                  <Checkbox
-                    text={option.text}
-                    value={checkboxList.includes(option.value)}
-                    onChange={() => handleClick(option.value)}
-                  />
-                ) : (
-                  option.text
-                )}
-              </li>
-            );
-          })}
+          {path === "#" ? (
+            options.map((option, i) => {
+              return (
+                <li
+                  className={styles["option"]}
+                  key={`option-${option.value}-${i}`}
+                  data-value={option.value}
+                  onClick={
+                    !checkbox ? () => handleClick(option.value) : undefined
+                  }
+                >
+                  {checkbox ? (
+                    <Checkbox
+                      text={option.text}
+                      value={checkboxList.includes(option.value)}
+                      onChange={() => handleClick(option.value)}
+                    />
+                  ) : (
+                    option.text
+                  )}
+                </li>
+              );
+            })
+          ) : (
+            <Link
+              path={path}
+              color="#5f6060"
+              font-family="Roboto-Regular"
+              font-style="normal"
+              font-weight="400"
+              font-size="12px"
+              line-height="14px"
+            >
+              {options.map((option, i) => {
+                return (
+                  <li
+                    className={styles["option"]}
+                    key={`option-${option.value}-${i}`}
+                    data-value={option.value}
+                    onClick={
+                      !checkbox ? () => handleClick(option.value) : undefined
+                    }
+                  >
+                    {checkbox ? (
+                      <Checkbox
+                        text={option.text}
+                        value={checkboxList.includes(option.value)}
+                        onChange={() => handleClick(option.value)}
+                      />
+                    ) : (
+                      option.text
+                    )}
+                  </li>
+                );
+              })}
+            </Link>
+          )}
         </ul>
       )}
     </div>
