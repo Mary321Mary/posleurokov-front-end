@@ -42,7 +42,7 @@ const Main = () => {
 
     if (innerWidth > 1200) {
       setMarginParams({
-        marginLeft: "10%",
+        marginLeft: "5%",
       });
     } else {
       setMarginParams({
