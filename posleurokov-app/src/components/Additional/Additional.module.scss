@@ -1,5 +1,13 @@
 @import "src/assets/styles/_variables.scss";
 
+.show {
+  display: block;
+}
+
+.notshow {
+  display: none;
+}
+
 .additional {
   margin-bottom: 36px;
   position: relative;
