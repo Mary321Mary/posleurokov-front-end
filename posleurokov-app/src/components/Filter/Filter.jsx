@@ -115,7 +115,7 @@ function Filter() {
 
   return (
     <section className={styles["filter-wrapper"]}>
-      <section className={styles.filter}>
+      {prependWidth !== '' ? <div><section className={styles.filter}>
         <Input
           border="none"
           type="text"
@@ -214,24 +214,25 @@ function Filter() {
           onChange={(value) => setOther(value)}
         />
       </section>
-      <section className={styles["btn-section"]}>
+        <section className={styles["btn-section"]}>
 
-        <Link path="/catalogue">
-          <Button
-            width="239px"
-            margin="0 auto"
-            background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
-          >
-            <img
-              style={{ marginRight: "8px" }}
-              src={search}
-              height="20px"
-              alt="Подобрать"
-            />
-            Подобрать
-          </Button>
-        </Link>
-      </section>
+          <Link path="/catalogue">
+            <Button
+              width="239px"
+              margin="0 auto"
+              background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
+            >
+              <img
+                style={{ marginRight: "8px" }}
+                src={search}
+                height="20px"
+                alt="Подобрать"
+              />
+              Подобрать
+            </Button>
+          </Link>
+        </section></div> : <></>}
+
     </section>
   );
 }
