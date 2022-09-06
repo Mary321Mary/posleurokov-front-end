@@ -64,7 +64,7 @@ const Header = () => {
 
   const checkIfOrganization = () => {
     let name = localStorage.getItem("name");
-    if (name == null) {
+    if (name == 'null' || name == null) {
       setShowModal(true);
     } else {
       window.location.href = "/lesson/create";

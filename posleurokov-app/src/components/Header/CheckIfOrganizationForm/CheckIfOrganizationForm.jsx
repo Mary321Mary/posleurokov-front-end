@@ -1,8 +1,7 @@
 import styles from './Forms.module.scss';
-import { useState, useEffect } from "react";
 
 const CheckIfOrganizationForm = ({ handler }) => {
-  if (localStorage.getItem('token') == null) {
+  if (localStorage.getItem('token') == 'null' || localStorage.getItem('token') == null) {
     return <div>
       <div className={styles.text}>
         Вы не можете создать занятие, так как не вошли в аккаунт!<br />
@@ -16,7 +15,7 @@ const CheckIfOrganizationForm = ({ handler }) => {
       </div>
     </div>
   }
-  else if (localStorage.getItem('name') == null) {
+  else if (localStorage.getItem('name') == null || localStorage.getItem('name') == 'null') {
     return <div>
       <div className={styles.text}>
         Вы не можете создать занятие, так как не являетесь организатором!<br />
