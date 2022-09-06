@@ -548,7 +548,7 @@ const LessonCreate = () => {
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"
-                  label="Сайт или группа доп. контака:"
+                  label="Сайт или группа доп. контакта:"
                   name="additionalContactCite"
                   value={course.additionalContactCite}
                   onChange={changeInputRegister}
