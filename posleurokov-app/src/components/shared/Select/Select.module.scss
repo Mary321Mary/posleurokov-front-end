@@ -79,6 +79,28 @@ ul {
   }
 }
 
+.link {
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  /* dark_gray */
+  color: #5f6060;
+
+  list-style-type: none;
+  padding: 8px 22px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeefef;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eeefef;
+    color: black;
+  }
+}
+
 .option-checkbox {
   padding: 0;
 

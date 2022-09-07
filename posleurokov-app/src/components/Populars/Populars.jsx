@@ -27,7 +27,7 @@ const Populars = ({ path, onClick, ...rest }) => {
       <h3 className={styles.h3}>Популярное</h3>
       {populars !== null ? (
         Array.isArray(populars) ? (
-          <List list={populars} path="/catalogue" onClick={onClick} />
+          <List list={populars} path={`/catalogue/${city}`} onClick={onClick} />
         ) : (
           <div>{populars}</div>
         )

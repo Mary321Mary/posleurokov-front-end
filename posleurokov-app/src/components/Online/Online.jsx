@@ -1,5 +1,5 @@
 import styles from "./Online.module.scss";
-import { Button } from "components";
+import { Button, Link } from "components";
 import store from "redux/stores";
 
 const Online = ({ number, ...rest }) => {
@@ -15,13 +15,15 @@ const Online = ({ number, ...rest }) => {
         </div>
         <div className={styles.count}>Найдено: {number}</div>
       </div>
-      <Button
-        border="1.5px solid #FFFFFF"
-        backgroundColor="transparent"
-        onClick={onlineCatalogue}
-      >
-        Открыть
-      </Button>
+      <Link path={`/catalogue/Online`}>
+        <Button
+          border="1.5px solid #FFFFFF"
+          backgroundColor="transparent"
+          onClick={onlineCatalogue}
+        >
+          Открыть
+        </Button>
+      </Link>
     </div>
   );
 };
