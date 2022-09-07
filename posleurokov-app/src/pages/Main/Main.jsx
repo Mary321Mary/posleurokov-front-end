@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
 import store from "redux/stores";
 import { useSelector } from "react-redux";
+import Helmet from "react-helmet";
 
 const Main = () => {
   const city = useSelector((state) => state.city);
@@ -69,8 +70,25 @@ const Main = () => {
     getCategories();
   }, [city]);
 
+  const setTitleCity = () => {
+    if (city == 'all') {
+      return ' по Беларуси'
+    }
+    else if (city == 'online') {
+      return ' онлайн'
+    }
+    else {
+      return 'в г. ' + city
+    }
+  }
+
   return (
     <section className={styles.container}>
+      <Helmet>
+        <title>
+          Кружки, секции и занятия {setTitleCity()}
+        </title>
+      </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />
       ) : (

@@ -46,10 +46,10 @@ const Login = () => {
 
   return (
     <section className={styles.container}>
+      <Helmet title="Вход" />
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
           <Sheet padding="25px">
-            <Helmet title="Вход" />
             <Heading tag="h1" center>
               ВОЙТИ
             </Heading>

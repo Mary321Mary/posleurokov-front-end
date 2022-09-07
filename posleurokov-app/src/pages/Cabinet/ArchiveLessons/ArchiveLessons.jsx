@@ -2,6 +2,7 @@ import styles from "./ArchiveLessons.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
+import Helmet from "react-helmet";
 
 const ArchiveLessons = () => {
   const [archive, setArchive] = useState([]);
@@ -94,6 +95,7 @@ const ArchiveLessons = () => {
 
   return (
     <div>
+      <Helmet title="Занятия в архиве" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>
