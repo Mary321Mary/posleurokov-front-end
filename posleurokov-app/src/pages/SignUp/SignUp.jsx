@@ -170,10 +170,10 @@ const SignUp = () => {
 
   return (
     <section className={styles.container}>
+      <Helmet title="Регистрация" />
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
           <Sheet padding="25px">
-            <Helmet title="Регистрация" />
             <Heading tag="h1" center>
               Регистрируйтесь
             </Heading>

@@ -8,6 +8,7 @@ import styles from './About.module.scss';
 import { useEffect, useState } from 'react';
 import about from 'assets/img/about.png';
 import { axiosAPI } from 'plugins/axios';
+import Helmet from "react-helmet";
 
 const About = () => {
   const [windowWidth, setWindowWidth] = useState('');
@@ -109,6 +110,7 @@ const About = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet title="О проекте" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <Sheet

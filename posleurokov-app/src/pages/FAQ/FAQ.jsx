@@ -6,6 +6,7 @@ import {
 import styles from './FAQ.module.scss';
 import { useEffect, useState } from 'react';
 import { axiosAPI } from 'plugins/axios';
+import Helmet from "react-helmet";
 
 const FAQ = () => {
   const [headingParams, setHeadingParams] = useState({});
@@ -108,6 +109,7 @@ const FAQ = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet title="Вопросы и ответы" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div>

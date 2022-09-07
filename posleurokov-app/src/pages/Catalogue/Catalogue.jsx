@@ -72,14 +72,30 @@ const Catalogue = () => {
     hasReception,
   ]);
 
+  const setTitleCity = () => {
+    if (city == 'all') {
+      return ' по Беларуси'
+    }
+    else if (city == 'online') {
+      return ' онлайн'
+    }
+    else {
+      return 'в г. ' + city
+    }
+  }
+
   return (
     <section className={styles.container}>
+      <Helmet>
+        <title>
+          {category == 'all' ? 'Все занятия' : category}{setTitleCity()}
+        </title>
+      </Helmet>
       {loading ? (
         <Loader marginLeft={"40%"} />
       ) : (
         <div>
-          <Helmet title="Каталог" />
-          <Heading tag="h1">Каталог кружков, секций и курсов в Гомеле</Heading>
+          <Heading tag="h1">Каталог кружков, секций и курсов {setTitleCity()}</Heading>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
               {courses !== null ? (

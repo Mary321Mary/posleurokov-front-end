@@ -327,10 +327,10 @@ const LessonUpdate = () => {
 
   return (
     <section className={styles.container}>
+      <Helmet title="Обновить занятие" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div>
-          <Helmet title="Обновить секцию" />
           <Heading tag="h1" center>
             Обновить секцию
           </Heading>

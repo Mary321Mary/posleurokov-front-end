@@ -304,11 +304,11 @@ const LessonCreate = () => {
 
   return (
     <section className={styles.container}>
+      <Helmet title="Добавить занятие" />
       {loading ? (
         <Loader marginLeft={"42vw"} />
       ) : (
         <div>
-          <Helmet title="Добавить занятие" />
           <Heading tag="h1" center>
             Добавить занятие
           </Heading>

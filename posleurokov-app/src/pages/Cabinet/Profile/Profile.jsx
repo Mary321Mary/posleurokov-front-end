@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Sheet, LeftPanel, Loader, SuggestComponent } from "components";
 import { axiosAPI } from "plugins/axios";
 import store from "redux/stores";
+import Helmet from "react-helmet";
 
 const Profile = () => {
   const [organActive, setOrganActive] = useState(false);
@@ -274,6 +275,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Helmet title="Профиль" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>
