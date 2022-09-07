@@ -2,6 +2,7 @@ import styles from "./Subscriptions.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
+import Helmet from "react-helmet";
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -91,6 +92,7 @@ const Subscriptions = () => {
 
   return (
     <div>
+      <Helmet title="Подписки" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

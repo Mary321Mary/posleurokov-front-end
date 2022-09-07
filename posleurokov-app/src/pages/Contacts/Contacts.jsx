@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { axiosAPI } from 'plugins/axios';
 import vk from 'assets/img/vk.png';
 import email from 'assets/img/mail.png';
+import Helmet from "react-helmet";
 
 const Contacts = () => {
   const [headingParams, setHeadingParams] = useState({});
@@ -109,6 +110,7 @@ const Contacts = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet title="Контакты" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div>

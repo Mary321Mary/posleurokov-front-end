@@ -64,7 +64,7 @@ const Header = () => {
 
   const checkIfOrganization = () => {
     let name = localStorage.getItem("name");
-    if (name == 'null' || name == null) {
+    if (name == "null" || name == null) {
       setShowModal(true);
     } else {
       window.location.href = "/lesson/create";
@@ -86,7 +86,7 @@ const Header = () => {
         />
       </ModalWindow>
       <div ref={ref}>
-        <Link path="/">
+        <Link path="/" onClick={() => setCity("all")}>
           <Logo />
         </Link>
         <Select

@@ -16,6 +16,7 @@ import { axiosAPI } from "plugins/axios";
 import { useParams } from "react-router-dom";
 import { Loader } from "components";
 import store from "redux/stores";
+import Helmet from "react-helmet";
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState({});
@@ -94,6 +95,11 @@ const LessonPage = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet>
+        <title>
+          {lesson.name ? '' + lesson.name : 'Занятие'}
+        </title>
+      </Helmet>
       {loading ? (
         <Loader marginLeft={"35%"} />
       ) : (
@@ -102,26 +108,26 @@ const LessonPage = () => {
             <div className={styles.sheet}>
               {Array.isArray(lesson.lessonCategories)
                 ? lesson.lessonCategories.map((category) => {
-                    let value = categories.find((elem) => elem.id == category);
-                    return (
-                      <div
-                        key={category}
-                        style={{ display: "inline", marginRight: "5px" }}
+                  let value = categories.find((elem) => elem.id == category);
+                  return (
+                    <div
+                      key={category}
+                      style={{ display: "inline", marginRight: "5px" }}
+                    >
+                      <Link
+                        path="/catalogue"
+                        onClick={() => setCategory(value.name.split("/")[1])}
+                        fontFamily="Roboto-Regular"
+                        fontWeight="400"
+                        fontSize="14px"
+                        lineHeight="36px"
+                        color="#5F6060"
                       >
-                        <Link
-                          path="/catalogue"
-                          onClick={() => setCategory(value.name.split("/")[1])}
-                          fontFamily="Roboto-Regular"
-                          fontWeight="400"
-                          fontSize="14px"
-                          lineHeight="36px"
-                          color="#5F6060"
-                        >
-                          #{value.name.split("/")[1]}
-                        </Link>
-                      </div>
-                    );
-                  })
+                        #{value.name.split("/")[1]}
+                      </Link>
+                    </div>
+                  );
+                })
                 : null}
             </div>
             <Sheet className={styles.sheet}>

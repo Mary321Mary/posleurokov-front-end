@@ -37,13 +37,14 @@ const Select = ({
     onChange(value);
     setShowOptionList(false);
   };
-  const ref = useOutsideClick(() => setShowOptionList(false))
+  const ref = useOutsideClick(() => setShowOptionList(false));
 
   return (
     <div
       ref={ref}
-      className={`${styles["select"]} ${showOptionList ? styles["select--active"] : ""
-        }`}
+      className={`${styles["select"]} ${
+        showOptionList ? styles["select--active"] : ""
+      }`}
       style={{ zIndex: zIndex, minWidth: minWidth, width: selectWidth }}
     >
       <div
@@ -59,48 +60,15 @@ const Select = ({
               ? placeholder
               : checkboxList
             : checkbox
-              ? placeholder
-              : value || placeholder}
+            ? placeholder
+            : value || placeholder}
         </span>
         {prepend && <div className={styles.prepend}>{prepend}</div>}
       </div>
       {showOptionList && (
         <ul className={styles["select__options"]}>
-          {path === "#" ? (
-            options.map((option, i) => {
-              return (
-                <li
-                  className={styles["option"]}
-                  key={`option-${option.value}-${i}`}
-                  data-value={option.value}
-                  onClick={
-                    !checkbox ? () => handleClick(option.value) : undefined
-                  }
-                >
-                  {checkbox ? (
-                    <Checkbox
-                      text={option.text}
-                      value={checkboxList.includes(option.value)}
-                      onChange={() => handleClick(option.value)}
-                    />
-                  ) : (
-                    option.text
-                  )}
-                </li>
-              );
-            })
-          ) : (
-            <Link
-              path={path}
-              color="#5f6060"
-              font-family="Roboto-Regular"
-              font-style="normal"
-              font-weight="400"
-              font-size="12px"
-              line-height="14px"
-              textDecoration="none"
-            >
-              {options.map((option, i) => {
+          {path === "#"
+            ? options.map((option, i) => {
                 return (
                   <li
                     className={styles["option"]}
@@ -121,9 +89,43 @@ const Select = ({
                     )}
                   </li>
                 );
+              })
+            : options.map((option, i) => {
+                return (
+                  <Link
+                    path={
+                      path +
+                      `${option.value === "Все города" ? "" : option.value}`
+                    }
+                    color="#5f6060"
+                    font-family="Roboto-Regular"
+                    font-style="normal"
+                    font-weight="400"
+                    font-size="12px"
+                    line-height="14px"
+                    textDecoration="none"
+                  >
+                    <li
+                      className={styles["link"]}
+                      key={`option-${option.value}-${i}`}
+                      data-value={option.value}
+                      onClick={
+                        !checkbox ? () => handleClick(option.value) : undefined
+                      }
+                    >
+                      {checkbox ? (
+                        <Checkbox
+                          text={option.text}
+                          value={checkboxList.includes(option.value)}
+                          onChange={() => handleClick(option.value)}
+                        />
+                      ) : (
+                        option.text
+                      )}
+                    </li>
+                  </Link>
+                );
               })}
-            </Link>
-          )}
         </ul>
       )}
     </div>

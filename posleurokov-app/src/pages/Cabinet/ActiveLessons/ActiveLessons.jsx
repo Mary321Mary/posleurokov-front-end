@@ -2,6 +2,7 @@ import styles from "./ActiveLessons.module.scss";
 import { useState, useEffect } from "react";
 import { Sheet, LeftPanel, Loader } from "components";
 import { axiosAPI } from "plugins/axios";
+import Helmet from "react-helmet";
 
 const ActiveLessons = () => {
   const [active, setActive] = useState([]);
@@ -94,6 +95,7 @@ const ActiveLessons = () => {
 
   return (
     <div>
+      <Helmet title="Активные занятия" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

@@ -29,7 +29,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route exact path="/" element={<Main />} />
-          <Route exact path="/catalogue" element={<Catalogue />} />
+          <Route path="/:city" element={<Main />} />
+          <Route exact path="/catalogue/:city" element={<Catalogue />} />
+          <Route path="/catalogue/:city/:category" element={<Catalogue />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
           <Route path="/cabinet/Profile" element={<Profile />} />

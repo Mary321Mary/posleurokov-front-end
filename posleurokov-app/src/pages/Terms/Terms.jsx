@@ -7,6 +7,7 @@ import {
 import styles from './Terms.module.scss';
 import { useEffect, useState } from 'react';
 import { axiosAPI } from 'plugins/axios';
+import Helmet from "react-helmet";
 
 const Terms = () => {
   const [windowWidth, setWindowWidth] = useState('');
@@ -108,6 +109,7 @@ const Terms = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet title="Условия" />
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <Sheet
