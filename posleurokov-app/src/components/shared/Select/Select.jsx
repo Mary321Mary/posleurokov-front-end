@@ -97,17 +97,17 @@ const Select = ({
                       path +
                       `${option.value === "Все города" ? "" : option.value}`
                     }
+                    key={`option-${option.value}-${i}`}
                     color="#5f6060"
-                    font-family="Roboto-Regular"
-                    font-style="normal"
-                    font-weight="400"
-                    font-size="12px"
-                    line-height="14px"
+                    fontFamily="Roboto-Regular"
+                    fontStyle="normal"
+                    fontWeight="400"
+                    fontSize="12px"
+                    lineHeight="14px"
                     textDecoration="none"
                   >
                     <li
                       className={styles["link"]}
-                      key={`option-${option.value}-${i}`}
                       data-value={option.value}
                       onClick={
                         !checkbox ? () => handleClick(option.value) : undefined

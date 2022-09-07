@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { axiosAPI } from "plugins/axios";
 import { stringify } from "qs";
+import { useParams } from "react-router-dom";
+import store from "redux/stores";
 
 const Catalogue = () => {
   const [courses, setCourses] = useState(null);
@@ -31,6 +33,8 @@ const Catalogue = () => {
   const isInSummer = useSelector((state) => state.params.isInSummer);
   const inNotSummer = useSelector((state) => state.params.inNotSummer);
   const hasReception = useSelector((state) => state.params.hasReception);
+
+  const { cityParam, categoryParam } = useParams();
 
   const getCourses = async () => {
     setLoading(true);
@@ -57,6 +61,22 @@ const Catalogue = () => {
   };
 
   useEffect(() => {
+    let value = cityParam;
+    if (value === undefined) {
+      value = "all";
+    }
+    if (value === "Online") {
+      value = "online";
+    }
+    store.dispatch({ type: "ChangeCity", amount: value });
+    value = categoryParam;
+    if (value === undefined) {
+      value = "all";
+    }
+    store.dispatch({ type: "SetCategory", amount: value });
+  }, []);
+
+  useEffect(() => {
     getCourses();
   }, [
     tab,
@@ -73,29 +93,30 @@ const Catalogue = () => {
   ]);
 
   const setTitleCity = () => {
-    if (city == 'all') {
-      return ' по Беларуси'
+    if (city == "all") {
+      return " по Беларуси";
+    } else if (city == "online") {
+      return " онлайн";
+    } else {
+      return "в г. " + city;
     }
-    else if (city == 'online') {
-      return ' онлайн'
-    }
-    else {
-      return 'в г. ' + city
-    }
-  }
+  };
 
   return (
     <section className={styles.container}>
       <Helmet>
         <title>
-          {category == 'all' ? 'Все занятия' : category}{setTitleCity()}
+          {category == "all" ? "Все занятия" : category}
+          {setTitleCity()}
         </title>
       </Helmet>
       {loading ? (
         <Loader marginLeft={"40%"} />
       ) : (
         <div>
-          <Heading tag="h1">Каталог кружков, секций и курсов {setTitleCity()}</Heading>
+          <Heading tag="h1">
+            Каталог кружков, секций и курсов {setTitleCity()}
+          </Heading>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
               {courses !== null ? (
