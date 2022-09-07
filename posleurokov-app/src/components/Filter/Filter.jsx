@@ -240,7 +240,7 @@ function Filter() {
             />
           </section>
           <section className={styles["btn-section"]}>
-            <Link path={`/catalogue/${city}`}>
+            <Link path={`/catalogue/${city}/${category}`}>
               <Button
                 width="239px"
                 margin="0 auto"

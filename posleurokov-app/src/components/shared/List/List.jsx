@@ -5,7 +5,12 @@ import arrow from "assets/img/arrow-right.png";
 const List = ({ list, path, onClick }) => {
   const displayList = list.map((elem, index) => {
     return (
-      <Link key={index} path={path} className={styles.list} onClick={onClick}>
+      <Link
+        key={index}
+        path={`${path}/${elem.name}`}
+        className={styles.list}
+        onClick={onClick}
+      >
         <img src={arrow} alt="arrow" />
         <div>{elem.name}</div>
       </Link>

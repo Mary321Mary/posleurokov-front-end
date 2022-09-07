@@ -378,6 +378,7 @@ function FilterCatalogue() {
                       key={category.baseCategory.name}
                     >
                       <Link
+                        path={`/catalogue/${city}/${category.baseCategory.name}`}
                         className={`${styles.nameCategory}`}
                         onClick={() => setCategory(category.baseCategory.name)}
                       >
@@ -389,6 +390,7 @@ function FilterCatalogue() {
               </div>
 
               <Link
+                path={`/catalogue/${city}/${res.baseCategory}`}
                 className={`${styles.nameCategory} ${
                   category === res.baseCategory ? styles["active"] : ""
                 }`}
@@ -402,6 +404,7 @@ function FilterCatalogue() {
                       return (
                         <div style={{ margin: "10px" }} key={key.name}>
                           <Link
+                            path={`/catalogue/${city}/${key.name}`}
                             className={`${
                               category === key.name ? styles["active"] : ""
                             }`}
@@ -428,6 +431,7 @@ function FilterCatalogue() {
                   key={category.baseCategory.name}
                 >
                   <Link
+                    path={`/catalogue/${city}/${category.baseCategory.name}`}
                     className={`${styles.nameCategory}`}
                     onClick={() => setCategory(category.baseCategory.name)}
                   >
@@ -460,7 +464,7 @@ function FilterCatalogue() {
         />
       </section>
       <section>
-        <Link path={`/catalogue/${city}`}>
+        <Link path={`/catalogue/${city}/${category}`}>
           <Button
             width="239px"
             margin="0 auto"

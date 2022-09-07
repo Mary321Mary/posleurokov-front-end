@@ -35,6 +35,7 @@ const Cities = () => {
       </Link>
       <List
         list={cities}
+        path=""
         onClick={(event) => setCity(event.target.innerText)}
       />
       <Link

@@ -114,7 +114,7 @@ const Main = () => {
                                   style={{ marginBottom: "10px" }}
                                 >
                                   <Link
-                                    path={`/catalogue/${city}`}
+                                    path={`/catalogue/${city}/${item.name}`}
                                     onClick={() => setCategory(item.name)}
                                     fontFamily="Roboto-Regular"
                                     fontWeight="400"

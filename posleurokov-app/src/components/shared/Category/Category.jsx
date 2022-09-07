@@ -40,7 +40,7 @@ const Category = ({ label, number, image, children, ...rest }) => {
         ) : (
           <img src={logo} className={styles.absent} alt="Категория" />
         )}
-        <Link path={`/catalogue/${city}`} onClick={setCategory}>
+        <Link path={`/catalogue/${city}/${label}`} onClick={setCategory}>
           <div className={styles.label}>
             {label}
             <div className={styles.number}>{number}</div>
