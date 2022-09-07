@@ -19,9 +19,11 @@ import { axiosAPI } from "plugins/axios";
 import store from "redux/stores";
 import { useSelector } from "react-redux";
 import Helmet from "react-helmet";
+import { useParams } from "react-router-dom";
 
 const Main = () => {
   const city = useSelector((state) => state.city);
+  const { cityParam } = useParams();
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,6 +55,15 @@ const Main = () => {
   };
 
   useEffect(() => {
+    let value = cityParam;
+    if (value === undefined) {
+      value = "all";
+    }
+    if (value === "Online") {
+      value = "online";
+    }
+    store.dispatch({ type: "ChangeCity", amount: value });
+
     getWindowSize();
 
     function handleWindowResize() {
@@ -71,23 +82,19 @@ const Main = () => {
   }, [city]);
 
   const setTitleCity = () => {
-    if (city == 'all') {
-      return ' по Беларуси'
+    if (city == "all") {
+      return " по Беларуси";
+    } else if (city == "online") {
+      return " онлайн";
+    } else {
+      return "в г. " + city;
     }
-    else if (city == 'online') {
-      return ' онлайн'
-    }
-    else {
-      return 'в г. ' + city
-    }
-  }
+  };
 
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>
-          Кружки, секции и занятия {setTitleCity()}
-        </title>
+        <title>Кружки, секции и занятия {setTitleCity()}</title>
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />
@@ -116,7 +123,13 @@ const Main = () => {
               <Sheet marginLeft={marginParams["marginLeft"]}>
                 {result !== null ? (
                   Array.isArray(result) ? (
-                    <Categories number={result.length}>
+                    <Categories
+                      number={result.reduce(
+                        (previousValue, currentValue) =>
+                          previousValue + currentValue.count,
+                        0
+                      )}
+                    >
                       {result.map((category) => {
                         return (
                           <Category
