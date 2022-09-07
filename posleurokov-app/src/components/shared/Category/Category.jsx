@@ -5,8 +5,10 @@ import logo from "assets/img/img.png";
 import galochka from "assets/img/galochka.png";
 import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
 import store from "redux/stores";
+import { useSelector } from "react-redux";
 
 const Category = ({ label, number, image, children, ...rest }) => {
+  const city = useSelector((state) => state.city);
   const [img, setImg] = useState(galochka);
 
   const showCategory = () => {
@@ -38,7 +40,7 @@ const Category = ({ label, number, image, children, ...rest }) => {
         ) : (
           <img src={logo} className={styles.absent} alt="Категория" />
         )}
-        <Link path="/catalogue" onClick={setCategory}>
+        <Link path={`/catalogue/${city}/${label}`} onClick={setCategory}>
           <div className={styles.label}>
             {label}
             <div className={styles.number}>{number}</div>
@@ -46,8 +48,9 @@ const Category = ({ label, number, image, children, ...rest }) => {
         </Link>
         <img
           src={img}
-          className={`${img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
-            }`}
+          className={`${
+            img === galochka ? styles["galochka"] : styles["galochkaRaskruta"]
+          }`}
           alt="Галочка"
         />
       </div>

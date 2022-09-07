@@ -19,18 +19,23 @@ const Cities = () => {
 
   const setCity = (item) => {
     store.dispatch({ type: "ChangeCity", amount: item });
+    window.location.assign("/" + item);
   };
 
   return (
     <Sheet padding="36px 24px 36px 24px" maxWidth={"230px"} marginTop={"35px"}>
       <h3 className={styles.h3}>Города</h3>
-      <Link className={styles.list} path="/" onClick={() => setCity("online")}>
+      <Link
+        className={styles.list}
+        path="/Online"
+        onClick={() => setCity("online")}
+      >
         <img src={arrow} alt="arrow" />
         <div>Online</div>
       </Link>
       <List
         list={cities}
-        path="/"
+        path=""
         onClick={(event) => setCity(event.target.innerText)}
       />
       <Link
