@@ -19,7 +19,6 @@ const Select = ({
   ...rest
 }) => {
   const [showOptionList, setShowOptionList] = useState(false);
-  const [paths, setPath] = useState([]);
 
   let checkboxList = checkbox && Array.isArray(value) ? value : [];
 
@@ -37,11 +36,6 @@ const Select = ({
     }
     onChange(value);
     setShowOptionList(false);
-    if (value === "Все города") {
-      setPath(path);
-    } else {
-      setPath(path + value);
-    }
   };
   const ref = useOutsideClick(() => setShowOptionList(false));
 
