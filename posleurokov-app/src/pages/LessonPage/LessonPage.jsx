@@ -96,9 +96,13 @@ const LessonPage = () => {
   return (
     <section className={styles.section}>
       <Helmet>
-        <title>
-          {lesson.name ? '' + lesson.name : 'Занятие'}
-        </title>
+        <title>{lesson.name ? "" + lesson.name : "Занятие"}</title>
+        <meta
+          name="description"
+          content={
+            lesson.name ? "Все кружки : " + lesson.name : "Все кружки : Занятие"
+          }
+        />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"35%"} />
@@ -108,26 +112,26 @@ const LessonPage = () => {
             <div className={styles.sheet}>
               {Array.isArray(lesson.lessonCategories)
                 ? lesson.lessonCategories.map((category) => {
-                  let value = categories.find((elem) => elem.id == category);
-                  return (
-                    <div
-                      key={category}
-                      style={{ display: "inline", marginRight: "5px" }}
-                    >
-                      <Link
-                        path="/catalogue"
-                        onClick={() => setCategory(value.name.split("/")[1])}
-                        fontFamily="Roboto-Regular"
-                        fontWeight="400"
-                        fontSize="14px"
-                        lineHeight="36px"
-                        color="#5F6060"
+                    let value = categories.find((elem) => elem.id == category);
+                    return (
+                      <div
+                        key={category}
+                        style={{ display: "inline", marginRight: "5px" }}
                       >
-                        #{value.name.split("/")[1]}
-                      </Link>
-                    </div>
-                  );
-                })
+                        <Link
+                          path="/catalogue"
+                          onClick={() => setCategory(value.name.split("/")[1])}
+                          fontFamily="Roboto-Regular"
+                          fontWeight="400"
+                          fontSize="14px"
+                          lineHeight="36px"
+                          color="#5F6060"
+                        >
+                          #{value.name.split("/")[1]}
+                        </Link>
+                      </div>
+                    );
+                  })
                 : null}
             </div>
             <Sheet className={styles.sheet}>

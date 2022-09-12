@@ -109,6 +109,14 @@ const Catalogue = () => {
           {category == "all" ? "Все занятия" : category}
           {setTitleCity()}
         </title>
+        <meta
+          name="description"
+          content={
+            category == "all"
+              ? "Все кружки : Все занятия"
+              : "Все кружки : " + category
+          }
+        />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"40%"} />
