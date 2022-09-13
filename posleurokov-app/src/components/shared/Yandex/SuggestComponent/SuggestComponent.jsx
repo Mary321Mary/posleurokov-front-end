@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import { useSelector } from "react-redux";
 
-const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, keyName = 'suggest', isCitySet = false, ...rest }) => {
+const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, keyName = 'suggest', isCitySet = false, isNotExact = true, ...rest }) => {
 
   function MapSuggestComponent(props) {
     const { ymaps } = props;
@@ -38,20 +38,13 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
         });
         suggestView.events.add("select", (e) => {
           handler(e.get('item').value)
-          console.log('select')
-          console.log(e.get('item').value)
         });
       })
     }, [ymaps.SuggestView, city]);
 
     const keyEnterSave = (e) => {
-      if (e.key == 'Enter') {
+      if (e.key == 'Enter' || isNotExact) {
         handler(e.target.value)
-        console.log('enter')
-        console.log(e.target.value)
-      }
-      else {
-        console.log(e.key)
       }
     }
 
