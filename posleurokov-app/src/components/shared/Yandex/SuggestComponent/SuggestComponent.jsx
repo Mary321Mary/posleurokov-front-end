@@ -43,13 +43,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
     }, [ymaps.SuggestView, city]);
 
     const keyEnterSave = (e) => {
-      if (e.key == 'Enter') {
-        handler(e.target.value)
-      }
-    }
-
-    const saveInputChanges = (e) => {
-      if (isNotExact) {
+      if (e.key == 'Enter' || isNotExact) {
         handler(e.target.value)
       }
     }
