@@ -59,7 +59,6 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
         placeholder={placeholder}
         style={{ ...rest }}
         onKeyDown={keyEnterSave}
-        onChange={saveInputChanges}
       ></input>
       {prepend}
     </div>
