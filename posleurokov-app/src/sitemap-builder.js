@@ -15,7 +15,7 @@ async function generateSitemap() {
     let categoryParam = [];
 
     for (let i = 0; i < categories.length; i++) {
-      categoryParam.push(String(categories[i].baseCategory.name).replaceAll(/\s/g, "%20"));
+      categoryParam.push(String(categories[i].baseCategory.name).replace(/\s/g, "%20"));
       for (let j = 0; j < categories[i].concreteCategories.length; j++) {
         categoryParam.push(String(categories[i].concreteCategories[j].name).replace(/\s/g, "%20"));
       }
