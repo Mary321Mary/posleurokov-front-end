@@ -12,12 +12,50 @@ async function generateSitemap() {
     const categories = await axiosAPI.axiosAPI.getCategories("all");
     let cityParamMain = ["/Online", "/Гомель"];
     let cityParamCatalogue = ["/all", "/Online", "/Гомель"];
-    let categoryParam = [];
 
+    let categoryParamAll = [];
     for (let i = 0; i < categories.length; i++) {
-      categoryParam.push(String(categories[i].baseCategory.name).replace(/\s/g, "%20"));
+      categoryParamAll.push(
+        String(categories[i].baseCategory.name).replace(/\s/g, "%20")
+      );
       for (let j = 0; j < categories[i].concreteCategories.length; j++) {
-        categoryParam.push(String(categories[i].concreteCategories[j].name).replace(/\s/g, "%20"));
+        categoryParamAll.push(
+          String(categories[i].concreteCategories[j].name).replace(/\s/g, "%20")
+        );
+      }
+    }
+
+    const categoriesOnline = await axiosAPI.axiosAPI.getCategories("online");
+    let categoryParamOnline = [];
+    for (let i = 0; i < categoriesOnline.length; i++) {
+      categoryParamOnline.push(
+        String(categoriesOnline[i].baseCategory.name).replace(/\s/g, "%20")
+      );
+      for (let j = 0; j < categoriesOnline[i].concreteCategories.length; j++) {
+        categoryParamOnline.push(
+          String(categoriesOnline[i].concreteCategories[j].name).replace(
+            /\s/g,
+            "%20"
+          )
+        );
+      }
+    }
+
+    const categoriesGomel = await axiosAPI.axiosAPI.getCategories(
+      encodeURI("Гомель")
+    );
+    let categoryParamGomel = [];
+    for (let i = 0; i < categoriesGomel.length; i++) {
+      categoryParamGomel.push(
+        String(categoriesGomel[i].baseCategory.name).replace(/\s/g, "%20")
+      );
+      for (let j = 0; j < categoriesGomel[i].concreteCategories.length; j++) {
+        categoryParamGomel.push(
+          String(categoriesGomel[i].concreteCategories[j].name).replace(
+            /\s/g,
+            "%20"
+          )
+        );
       }
     }
 
@@ -33,8 +71,8 @@ async function generateSitemap() {
     for (let i = 2; i <= courses.counts.countOfPages; i++) {
       const lessons = await axiosAPI.axiosAPI.getCourses(
         "/result/?city=all&category=all&name=&page=" +
-        i +
-        "&tab=any&sex=any&addr=&isInSummer=&inNotSummer=&hasReception="
+          i +
+          "&tab=any&sex=any&addr=&isInSummer=&inNotSummer=&hasReception="
       );
       for (let j = 0; j < lessons.result.length; j++) {
         ids.push(lessons.result[j].lesson.id);
@@ -44,8 +82,12 @@ async function generateSitemap() {
     const paramsConfig = {
       "/:cityParam": [{ cityParam: cityParamMain }],
       "/catalogue/:cityParam": [{ cityParam: cityParamCatalogue }],
-      "/catalogue/:cityParam/:categoryParam": [
-        { cityParam: cityParamCatalogue, categoryParam: categoryParam },
+      "/catalogue/all/:categoryParam": [{ categoryParam: categoryParamAll }],
+      "/catalogue/Online/:categoryParam": [
+        { categoryParam: categoryParamOnline },
+      ],
+      "/catalogue/Гомель/:categoryParam": [
+        { categoryParam: categoryParamGomel },
       ],
       "/lesson/:id": [{ id: ids }],
     };
