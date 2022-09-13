@@ -38,6 +38,8 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
         });
         suggestView.events.add("select", (e) => {
           handler(e.get('item').value)
+          console.log('select')
+          console.log(e.get('item').value)
         });
       })
     }, [ymaps.SuggestView, city]);
@@ -45,6 +47,11 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
     const keyEnterSave = (e) => {
       if (e.key == 'Enter') {
         handler(e.target.value)
+        console.log('enter')
+        console.log(e.target.value)
+      }
+      else {
+        console.log(e.key)
       }
     }
 
