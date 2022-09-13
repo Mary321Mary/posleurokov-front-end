@@ -18,7 +18,7 @@ const InfoPanel = ({ lesson, ...rest }) => {
     } else {
       let result = String(lesson.price);
       if (lesson.additionalPriceInfo !== null) {
-        result = result + " " + lesson.additionalPriceInfo;
+        result = result + "р. " + lesson.additionalPriceInfo;
       }
 
       return <div className={styles.info}>{result}</div>;
