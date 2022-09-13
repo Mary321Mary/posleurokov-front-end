@@ -95,7 +95,11 @@ const ActiveLessons = () => {
 
   return (
     <div>
-      <Helmet title="Активные занятия" />
+      <Helmet title="Активные занятия">
+        <link rel="canonical" href="/cabinet/active" />
+        <meta name="description" content="Список активных занятий, созданных пользователем." />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

@@ -87,7 +87,7 @@ const Main = () => {
     } else if (city == "online") {
       return " онлайн";
     } else {
-      return "в г. " + city;
+      return " в г. " + city;
     }
   };
 
@@ -95,6 +95,11 @@ const Main = () => {
     <section className={styles.container}>
       <Helmet>
         <title>Кружки, секции и занятия {setTitleCity()}</title>
+        <meta
+          name="description"
+          content={"Все кружки : Кружки, секции и занятия" + setTitleCity()}
+        />
+        <link rel="canonical" href="/" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />
