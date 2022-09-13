@@ -192,6 +192,7 @@ function Filter() {
                 <img src="\images\Address.png" height={"25px"} alt="Адрес" />
               }
               isCitySet={true}
+              isNotExact={true}
             />
             <Select
               placeholder="Категории"
@@ -199,11 +200,11 @@ function Filter() {
               options={
                 Array.isArray(result)
                   ? result.map((category) => {
-                      return {
-                        text: category.baseCategory.name,
-                        value: category.baseCategory.name,
-                      };
-                    })
+                    return {
+                      text: category.baseCategory.name,
+                      value: category.baseCategory.name,
+                    };
+                  })
                   : {}
               }
               prepend={

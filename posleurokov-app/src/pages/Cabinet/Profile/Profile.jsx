@@ -366,7 +366,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} />
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} isNotExact={false} />
                   </div>
                   <div>
                     <div>Телефон</div>
@@ -454,7 +454,8 @@ const Profile = () => {
                       className={styles.suggest}
                       isCitySet={true}
                       key={'suggest1'}
-                      keyName={'suggest1'} />
+                      keyName={'suggest1'}
+                      isNotExact={false} />
                   </div>
                   <div>
                     <div>Контакт</div>

@@ -521,6 +521,7 @@ const LessonCreate = () => {
                       handler={changeAddress}
                       className={styles.suggest}
                       isCitySet={true}
+                      isNotExact={false}
                     /></div>
                   {error.isOnline !== "" ? (
                     <span>{error.isOnline}</span>

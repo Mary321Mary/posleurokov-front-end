@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sitemap": "babel-node ./src/sitemap-builder.js",
-    "serve": "concurrently \"npm run build\" \"npm run sitemap\""
+    "serve": "concurrently \"npm run start\" \"npm run sitemap\""
   },
   "eslintConfig": {
     "extends": [

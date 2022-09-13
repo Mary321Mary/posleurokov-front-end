@@ -483,7 +483,8 @@ const LessonUpdate = () => {
                     value={course.address}
                     handler={changeAddress}
                     className={styles.suggest}
-                    isCitySet={true} /></div>
+                    isCitySet={true}
+                    isNotExact={false} /></div>
                   {error.isOnline !== "" ? (
                     <span>{error.isOnline}</span>
                   ) : null}
