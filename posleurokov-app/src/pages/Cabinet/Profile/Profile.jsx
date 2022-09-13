@@ -280,7 +280,11 @@ const Profile = () => {
 
   return (
     <div>
-      <Helmet title="Профиль" />
+      <Helmet title="Профиль">
+        <link rel="canonical" href="/cabinet/profile" />
+        <meta name="description" content='Профиль пользователя сайта "Все кружки" и его организации.' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>
@@ -362,7 +366,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} />
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} isNotExact={false} />
                   </div>
                   <div>
                     <div>Телефон</div>
@@ -450,7 +454,8 @@ const Profile = () => {
                       className={styles.suggest}
                       isCitySet={true}
                       key={'suggest1'}
-                      keyName={'suggest1'} />
+                      keyName={'suggest1'}
+                      isNotExact={false} />
                   </div>
                   <div>
                     <div>Контакт</div>

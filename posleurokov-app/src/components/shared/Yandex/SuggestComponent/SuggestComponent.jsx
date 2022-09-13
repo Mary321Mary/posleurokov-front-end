@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { YMaps, withYMaps } from "react-yandex-maps";
 import { useSelector } from "react-redux";
 
-const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, keyName = 'suggest', isCitySet = false, ...rest }) => {
+const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, keyName = 'suggest', isCitySet = false, isNotExact = true, ...rest }) => {
 
   function MapSuggestComponent(props) {
     const { ymaps } = props;
@@ -48,6 +48,12 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
       }
     }
 
+    const saveInputChanges = (e) => {
+      if (isNotExact) {
+        handler(e.target.value)
+      }
+    }
+
     return <div className={className}>
       <input
         type={"text"}
@@ -59,6 +65,7 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
         placeholder={placeholder}
         style={{ ...rest }}
         onKeyDown={keyEnterSave}
+        onChange={saveInputChanges}
       ></input>
       {prepend}
     </div>

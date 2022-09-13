@@ -46,7 +46,11 @@ const Login = () => {
 
   return (
     <section className={styles.container}>
-      <Helmet title="Вход" />
+      <Helmet title="Вход">
+        <link rel="canonical" href="/login" />
+        <meta name="description" content='Войти в аккаунт на сайте "Все кружки".' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
           <Sheet padding="25px">

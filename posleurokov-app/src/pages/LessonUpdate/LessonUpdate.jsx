@@ -327,7 +327,11 @@ const LessonUpdate = () => {
 
   return (
     <section className={styles.container}>
-      <Helmet title="Обновить занятие" />
+      <Helmet title="Обновить занятие">
+        <link rel="canonical" href={`/lesson/update/${id}`} />
+        <meta name="description" content={`Обновить занятие ${course.name ? (course.name + " ") : ""}на сайте "Все кружки".`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div>
@@ -479,7 +483,8 @@ const LessonUpdate = () => {
                     value={course.address}
                     handler={changeAddress}
                     className={styles.suggest}
-                    isCitySet={true} /></div>
+                    isCitySet={true}
+                    isNotExact={false} /></div>
                   {error.isOnline !== "" ? (
                     <span>{error.isOnline}</span>
                   ) : null}
