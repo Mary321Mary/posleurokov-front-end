@@ -100,6 +100,7 @@ const Main = () => {
           content={"Все кружки : Кружки, секции и занятия" + setTitleCity()}
         />
         <link rel="canonical" href="/" />
+        <meta name="google-site-verification" content="_eJaspRm9xJYfal3dxGQdyNTUPLhtsurFZg-HCX5DZM" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />
