@@ -181,7 +181,7 @@ const Profile = () => {
       isValid = false
     }
 
-    if (orgAddress == '') {
+    if (address == '') {
       error += 'Адрес: адрес не должен быть пустым!\n'
       isValid = false
     }
@@ -277,10 +277,6 @@ const Profile = () => {
       setIsSuccess(false)
     }
   };
-
-  useEffect(() => {
-    console.log(address)
-  }, [address])
 
   return (
     <div>
