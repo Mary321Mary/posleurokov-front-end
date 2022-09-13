@@ -37,8 +37,8 @@ const App = () => {
           />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
-          <Route path="/cabinet/Profile" element={<Profile />} />
-          <Route path="/cabinet/Subscriptions" element={<Subscriptions />} />
+          <Route path="/cabinet/profile" element={<Profile />} />
+          <Route path="/cabinet/subscriptions" element={<Subscriptions />} />
           <Route path="/cabinet/active" element={<ActiveLessons />} />
           <Route path="/cabinet/archive" element={<ArchiveLessons />} />
           <Route path="/lesson/create" element={<LessonCreate />} />

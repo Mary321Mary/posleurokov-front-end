@@ -15,9 +15,9 @@ async function generateSitemap() {
     let categoryParam = [];
 
     for (let i = 0; i < categories.length; i++) {
-      categoryParam.push(categories[i].baseCategory.name);
+      categoryParam.push(String(categories[i].baseCategory.name).replace(" ", "%20"));
       for (let j = 0; j < categories[i].concreteCategories.length; j++) {
-        categoryParam.push(categories[i].concreteCategories[j].name);
+        categoryParam.push(String(categories[i].concreteCategories[j].name).replace(" ", "%20"));
       }
     }
 
@@ -33,8 +33,8 @@ async function generateSitemap() {
     for (let i = 2; i <= courses.counts.countOfPages; i++) {
       const lessons = await axiosAPI.axiosAPI.getCourses(
         "/result/?city=all&category=all&name=&page=" +
-          i +
-          "&tab=any&sex=any&addr=&isInSummer=&inNotSummer=&hasReception="
+        i +
+        "&tab=any&sex=any&addr=&isInSummer=&inNotSummer=&hasReception="
       );
       for (let j = 0; j < lessons.result.length; j++) {
         ids.push(lessons.result[j].lesson.id);

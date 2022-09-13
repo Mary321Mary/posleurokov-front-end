@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /login
+Disallow: /signup
+Disallow: /cabinet/profile
+Disallow: /cabinet/subscriptions
+Disallow: /cabinet/active
+Disallow: /cabinet/archive
+Disallow: /lesson/update/:id

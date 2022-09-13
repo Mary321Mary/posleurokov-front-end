@@ -95,7 +95,11 @@ const ArchiveLessons = () => {
 
   return (
     <div>
-      <Helmet title="Занятия в архиве" />
+      <Helmet title="Занятия в архиве">
+        <link rel="canonical" href="/cabinet/archive" />
+        <meta name="description" content="Список занятий, созданных пользователем и помещенные в архив." />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

@@ -131,7 +131,8 @@ const Contacts = () => {
   return (
     <section className={styles.section}>
       <Helmet title="Контакты">
-        <meta name="description" content="Все кружки : Контакты" />
+        <meta name="description" content='Список контактов "Все кружки" и способы связи с ними.' />
+        <link rel="canonical" href="/contacts" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />

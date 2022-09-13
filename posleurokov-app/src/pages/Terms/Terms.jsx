@@ -99,7 +99,8 @@ const Terms = () => {
   return (
     <section className={styles.section}>
       <Helmet title="Условия">
-        <meta name="description" content="Все кружки : Условия" />
+        <meta name="description" content="Все кружки : Условия использования сайта, пользовательское соглашение." />
+        <link rel="canonical" href="/terms" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />

@@ -280,7 +280,11 @@ const Profile = () => {
 
   return (
     <div>
-      <Helmet title="Профиль" />
+      <Helmet title="Профиль">
+        <link rel="canonical" href="/cabinet/profile" />
+        <meta name="description" content='Профиль пользователя сайта "Все кружки" и его организации.' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

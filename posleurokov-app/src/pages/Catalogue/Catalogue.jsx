@@ -113,10 +113,11 @@ const Catalogue = () => {
           name="description"
           content={
             category == "all"
-              ? "Все кружки : Все занятия"
-              : "Все кружки : " + category
+              ? ("Все кружки : Каталог занятий, кружков и секций " + setTitleCity())
+              : ("Все кружки : " + category + " " + setTitleCity())
           }
         />
+        <link rel="canonical" href={`/catalogue/${city}/${category}`} />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"40%"} />

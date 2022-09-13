@@ -99,6 +99,7 @@ const Main = () => {
           name="description"
           content={"Все кружки : Кружки, секции и занятия" + setTitleCity()}
         />
+        <link rel="canonical" href="/" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />

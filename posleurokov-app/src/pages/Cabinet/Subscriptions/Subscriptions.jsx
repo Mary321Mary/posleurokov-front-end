@@ -92,7 +92,11 @@ const Subscriptions = () => {
 
   return (
     <div>
-      <Helmet title="Подписки" />
+      <Helmet title="Подписки">
+        <link rel="canonical" href="/cabinet/subscriptions" />
+        <meta name="description" content='Список подписок на занятия пользователя сайта "Все кружки".' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div className={styles.page}>

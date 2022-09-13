@@ -100,7 +100,8 @@ const About = () => {
   return (
     <section className={styles.section}>
       <Helmet title="О проекте">
-        <meta name="description" content="Все кружки : О проекте" />
+        <link rel="canonical" href="/about" />
+        <meta name="description" content='Описание сайта "Все кружки", его основных функций и механизма работы' />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />

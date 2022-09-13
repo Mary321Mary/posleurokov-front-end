@@ -170,7 +170,11 @@ const SignUp = () => {
 
   return (
     <section className={styles.container}>
-      <Helmet title="Регистрация" />
+      <Helmet title="Регистрация">
+        <link rel="canonical" href="/signup" />
+        <meta name="description" content='Форма регистрации нового пользователя на сайте "Все кружки".' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
           <Sheet padding="25px">

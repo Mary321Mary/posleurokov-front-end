@@ -115,7 +115,8 @@ const FAQ = () => {
   return (
     <section className={styles.section}>
       <Helmet title="Вопросы и ответы">
-        <meta name="description" content="Все кружки : Вопросы и ответы" />
+        <meta name="description" content='Список самых частых вопросов к администрации сайта "Все кружки" и ответы на них.' />
+        <link rel="canonical" href="/faq" />
       </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />

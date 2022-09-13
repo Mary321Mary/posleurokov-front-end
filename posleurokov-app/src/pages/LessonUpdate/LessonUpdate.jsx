@@ -327,7 +327,11 @@ const LessonUpdate = () => {
 
   return (
     <section className={styles.container}>
-      <Helmet title="Обновить занятие" />
+      <Helmet title="Обновить занятие">
+        <link rel="canonical" href={`/lesson/update/${id}`} />
+        <meta name="description" content={`Обновить занятие ${course.name ? (course.name + " ") : ""}на сайте "Все кружки".`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ?
         <Loader marginLeft={"42vw"} /> :
         <div>

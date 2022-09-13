@@ -7,6 +7,11 @@ export default (
     <Route path="/catalogue/:cityParam/:categoryParam" />
     <Route path="/catalogue/:cityParam" />
     <Route path="/:cityParam" />
-    <Route path="/" />
+    <Route path="/terms" />
+    <Route path="/faq" />
+    <Route path="/about" />
+    <Route path="/contacts" />
+    <Route path="/signup" />
+    <Route path="/login" />
   </Route>
 );

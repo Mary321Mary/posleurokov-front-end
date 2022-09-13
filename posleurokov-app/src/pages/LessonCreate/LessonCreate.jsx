@@ -304,7 +304,11 @@ const LessonCreate = () => {
 
   return (
     <section className={styles.container}>
-      <Helmet title="Добавить занятие" />
+      <Helmet title="Добавить занятие">
+        <link rel="canonical" href="/lesson/create" />
+        <meta name="description" content='Форма добавления занятия, кружка или секции на сайт "Все кружки".' />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       {loading ? (
         <Loader marginLeft={"42vw"} />
       ) : (
