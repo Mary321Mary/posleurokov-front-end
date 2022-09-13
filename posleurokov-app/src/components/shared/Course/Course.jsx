@@ -42,7 +42,11 @@ const Course = ({ list, online, ...rest }) => {
                   return value ? (
                     <div
                       key={category}
-                      style={{ display: "inline", marginRight: "5px" }}
+                      style={{
+                        display: "inline",
+                        marginRight: "5px",
+                        overflowWrap: "break-word",
+                      }}
                     >
                       #{value.name.split("/")[1]}
                     </div>
