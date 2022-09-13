@@ -1,11 +1,11 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 .infoRow {
   padding-bottom: 12px;
   font-size: 14px;
   line-height: 16px;
   font-style: normal;
-  color: #5F6060;
+  color: #5f6060;
   display: flex;
 
   .head {
@@ -20,7 +20,7 @@
 }
 
 .firstFree {
-  background-color: #6D80D8;
+  background-color: #6d80d8;
   font-weight: 400;
   padding: 5px;
   margin-bottom: 12px;
@@ -36,18 +36,18 @@
 .checkbox {
   width: 2px;
   height: 4px;
-  border: 1px solid #6D80D8;
+  border: 1px solid #6d80d8;
 }
 
 .actions {
   margin-top: 13px;
   margin-left: 6px;
   padding-bottom: 11px;
-  border-bottom: 1px solid #EEEFEF;
+  border-bottom: 1px solid #eeefef;
   border-radius: 2px;
   font-style: normal;
   font-weight: 500;
-  color: #6D80D8;
+  color: #6d80d8;
   width: 270px;
   font-size: 14px;
   line-height: 16px;
@@ -77,7 +77,6 @@
 
 @media only screen and (max-width: 699px) {
   .mainPanel {
-    margin-left: 0;
-    margin: 19px 26px 0px 15px;
+    margin: 19px 5px 0px 5px;
   }
 }

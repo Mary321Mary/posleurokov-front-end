@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 import { Loader } from "components";
 import store from "redux/stores";
 import Helmet from "react-helmet";
+import { useSelector } from "react-redux";
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState({});
@@ -26,6 +27,7 @@ const LessonPage = () => {
   const [headingParams, setHeadingParams] = useState({});
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const city = useSelector((state) => state.city);
 
   const getCategories = async () => {
     const categories = await axiosAPI.getCategoriesList();
@@ -119,7 +121,9 @@ const LessonPage = () => {
                         style={{ display: "inline", marginRight: "5px" }}
                       >
                         <Link
-                          path="/catalogue"
+                          path={`/catalogue/${city}/${
+                            value.name.split("/")[1]
+                          }`}
                           onClick={() => setCategory(value.name.split("/")[1])}
                           fontFamily="Roboto-Regular"
                           fontWeight="400"
