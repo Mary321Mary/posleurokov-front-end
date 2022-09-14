@@ -200,11 +200,11 @@ function Filter() {
               options={
                 Array.isArray(result)
                   ? result.map((category) => {
-                    return {
-                      text: category.baseCategory.name,
-                      value: category.baseCategory.name,
-                    };
-                  })
+                      return {
+                        text: category.baseCategory.name,
+                        value: category.baseCategory.name,
+                      };
+                    })
                   : {}
               }
               prepend={
@@ -244,8 +244,8 @@ function Filter() {
             <Link path={`/catalogue/${city}/${category}`}>
               <Button
                 width="239px"
-                margin="0 auto"
                 background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
+                display="inline"
               >
                 <img
                   style={{ marginRight: "8px" }}
