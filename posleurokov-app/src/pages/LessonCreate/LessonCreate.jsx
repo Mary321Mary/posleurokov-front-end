@@ -7,6 +7,7 @@ import {
   Loader,
   SuggestComponent,
   ModalWindow,
+  Link,
 } from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
@@ -24,7 +25,7 @@ const LessonCreate = () => {
   const [city, setCity] = useState("Гомель");
   const [sex, setSex] = useState("Любой");
   const [startAge, setStartAge] = useState("");
-  const [isOnline, setIsOnline] = useState('Нет');
+  const [isOnline, setIsOnline] = useState("Нет");
   const [endAge, setEndAge] = useState("");
   const [Images, setImages] = useState([]);
   const [course, setCourse] = useState(() => {
@@ -160,7 +161,7 @@ const LessonCreate = () => {
       });
     }
 
-    if (course.isOnline === false && course.address == '') {
+    if (course.isOnline === false && course.address == "") {
       valid = false;
       setError((prev) => {
         return {
@@ -247,7 +248,7 @@ const LessonCreate = () => {
     setCourse((prev) => {
       return {
         ...prev,
-        isOnline: isOnline == 'Да',
+        isOnline: isOnline == "Да",
       };
     });
   };
@@ -306,7 +307,10 @@ const LessonCreate = () => {
     <section className={styles.container}>
       <Helmet title="Добавить занятие">
         <link rel="canonical" href="/lesson/create" />
-        <meta name="description" content='Форма добавления занятия, кружка или секции на сайт "Все кружки".' />
+        <meta
+          name="description"
+          content='Форма добавления занятия, кружка или секции на сайт "Все кружки".'
+        />
         <meta name="robots" content="noindex" />
       </Helmet>
       {loading ? (
@@ -485,57 +489,69 @@ const LessonCreate = () => {
                     id="isOnline"
                     value={isOnline}
                     options={[
-                      { text: "Нет", value: 'Нет' },
-                      { text: "Да", value: 'Да' },
+                      { text: "Нет", value: "Нет" },
+                      { text: "Да", value: "Да" },
                     ]}
                     onChange={(value) => {
-                      setIsOnline(value)
+                      setIsOnline(value);
                     }}
                   />
                 </div>
                 <div className={styles["gorisonlal-line"]}></div>
-                {isOnline == 'Нет' ? <div><div>
-                  <label htmlFor="city">Город:</label>
-                  <Select
-                    border="1px solid black"
-                    borderRadius="8px"
-                    width="250px"
-                    id="city"
-                    value={city}
-                    options={cities.map((city) => {
-                      return { text: city.name, value: city.name };
-                    })}
-                    prepend={
-                      <img src="\images\Address.png" height="25px" alt="Пол" />
-                    }
-                    onChange={(value) => {
-                      setCityField(value);
-                    }}
-                  />
-                </div>
-                  {error.city !== "" ? <span>{error.city}</span> : null}
-                  <div className={styles["gorisonlal-line"]}></div>
-                  <div><label>Адрес:</label>
-                    <SuggestComponent
-                      value={course.address}
-                      handler={changeAddress}
-                      className={styles.suggest}
-                      isCitySet={true}
-                      isNotExact={false}
-                    /></div>
-                  {error.isOnline !== "" ? (
-                    <span>{error.isOnline}</span>
-                  ) : null}
-                  <div className={styles["gorisonlal-line"]}></div>
-                  <Input
-                    height="66px"
-                    label="Описание места/ближайшие остановки:"
-                    name="place"
-                    value={course.place}
-                    onChange={changeInputRegister}
-                    errorMessage={error.place}
-                  />
-                  <div className={styles["gorisonlal-line"]}></div></div> : <></>}
+                {isOnline == "Нет" ? (
+                  <div>
+                    <div>
+                      <label htmlFor="city">Город:</label>
+                      <Select
+                        border="1px solid black"
+                        borderRadius="8px"
+                        width="250px"
+                        id="city"
+                        value={city}
+                        options={cities.map((city) => {
+                          return { text: city.name, value: city.name };
+                        })}
+                        prepend={
+                          <img
+                            src="\images\Address.png"
+                            height="25px"
+                            alt="Пол"
+                          />
+                        }
+                        onChange={(value) => {
+                          setCityField(value);
+                        }}
+                      />
+                    </div>
+                    {error.city !== "" ? <span>{error.city}</span> : null}
+                    <div className={styles["gorisonlal-line"]}></div>
+                    <div>
+                      <label>Адрес:</label>
+                      <SuggestComponent
+                        value={course.address}
+                        handler={changeAddress}
+                        className={styles.suggest}
+                        isCitySet={true}
+                        isNotExact={false}
+                      />
+                    </div>
+                    {error.isOnline !== "" ? (
+                      <span>{error.isOnline}</span>
+                    ) : null}
+                    <div className={styles["gorisonlal-line"]}></div>
+                    <Input
+                      height="66px"
+                      label="Описание места/ближайшие остановки:"
+                      name="place"
+                      value={course.place}
+                      onChange={changeInputRegister}
+                      errorMessage={error.place}
+                    />
+                    <div className={styles["gorisonlal-line"]}></div>
+                  </div>
+                ) : (
+                  <></>
+                )}
                 <Input
                   height="66px"
                   label="Расписание:"
@@ -669,7 +685,12 @@ const LessonCreate = () => {
                 </label>
                 <Checkbox
                   value={course.agreement}
-                  text="Ознакомлен и согласен с условиями использования"
+                  text={[
+                    "Ознакомлен и согласен с ",
+                    <Link path="/terms" color="#6d80d8" target="_blank">
+                      условиями использования
+                    </Link>,
+                  ]}
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
