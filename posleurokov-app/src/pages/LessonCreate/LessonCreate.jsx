@@ -669,7 +669,7 @@ const LessonCreate = () => {
                 </label>
                 <Checkbox
                   value={course.agreement}
-                  text='<Link href="/terms">Ознакомлен и согласен с условиями использования</Link>'
+                  text="Ознакомлен и согласен с условиями использования"
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
