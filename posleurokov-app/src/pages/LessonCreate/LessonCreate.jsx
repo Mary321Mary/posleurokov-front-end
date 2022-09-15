@@ -7,7 +7,6 @@ import {
   Loader,
   SuggestComponent,
   ModalWindow,
-  Link
 } from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
