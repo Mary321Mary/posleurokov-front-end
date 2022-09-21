@@ -1,5 +1,6 @@
 import styles from "./LessonDescription.module.scss";
 import { InfoPanel } from "..";
+import { Link } from "components";
 
 const LessonDescription = ({ lesson, organization, ...rest }) => {
   const GetAddress = () => {
@@ -104,7 +105,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
       <div>
         <h3 className={styles.h3}>Контакты</h3>
         <div>
-          {organization.name}
+          <Link path={`/organization/${organization.id}`}>{organization.name}</Link>
           <br />
           Email: <a href={'mailto:' + organization.email}>{organization.email}</a>
           <br />
