@@ -1,0 +1,160 @@
+@import "src/assets/styles/_variables.scss";
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+
+  h1 {
+    font-family: $heading-font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+
+    /* blue */
+    color: $primary-color;
+    margin-left: 10%;
+  }
+}
+
+.section {
+  &-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 133px;
+  }
+  &-categories {
+    margin-right: 29px;
+  }
+}
+
+.ourLess {
+  color: #6D80D8;
+  font-size: 24px;
+  line-height: 128.69%;
+  font-weight: 500;
+  margin-bottom: 33px;
+}
+
+.info {
+  width: 41vw;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.share {
+  button {
+    margin-right: 10px;
+  }
+}
+
+.separator {
+  width: 100%;
+  border-bottom: 1px dashed #EEEFEF;
+  margin: 24px 0;
+}
+
+.additional {
+  display: table;
+  font-size: 14px;
+  line-height: 16px;
+
+  .rowInfo {
+    display: table-row;
+
+    .infoCell {
+      display: table-cell;
+      width: 7%;
+      padding-bottom: 15px;
+
+      a {
+        text-decoration: underline;
+        color: inherit;
+      }
+
+      .head {
+        display: inline-block;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .container {
+    h1 {
+      margin-left: 34px;
+    }
+  }
+
+  .section {
+    &-list {
+      margin-left: 34px;
+      margin-right: 32px;
+      margin-bottom: 79px;
+    }
+  }
+
+  .additional {
+    display: block;
+
+    .rowInfo {
+      display: block;
+  
+      .infoCell {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    h1 {
+      font-size: 20px;
+      line-height: 26px;
+      margin-left: 16px;
+    }
+  }
+
+  .section {
+    &-list {
+      flex-direction: column;
+      margin-left: 16px;
+      margin-right: 16px;
+      margin-bottom: 68px;
+      align-content: center;
+    }
+
+    &-categories {
+      margin-right: 0px;
+      margin-bottom: 40px;
+      align-content: center;
+    }
+  }
+
+  .info {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .separator {
+    margin: 22px 0;
+  }
+
+  .additional {
+    display: block;
+
+    .rowInfo {
+      display: block;
+  
+      .infoCell {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
