@@ -64,8 +64,10 @@ async function generateSitemap() {
     );
 
     let ids = [];
+    let orgIds = []
     for (let i = 0; i < courses.result.length; i++) {
       ids.push(courses.result[i].lesson.id);
+      orgIds.push(courses.result[i].lesson.organization)
     }
 
     for (let i = 2; i <= courses.counts.countOfPages; i++) {
@@ -76,8 +78,11 @@ async function generateSitemap() {
       );
       for (let j = 0; j < lessons.result.length; j++) {
         ids.push(lessons.result[j].lesson.id);
+        orgIds.push(courses.result[j].lesson.organization)
       }
     }
+
+    let uniqueIds = [...new Set(orgIds)]
 
     const paramsConfig = {
       "/:cityParam": [{ cityParam: cityParamMain }],
@@ -90,6 +95,7 @@ async function generateSitemap() {
         { categoryParam: categoryParamGomel },
       ],
       "/lesson/:id": [{ id: ids }],
+      "/organization/:id": [{id: uniqueIds}],
     };
 
     return new Sitemap(router)

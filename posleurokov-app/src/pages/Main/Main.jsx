@@ -20,6 +20,7 @@ import store from "redux/stores";
 import { useSelector } from "react-redux";
 import Helmet from "react-helmet";
 import { useParams } from "react-router-dom";
+import galochka from "assets/img/galochka.png";
 
 const Main = () => {
   const city = useSelector((state) => state.city);
@@ -122,6 +123,14 @@ const Main = () => {
             <div className={styles["section-filter__filter"]}>
               <Filter />
             </div>
+            <Link
+              path="/catalogue/all"
+              textDecoration="none"
+              className={styles.lessons}
+            >
+              <div>Посмотреть все занятия</div>
+              <img src={galochka} alt="Все занятия" />
+            </Link>
           </section>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>

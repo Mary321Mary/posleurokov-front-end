@@ -19,3 +19,4 @@ export const LESSON_DELETE = (id) => `/api/card/lesson/${id}/`;
 export const ADD_PICTURE = (id) => `/api/card/lesson/${id}/picture/`;
 export const DELETE_PICTURE = (id) => `/api/card/lesson/picture/${id}/`;
 export const PROFILE = "/api/cabinet";
+export const ORGANIZATION = (id) => `/api/organization/${id}`;

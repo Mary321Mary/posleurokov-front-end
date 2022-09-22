@@ -17,6 +17,7 @@ import {
   Terms,
   FAQ,
   Contacts,
+  Organization
 } from "./pages";
 import Helmet from "react-helmet";
 
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/terms" element={<Terms />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/organization/:id" element={<Organization />} />
         </Route>
         <Route path="/" element={<LoginLayout />}>
           <Route path="/signup" element={<SignUp />} />
