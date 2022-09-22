@@ -181,7 +181,7 @@ const Profile = () => {
       isValid = false
     }
 
-    if (orgAddress == '') {
+    if (address == '') {
       error += 'Адрес: адрес не должен быть пустым!\n'
       isValid = false
     }
@@ -366,7 +366,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} isNotExact={false} />
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} keyName={'suggestuser'} isNotExact={false} />
                   </div>
                   <div>
                     <div>Телефон</div>
