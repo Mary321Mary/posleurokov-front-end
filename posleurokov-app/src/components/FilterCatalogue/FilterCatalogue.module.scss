@@ -135,4 +135,7 @@ div.podCategory {
 
 .active {
   font-family: $btn-font-family !important;
+  padding: 4px 6px;
+  border-radius: 3px;
+  background-color: #dcdcdc;
 }

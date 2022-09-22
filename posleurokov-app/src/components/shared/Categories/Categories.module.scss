@@ -11,27 +11,32 @@
 }
 
 .info {
-  width: inherit;
-  margin: 0 auto;
+  width: 700px;
+  padding: 8px 150px;
   text-align: center;
 
   /* (main) */
-  font-family: "Roboto-Bold";
+  font-family: $primary-font-family;
   font-style: normal;
   font-size: 14px;
   line-height: 18px;
-  border: 1px solid #5f6060;
-  border-radius: 5px;
+  border: 1px solid #afa9bf;
+  border-radius: 14px;
   margin-bottom: 40px;
-  padding: 5px;
   margin-top: -25px;
 
   /* dark_gray */
-
   color: #5f6060;
 
   a {
     color: #5f6060;
+    margin: 15px 0px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      margin-right: 5px;
+    }
   }
 
   @media only screen and (max-width: 1200px) {
@@ -54,7 +59,7 @@
     padding-right: 50px;
   }
 
-  @media only screen and (min-width: 1200px) and (max-width:1400px) {
+  @media only screen and (min-width: 1200px) and (max-width: 1400px) {
     width: 170px !important;
     margin-right: 100px;
 
@@ -126,5 +131,9 @@
   .categories {
     padding-top: 32px;
     padding-bottom: 32px;
+  }
+
+  .info {
+    width: auto;
   }
 }
