@@ -21,6 +21,7 @@ import {
   ADD_PICTURE,
   DELETE_PICTURE,
   PROFILE,
+  ORGANIZATION
 } from "./endpoints";
 
 const instance = axios.create({
@@ -454,4 +455,28 @@ export const axiosAPI = {
       return error.response;
     }
   },
+  async getOrganizationInfo(id){
+    try {
+      const response = await instance.get(
+        ORGANIZATION(id),
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getOrganizationLessons(id, type, page){
+    try {
+      const response = await instance.get(
+        ORGANIZATION(id) + `/lessons?type=${type}&page=${page}`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  }
 };

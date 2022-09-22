@@ -15,5 +15,6 @@ export default (
     <Route path="/contacts" />
     <Route path="/signup" />
     <Route path="/login" />
+    <Route path="/organization/:id" />
   </Route>
 );

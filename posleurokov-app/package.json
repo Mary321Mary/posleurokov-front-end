@@ -26,6 +26,7 @@
     "react-router-dom": "^6.3.0",
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "^5.0.1",
+    "react-share": "^4.4.0",
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.2.0",
     "sass": "^1.53.0",

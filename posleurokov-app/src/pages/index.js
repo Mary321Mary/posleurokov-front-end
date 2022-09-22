@@ -11,3 +11,4 @@ export * from "./SignUp/SignUp";
 export * from "./Login/Login";
 export * from "./LessonUpdate/LessonUpdate";
 export * from "./Cabinet";
+export * from "./OrganizationPage/Organization";
