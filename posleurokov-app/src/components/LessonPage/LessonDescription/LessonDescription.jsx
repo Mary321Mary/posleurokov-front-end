@@ -80,7 +80,7 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         if (String(lesson.timetable).startsWith("http")) {
           return (
             <div>
-              <a href={lesson.timetable} target={'_blank'}>{lesson.timetable}</a>
+              <Link path={lesson.timetable} target={'_blank'}>{lesson.timetable}</Link>
             </div>
           );
         }
@@ -105,13 +105,13 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
       <div>
         <h3 className={styles.h3}>Контакты</h3>
         <div>
-          <Link path={`/organization/${organization.id}`}>{organization.name}</Link>
+          <Link path={`/organization/${organization.id}`} color={'#527DAF'} marginBottom={'10px'} display={'inline-block'}>{organization.name}</Link>
           <br />
-          Email: <a href={'mailto:' + organization.email}>{organization.email}</a>
+          Email: <Link path={'mailto:' + organization.email}>{organization.email}</Link>
           <br />
           Телефон: {organization.phoneNumber}
           <br />
-          <a href={organization.additionalLink}>{organization.additionalLink}</a>
+          <Link path={organization.additionalLink}>{organization.additionalLink}</Link>
         </div>
       </div>
     );
