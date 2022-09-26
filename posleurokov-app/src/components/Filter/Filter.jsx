@@ -245,7 +245,6 @@ function Filter() {
               <Button
                 width="239px"
                 background="linear-gradient(90deg, #FBA405 -5.91%, #FDC21E 115.61%)"
-                display="inline"
               >
                 <img
                   style={{ marginRight: "8px" }}
