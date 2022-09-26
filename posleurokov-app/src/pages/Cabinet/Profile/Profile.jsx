@@ -68,13 +68,18 @@ const Profile = () => {
     if (localStorage.getItem("token")) {
       setLoading(true)
       let result = await axiosAPI.getProfile();
-      setUser(result.user);
-      setOrganization(result.organizer);
-      if (result.organizer == null) {
-        getCities(-1);
+      if (result === "Ошибка сервера"){
+        window.location.href = "/login";
       }
       else {
-        getCities(result.organizer.city);
+        setUser(result.user);
+        setOrganization(result.organizer);
+        if (result.organizer == null) {
+          getCities(-1);
+        }
+        else {
+          getCities(result.organizer.city);
+        }
       }
     } else {
       window.location.href = "/login";
