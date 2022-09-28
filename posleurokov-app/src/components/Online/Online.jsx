@@ -13,7 +13,7 @@ const Online = ({ number, ...rest }) => {
         <div className={styles.label}>
           Каталог кружков, секций и курсов онлайн
         </div>
-        <div className={styles.count}>Найдено: {number}</div>
+        <div className={styles.count}>Найдено: {number ? number : 0}</div>
       </div>
       <Link path={`/catalogue/Online`}>
         <Button

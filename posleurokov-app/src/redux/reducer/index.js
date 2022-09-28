@@ -1,8 +1,8 @@
 const initialState = {
   count: "",
-  tab: "any",
+  tab: "all",
   city: "Гомель",
-  suggestCity: 'Гомель',
+  suggestCity: "Гомель",
   params: {
     name: "",
     sex: "any",
@@ -33,7 +33,8 @@ function reducer(state = initialState, action) {
     case "ChangeSuggestCity":
       return {
         ...state,
-        suggestCity: action.amount === undefined ? state.suggestCity : action.amount,
+        suggestCity:
+          action.amount === undefined ? state.suggestCity : action.amount,
       };
     case "SetParamsForCatalogue":
       return {
