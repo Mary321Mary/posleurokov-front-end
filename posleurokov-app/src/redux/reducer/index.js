@@ -1,8 +1,8 @@
 const initialState = {
   count: "",
-  tab: "any",
+  tab: "all",
   city: "Гомель",
-  suggestCity: 'Гомель',
+  suggestCity: "Гомель",
   params: {
     name: "",
     sex: "any",
@@ -12,7 +12,6 @@ const initialState = {
     category: "all",
     isInSummer: "",
     inNotSummer: "",
-    hasReception: "",
   },
 };
 
@@ -33,7 +32,8 @@ function reducer(state = initialState, action) {
     case "ChangeSuggestCity":
       return {
         ...state,
-        suggestCity: action.amount === undefined ? state.suggestCity : action.amount,
+        suggestCity:
+          action.amount === undefined ? state.suggestCity : action.amount,
       };
     case "SetParamsForCatalogue":
       return {
@@ -94,10 +94,6 @@ function reducer(state = initialState, action) {
             action.inNotSummer === undefined
               ? state.params.inNotSummer
               : action.inNotSummer,
-          hasReception:
-            action.hasReception === undefined
-              ? state.params.hasReception
-              : action.hasReception,
         },
       };
     default:

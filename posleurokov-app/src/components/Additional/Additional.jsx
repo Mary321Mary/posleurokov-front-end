@@ -44,10 +44,10 @@ const Additional = ({ price, ...rest }) => {
           >
             {price ? (
               <div className={styles.union}>
-                {additional.price !== null ? (
-                  <p className={styles.exist}>{additional.price} Р.</p>
+                {additional.hasFee ? (
+                  <p className={styles.exist}>Платно</p>
                 ) : (
-                  <p className={styles.absent}>не указана</p>
+                  <p className={styles.absent}>Бесплатно</p>
                 )}
               </div>
             ) : (
@@ -68,10 +68,10 @@ const Additional = ({ price, ...rest }) => {
             }`}
           >
             {price ? (
-              additional.price !== null ? (
-                <p className={styles.exist}>{additional.price} Р.</p>
-              ) : (
-                <p className={styles.absent}>не указана</p>
+              additional.hasFee ? (
+                <p className={styles.exist}>Платно</p>
+                ) : (
+                <p className={styles.absent}>Бесплатно</p>
               )
             ) : (
               <div

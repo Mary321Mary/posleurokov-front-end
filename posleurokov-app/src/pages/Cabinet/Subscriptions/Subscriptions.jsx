@@ -54,7 +54,7 @@ const Subscriptions = () => {
         </div>
       </td>
       <td>
-        {elem.price}
+        {elem.fee}
       </td>
       <td>
         <a href={'/lesson/' + elem.id}><button>Перейти на страницу</button></a>
@@ -112,7 +112,7 @@ const Subscriptions = () => {
                       Занятия
                     </th>
                     <th className={styles.price}>
-                      Цена
+                      Платно?
                     </th>
                     <th className={styles.actions}>
                       Действия

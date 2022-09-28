@@ -46,7 +46,6 @@ function Filter() {
     }
     let isInSummer = "";
     let inNotSummer = "";
-    let hasReception = "";
 
     for (let i = 0; i < other.length; i++) {
       switch (other[i]) {
@@ -55,9 +54,6 @@ function Filter() {
           break;
         case "inNotSummer":
           inNotSummer = true;
-          break;
-        case "hasReception":
-          hasReception = true;
           break;
       }
     }
@@ -71,7 +67,6 @@ function Filter() {
         category,
         isInSummer,
         inNotSummer,
-        hasReception,
       },
     });
     if (category === "") {
@@ -225,7 +220,6 @@ function Filter() {
               options={[
                 { text: "Работает сент-май", value: "inNotSummer" },
                 { text: "Работает летом", value: "isInSummer" },
-                { text: "Есть свободные места", value: "hasReception" },
               ]}
               checkbox
               selectWidth={selectWidth}

@@ -57,7 +57,7 @@ const ArchiveLessons = () => {
         </div>
       </td>
       <td className={styles.price}>
-        {elem.price}
+        {elem.fee}
       </td>
       <td className={styles.actions}>
         <a href={'/lesson/update/' + elem.id}><button>Изменить занятие</button></a>
@@ -118,7 +118,7 @@ const ArchiveLessons = () => {
                       Занятия
                     </th>
                     <th className={styles.price}>
-                      Цена
+                      Платно?
                     </th>
                     <th className={styles.actions}>
                       Действия

@@ -21,7 +21,7 @@ const Course = ({ list, online, ...rest }) => {
 
   const displayCourses = list.map((elem, id) => {
     return (
-      <div key={elem.lesson.name}>
+      <div key={elem.lesson.id}>
         <div className={styles.course}>
           <Link path={`/lesson/${elem.lesson.id}`}>
             <div className={styles.label}>{elem.lesson.name}</div>
@@ -76,21 +76,11 @@ const Course = ({ list, online, ...rest }) => {
             </div>
             <div className={styles.price}>
               <div>
-                {elem.lesson.price ? (
-                  <div>{elem.lesson.price} руб.</div>
-                ) : (
-                  <div>Цена не указана</div>
-                )}
-                <div>{elem.lesson.additionalPriceInfo}</div>
+                {elem.lesson.hasFee ? <div>Платно</div> : <div>Бесплатно</div>}
               </div>
               {elem.lesson.isFirstFree ? (
                 <div className={styles.firstFree}>Первое Бесплатно</div>
               ) : null}
-              {elem.lesson.hasReception ? (
-                <div className={styles.open}>Прием: идет</div>
-              ) : (
-                <div className={styles.close}>Прием: закрыт</div>
-              )}
             </div>
           </div>
           <div className={styles.mobile}>
@@ -112,24 +102,12 @@ const Course = ({ list, online, ...rest }) => {
             ) : null}
           </div>
           <div className={styles.tablet}>
-            <div>
-              {elem.lesson.hasReception ? (
-                <div className={styles.open}>Прием: идет</div>
-              ) : (
-                <div className={styles.close}>Прием: закрыт</div>
-              )}
+            <div className={styles["tablet-price"]}>
+              {elem.lesson.hasFee ? <div>Платно</div> : <div>Бесплатно</div>}
             </div>
             {elem.lesson.isFirstFree ? (
               <div className={styles.firstFree}>Первое Бесплатно</div>
             ) : null}
-            <div className={styles["tablet-price"]}>
-              {elem.lesson.price ? (
-                <div>{elem.lesson.price} руб.</div>
-              ) : (
-                <div>Цена не указана</div>
-              )}
-              <div>{elem.lesson.additionalPriceInfo}</div>
-            </div>
           </div>
         </div>
         {id === 0 ? <Online width="inherit" number={online} /> : null}

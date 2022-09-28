@@ -6,12 +6,8 @@ import { TabBarNav, Course } from "components";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
 
-const TabsBar = ({ items, ...rest }) => {
+const TabsBar = ({ items, openTab, ...rest }) => {
   const tab = useSelector((state) => state.tab);
-
-  const openTab = (index) => {
-    store.dispatch({ type: "ChangeTab", amount: index });
-  };
 
   const showAll = () => {
     const tabs = document.getElementsByName("showAll");

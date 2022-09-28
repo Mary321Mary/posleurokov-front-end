@@ -100,7 +100,6 @@ function FilterCatalogue() {
       other: [
         store.getState().params.isInSummer === true ? "isInSummer" : "",
         store.getState().params.inNotSummer === true ? "inNotSummer" : "",
-        store.getState().params.hasReception === true ? "hasReception" : "",
       ],
     };
   });
@@ -196,7 +195,6 @@ function FilterCatalogue() {
 
     let isInSummer = "";
     let inNotSummer = "";
-    let hasReception = "";
     for (let i = 0; i < fields.other.length; i++) {
       switch (fields.other[i]) {
         case "isInSummer":
@@ -205,16 +203,12 @@ function FilterCatalogue() {
         case "inNotSummer":
           inNotSummer = true;
           break;
-        case "hasReception":
-          hasReception = true;
-          break;
       }
     }
     store.dispatch({
       type: "ChangeOther",
       isInSummer: isInSummer,
       inNotSummer: inNotSummer,
-      hasReception: hasReception,
     });
   };
 
@@ -448,7 +442,6 @@ function FilterCatalogue() {
           options={[
             { text: "Работает сент-май", value: "inNotSummer" },
             { text: "Работает летом", value: "isInSummer" },
-            { text: "Есть свободные места", value: "hasReception" },
           ]}
           checkbox
           onChange={(value) => {
