@@ -41,11 +41,12 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         if (String(lesson.place).startsWith("http")) {
           return (
             <div>
-              <a href={lesson.place} target={'_blank'}>{lesson.place}</a>
+              <a href={lesson.place} target={"_blank"}>
+                {lesson.place}
+              </a>
             </div>
           );
-        }
-        else {
+        } else {
           return <div>{lesson.place}</div>;
         }
       };
@@ -80,11 +81,12 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
         if (String(lesson.timetable).startsWith("http")) {
           return (
             <div>
-              <Link path={lesson.timetable} target={'_blank'}>{lesson.timetable}</Link>
+              <Link path={lesson.timetable} target={"_blank"}>
+                {lesson.timetable}
+              </Link>
             </div>
           );
-        }
-        else {
+        } else {
           return <div>{lesson.timetable}</div>;
         }
       };
@@ -105,13 +107,32 @@ const LessonDescription = ({ lesson, organization, ...rest }) => {
       <div>
         <h3 className={styles.h3}>Контакты</h3>
         <div>
-          <Link path={`/organization/${organization.id}`} color={'#527DAF'} marginBottom={'10px'} display={'inline-block'}>{organization.name}</Link>
+          <Link
+            path={`/organization/${organization.id}`}
+            color={"#527DAF"}
+            marginBottom={"10px"}
+            display={"inline-block"}
+          >
+            {organization.name}
+          </Link>
           <br />
-          Email: <Link path={'mailto:' + organization.email}>{organization.email}</Link>
+          Email:{" "}
+          <Link path={"mailto:" + organization.email}>
+            {organization.email}
+          </Link>
           <br />
           Телефон: {organization.phoneNumber}
           <br />
-          <Link path={organization.additionalLink}>{organization.additionalLink}</Link>
+          {organization.additionalLink !== undefined
+            ? organization.additionalLink.split("\r\n").map((link) => {
+                return (
+                  <a key={link} href={link} target={"_blank"}>
+                    {link}
+                    <br />
+                  </a>
+                );
+              })
+            : null}
         </div>
       </div>
     );
