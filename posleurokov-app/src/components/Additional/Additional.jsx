@@ -15,6 +15,7 @@ const Additional = ({ price, ...rest }) => {
     const result = await axiosAPI.getAdditional();
     if (result !== undefined) {
       setStyle(true);
+      console.log(result);
       setAdditional(result);
     } else {
       setStyle(false);
@@ -44,7 +45,7 @@ const Additional = ({ price, ...rest }) => {
           >
             {price ? (
               <div className={styles.union}>
-                {additional.hasFee ? (
+                {additional.price ? (
                   <p className={styles.exist}>Платно</p>
                 ) : (
                   <p className={styles.absent}>Бесплатно</p>
@@ -68,9 +69,9 @@ const Additional = ({ price, ...rest }) => {
             }`}
           >
             {price ? (
-              additional.hasFee ? (
+              additional.price ? (
                 <p className={styles.exist}>Платно</p>
-                ) : (
+              ) : (
                 <p className={styles.absent}>Бесплатно</p>
               )
             ) : (
