@@ -153,7 +153,12 @@ const SignUp = () => {
             };
           });
         } else {
-          setError("Неправи");
+          setError((prev) => {
+            return {
+              ...prev,
+              password2: "Проверьте входные данные",
+            };
+          });
         }
       } else {
         localStorage.setItem("token", response.token);
