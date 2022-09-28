@@ -82,16 +82,18 @@ const SignUp = () => {
           email: "Пустой email",
         };
       });
-    }
-    else if (!(user.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
+    } else if (
+      !user.email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
       setError((prev) => {
         return {
           ...prev,
           email: "Неправильный email",
         };
       });
-    }
-    else {
+    } else {
       setError((prev) => {
         return {
           ...prev,
@@ -151,7 +153,7 @@ const SignUp = () => {
             };
           });
         } else {
-          setError('Неправи');
+          setError("Неправи");
         }
       } else {
         localStorage.setItem("token", response.token);
@@ -172,55 +174,63 @@ const SignUp = () => {
     <section className={styles.container}>
       <Helmet title="Регистрация">
         <link rel="canonical" href="/signup" />
-        <meta name="description" content='Форма регистрации нового пользователя на сайте "Все кружки".' />
+        <meta
+          name="description"
+          content='Форма регистрации нового пользователя на сайте "Все кружки".'
+        />
         <meta name="robots" content="noindex" />
       </Helmet>
       <div className={styles["section-list"]}>
         <div className={styles["section-categories"]}>
-          <Sheet padding="25px">
+          <Sheet className={styles.sheet}>
             <Heading tag="h1" center>
               Регистрируйтесь
             </Heading>
             <form className={styles.form}>
+              <label>Имя</label>
               <Input
-                label="Имя"
                 name="firstname"
                 value={user.firstname}
                 onChange={changeInputRegister}
                 errorMessage={error.firstname}
+                width="100%"
               />
+              <label>Фамилия</label>
               <Input
-                label="Фамилия"
                 name="surname"
                 value={user.surname}
                 onChange={changeInputRegister}
                 errorMessage={error.surname}
+                width="100%"
               />
+              <label>Email</label>
               <Input
                 type="email"
-                label="Email"
                 name="email"
                 value={user.email}
                 onChange={changeInputRegister}
                 errorMessage={error.email}
+                width="100%"
               />
+              <label>Пароль</label>
               <Input
                 type="password"
-                label="Пароль"
                 name="password"
                 value={user.password}
                 onChange={changeInputRegister}
                 errorMessage={error.password}
+                width="100%"
               />
+              <label>Повторите пароль</label>
               <Input
                 type="password"
-                label="Повторите пароль"
                 name="password2"
                 value={user.password2}
                 onChange={changeInputRegister}
                 errorMessage={error.password2}
+                width="100%"
               />
-              <Button onClick={submitChackin} marginTop="5px">
+              <Button onClick={submitChackin} width="100%">
                 Регистрация
               </Button>
             </form>
