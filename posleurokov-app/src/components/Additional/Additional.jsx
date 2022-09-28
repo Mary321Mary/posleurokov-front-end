@@ -15,7 +15,6 @@ const Additional = ({ price, ...rest }) => {
     const result = await axiosAPI.getAdditional();
     if (result !== undefined) {
       setStyle(true);
-      console.log(result);
       setAdditional(result);
     } else {
       setStyle(false);
