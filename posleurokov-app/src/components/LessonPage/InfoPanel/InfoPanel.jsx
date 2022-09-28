@@ -120,19 +120,19 @@ const InfoPanel = ({ lesson, ...rest }) => {
     if (innerWidth > 1024) {
       setSheetParams({
         width: "243px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 16px 4px 21px",
       });
     } else if (innerWidth > 700 && innerWidth <= 1024) {
       setSheetParams({
         width: "243px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 25px 16px 21px",
       });
     } else {
       setSheetParams({
         width: "235px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 25px 16px 21px",
       });
     }
