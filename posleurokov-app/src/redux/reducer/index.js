@@ -12,7 +12,6 @@ const initialState = {
     category: "all",
     isInSummer: "",
     inNotSummer: "",
-    hasReception: "",
   },
 };
 
@@ -94,10 +93,6 @@ function reducer(state = initialState, action) {
             action.inNotSummer === undefined
               ? state.params.inNotSummer
               : action.inNotSummer,
-          hasReception:
-            action.hasReception === undefined
-              ? state.params.hasReception
-              : action.hasReception,
         },
       };
     default:
