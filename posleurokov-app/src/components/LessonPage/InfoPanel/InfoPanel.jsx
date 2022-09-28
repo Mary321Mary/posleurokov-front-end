@@ -13,15 +13,10 @@ const InfoPanel = ({ lesson, ...rest }) => {
   const [sheetParams, setSheetParams] = useState({});
 
   const SetPrice = () => {
-    if (lesson.price === null || lesson.price === 0) {
-      return <div className={styles.info}>бесплатно</div>;
+    if (lesson.hasFee) {
+      return <div className={styles.info}>платно</div>;
     } else {
-      let result = String(lesson.price);
-      if (lesson.additionalPriceInfo !== null) {
-        result = result + "р. " + lesson.additionalPriceInfo;
-      }
-
-      return <div className={styles.info}>{result}</div>;
+      return <div className={styles.info}>бесплатно</div>;
     }
   };
 
@@ -125,19 +120,19 @@ const InfoPanel = ({ lesson, ...rest }) => {
     if (innerWidth > 1024) {
       setSheetParams({
         width: "243px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 16px 4px 21px",
       });
     } else if (innerWidth > 700 && innerWidth <= 1024) {
       setSheetParams({
         width: "243px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 25px 16px 21px",
       });
     } else {
       setSheetParams({
         width: "235px",
-        height: lesson.isFirstFree ? "185px" : "161px",
+        height: lesson.isFirstFree ? "135px" : "121px",
         padding: "17px 25px 16px 21px",
       });
     }
@@ -166,7 +161,7 @@ const InfoPanel = ({ lesson, ...rest }) => {
         height={sheetParams["height"]}
       >
         <div className={styles.infoRow}>
-          <div className={styles.head}>Цена:</div>
+          <div className={styles.head}>Стоимость:</div>
           <SetPrice />
         </div>
         {lesson.isFirstFree ? <div className={styles.firstFree}>Первое занятие бесплатно</div> : <></>}
@@ -181,14 +176,6 @@ const InfoPanel = ({ lesson, ...rest }) => {
         <div className={styles.infoRow}>
           <div className={styles.head}>Работает:</div>
           <SetWorkPeriods />
-        </div>
-        <div className={styles.infoRow}>
-          <div className={styles.head}>Свободные места:</div>
-          {lesson.hasReception ? (
-            <div className={styles.info}>есть</div>
-          ) : (
-            <div className={styles.info}>нет</div>
-          )}
         </div>
       </Sheet>
       <div className={styles.actions}>

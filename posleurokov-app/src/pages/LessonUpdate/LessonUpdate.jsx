@@ -41,13 +41,11 @@ const LessonUpdate = () => {
       timetable: "",
       address: "",
       place: "",
-      price: "",
-      additionalPriceInfo: "",
+      hasFee: false,
       additionalContactName: "",
       additionalContactEmail: "",
       additionalContactPhoneNumber: "",
       additionalContactCite: "",
-      hasReception: false,
       isInSummer: false,
       isInNotSummer: false,
       isOnline: false,
@@ -67,13 +65,11 @@ const LessonUpdate = () => {
       timetable: "",
       address: "",
       place: "",
-      price: "",
-      additionalPriceInfo: "",
+      hasFee: "",
       additionalContactName: "",
       additionalContactEmail: "",
       additionalContactPhoneNumber: "",
       additionalContactCite: "",
-      hasReception: "",
       isInSummer: "",
       isInNotSummer: "",
       isOnline: "",
@@ -301,9 +297,6 @@ const LessonUpdate = () => {
 
   const getLesson = async () => {
     let result = await axiosAPI.getLessonData(id);
-    if (result.lesson.price === null) {
-      result.lesson.price = "";
-    }
     setCourse(result.lesson);
     setIsOnline(result.lesson.isOnline ? "Да" : "Нет");
     setImages(result.images);
@@ -535,26 +528,6 @@ const LessonUpdate = () => {
                 <div className={styles["gorisonlal-line"]}></div>
                 <Input
                   height="66px"
-                  type="number"
-                  step="0.01"
-                  label="Цена:"
-                  name="price"
-                  value={course.price}
-                  onChange={changeInputRegister}
-                  errorMessage={error.price}
-                />
-                <div className={styles["gorisonlal-line"]}></div>
-                <Input
-                  height="66px"
-                  label="Пояснение к цене (за 1 месяц и т.д.):"
-                  name="additionalPriceInfo"
-                  value={course.additionalPriceInfo}
-                  onChange={changeInputRegister}
-                  errorMessage={error.additionalPriceInfo}
-                />
-                <div className={styles["gorisonlal-line"]}></div>
-                <Input
-                  height="66px"
                   label="Имя/название доп. контакта:"
                   name="additionalContactName"
                   value={course.additionalContactName}
@@ -592,13 +565,13 @@ const LessonUpdate = () => {
                 />
                 <div className={styles["gorisonlal-line"]}></div>
                 <Checkbox
-                  value={course.hasReception}
-                  text="Есть свободные места"
+                  value={course.hasFee}
+                  text="Платно?"
                   onChange={(value) => {
                     setCourse((prev) => {
                       return {
                         ...prev,
-                        hasReception: value,
+                        hasFee: value,
                       };
                     });
                   }}
