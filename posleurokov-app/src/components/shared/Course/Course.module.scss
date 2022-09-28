@@ -99,7 +99,7 @@
   text-align: right;
 
   /* dark_gray */
-  color: #5f6060;
+  color: $primary-color;
   width: 150px;
   height: 130px;
   display: flex;
@@ -108,8 +108,8 @@
 }
 
 .firstFree {
-  align-self: flex-end;
-  background-color: $primary-color;
+  text-align: center;
+  background-color: #ea2182;
   font-weight: 400;
   padding: 5px;
   font-size: 14px;
@@ -118,24 +118,6 @@
   width: 130px;
   border-radius: 5px;
   color: white;
-}
-
-.open,
-.close {
-  align-self: flex-end;
-  color: rgb(255, 255, 255);
-  padding: 4px 6px;
-  border-radius: 3px;
-}
-
-.open {
-  width: 85px;
-  background-color: $primary-color;
-}
-
-.close {
-  width: 100px;
-  background-color: #ff0000;
 }
 
 .mobile,
@@ -173,13 +155,9 @@
     align-items: center;
 
     &-price {
+      text-align: left;
       width: 100px;
     }
-  }
-
-  .firstFree {
-    text-align: center;
-    align-self: auto;
   }
 }
 
@@ -230,13 +208,8 @@
     align-items: center;
 
     &-price {
+      text-align: left;
       width: 100px;
     }
-  }
-
-  .firstFree {
-    text-align: center;
-    align-self: auto;
-    width: 80px;
   }
 }

@@ -60,6 +60,11 @@ const Catalogue = () => {
     setLoading(false);
   };
 
+  const openTab = (index) => {
+    store.dispatch({ type: "ChangeTab", amount: index });
+    setCurrentPage(1);
+  };
+
   useEffect(() => {
     let value = cityParam;
     if (value === undefined) {
@@ -113,8 +118,9 @@ const Catalogue = () => {
           name="description"
           content={
             category == "all"
-              ? ("Все кружки : Каталог занятий, кружков и секций " + setTitleCity())
-              : ("Все кружки : " + category + " " + setTitleCity())
+              ? "Все кружки : Каталог занятий, кружков и секций " +
+                setTitleCity()
+              : "Все кружки : " + category + " " + setTitleCity()
           }
         />
         <link rel="canonical" href={`/catalogue/${city}/${category}`} />
@@ -132,7 +138,7 @@ const Catalogue = () => {
                 typeof courses !== "string" ? (
                   <div>
                     <Sheet marginBottom="55px">
-                      <TabsBar items={courses} />
+                      <TabsBar items={courses} openTab={openTab} />
                     </Sheet>
                     <Pagination
                       currentPage={page}
