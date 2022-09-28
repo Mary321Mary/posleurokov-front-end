@@ -27,16 +27,13 @@
   }
 }
 
-.form {
-  margin-right: 20px;
-  text-align: right;
+.sheet {
+  padding: 60px 121px 59px;
+}
 
+.form {
   label {
     color: $primary-color;
-  }
-
-  button {
-    margin-left: 40%;
   }
 }
 
@@ -72,6 +69,10 @@
       margin-bottom: 40px;
       align-content: center;
     }
+  }
+
+  .sheet {
+    padding: 20px;
   }
 
   .form {
