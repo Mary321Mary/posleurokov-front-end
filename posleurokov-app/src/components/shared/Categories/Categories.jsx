@@ -1,9 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+
 import styles from "./Categories.module.scss";
 import Masonry from "react-masonry-css";
-import phone from "assets/img/phone.svg";
+import { axiosAPI } from "plugins/axios";
 
 const Categories = ({ number, children, ...rest }) => {
+  const [adv, setAdv] = useState({})
+
+  const getAdv = async () => {
+    let result = await axiosAPI.getAdvertisement()
+    setAdv(result)
+  }
+
+  useEffect(() => {
+    getAdv()
+  }, [])
+
   const breakpointColumnsObj = {
     default: 3,
     1250: 2,
@@ -13,20 +25,7 @@ const Categories = ({ number, children, ...rest }) => {
   return (
     <div style={{ ...rest }} className={styles.categories}>
       <div className={styles.info}>
-        Уважаемый гость!
-        <br />
-        Мы ожидаем подтверждения информации о некоторых кружках и секциях,
-        поэтому в ближайшие дни сайт будет продолжать наполняться.
-        <br />
-        <b>Вступайте в нашу группу в Viber и получайте актуальную информацию</b>
-        <br />
-        <a
-          href="https://invite.viber.com/?g2=AQBGysy%2BbfumIUw%2BZIFczCGeIehDAphAotMS7%2BfBbDOf0QwNFbDjWeb8ZlY7td52"
-          target={"_blank"}
-        >
-          <img src={phone} alt="Viber" />
-          Группа в Viber
-        </a>
+        <div className="content" dangerouslySetInnerHTML={{__html: adv.advertisement}}></div>
       </div>
       <div className={styles.label}>ВСЕ ЗАНЯТИЯ</div>
       <div className={styles.number}>{number}</div>
