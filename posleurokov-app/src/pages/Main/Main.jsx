@@ -123,15 +123,15 @@ const Main = () => {
             <div className={styles["section-filter__filter"]}>
               <Filter />
             </div>
-            <Link
-              path="/catalogue/all"
-              textDecoration="none"
-              className={styles.lessons}
-            >
-              <div>Посмотреть все занятия</div>
-              <img src={galochka} alt="Все занятия" />
-            </Link>
           </section>
+          <Link
+            path="/catalogue/all"
+            textDecoration="none"
+            className={styles.lessons}
+          >
+            <div>Посмотреть все занятия</div>
+            <img src={galochka} alt="Все занятия" />
+          </Link>
           <div className={styles["section-list"]}>
             <div className={styles["section-categories"]}>
               <Sheet marginLeft={marginParams["marginLeft"]}>

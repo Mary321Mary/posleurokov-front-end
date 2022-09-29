@@ -15,12 +15,12 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 50px;
-  margin-bottom: 30px;
+  margin-top: 10px;
 
   img {
-    width: 12px;
-    height: 4px;
+    margin-top: 11px;
+    width: 14px;
+    height: 6px;
   }
 }
 
@@ -63,7 +63,7 @@
     }
 
     &__filter {
-      min-height: 736px;
+      min-height: 280px;
     }
   }
 
@@ -96,6 +96,11 @@
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .lessons {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
   .section {
     &-filter {
       background-image: url("../../assets/img/main_pic_tablet.png");
@@ -113,8 +118,7 @@
 
 @media only screen and (max-width: 899px) {
   .lessons {
-    margin-top: 80px;
-    margin-bottom: 0px;
+    margin-top: 32px;
   }
 
   .section {
