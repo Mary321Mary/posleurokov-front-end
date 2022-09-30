@@ -11,9 +11,11 @@
 }
 
 .info {
-  width: 700px;
-  padding: 8px 150px;
+  max-width: 700px;
+  margin: 0 auto;
   text-align: center;
+  height: auto;
+  overflow: hidden;
 
   /* (main) */
   font-family: $primary-font-family;
@@ -30,12 +32,17 @@
 
   a {
     color: #5f6060;
-    margin: 15px 0px;
+    margin: 1px 0px;
     display: flex;
     justify-content: center;
+  }
 
-    img {
-      margin-right: 5px;
+  p {
+    margin: 0px;
+    padding: 0%;
+
+    &:last-of-type {
+      margin-bottom: -5px;
     }
   }
 

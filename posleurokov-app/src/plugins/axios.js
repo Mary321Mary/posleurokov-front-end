@@ -21,7 +21,8 @@ import {
   ADD_PICTURE,
   DELETE_PICTURE,
   PROFILE,
-  ORGANIZATION
+  ORGANIZATION,
+  ADVERTISEMENT
 } from "./endpoints";
 
 const instance = axios.create({
@@ -471,6 +472,18 @@ export const axiosAPI = {
     try {
       const response = await instance.get(
         ORGANIZATION(id) + `/lessons?type=${type}&page=${page}`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getAdvertisement(){
+    try {
+      const response = await instance.get(
+        ADVERTISEMENT,
         {}
       );
       return response.data;
