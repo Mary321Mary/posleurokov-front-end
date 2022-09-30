@@ -67,10 +67,10 @@ const Additional = ({ price, ...rest }) => {
               price ? styles["price"] : styles["no-price"]
             }`}
           >
-            {price  ? (
+            {price ? (
               additional.price ? (
                 <p className={styles.exist}>Платно</p>
-                ) : (
+              ) : (
                 <p className={styles.absent}>Бесплатно</p>
               )
             ) : (
