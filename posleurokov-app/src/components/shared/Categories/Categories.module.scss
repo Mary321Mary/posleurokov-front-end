@@ -16,6 +16,7 @@
   text-align: center;
   height: auto;
   overflow: hidden;
+  background-color: white;
 
   /* (main) */
   font-family: $primary-font-family;
@@ -29,6 +30,13 @@
 
   /* dark_gray */
   color: #5f6060;
+
+  div {
+    div {
+      background-color: white !important;
+      border-color: white !important;
+    }
+  }
 
   a {
     color: #5f6060;
