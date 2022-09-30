@@ -24,9 +24,9 @@ const Categories = ({ number, children, ...rest }) => {
 
   return (
     <div style={{ ...rest }} className={styles.categories}>
-      <div className={styles.info}>
-        <div className="content" dangerouslySetInnerHTML={{__html: adv.advertisement}}></div>
-      </div>
+      {adv.advertisement !== undefined ? <div className={styles.info}>
+        <div className="content" dangerouslySetInnerHTML={{__html: adv.advertisement.replace('/media/advertisement/', 'https://vsekruzhki.by:81/media/advertisement/')}}></div>
+      </div> : null}
       <div className={styles.label}>ВСЕ ЗАНЯТИЯ</div>
       <div className={styles.number}>{number}</div>
       <Masonry
