@@ -41,7 +41,7 @@ ul {
 
 .box {
   &__text {
-    font-family: "Roboto-Regular", sans-serif;
+    font-family: $primary-font-family;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
@@ -49,6 +49,7 @@ ul {
 
     color: $checkbox-text-color;
     cursor: pointer;
+    z-index: 1;
   }
 }
 

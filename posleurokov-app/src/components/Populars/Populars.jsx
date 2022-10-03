@@ -4,7 +4,7 @@ import { Sheet, List } from "components";
 import { axiosAPI } from "plugins/axios";
 import { useSelector } from "react-redux";
 
-const Populars = ({ path, onClick, ...rest }) => {
+const Populars = ({ path, ...rest }) => {
   const city = useSelector((state) => state.city);
   const [populars, setPopulars] = useState([]);
 
@@ -27,7 +27,7 @@ const Populars = ({ path, onClick, ...rest }) => {
       <h3 className={styles.h3}>Популярное</h3>
       {populars !== null ? (
         Array.isArray(populars) ? (
-          <List list={populars} path={`/catalogue/${city}`} onClick={onClick} />
+          <List list={populars} path={`/catalogue/${city}`} />
         ) : (
           <div>{populars}</div>
         )

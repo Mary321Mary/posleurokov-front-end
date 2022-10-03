@@ -22,8 +22,6 @@ function Filter() {
   const [selectWidth, setSelectWidth] = useState("");
   const [prependWidth, setPrependWidth] = useState("");
 
-  const AddCategory = { type: "SetCategory", amount: category };
-
   const getCategories = async () => {
     const categories = await axiosAPI.getCategories(city);
     setResult(categories);
@@ -31,8 +29,6 @@ function Filter() {
 
   useEffect(() => {
     getCategories();
-
-    store.dispatch(AddCategory);
 
     let tab = "all";
     if (cost.length === 1) {
@@ -64,15 +60,11 @@ function Filter() {
         age,
         sex,
         addr,
-        category,
         isInSummer,
         inNotSummer,
       },
     });
-    if (category === "") {
-      store.dispatch({ type: "SetCategory", amount: "all" });
-    }
-  }, [name, age, gender, cost, addr, category, other, city]);
+  }, [name, age, gender, cost, addr, other, city]);
 
   const setDynamicWidth = () => {
     let windowWidth = window.outerWidth;

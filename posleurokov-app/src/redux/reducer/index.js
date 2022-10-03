@@ -9,7 +9,6 @@ const initialState = {
     age: [],
     cost: [],
     addr: "",
-    category: "all",
     isInSummer: "",
     inNotSummer: "",
   },
@@ -39,15 +38,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         params: action.amount === undefined ? state.params : action.amount,
-      };
-    case "SetCategory":
-      return {
-        ...state,
-        params: {
-          ...state.params,
-          category:
-            action.amount === undefined ? state.params.category : action.amount,
-        },
       };
     case "ChangeName":
       return {
