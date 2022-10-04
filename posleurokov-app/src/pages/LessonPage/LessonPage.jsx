@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import { axiosAPI } from "plugins/axios";
 import { useParams } from "react-router-dom";
 import { Loader } from "components";
-import store from "redux/stores";
 import Helmet from "react-helmet";
 import { useSelector } from "react-redux";
 
@@ -74,10 +73,6 @@ const LessonPage = () => {
     }
   };
 
-  const setCategory = (event) => {
-    store.dispatch({ type: "SetCategory", amount: event });
-  };
-
   useEffect(() => {
     let getResults = async () => {
       await getLesson();
@@ -102,7 +97,12 @@ const LessonPage = () => {
         <meta
           name="description"
           content={
-            lesson.name ? ("Все кружки : " + lesson.name + ". " + String(lesson.info).substring(0, 50)) : "Все кружки : Занятие"
+            lesson.name
+              ? "Все кружки : " +
+                lesson.name +
+                ". " +
+                String(lesson.info).substring(0, 50)
+              : "Все кружки : Занятие"
           }
         />
         <link rel="canonical" href={`/lesson/${lesson.id}`} />
@@ -115,27 +115,27 @@ const LessonPage = () => {
             <div className={styles.sheet}>
               {Array.isArray(lesson.lessonCategories)
                 ? lesson.lessonCategories.map((category) => {
-                  let value = categories.find((elem) => elem.id == category);
-                  return (
-                    <div
-                      key={category}
-                      style={{ display: "inline", marginRight: "5px" }}
-                    >
-                      <Link
-                        path={`/catalogue/${city}/${value.name.split("/")[1]
-                          }`}
-                        onClick={() => setCategory(value.name.split("/")[1])}
-                        fontFamily="Roboto-Regular"
-                        fontWeight="400"
-                        fontSize="14px"
-                        lineHeight="36px"
-                        color="#5F6060"
+                    let value = categories.find((elem) => elem.id === category);
+                    return (
+                      <div
+                        key={category}
+                        style={{ display: "inline", marginRight: "5px" }}
                       >
-                        #{value.name.split("/")[1]}
-                      </Link>
-                    </div>
-                  );
-                })
+                        <Link
+                          path={`/catalogue/${city}/${
+                            value.name.split("/")[1]
+                          }`}
+                          fontFamily="Roboto-Regular"
+                          fontWeight="400"
+                          fontSize="14px"
+                          lineHeight="36px"
+                          color="#5F6060"
+                        >
+                          #{value.name.split("/")[1]}
+                        </Link>
+                      </div>
+                    );
+                  })
                 : null}
             </div>
             <Sheet className={styles.sheet}>
