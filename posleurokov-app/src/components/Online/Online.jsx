@@ -15,7 +15,7 @@ const Online = ({ number, ...rest }) => {
         </div>
         <div className={styles.count}>Найдено: {number ? number : 0}</div>
       </div>
-      <Link path={`/catalogue/Online`}>
+      <a href={`/catalogue/Online`} className={styles.link}>
         <Button
           border="1.5px solid #FFFFFF"
           backgroundColor="transparent"
@@ -23,7 +23,7 @@ const Online = ({ number, ...rest }) => {
         >
           Открыть
         </Button>
-      </Link>
+      </a>
     </div>
   );
 };

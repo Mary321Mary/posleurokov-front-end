@@ -1,11 +1,15 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 .online {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: 21px 31px 21px 29px;
-  background: linear-gradient(172.26deg, rgba(80, 79, 198, 0.83) -78.2%, #6EB0EC 94.02%);
+  background: linear-gradient(
+    172.26deg,
+    rgba(80, 79, 198, 0.83) -78.2%,
+    #6eb0ec 94.02%
+  );
   color: rgb(255, 255, 255);
 }
 
@@ -24,6 +28,10 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
+}
+
+.link {
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
