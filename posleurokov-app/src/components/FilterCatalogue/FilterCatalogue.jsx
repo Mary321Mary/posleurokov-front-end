@@ -232,7 +232,6 @@ function FilterCatalogue({ category, ...rest }) {
   };
 
   useEffect(() => {
-    console.log(category);
     getCountCategories();
   }, [city]);
 
