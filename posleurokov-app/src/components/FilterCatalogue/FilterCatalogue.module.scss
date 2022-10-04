@@ -105,9 +105,9 @@
   line-height: 28px;
   margin-left: 10px;
   margin-top: 10px;
+  cursor: pointer;
 
   /* dark_gray */
-
   color: #5f6060;
 }
 
@@ -119,6 +119,16 @@
   font-size: 14px;
   line-height: 16px;
   color: #5f6060;
+  text-decoration: none;
+}
+
+.linkCategory {
+  font-family: $primary-font-family;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #5f6060;
+  text-decoration: none;
 }
 
 div.podCategory {

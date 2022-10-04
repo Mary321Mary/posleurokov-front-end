@@ -16,7 +16,7 @@ import search from "assets/icons/search.svg";
 import galochka from "assets/img/galochka.png";
 import galochkaRaskruta from "assets/img/galochkaRaskruta.png";
 
-function FilterCatalogue() {
+function FilterCatalogue({ category, ...rest }) {
   const setAgeField = (ages) => {
     let res = [];
     for (let i = 0; i < ages.length; i++) {
@@ -84,7 +84,6 @@ function FilterCatalogue() {
   };
 
   const city = useSelector((state) => state.city);
-  const category = useSelector((state) => state.params.category);
 
   const [res, setCountCategories] = useState(null);
   const [baseCategories, setBaseCategories] = useState([]);
@@ -114,10 +113,6 @@ function FilterCatalogue() {
       setImg(galochka);
       categories.style.display = "none";
     }
-  };
-
-  const setCategory = (event) => {
-    store.dispatch({ type: "SetCategory", amount: event });
   };
 
   const setParams = () => {
@@ -241,7 +236,11 @@ function FilterCatalogue() {
   }, [city]);
 
   return (
-    <Sheet padding="21px 31px 27px 30px" className={styles["filter-wrapper"]}>
+    <Sheet
+      padding="21px 31px 27px 30px"
+      className={styles["filter-wrapper"]}
+      {...rest}
+    >
       <section className={styles.filter}>
         <div className={styles.label}>ЗАНЯТИЕ</div>
 
@@ -357,10 +356,11 @@ function FilterCatalogue() {
                 КАТЕГОРИИ
                 <img
                   src={img}
-                  className={`${img === galochka
+                  className={`${
+                    img === galochka
                       ? styles["galochka"]
                       : styles["galochkaRaskruta"]
-                    }`}
+                  }`}
                   alt="Галочка"
                 />
               </div>
@@ -371,47 +371,41 @@ function FilterCatalogue() {
                       style={{ margin: "10px" }}
                       key={category.baseCategory.name}
                     >
-                      <Link
-                        path={`/catalogue/${city}/${category.baseCategory.name}`}
+                      <a
+                        href={`/catalogue/${city}/${category.baseCategory.name}`}
                         className={`${styles.nameCategory}`}
-                        onClick={() => setCategory(category.baseCategory.name)}
                       >
                         {category.baseCategory.name} ({category.count})
-                      </Link>
+                      </a>
                     </div>
                   );
                 })}
               </div>
 
-              <Link
-                path={`/catalogue/${city}/${res.baseCategory}`}
-                className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""
-                  }`}
-                onClick={() => setCategory(res.baseCategory)}
+              <a
+                href={`/catalogue/${city}/${res.baseCategory}`}
+                className={`${styles.nameCategory} ${
+                  category === res.baseCategory ? styles["active"] : ""
+                }`}
               >
                 {res.baseCategory}
-              </Link>
+              </a>
               <div className={styles.podCategory}>
                 {Array.isArray(res.concreteCategories)
                   ? res.concreteCategories.map((key) => {
-                    return (
-                      <div style={{ margin: "10px" }} key={key.name}>
-                        <Link
-                          path={`/catalogue/${city}/${key.name}`}
-                          className={`${category === key.name ? styles["active"] : ""
+                      return (
+                        <div style={{ margin: "10px" }} key={key.name}>
+                          <a
+                            href={`/catalogue/${city}/${key.name}`}
+                            className={`${styles.linkCategory} ${
+                              category === key.name ? styles["active"] : ""
                             }`}
-                          fontFamily="Roboto-Regular"
-                          fontWeight="400"
-                          fontSize="13px"
-                          lineHeight="15px"
-                          color="#5F6060"
-                          onClick={() => setCategory(key.name)}
-                        >
-                          {key.name} ({key.count})
-                        </Link>
-                      </div>
-                    );
-                  })
+                          >
+                            {key.name} ({key.count})
+                          </a>
+                        </div>
+                      );
+                    })
                   : null}
               </div>
             </div>
@@ -422,13 +416,12 @@ function FilterCatalogue() {
                   style={{ margin: "10px" }}
                   key={category.baseCategory.name}
                 >
-                  <Link
-                    path={`/catalogue/${city}/${category.baseCategory.name}`}
+                  <a
+                    href={`/catalogue/${city}/${category.baseCategory.name}`}
                     className={`${styles.nameCategory}`}
-                    onClick={() => setCategory(category.baseCategory.name)}
                   >
                     {category.baseCategory.name} ({category.count})
-                  </Link>
+                  </a>
                 </div>
               );
             })
