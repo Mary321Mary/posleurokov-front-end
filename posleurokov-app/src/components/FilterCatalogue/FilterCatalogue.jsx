@@ -208,7 +208,7 @@ function FilterCatalogue({ category, ...rest }) {
   };
 
   const getCountCategories = async () => {
-    if (category !== "all") {
+    if (category !== undefined) {
       const result = await axiosAPI.getCountCategories(
         city,
         encodeURI(category)
@@ -350,7 +350,7 @@ function FilterCatalogue({ category, ...rest }) {
         />
 
         {res !== null ? (
-          category !== "all" ? (
+          category !== undefined ? (
             <div>
               <div className={styles.label} onClick={() => showCategory()}>
                 КАТЕГОРИИ
@@ -427,7 +427,7 @@ function FilterCatalogue({ category, ...rest }) {
             })
           )
         ) : (
-          <div> Loading </div>
+          <div> Загрузка категорий </div>
         )}
         <ListFilter
           placeholder="Другое"
