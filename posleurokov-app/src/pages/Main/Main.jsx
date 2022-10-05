@@ -3,7 +3,7 @@ import {
   Sheet,
   Categories,
   Category,
-  VkBlock,
+  ViberBlock,
   Link,
   Cities,
   Filter,
@@ -194,7 +194,7 @@ const Main = () => {
                 onClick={(event) => setCategory(event.target.innerText)}
               />
               <Cities />
-              <VkBlock heigth={"auto"} width={"220px"} />
+              <ViberBlock heigth={"auto"} width={"230px"} />
             </div>
           </div>
         </div>

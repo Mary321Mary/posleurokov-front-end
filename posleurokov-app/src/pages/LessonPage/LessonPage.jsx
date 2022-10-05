@@ -6,7 +6,7 @@ import {
   Similar,
   Additional,
   RandomLessons,
-  VkBlock,
+  ViberBlock,
   Link,
 } from "components";
 
@@ -157,7 +157,7 @@ const LessonPage = () => {
           <div className={styles["section-categories"]}>
             <Additional />
             <RandomLessons label="Другие занятия" number="3" width="220px" />
-            <VkBlock heigth={"auto"} width={"220px"} />
+            <ViberBlock heigth={"auto"} width={"220px"} />
           </div>
         </div>
       )}
