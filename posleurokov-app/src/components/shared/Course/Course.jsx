@@ -7,7 +7,7 @@ import age from "assets/img/age.svg";
 import map from "assets/img/mapItem.svg";
 import time from "assets/img/time.svg";
 
-const Course = ({ list, online, ...rest }) => {
+const Course = ({ list, online, category, ...rest }) => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
@@ -38,7 +38,7 @@ const Course = ({ list, online, ...rest }) => {
             <div className={styles.info}>
               <div>
                 {elem.lesson.lessonCategories.map((category) => {
-                  let value = categories.find((elem) => elem.id == category);
+                  let value = categories.find((elem) => elem.id === category);
                   return value ? (
                     <div
                       key={category}
@@ -110,7 +110,9 @@ const Course = ({ list, online, ...rest }) => {
             ) : null}
           </div>
         </div>
-        {id === 0 ? <Online width="inherit" number={online} /> : null}
+        {id === 0 && online !== undefined && online !== 0 ? (
+          <Online width="inherit" number={online} category={category} />
+        ) : null}
       </div>
     );
   });
