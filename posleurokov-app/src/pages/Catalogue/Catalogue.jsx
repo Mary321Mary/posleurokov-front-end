@@ -131,7 +131,11 @@ const Catalogue = () => {
                 typeof courses !== "string" ? (
                   <div>
                     <Sheet marginBottom="55px">
-                      <TabsBar items={courses} openTab={openTab} />
+                      <TabsBar
+                        items={courses}
+                        openTab={openTab}
+                        category={category}
+                      />
                     </Sheet>
                     <Pagination
                       currentPage={page}
