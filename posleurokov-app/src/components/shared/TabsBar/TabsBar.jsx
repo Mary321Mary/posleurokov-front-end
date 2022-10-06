@@ -6,7 +6,7 @@ import { TabBarNav, Course } from "components";
 import { useSelector } from "react-redux";
 import store from "redux/stores";
 
-const TabsBar = ({ items, openTab, ...rest }) => {
+const TabsBar = ({ items, openTab, category, ...rest }) => {
   const tab = useSelector((state) => state.tab);
 
   const showAll = () => {
@@ -72,7 +72,11 @@ const TabsBar = ({ items, openTab, ...rest }) => {
       </div>
       <div>
         {items.result.length !== 0 ? (
-          <Course list={items.result} online={items.counts.online} />
+          <Course
+            list={items.result}
+            online={items.counts.online}
+            category={category}
+          />
         ) : (
           <div style={{ padding: "20px" }}>Нет занятий</div>
         )}
