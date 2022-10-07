@@ -1,8 +1,8 @@
 import styles from "./Online.module.scss";
-import { Button, Link } from "components";
+import { Button } from "components";
 import store from "redux/stores";
 
-const Online = ({ number, ...rest }) => {
+const Online = ({ number, category, ...rest }) => {
   const onlineCatalogue = () => {
     store.dispatch({ type: "ChangeCity", amount: "online" });
   };
@@ -15,7 +15,10 @@ const Online = ({ number, ...rest }) => {
         </div>
         <div className={styles.count}>Найдено: {number ? number : 0}</div>
       </div>
-      <Link path={`/catalogue/Online`}>
+      <a
+        href={`/catalogue/Online/${category !== undefined ? category : ""}`}
+        className={styles.link}
+      >
         <Button
           border="1.5px solid #FFFFFF"
           backgroundColor="transparent"
@@ -23,7 +26,7 @@ const Online = ({ number, ...rest }) => {
         >
           Открыть
         </Button>
-      </Link>
+      </a>
     </div>
   );
 };

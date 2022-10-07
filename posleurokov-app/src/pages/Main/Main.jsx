@@ -37,10 +37,6 @@ const Main = () => {
     setLoading(false);
   };
 
-  const setCategory = (event) => {
-    store.dispatch({ type: "SetCategory", amount: event });
-  };
-
   const getWindowSize = () => {
     let innerWidth = window.outerWidth;
 
@@ -160,7 +156,6 @@ const Main = () => {
                                 >
                                   <Link
                                     path={`/catalogue/${city}/${item.name}`}
-                                    onClick={() => setCategory(item.name)}
                                     fontFamily="Roboto-Regular"
                                     fontWeight="400"
                                     fontSize="14px"
@@ -190,9 +185,7 @@ const Main = () => {
             <div className={styles["section-categories"]}>
               <Additional price />
               <RandomLessons number="3" width="220px" />
-              <Populars
-                onClick={(event) => setCategory(event.target.innerText)}
-              />
+              <Populars />
               <Cities />
               <ViberBlock heigth={"auto"} width={"230px"} />
             </div>

@@ -24,7 +24,6 @@ const Catalogue = () => {
   const tab = useSelector((state) => state.tab);
   const city = useSelector((state) => state.city);
 
-  const category = useSelector((state) => state.params.category);
   const name = useSelector((state) => state.params.name);
   const sex = useSelector((state) => state.params.sex);
   const age = useSelector((state) => state.params.age);
@@ -34,7 +33,7 @@ const Catalogue = () => {
   const inNotSummer = useSelector((state) => state.params.inNotSummer);
   const hasReception = useSelector((state) => state.params.hasReception);
 
-  const { cityParam, categoryParam } = useParams();
+  const { cityParam, categoryParam: category } = useParams();
 
   const getCourses = async () => {
     setLoading(true);
@@ -74,11 +73,6 @@ const Catalogue = () => {
       value = "online";
     }
     store.dispatch({ type: "ChangeCity", amount: value });
-    value = categoryParam;
-    if (value === undefined) {
-      value = "all";
-    }
-    store.dispatch({ type: "SetCategory", amount: value });
   }, []);
 
   useEffect(() => {
@@ -87,7 +81,6 @@ const Catalogue = () => {
     tab,
     city,
     page,
-    category,
     name,
     sex,
     age,
@@ -111,13 +104,13 @@ const Catalogue = () => {
     <section className={styles.container}>
       <Helmet>
         <title>
-          {category == "all" ? "Все занятия" : category}
+          {category === undefined ? "Все занятия" : category}
           {setTitleCity()}
         </title>
         <meta
           name="description"
           content={
-            category == "all"
+            category === undefined
               ? "Все кружки : Каталог занятий, кружков и секций " +
                 setTitleCity()
               : "Все кружки : " + category + " " + setTitleCity()
@@ -138,7 +131,11 @@ const Catalogue = () => {
                 typeof courses !== "string" ? (
                   <div>
                     <Sheet marginBottom="55px">
-                      <TabsBar items={courses} openTab={openTab} />
+                      <TabsBar
+                        items={courses}
+                        openTab={openTab}
+                        category={category}
+                      />
                     </Sheet>
                     <Pagination
                       currentPage={page}
@@ -154,7 +151,7 @@ const Catalogue = () => {
               )}
             </div>
             <div className={styles["section-categories"]}>
-              <FilterCatalogue />
+              <FilterCatalogue category={category} />
               <ViberBlock heigth="auto" width="220px" />
             </div>
           </div>
