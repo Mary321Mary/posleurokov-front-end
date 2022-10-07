@@ -51,7 +51,7 @@ const ViberBlock = ({ heigth, width, ...rest }) => {
 			overflow='hidden'
 		>
 			<img src={logo} className={styles.logo}/>
-			<div className={styles.info}>Каталог кружков, секций и занятий по Беларуси</div>
+			<div className={styles.info}>Все родители, тренеры и руководители кружков общаются здесь.</div>
 			<a href={link} target={'_blank'}>
 				<button className={styles.subscribe}>Группа в Viber</button>
 			</a>
