@@ -68,6 +68,11 @@
       display: table-cell;
       width: 7%;
       padding-bottom: 15px;
+      white-space: pre-line;
+
+      div {
+        display: inline-flex;
+      }
 
       a {
         text-decoration: underline;
@@ -77,6 +82,7 @@
       .head {
         display: inline-block;
         font-weight: 600;
+        height: max-content;
       }
     }
   }

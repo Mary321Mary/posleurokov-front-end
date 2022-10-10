@@ -22,7 +22,8 @@ import {
   DELETE_PICTURE,
   PROFILE,
   ORGANIZATION,
-  ADVERTISEMENT
+  ADVERTISEMENT,
+  VIBERLINK
 } from "./endpoints";
 
 const instance = axios.create({
@@ -484,6 +485,18 @@ export const axiosAPI = {
     try {
       const response = await instance.get(
         ADVERTISEMENT,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return error.response;
+    }
+  },
+  async getViberLinks(){
+    try {
+      const response = await instance.get(
+        VIBERLINK,
         {}
       );
       return response.data;

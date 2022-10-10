@@ -4,7 +4,7 @@ export * from "./Logo/Logo";
 export * from "./Header/Header";
 export * from "./Footer/Footer";
 export * from "./Cities/Cities";
-export * from "./VkBlock/VkBlock";
+export * from "./ViberBlock/ViberBlock";
 export * from "./Additional/Additional";
 export * from "./Populars/Populars";
 export * from "./Filter/Filter";
