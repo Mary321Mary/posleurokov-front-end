@@ -3,7 +3,7 @@ import {
   Sheet,
   TabsBar,
   Pagination,
-  VkBlock,
+  ViberBlock,
   FilterCatalogue,
   Loader,
 } from "components";
@@ -152,7 +152,7 @@ const Catalogue = () => {
             </div>
             <div className={styles["section-categories"]}>
               <FilterCatalogue category={category} />
-              <VkBlock heigth="auto" width="220px" />
+              <ViberBlock heigth="auto" width="220px" />
             </div>
           </div>
         </div>

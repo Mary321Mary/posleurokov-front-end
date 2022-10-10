@@ -21,3 +21,4 @@ export const DELETE_PICTURE = (id) => `/api/card/lesson/picture/${id}/`;
 export const PROFILE = "/api/cabinet";
 export const ORGANIZATION = (id) => `/api/organization/${id}`;
 export const ADVERTISEMENT = "/api/advertisement";
+export const VIBERLINK = "api/viberlinks";

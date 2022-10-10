@@ -119,7 +119,7 @@ const Organization = () => {
                 <div className={styles.separator} />
                 <div className={styles.additional}>
                   <div className={styles.rowInfo}>
-                    <div className={styles.infoCell}><div className={styles.head}>Телефон:</div> {organization.phoneNumber}</div>
+                    <div className={styles.infoCell}><div className={styles.head}>Телефон:</div> <div>{organization.phoneNumber}</div></div>
                     <div className={styles.infoCell}><div className={styles.head}>Email:</div> <a href={"mailto:" + organization.email}>{organization.email}</a></div>
                   </div>
                   <div className={styles.rowInfo}>
