@@ -6,6 +6,7 @@ import {
   Checkbox,
   Loader,
   SuggestComponent,
+  ModalWindow,
 } from "components";
 import Helmet from "react-helmet";
 import store from "redux/stores";
@@ -77,6 +78,7 @@ const LessonUpdate = () => {
       meneger: "",
     };
   });
+  const [showModal, setShowModal] = useState(false);
 
   const getBase64 = (file, callback) => {
     let reader = new FileReader();
@@ -166,7 +168,7 @@ const LessonUpdate = () => {
           };
         });
       } else {
-        window.location.reload();
+        setShowModal(true);
       }
     } else {
       setError((prev) => {
@@ -194,6 +196,10 @@ const LessonUpdate = () => {
     } else {
       window.location.assign("/cabinet/active");
     }
+  };
+
+  const backToLessons = () => {
+    window.location.assign("/cabinet/active");
   };
 
   const submitAddPicture = async (event) => {
@@ -337,7 +343,7 @@ const LessonUpdate = () => {
         <meta name="robots" content="noindex" />
       </Helmet>
       {loading ? (
-        <Loader marginLeft={"42vw"} />
+        <Loader marginLeft={"40vw"} />
       ) : (
         <div>
           <Heading tag="h1" center>
@@ -616,14 +622,10 @@ const LessonUpdate = () => {
                   }}
                 ></Checkbox>
                 <div className={styles["gorisonlal-line"]}></div>
-                <div className={styles.picture}>
-                  <Button onClick={submitUpdate}>Обновить занятие</Button>
-                  <Button onClick={submitDelete}>Удалить занятие</Button>
-                </div>
-                {error.meneger !== "" ? <span>{error.meneger}</span> : null}
               </form>
             </div>
             <div className={styles["section-categories"]}>
+              <p>Выберите файл и нажмите кнопку "Добавить картинку"</p>
               <Input
                 type="file"
                 label="Картинки:"
@@ -650,8 +652,43 @@ const LessonUpdate = () => {
               })}
             </div>
           </div>
+          <div className={styles.picture}>
+            <div>
+              <Button onClick={submitUpdate}>Обновить занятие</Button>
+              {error.meneger !== "" ? <span>{error.meneger}</span> : null}
+            </div>
+
+            <Button onClick={submitDelete}>Удалить занятие</Button>
+            <Button onClick={backToLessons}>
+              Вернуться на страницу занятий
+            </Button>
+          </div>
         </div>
       )}
+      <ModalWindow
+        show={showModal}
+        handler={() => {
+          setShowModal(false);
+          window.location.assign("/cabinet/active");
+        }}
+      >
+        <div style={{ margin: "10px" }}>
+          <div>
+            Занятие отправлено на модерацию и будет опубликовано в ближайшее
+            время
+          </div>
+          <Button
+            onClick={() => {
+              setShowModal(false);
+              window.location.assign("/cabinet/active");
+            }}
+            margin="10px 0"
+            float="right"
+          >
+            Закрыть
+          </Button>
+        </div>
+      </ModalWindow>
     </section>
   );
 };
