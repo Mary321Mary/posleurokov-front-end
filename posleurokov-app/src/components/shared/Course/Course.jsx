@@ -27,14 +27,16 @@ const Course = ({ list, online, category, ...rest }) => {
             <div className={styles.label}>{elem.lesson.name}</div>
           </Link>
           <div className={styles.content}>
-            {elem.image !== null ? (
-              <img
-                src={process.env.REACT_APP_BASE_URL + elem.image.image}
-                alt="Курс"
-              />
-            ) : (
-              <img src={randomLesson} alt="Курс" className={styles.random} />
-            )}
+            <div className={styles.image}>
+              {elem.image !== null ? (
+                <img
+                  src={process.env.REACT_APP_BASE_URL + elem.image.image}
+                  alt="Курс"
+                />
+              ) : (
+                <img src={randomLesson} alt="Курс" className={styles.random} />
+              )}
+            </div>
             <div className={styles.info}>
               <div>
                 {elem.lesson.lessonCategories.map((category) => {
