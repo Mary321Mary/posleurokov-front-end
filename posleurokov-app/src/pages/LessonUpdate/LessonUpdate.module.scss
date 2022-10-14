@@ -20,7 +20,7 @@
   &-list {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 133px;
+    margin-bottom: 15px;
   }
 
   &-categories {
@@ -63,13 +63,7 @@
   }
 }
 
-form {
-  span {
-    color: brown;
-    font-size: 15px;
-    font-weight: bold;
-  }
-
+.form {
   label {
     margin-right: 10px;
     margin-bottom: 3px;
@@ -90,11 +84,17 @@ form {
 }
 
 .picture {
-  padding-bottom: 10px;
+  margin-bottom: 133px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  span {
+    color: brown;
+    font-size: 15px;
+    font-weight: bold;
+  }
 }
 
 @media only screen and (min-width: 760px) and (max-width: 1200px) {
@@ -102,8 +102,11 @@ form {
     &-list {
       margin-left: 34px;
       margin-right: 32px;
-      margin-bottom: 79px;
     }
+  }
+
+  .picture {
+    margin-bottom: 79px;
   }
 }
 
@@ -120,7 +123,6 @@ form {
       flex-direction: column;
       margin-left: 16px;
       margin-right: 16px;
-      margin-bottom: 68px;
       align-content: center;
     }
 
@@ -133,5 +135,9 @@ form {
 
   form {
     width: auto;
+  }
+
+  .picture {
+    margin-bottom: 68px;
   }
 }
