@@ -232,6 +232,11 @@ const SignUp = () => {
                 name="password2"
                 value={user.password2}
                 onChange={changeInputRegister}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    submitChackin(event);
+                  }
+                }}
                 errorMessage={error.password2}
                 width="100%"
               />

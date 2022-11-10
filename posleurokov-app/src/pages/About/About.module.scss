@@ -1,9 +1,35 @@
-.section {
-  color: #5F6060;
+@import "src/assets/styles/_variables.scss";
 
-  img {
+.section {
+  color: #5f6060;
+  display: flex;
+  justify-content: space-around;
+
+  .content {
+    width: 1200px;
+  }
+
+  .project {
+    width: 500px;
+    height: auto;
+    margin: 38px 0 36px 0;
+    color: $primary-color;
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 500;
+  }
+
+  .img {
     margin-bottom: 42px;
-    margin-left: 40px;
+  }
+
+  .div {
+    padding-bottom: 24px;
+    width: 1060px;
+    white-space: pre-line;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
   }
 
   .chapter {
@@ -19,35 +45,120 @@
     line-height: 24px;
   }
 
-  div {
-    padding-bottom: 24px;
-    margin-left: 20px;
-    width: 808px;
-    white-space: pre-line;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+  .team {
+    margin: 0 0 34px 0;
+    width: 500px;
+    height: auto;
+    color: $primary-color;
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 500;
   }
 
-  @media only screen and (max-width: 1024px) and (min-width: 700px) {
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 42px;
+  }
 
-    div {
-      width: 640px;
-    }
+  .member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    img {
-      width: 640px;
+    margin-bottom: 105px;
+    width: 356px;
+    height: 378px;
+    text-align: center;
+  }
+
+  .image {
+    width: 168px;
+    margin-top: 36px;
+  }
+
+  .name {
+    font-family: $category-font-family;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: $primary-color;
+  }
+
+  .role {
+    width: 200px;
+    font-family: $heading-font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 auto;
+    color: #8e8e8e;
+  }
+
+  .icon {
+    background-color: $primary-color;
+    border-radius: 14px;
+    padding: 8px;
+    margin-right: 14px;
+
+    &-mail {
+      background-color: $primary-color;
+      border-radius: 14px;
+      padding: 9px 7px;
     }
   }
 
-  @media only screen and (max-width: 699px) {
+  @media only screen and (max-width: 1224px) and (min-width: 936px) {
+    .content {
+      margin: 0;
+      width: 900px;
+    }
 
-    div {
+    .project {
+      margin: 38px 0 12.5px 0;
+    }
+
+    .div {
+      width: 890px;
+    }
+
+    .img {
+      width: 900px;
+    }
+
+    .list {
+      margin-bottom: 0px;
+    }
+
+    .member {
+      width: 296px;
+      height: 378px;
+    }
+  }
+
+  @media only screen and (max-width: 935px) {
+    .content {
+      margin: 0;
       width: 288px;
+    }
+
+    .project {
+      width: 130px;
+      margin: 16px 0 14px 0;
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    .div {
+      width: 280px;
       padding-bottom: 20px;
     }
 
-    img {
+    .img {
       width: 288px;
       margin-bottom: 15px;
     }
@@ -60,6 +171,22 @@
     .chapter {
       font-size: 15px;
       line-height: 18px;
+    }
+
+    .team {
+      margin: 0 0 28px 0;
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    .list {
+      margin-bottom: 8px;
+    }
+
+    .member {
+      width: 288px;
+      height: 378px;
+      margin: 0 0 28px 0;
     }
   }
 }
