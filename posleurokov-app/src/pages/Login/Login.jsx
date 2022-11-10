@@ -48,7 +48,10 @@ const Login = () => {
     <section className={styles.container}>
       <Helmet title="Вход">
         <link rel="canonical" href="/login" />
-        <meta name="description" content='Войти в аккаунт на сайте "Все кружки".' />
+        <meta
+          name="description"
+          content='Войти в аккаунт на сайте "Все кружки".'
+        />
         <meta name="robots" content="noindex" />
       </Helmet>
       <div className={styles["section-list"]}>
@@ -71,6 +74,11 @@ const Login = () => {
                 name="password"
                 value={user.password}
                 onChange={changeInputRegister}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    submitChackin(event);
+                  }
+                }}
                 errorMessage={error}
               />
               <Button onClick={submitChackin} marginTop="5px">
