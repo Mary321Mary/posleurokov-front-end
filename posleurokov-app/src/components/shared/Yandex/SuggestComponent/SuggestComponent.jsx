@@ -18,10 +18,8 @@ const SuggestComponent = ({ handler, value, placeholder, prepend, className, sug
                 boundResult += city + ', '
               }
               return ymaps.suggest(boundResult + request).then(items => {
-                items = items.filter(item => item.displayName.endsWith(', Беларусь'))
                 items.forEach(item => {
                   if (isCitySet && city != 'online' && city != 'all') {
-                    console.log(city)
                     item.value = item.value.replace('Беларусь, ' + city + ', ', '')
                   }
                   else {
