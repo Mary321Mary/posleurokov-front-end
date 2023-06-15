@@ -3,7 +3,7 @@ import { Heading, Sheet, Loader } from "components";
 import styles from "./About.module.scss";
 import { useEffect, useState } from "react";
 import about from "assets/img/about.png";
-{/*import Olesya from "assets/img/Olesya.svg";
+/*import Olesya from "assets/img/Olesya.svg";
 import Grigoriy from "assets/img/Grigoriy.svg";
 import Nikolay from "assets/img/Nikolay.svg";
 import Alexandr from "assets/img/Alexandr.svg";
@@ -11,9 +11,9 @@ import Andrey from "assets/img/Andrey.svg";
 import Yuliya from "assets/img/Yuliya.svg";
 import Mihail from "assets/img/Mihail.svg";
 import Mariya from "assets/img/Mariya.svg";
-import Liliana from "assets/img/Liliana.svg";*/}
+import Liliana from "assets/img/Liliana.svg";
 import phoneIcon from "assets/img/phoneIcon.svg";
-import mail from "assets/img/mail.svg";
+import mail from "assets/img/mail.svg";*/
 import { axiosAPI } from "plugins/axios";
 import Helmet from "react-helmet";
 
