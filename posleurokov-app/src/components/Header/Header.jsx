@@ -107,6 +107,7 @@ const Header = () => {
           textDecorationStyle="dashed"
           textUnderlineOffset="5px"
           path="/"
+          zIndex="7"
           onChange={(value) => setCity(value)}
         />
       </div>
