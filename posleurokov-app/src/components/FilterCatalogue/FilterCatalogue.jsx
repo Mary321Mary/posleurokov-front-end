@@ -345,8 +345,7 @@ function FilterCatalogue({ category, ...rest }) {
           handler={changeAddress}
           className={styles.suggest}
           placeholder="Название улицы"
-          isCitySet={true}
-          isNotExact={false}
+          city={city}
         />
 
         {res !== null ? (
@@ -356,11 +355,10 @@ function FilterCatalogue({ category, ...rest }) {
                 КАТЕГОРИИ
                 <img
                   src={img}
-                  className={`${
-                    img === galochka
-                      ? styles["galochka"]
-                      : styles["galochkaRaskruta"]
-                  }`}
+                  className={`${img === galochka
+                    ? styles["galochka"]
+                    : styles["galochkaRaskruta"]
+                    }`}
                   alt="Галочка"
                 />
               </div>
@@ -384,28 +382,26 @@ function FilterCatalogue({ category, ...rest }) {
 
               <a
                 href={`/catalogue/${city}/${res.baseCategory}`}
-                className={`${styles.nameCategory} ${
-                  category === res.baseCategory ? styles["active"] : ""
-                }`}
+                className={`${styles.nameCategory} ${category === res.baseCategory ? styles["active"] : ""
+                  }`}
               >
                 {res.baseCategory}
               </a>
               <div className={styles.podCategory}>
                 {Array.isArray(res.concreteCategories)
                   ? res.concreteCategories.map((key) => {
-                      return (
-                        <div style={{ margin: "10px" }} key={key.name}>
-                          <a
-                            href={`/catalogue/${city}/${key.name}`}
-                            className={`${styles.linkCategory} ${
-                              category === key.name ? styles["active"] : ""
+                    return (
+                      <div style={{ margin: "10px" }} key={key.name}>
+                        <a
+                          href={`/catalogue/${city}/${key.name}`}
+                          className={`${styles.linkCategory} ${category === key.name ? styles["active"] : ""
                             }`}
-                          >
-                            {key.name} ({key.count})
-                          </a>
-                        </div>
-                      );
-                    })
+                        >
+                          {key.name} ({key.count})
+                        </a>
+                      </div>
+                    );
+                  })
                   : null}
               </div>
             </div>

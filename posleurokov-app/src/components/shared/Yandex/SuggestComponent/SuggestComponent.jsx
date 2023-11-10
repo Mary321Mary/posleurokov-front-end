@@ -1,80 +1,64 @@
-import { useEffect, useMemo } from "react";
-import { YMaps, withYMaps } from "react-yandex-maps";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getSuggestions } from "plugins/axios";
+const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, city, keyName = 'suggest', ...rest }) => {
+  const [suggestions, setSuggestions] = useState([]);
+  const [isHandwritingAllowed, setIsHandwritingAllowed] = useState(false);
+  const [searchValue, setSearchValue] = useState(value);
 
-const SuggestComponent = ({ handler, value, placeholder, prepend, className, suggestWidth, keyName = 'suggest', isCitySet = false, isNotExact = true, ...rest }) => {
-
-  function MapSuggestComponent(props) {
-    const { ymaps } = props;
-    const city = useSelector((state) => state.suggestCity)
-
-    useEffect(() => {
-      ymaps.ready(() => {
-        const suggestView = new ymaps.SuggestView(keyName, {
-          provider: {
-            suggest: request => {
-              let boundResult = 'Беларусь, '
-              if (isCitySet && city != 'online' && city != 'all') {
-                boundResult += city + ', '
-              }
-              return ymaps.suggest(boundResult + request).then(items => {
-                items.forEach(item => {
-                  if (isCitySet && city != 'online' && city != 'all') {
-                    item.value = item.value.replace('Беларусь, ' + city + ', ', '')
-                  }
-                  else {
-                    item.value = item.value.replace('Беларусь, ', '')
-                  }
-
-                  item.displayName = item.displayName.replace(', Беларусь', '')
-                })
-
-                return items
-              })
-            }
-          }
-        });
-        suggestView.events.add("select", (e) => {
-          handler(e.get('item').value)
-        });
-      })
-    }, [ymaps.SuggestView, city]);
-
-    const keyEnterSave = (e) => {
-      if (e.key == 'Enter' || isNotExact) {
-        handler(e.target.value)
+  async function suggestAddress() {
+    if (searchValue.length > 0) {
+      let searchText = "Беларусь, "
+      if (city !== undefined && city !== null && city != 'online' && city != 'all') {
+        searchText = searchText + `${city}, `
+      }
+      searchText = searchText + searchValue
+      let results = await getSuggestions(searchText)
+      if (results.status !== 200 || !("results" in results.data) || results.data.results.length === 0) {
+        setSuggestions([])
+        setIsHandwritingAllowed(true)
+      }
+      else {
+        setSuggestions(results.data.results)
+        setIsHandwritingAllowed(false)
       }
     }
+  }
 
-    return <div className={className}>
+  function saveAddress(e) {
+    if (isHandwritingAllowed || suggestions.find(elem => elem.subtitle.text + ', ' + elem.title.text === e.target.value) !== undefined) {
+      handler(e.target.value)
+    }
+  }
+
+  const suggestionsApplySelect = suggestions.map((suggestion, index) => {
+    return <option key={index} value={suggestion.subtitle.text + ', ' + suggestion.title.text}>{suggestion.subtitle.text + ', ' + suggestion.title.text}</option>;
+  });
+
+  useEffect(() => {
+    const timeOutId = setTimeout(async () => await suggestAddress(), 1000);
+    return () => clearTimeout(timeOutId);
+  }, [searchValue]);
+
+  return (
+    <div className={className}>
       <input
         type={"text"}
         maxLength={200}
         width={suggestWidth}
         id={keyName}
         key={keyName}
+        list={"suggestionList"}
         defaultValue={value}
         placeholder={placeholder}
         style={{ ...rest }}
-        onKeyDown={keyEnterSave}
+        onKeyDown={e => setSearchValue(e.target.value)}
+        onChange={saveAddress}
       ></input>
+      <datalist id="suggestionList">
+        {suggestionsApplySelect}
+      </datalist>
       {prepend}
     </div>
-  }
-
-  const SuggestField = useMemo(() => {
-    return withYMaps(MapSuggestComponent, true, [
-      "SuggestView",
-      'suggest'
-    ]);
-  }, []);
-
-  return (
-    <YMaps
-      enterprise
-      query={{ apikey: "3b52de14-8e8c-489d-b6d0-00b02db443c2" }}>
-      <SuggestField />
-    </YMaps>
   );
 };
 

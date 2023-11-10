@@ -336,9 +336,8 @@ const LessonUpdate = () => {
         <link rel="canonical" href={`/lesson/update/${id}`} />
         <meta
           name="description"
-          content={`Обновить занятие ${
-            course.name ? course.name + " " : ""
-          }на сайте "Все кружки".`}
+          content={`Обновить занятие ${course.name ? course.name + " " : ""
+            }на сайте "Все кружки".`}
         />
         <meta name="robots" content="noindex" />
       </Helmet>
@@ -502,8 +501,7 @@ const LessonUpdate = () => {
                         value={course.address}
                         handler={changeAddress}
                         className={styles.suggest}
-                        isCitySet={true}
-                        isNotExact={false}
+                        city={cities.find((elem) => elem.name == city || elem.id == city).name}
                       />
                     </div>
                     {error.isOnline !== "" ? (
