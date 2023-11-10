@@ -112,7 +112,7 @@ const Catalogue = () => {
           content={
             category === undefined
               ? "Все кружки : Каталог занятий, кружков и секций " +
-                setTitleCity()
+              setTitleCity()
               : "Все кружки : " + category + " " + setTitleCity()
           }
         />

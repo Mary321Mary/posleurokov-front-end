@@ -457,7 +457,7 @@ export const axiosAPI = {
       return error.response;
     }
   },
-  async getOrganizationInfo(id){
+  async getOrganizationInfo(id) {
     try {
       const response = await instance.get(
         ORGANIZATION(id),
@@ -469,7 +469,7 @@ export const axiosAPI = {
       return error.response;
     }
   },
-  async getOrganizationLessons(id, type, page){
+  async getOrganizationLessons(id, type, page) {
     try {
       const response = await instance.get(
         ORGANIZATION(id) + `/lessons?type=${type}&page=${page}`,
@@ -481,7 +481,7 @@ export const axiosAPI = {
       return error.response;
     }
   },
-  async getAdvertisement(){
+  async getAdvertisement() {
     try {
       const response = await instance.get(
         ADVERTISEMENT,
@@ -493,7 +493,7 @@ export const axiosAPI = {
       return error.response;
     }
   },
-  async getViberLinks(){
+  async getViberLinks() {
     try {
       const response = await instance.get(
         VIBERLINK,
@@ -506,3 +506,24 @@ export const axiosAPI = {
     }
   }
 };
+
+export const getSuggestions = async (text) => {
+  try {
+    const suggestRequest = axios.create({
+      baseURL: "https://suggest-maps.yandex.ru/v1",
+    });
+    const response = await suggestRequest.get(
+      `suggest?apikey=${process.env.REACT_APP_SUGGEST_API_KEY}&text=${text}&results=10&types=street,district,area,province,house`,
+      {}
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return error.response;
+    }
+    else {
+      return error.request;
+    }
+  }
+}

@@ -18,7 +18,12 @@ const ViberBlock = ({ heigth, width, ...rest }) => {
 				return links.find(element => element.name === "Гомель").value
 			}
 			else {
-				return links.find(element => element.name === city).value
+				try {
+					return links.find(element => element.name === city).value
+				}
+				catch {
+					return links.find(element => element.name === "Гомель").value
+				}
 			}
 		}
 		else {
@@ -30,7 +35,7 @@ const ViberBlock = ({ heigth, width, ...rest }) => {
 		let getLinks = async () => {
 			let result = await axiosAPI.getViberLinks()
 			result.map((elem) => {
-				setLinks(prevState => [...prevState, {'name': elem.city, 'value': elem.link}])
+				setLinks(prevState => [...prevState, { 'name': elem.city, 'value': elem.link }])
 			})
 		}
 
@@ -50,7 +55,7 @@ const ViberBlock = ({ heigth, width, ...rest }) => {
 			padding='25px 20px'
 			overflow='hidden'
 		>
-			<img src={logo} className={styles.logo}/>
+			<img src={logo} className={styles.logo} />
 			<div className={styles.info}>Все родители, тренеры и руководители кружков общаются здесь.</div>
 			<a href={link} target={'_blank'}>
 				<button className={styles.subscribe}>Группа в Viber</button>
