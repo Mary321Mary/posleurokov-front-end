@@ -33,7 +33,7 @@ const Profile = () => {
   const [orgImage, setOrgImage] = useState("");
 
   const changePanel = (type) => {
-    if (type == "self") {
+    if (type === "self") {
       setOrganActive(false);
       setSelfActive(true);
       setShowPanel("self");
@@ -68,13 +68,13 @@ const Profile = () => {
     if (localStorage.getItem("token")) {
       setLoading(true)
       let result = await axiosAPI.getProfile();
-      if (result === "Ошибка сервера"){
+      if (result === "Ошибка сервера") {
         window.location.href = "/login";
       }
       else {
         setUser(result.user);
         setOrganization(result.organizer);
-        if (result.organizer == null) {
+        if (result.organizer === null) {
           getCities(-1);
         }
         else {
@@ -89,21 +89,21 @@ const Profile = () => {
   const getCities = async (cityId) => {
     let result = await axiosAPI.getCities();
     setCities(result.cities);
-    if (cityId == -1) {
+    if (cityId === -1) {
       store.dispatch({ type: "ChangeSuggestCity", amount: result.cities[0].name });
       setCity(result.cities[0].id)
     }
     else {
-      store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id == cityId).name });
+      store.dispatch({ type: "ChangeSuggestCity", amount: result.cities.find(item => item.id === cityId).name });
     }
     setLoading(false)
   };
 
   const setUser = (user) => {
-    if ((user.fio != null) & (user.fio != "")) {
+    if ((user.fio !== null) & (user.fio !== "")) {
       let fio = String(user.fio).trim().split(" ");
       setFirstName(fio[0]);
-      if (fio.length == 2) {
+      if (fio.length === 2) {
         setSurname(fio[1]);
       }
     }
@@ -145,7 +145,7 @@ const Profile = () => {
   };
 
   const setOrganization = (organization) => {
-    if (organization != null) {
+    if (organization !== null) {
       setOrgName(organization.name);
       setOrgInfo(organization.info);
       setOrgEmail(organization.email);
@@ -176,7 +176,7 @@ const Profile = () => {
   const validateUser = () => {
     let isValid = true;
     let error = ''
-    if (firstName == '' || surname == '') {
+    if (firstName === '' || surname === '') {
       error += 'Имя и фамилия должны быть заполнены!\n'
       isValid = false
     }
@@ -186,7 +186,7 @@ const Profile = () => {
       isValid = false
     }
 
-    if (address == '') {
+    if (address === '') {
       error += 'Адрес: адрес не должен быть пустым!\n'
       isValid = false
     }
@@ -225,7 +225,7 @@ const Profile = () => {
   const validateOrganization = () => {
     let isValid = true;
     let error = ''
-    if (orgName == '') {
+    if (orgName === '') {
       error += 'Название: название не должно быть пустым!\n'
       isValid = false
     }
@@ -239,7 +239,7 @@ const Profile = () => {
       isValid = false
     }
 
-    if (orgAddress == '') {
+    if (orgAddress === '') {
       error += 'Адрес: адрес не должен быть пустым!\n'
       isValid = false
     }
@@ -320,7 +320,7 @@ const Profile = () => {
                   Профиль организатора занятий
                 </button>
               </div>
-              {showPanel == "self" ? (
+              {showPanel === "self" ? (
                 <div className={styles.form}>
                   <div>
                     Данные доступны только администрации сервиса для связи с вами.
@@ -371,7 +371,7 @@ const Profile = () => {
                   </div>
                   <div>
                     <div>Адрес</div>
-                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} keyName={'suggestuser'} isNotExact={false} />
+                    <SuggestComponent value={address} handler={setAddress} className={styles.suggest} key={'suggestuser'} keyName={'suggestuser'} />
                   </div>
                   <div>
                     <div>Телефон</div>
@@ -384,7 +384,7 @@ const Profile = () => {
                       placeholder={"+375441234567"}
                     ></input>
                   </div>
-                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                  <div className={styles.error} style={error !== '' ? { display: 'block' } : { display: 'none' }}>
                     {error}
                   </div>
                   <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>
@@ -443,7 +443,7 @@ const Profile = () => {
                       value={city}
                       onChange={(e) => {
                         setCity(e.target.value);
-                        store.dispatch({ type: "ChangeSuggestCity", amount: cities.find(item => item.id == e.target.value).name });
+                        store.dispatch({ type: "ChangeSuggestCity", amount: cities.find(item => item.id === e.target.value).name });
                       }}
                     >
                       {citiesSelect}
@@ -457,10 +457,9 @@ const Profile = () => {
                       value={orgAddress}
                       handler={setOrgAddress}
                       className={styles.suggest}
-                      isCitySet={true}
+                      city={cities.filter(elem => elem.id === city)[0].name}
                       key={'suggest1'}
-                      keyName={'suggest1'}
-                      isNotExact={false} />
+                      keyName={'suggest1'} />
                   </div>
                   <div>
                     <div>Контакт</div>
@@ -509,11 +508,11 @@ const Profile = () => {
                     <img
                       className={styles.preview}
                       src={orgImage}
-                      style={{ display: orgImage != "" ? "initial" : "none" }}
+                      style={{ display: orgImage !== "" ? "initial" : "none" }}
                     ></img>
-                    {orgImage != '' ? <button onClick={() => { setOrgImage('') }} className={styles.removeImage}>Удалить картинку</button> : <div></div>}
+                    {orgImage !== '' ? <button onClick={() => { setOrgImage('') }} className={styles.removeImage}>Удалить картинку</button> : <div></div>}
                   </div>
-                  <div className={styles.error} style={error != '' ? { display: 'block' } : { display: 'none' }}>
+                  <div className={styles.error} style={error !== '' ? { display: 'block' } : { display: 'none' }}>
                     {error}
                   </div>
                   <div className={styles.success} style={isSuccess ? { display: 'block' } : { display: 'none' }}>

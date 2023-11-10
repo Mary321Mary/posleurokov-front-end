@@ -528,8 +528,7 @@ const LessonCreate = () => {
                         value={course.address}
                         handler={changeAddress}
                         className={styles.suggest}
-                        isCitySet={true}
-                        isNotExact={false}
+                        city={cities.find((elem) => elem.name == city || elem.id == city).name}
                       />
                     </div>
                     {error.isOnline !== "" ? (
