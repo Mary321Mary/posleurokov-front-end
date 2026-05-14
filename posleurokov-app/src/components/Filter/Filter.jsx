@@ -108,7 +108,7 @@ function Filter() {
               placeholder="Занятие"
               prepend={
                 <img
-                  src="\images\Name.png"
+                  src="/images/Name.png"
                   width={prependWidth}
                   alt="Название"
                 />
@@ -144,7 +144,7 @@ function Filter() {
               checkbox
               selectWidth={selectWidth}
               prepend={
-                <img src="\images\Age.png" width={prependWidth} alt="Возраст" />
+                <img src="/images/Age.png" width={prependWidth} alt="Возраст" />
               }
               zIndex="6"
               onChange={(value) => setAge(value)}
@@ -161,7 +161,7 @@ function Filter() {
               selectWidth={selectWidth}
               prepend={
                 <img
-                  src="\images\Cost.png"
+                  src="/images/Cost.png"
                   width={prependWidth}
                   alt="Стоимость"
                 />
@@ -176,7 +176,7 @@ function Filter() {
               border={"none"}
               placeholder={"Адрес"}
               prepend={
-                <img src="\images\Address.png" height={"25px"} alt="Адрес" />
+                <img src="/images/Address.png" height={"25px"} alt="Адрес" />
               }
               city={city}
             />
@@ -186,16 +186,16 @@ function Filter() {
               options={
                 Array.isArray(result)
                   ? result.map((category) => {
-                    return {
-                      text: category.baseCategory.name,
-                      value: category.baseCategory.name,
-                    };
-                  })
+                      return {
+                        text: category.baseCategory.name,
+                        value: category.baseCategory.name,
+                      };
+                    })
                   : {}
               }
               prepend={
                 <img
-                  src="\images\Categories.png"
+                  src="/images/Categories.png"
                   width={prependWidth}
                   alt="Категории"
                 />
@@ -216,7 +216,7 @@ function Filter() {
               selectWidth={selectWidth}
               prepend={
                 <img
-                  src="\images\Other.png"
+                  src="/images/Other.png"
                   width={prependWidth}
                   alt="Другое"
                 />
