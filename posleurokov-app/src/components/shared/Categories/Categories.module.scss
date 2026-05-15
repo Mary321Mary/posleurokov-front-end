@@ -8,6 +8,7 @@
   display: flex;
   /* gutter size offset */
   width: auto;
+  gap: 50px;
 }
 
 .info {
@@ -65,17 +66,15 @@
 }
 
 .masonry_grid_column {
-  margin-right: 150px;
   background-clip: padding-box;
-  margin-left: 20px;
-  width: 200px !important;
+  width: 200px;
 
   &:last-of-type {
     padding-right: 50px;
   }
 
   @media only screen and (min-width: 1200px) and (max-width: 1400px) {
-    width: 170px !important;
+    width: 170px;
     margin-right: 100px;
 
     &:last-of-type {
@@ -85,7 +84,7 @@
 
   @media only screen and (max-width: 1200px) {
     margin-left: 80px;
-    width: 180px !important;
+    width: 180px;
     margin-right: -10px;
 
     &:first-of-type {
@@ -111,10 +110,8 @@
   font-size: 24px;
   line-height: 28px;
   text-decoration-line: underline;
-  margin-left: 10px;
 
   /* dark_gray */
-
   color: #5f6060;
 }
 

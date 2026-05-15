@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Filter.module.scss";
 import { Select, Button, Link, Input, SuggestComponent } from "components";
 import search from "assets/icons/search.svg";
+import Name from "assets/img/filter/Name.png";
 import store from "redux/stores";
 import { useSelector } from "react-redux";
 import { axiosAPI } from "plugins/axios";
@@ -106,13 +107,7 @@ function Filter() {
               border="none"
               type="text"
               placeholder="Занятие"
-              prepend={
-                <img
-                  src="/images/Name.png"
-                  width={prependWidth}
-                  alt="Название"
-                />
-              }
+              prepend={<img src={Name} width={prependWidth} alt="Название" />}
               onChange={(e) => setName(e.target.value)}
               inputWidth={fieldWidth}
             />

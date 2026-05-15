@@ -28,27 +28,12 @@ const Main = () => {
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [marginParams, setMarginParams] = useState({});
 
   const getCategories = async () => {
     setLoading(true);
     const categories = await axiosAPI.getCategories(city);
     setResult(categories);
     setLoading(false);
-  };
-
-  const getWindowSize = () => {
-    let innerWidth = window.outerWidth;
-
-    if (innerWidth > 1200) {
-      setMarginParams({
-        marginLeft: "5%",
-      });
-    } else {
-      setMarginParams({
-        marginLeft: "auto",
-      });
-    }
   };
 
   useEffect(() => {
@@ -60,18 +45,6 @@ const Main = () => {
       value = "online";
     }
     store.dispatch({ type: "ChangeCity", amount: value });
-
-    getWindowSize();
-
-    function handleWindowResize() {
-      getWindowSize();
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
   }, []);
 
   useEffect(() => {
@@ -79,9 +52,9 @@ const Main = () => {
   }, [city]);
 
   const setTitleCity = () => {
-    if (city == "all") {
+    if (city === "all") {
       return " по Беларуси";
-    } else if (city == "online") {
+    } else if (city === "online") {
       return " онлайн";
     } else {
       return " в г. " + city;
@@ -129,15 +102,17 @@ const Main = () => {
             <img src={galochka} alt="Все занятия" />
           </Link>
           <div className={styles["section-list"]}>
-            <div className={styles["section-categories"]}>
-              <Sheet marginLeft={marginParams["marginLeft"]}>
+            <div
+              className={`${styles["section-categories"]} ${styles["section-categories--main"]}`}
+            >
+              <Sheet>
                 {result !== null ? (
                   Array.isArray(result) ? (
                     <Categories
                       number={result.reduce(
                         (previousValue, currentValue) =>
                           previousValue + currentValue.count,
-                        0
+                        0,
                       )}
                     >
                       {result.map((category) => {
@@ -182,7 +157,9 @@ const Main = () => {
                 )}
               </Sheet>
             </div>
-            <div className={styles["section-categories"]}>
+            <div
+              className={`${styles["section-categories"]} ${styles["section-categories--sidebar"]}`}
+            >
               <Additional price />
               <RandomLessons number="3" width="220px" />
               <Populars />

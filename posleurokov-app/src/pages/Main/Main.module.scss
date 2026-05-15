@@ -68,13 +68,23 @@
   }
 
   &-list {
+    gap: 30px;
     display: flex;
-    justify-content: space-around;
-    margin: 0 55px 55px 55px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 60px 55px 60px;
   }
 
   &-categories {
-    margin-right: 40px;
+    &--main {
+      flex: 4;
+      min-width: 400px;
+    }
+
+    &--sidebar {
+      flex: 1;
+      min-width: 250px;
+    }
   }
 }
 
